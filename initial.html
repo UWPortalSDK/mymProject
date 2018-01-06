@@ -1,0 +1,11 @@
+ <div class="item item-text-wrap item-icon-right" ng-repeat="item in items.value" ng-click="showDetails(item)">
+        <span class="itemName">{{item.title}}</span>
+        <p>
+            <span ng-repeat="tag in item.tags">
+				[{{tag}}]
+			</span>
+        </p>
+
+        <i class="ion-chevron-right icon"></i>
+    </div>
+    <mym-form></mym-form>
