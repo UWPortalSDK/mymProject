@@ -23,7 +23,7 @@ angular.module('portalApp')
     $scope.showForm = function(){
         // Make the item that user clicked available to the template
         //$scope.detailsItem.value = item;		
-        $scope.portalHelpers.showView('initialForm.html', 2);
+        $scope.portalHelpers.showView('initial.html', 2);
 	}
 	
 }])
