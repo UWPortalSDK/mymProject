@@ -20,16 +20,17 @@
         <div class="wrap">
             <h4 class="likert-header">Question 1</h4>
             <form action="">
-            <ul class='likert'>                
-                <li ng-repeat="option in options">
-                    <input type="radio" name="test" value="" />
-                    <label>{{option}}</label>
-                </li>
-               
-            </ul>
-             
+                <ul class='likert'>
+                    <li ng-repeat="option in options">
+                        <input type="radio" name="test" value="{{$index}}" />
+                        <label>{{ option }}</label>
+                    </li>
+
+                </ul>
+
             </form>
         </div>
+        
 
     </wr>
 
