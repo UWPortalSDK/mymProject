@@ -1,55 +1,39 @@
 angular.module('portalApp')
 
 // Widget controller - runs every time widget is shown
-.controller('mymProjectCtrl', ['$scope', '$http', '$q', 'mymProjectFactory', function ($scope, $http, $q, mymProjectFactory) {
+.controller('mymProjectCtrl', ['$scope', '$http', '$q', 'mymFormQuestions', function ($scope, $http, $q, mymFormQuestions) {
 
     // Import variables and functions from service
-    $scope.data = mymProjectFactory.data;
-	$scope.items = mymProjectFactory.items;
-	$scope.detailsItem = mymProjectFactory.detailsItem;
-    $scope.options = mymProjectFactory.options;
-    $scope.counter = 0;
+    
+	
+    $scope.options = mymFormQuestions.options;
+    $scope.questions = mymFormQuestions.questions;
   
     
     console.log($scope.items);
     
 	
     // initialize the service
-    mymProjectFactory.init($scope);
+    
+    mymFormQuestions.init($scope);
 
 	// Show main view in the first column
 	$scope.portalHelpers.showView('mymProjectMain.html', 1);
-	
-	// This function gets called when user clicks an item in the list
-	$scope.showDetails = function(item){
-		// Make the item that user clicked available to the template
-		$scope.detailsItem.value = item;		
-		$scope.portalHelpers.showView('mymProjectDetails.html', 2);
-	}
-    $scope.showForm = function(){
-        // Make the item that user clicked available to the template
-        //$scope.detailsItem.value = item;		
-        $scope.portalHelpers.showView('initial.html', 2);
-	}
+
     
-    $scope.getValue = function() {
-       	counter++;
-        return counter;
-    }	
+
 }])
 
 
 
 // Factory maintains the state of the widget
-.factory('mymProjectFactory', ['$http', '$rootScope', '$filter', '$q', function ($http, $rootScope, $filter, $q) {
+.factory('mymFormQuestions', ['$http', '$rootScope', '$filter', '$q', function ($http, $rootScope, $filter, $q) {
 		
 	var initialized = {value: false};
 
-	// Your variable declarations
-	var data = {value: null};
-	var detailsItem = {value:null};
-	// mock data
-	var items = {value: null};
+
+	
+	var questions = {value: null};
     var options = [];
     options = ["S    D", "DA", "N", "AG", "SA"];
 	
@@ -60,37 +44,53 @@ angular.module('portalApp')
 		initialized.value = true;
 
 		// Place your init code here:
-		data.value={message:"Welcome to Portal SDK!"};
-		items.value = [
+	
+		questions.value = [
 			{
-				title:'Item 1',
-				tags: ['tag A', 'tag B', 'tag C'],
-				details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+				Order: 1,
+				question: "I value the benefits of exercise",
+                Type: "Value"
+				
 			},
 			{
-				title:'Item 2',
-				tags: ['tag D', 'tag E', 'tag F'],
-				details: 'Mauris cursus, sapien et malesuada ultrices, purus sapien iaculis tellus, quis semper magna est at leo.'
+				Order: 2,
+				question: "It's important to me to exercise regularly",
+                Type: "Value"
 			},
 			{
-				title:'Item 3',
-				tags: ['tag A', 'tag H'],
-				details: 'Donec id quam eu odio feugiat sagittis. Duis a tempus neque. Praesent elementum quis ante quis commodo. Sed tincidunt aliquet dolor sit amet laoreet. '
+				Order: 3,
+				question: "I exercise because it is fun",
+                Type: "Value"
 			},
 			{
-				title:'Item 4',
-				tags: ['tag I'],
-				details: 'Proin sem quam, rutrum id ante id, scelerisque tempor quam. Curabitur pharetra turpis at sem placerat, non vehicula ligula tincidunt.'
+				Order: 4,
+				question: "I feel pleasure and satisfaction from exercising",
+                Type: "Value"
 			},
 			{
-				title:'Item 5',
-				tags: ['tag C', 'tag K', 'tag B'],
-				details: 'Mauris nec ultricies metus. Cras et dictum justo. Nam a ullamcorper dolor. Cras fringilla metus vel facilisis vehicula.'
+				Order: 5,
+				question: "I feel pressured to exercise",
+                Type: "Value"
 			},
 			{
-				title:'Item 6',
-				tags: ['tag A', 'tag B', 'tag C'],
-				details: 'Curabitur scelerisque lorem risus, in luctus orci hendrerit non. Praesent quis tellus dapibus dolor consectetur volutpat.'
+				Order: 6,
+				question: "I feel guilty when I don't exercise",
+                Type: "Value"
+			},
+            {
+				Order: 7,
+				question: "I don't see why I should have to exercise",
+                Type: "Value"
+			},
+            {
+				Order: 8,
+				question: "I feel disappointed in myself when I have not exercised in a while",
+                Type: "Value"
+			},
+            {
+				Order: 9,
+				question: "I exercise due to other's expectation",
+                Type: "Value"
 			}
 		];
         
@@ -100,10 +100,9 @@ angular.module('portalApp')
 	// Expose init(), and variables
 	return {
 		init: init,
-		data: data,
-		detailsItem: detailsItem,
-		items: items,
-        options: options
+		questions: questions,
+        options; options;
+        
 	};
 
 }])
