@@ -8,7 +8,7 @@ angular.module('portalApp')
 	$scope.items = mymProjectFactory.items;
 	$scope.detailsItem = mymProjectFactory.detailsItem;
     $scope.options = mymProjectFactory.options;
-    
+    $scope.counter = 0;
   
     
     console.log($scope.items);
@@ -31,7 +31,11 @@ angular.module('portalApp')
         //$scope.detailsItem.value = item;		
         $scope.portalHelpers.showView('initial.html', 2);
 	}
-	
+    
+    $scope.getValue = function() {
+       	counter++;
+        return counter;
+    }	
 }])
 
 
