@@ -1,11 +1,36 @@
 <!-- Primary template that will get shown when widget loads -->
 <script type="text/ng-template" id="mymProjectMain.html">
     <wr>
-        <div class="item" ng-click="showForm()">
+        <div class="item">
             <h2>{{data.value.message}}</h2>
-
-
         </div>
+
+        <div class="item item-text-wrap item-icon-right" ng-repeat="item in items.value" ng-click="showDetails(item)">
+            <span class="itemName">{{item.title}}</span>
+            <p>
+                <span ng-repeat="tag in item.tags">
+				[{{tag}}]
+			</span>
+            </p>
+
+            <i class="ion-chevron-right icon"></i>
+        </div>
+        <select ng-model="selectedItem" ng-options="option.title for option in items.value"></select>
+
+        <div class="wrap">
+            <h4 class="likert-header">Question 1</h4>
+            <form action="">
+            <ul class='likert'>                
+                <li ng-repeat="option in options">
+                    <input type="radio" name="test" value="" />
+                    <label>{{option}}</label>
+                </li>
+               
+            </ul>
+             
+            </form>
+        </div>
+
     </wr>
 
 </script>

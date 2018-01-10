@@ -7,6 +7,12 @@ angular.module('portalApp')
     $scope.data = mymProjectFactory.data;
 	$scope.items = mymProjectFactory.items;
 	$scope.detailsItem = mymProjectFactory.detailsItem;
+    $scope.options = mymProjectFactory.options;
+    
+  
+    
+    console.log($scope.items);
+    
 	
     // initialize the service
     mymProjectFactory.init($scope);
@@ -29,6 +35,7 @@ angular.module('portalApp')
 }])
 
 
+
 // Factory maintains the state of the widget
 .factory('mymProjectFactory', ['$http', '$rootScope', '$filter', '$q', function ($http, $rootScope, $filter, $q) {
 		
@@ -39,6 +46,8 @@ angular.module('portalApp')
 	var detailsItem = {value:null};
 	// mock data
 	var items = {value: null};
+    var options = [];
+    options = ["S    D", "DA", "N", "AG", "SA"];
 	
 	var init = function ($scope) {
 		if (initialized.value)
@@ -80,6 +89,7 @@ angular.module('portalApp')
 				details: 'Curabitur scelerisque lorem risus, in luctus orci hendrerit non. Praesent quis tellus dapibus dolor consectetur volutpat.'
 			}
 		];
+        
 	}
 
 
@@ -88,10 +98,13 @@ angular.module('portalApp')
 		init: init,
 		data: data,
 		detailsItem: detailsItem,
-		items: items
+		items: items,
+        options: options
 	};
 
 }])
+
+
 // Custom directive example
 .directive('mymForm', ['$http', function ($http) {
 	return {
