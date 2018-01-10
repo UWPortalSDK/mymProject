@@ -15,11 +15,14 @@
 
             <i class="ion-chevron-right icon"></i>
         </div>
+         <h4 class="likert-header" ng-repeat="question in questions.value">{{question.question}}</h4>
         <select ng-model="selectedItem" ng-options="option.title for option in items.value"></select>
-
-        <div class="wrap">
-            <h4 class="likert-header">Question 1</h4>
-            <form action="">
+		<!--
+        <form action="">
+        
+        <div class="wrap" ng-repeat="question in questions.value">
+            <h4 class="likert-header">{{question.question}}</h4>
+            <!--
                 <ul class='likert'>
                     <li ng-repeat="option in options">
                         <input type="radio" name="test" value="{{$index}}" />
@@ -27,10 +30,11 @@
                     </li>
 
                 </ul>
-
-            </form>
+			
+           
         </div>
-        
+        </form>
+		-->
 
     </wr>
 
