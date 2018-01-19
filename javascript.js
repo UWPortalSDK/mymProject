@@ -35,6 +35,12 @@ angular.module('portalApp')
 
         $scope.portalHelpers.showView('mymProjectDetails.html', 1);
     }
+    
+      $scope.showDetails2 = function() {
+        // Make the item that user clicked available to the template
+
+        $scope.portalHelpers.showView('mymProjectMain.html', 1);
+    }
 
 
 }])
