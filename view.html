@@ -1,13 +1,15 @@
 <!-- Primary template that will get shown when widget loads -->
+
 <script type="text/ng-template" id="mymProjectMain.html">
+    
     <wr>
-        <div>
-            <h2>{{test}}</h2>
-        </div>
+<!--         <p>{{logo}}</p> -->
+        
+        <div ng-controller = "testCtrl">{{test}}</div>
         <!--<select ng-model="selectedItem" ng-options="option.title for option in items.value"></select> -->
 
         <form action="">
-<!--The below code will create multiple divs for each question along with the cooresponding question  -->
+            <!--The below code will create multiple divs for each question along with the cooresponding question  -->
             <div class="wrap" ng-repeat="question in questions.value">
                 <h4 class="likert-header">{{question.question}}</h4>
 
@@ -23,6 +25,8 @@
             </div>
         </form>
 
+        <button  ng-click="showDetails()">Next</button>
+
 
     </wr>
 
@@ -30,11 +34,9 @@
 
 <!-- This template gets shown when user clicks one of the items in the list -->
 <script type="text/ng-template" id="mymProjectDetails.html">
-    <div class="item">
-        <h2>{{detailsItem.value.title}}</h2>
-        <p><span ng-repeat="tag in detailsItem.value.tags">[{{tag}}]</span> </p>
+    <div>
+        <img ng-src = "{{logo}}" />
+        
     </div>
-    <div class="item item-text-wrap">
-        <p>{{detailsItem.value.details}}</p>
-    </div>
+
 </script>
