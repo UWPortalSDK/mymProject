@@ -1,14 +1,23 @@
+var imports = ["test.js"];
+
+
 angular.module('portalApp')
+
+.controller('testCtrl', ['$scope', 'mymForm', function ($scope, mymForm) {            
+    $scope.test = "hello";
+}])
 
 // Widget controller - runs every time widget is shown
 .controller('mymProjectCtrl', ['$scope', '$http', '$q', 'mymForm', function($scope, $http, $q, mymForm) {
+
 
     // Import variables and functions from service
     $scope.test = mymForm.test;
     $scope.questions = mymForm.questions;
     $scope.options = mymForm.options;
- 
-
+	$scope.num = square(2);
+    $scope.varTest = numTest;
+    $scope.logo = mymLogo;
 
 
     console.log($scope.items);
@@ -21,10 +30,10 @@ angular.module('portalApp')
     $scope.portalHelpers.showView('mymProjectMain.html', 1);
 
     // This function gets called when user clicks an item in the list
-    $scope.showDetails = function(item) {
+    $scope.showDetails = function() {
         // Make the item that user clicked available to the template
-        $scope.detailsItem.value = item;
-        $scope.portalHelpers.showView('mymProjectDetails.html', 2);
+
+        $scope.portalHelpers.showView('mymProjectDetails.html', 1);
     }
 
 
@@ -35,14 +44,18 @@ angular.module('portalApp')
 // Factory maintains the state of the widget
 .factory('mymForm', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
 
-        var initialized = {value: false};
-    	
-    	var test = 1;
+        var initialized = {
+            value: false
+        };
+
+        var test = 1;
 
 
 
-        var questions = {value: null};
-    
+        var questions = {
+            value: null
+        };
+
         var options = [];
         options = ["S    D", "DA", "N", "AG", "SA"];
 
@@ -101,7 +114,7 @@ angular.module('portalApp')
             init: init,
             questions: questions,
             test: test,
-            options:options
+            options: options
 
         };
     }])
