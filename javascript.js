@@ -63,7 +63,7 @@ angular.module('portalApp')
         };
 
         var options = [];
-        options = ["SD", "DA", "N", "AG", "SA"];
+        options = ["1", "2", "3", "4", "5"];
 
         var init = function($scope) {
             if (initialized.value)
