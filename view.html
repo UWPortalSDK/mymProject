@@ -15,8 +15,8 @@
 
                 <ul class='likert'>
                     <li ng-repeat="option in options">
-                        <input type="radio" name="{{question.Name}}" value="{{$index}}" />
-                        <label>{{ option }}</label>
+                        <input type="radio" name="{{question.Name}}" id="{{question.Name}} + {{ option }}" value="{{ option }}" />
+                        <label for="{{question.Name}} + {{ option }}">{{ option }}</label>
                     </li>
                 </ul>
             </div>
