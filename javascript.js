@@ -63,7 +63,7 @@ angular.module('portalApp')
         };
 
         var options = [];
-        options = ["S    D", "DA", "N", "AG", "SA"];
+        options = ["SD", "DA", "N", "AG", "SA"];
 
         var init = function($scope) {
             if (initialized.value)
@@ -74,40 +74,40 @@ angular.module('portalApp')
             // Place your init code here:
 
             questions.value = [{
-                Order: 1,
+                Name: "q1",
                 question: "I value the benefits of exercise",
                 Type: 1
 
             }, {
-                Order: 2,
+                Name: "q2",
                 question: "It's important to me to exercise regularly",
                 Type: 1
             }, {
-                Order: 3,
+                Name: "q3",
                 question: "I exercise because it is fun",
                 Type: 1
             }, {
-                Order: 4,
+                Name: "q4",
                 question: "I feel pleasure and satisfaction from exercising",
-                Type: 0
+                Type: 1
             }, {
-                Order: 5,
+                Name: "q5",
                 question: "I feel pressured to exercise",
                 Type: 0
             }, {
-                Order: 6,
+                Name: "q6",
                 question: "I feel guilty when I don't exercise",
                 Type: 0
             }, {
-                Order: 7,
+                Name: "q7",
                 question: "I don't see why I should have to exercise",
                 Type: 0
             }, {
-                Order: 8,
+                Name: "q8",
                 question: "I feel disappointed in myself when I have not exercised in a while",
                 Type: 0
             }, {
-                Order: 9,
+                Name: "q9",
                 question: "I exercise due to other's expectation",
                 Type: 0
             }];
