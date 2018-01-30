@@ -14,10 +14,12 @@
                 <h4 class="likert-header">{{question.question}}</h4>
 
                 <ul class='likert'>
+                    <p>Not true for me.</p>
                     <li ng-repeat="option in options">
                         <input type="radio" name="{{question.Name}}" id="{{question.Name}} + {{ option }}" value="{{ option }}" />
                         <label for="{{question.Name}} + {{ option }}">{{ option }}</label>
                     </li>
+                    <p>Very true for me.</p>
                 </ul>
             </div>
         </form>
