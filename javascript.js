@@ -34,7 +34,7 @@ angular.module('portalApp')
         // Make the item that user clicked available to the template
 
         $scope.portalHelpers.showView('mymProjectDetails.html', 1);
-    }
+        }
     
       $scope.showDetails2 = function() {
         // Make the item that user clicked available to the template
@@ -76,40 +76,40 @@ angular.module('portalApp')
             questions.value = [{
                 Order: 1,
                 question: "I value the benefits of exercise",
-                Type: "Value"
+                Type: 1
 
             }, {
                 Order: 2,
                 question: "It's important to me to exercise regularly",
-                Type: "Value"
+                Type: 1
             }, {
                 Order: 3,
                 question: "I exercise because it is fun",
-                Type: "Value"
+                Type: 1
             }, {
                 Order: 4,
                 question: "I feel pleasure and satisfaction from exercising",
-                Type: "Value"
+                Type: 0
             }, {
                 Order: 5,
                 question: "I feel pressured to exercise",
-                Type: "Value"
+                Type: 0
             }, {
                 Order: 6,
                 question: "I feel guilty when I don't exercise",
-                Type: "Value"
+                Type: 0
             }, {
                 Order: 7,
                 question: "I don't see why I should have to exercise",
-                Type: "Value"
+                Type: 0
             }, {
                 Order: 8,
                 question: "I feel disappointed in myself when I have not exercised in a while",
-                Type: "Value"
+                Type: 0
             }, {
                 Order: 9,
                 question: "I exercise due to other's expectation",
-                Type: "Value"
+                Type: 0
             }];
 
         }
