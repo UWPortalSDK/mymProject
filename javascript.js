@@ -18,7 +18,7 @@ angular.module('portalApp')
 	$scope.num = square(2);
     $scope.varTest = numTest;
     $scope.logo = mymLogo;
-
+	$scope.questionsV2 = mymForm.dbQs;
 
     console.log($scope.items);
 
@@ -55,7 +55,11 @@ angular.module('portalApp')
         };
 
         var test = 1;
-
+    	
+    	var dbQs = {
+            value:null
+        };
+		
 
 
         var questions = {
@@ -70,8 +74,15 @@ angular.module('portalApp')
                 return;
 
             initialized.value = true;
-
+			
+            console.log('getting data.. ', $scope.portalHelpers,  $scope.portalHelpers.invokeServerFunction);
+            
             // Place your init code here:
+            $scope.portalHelpers.invokeServerFunction({functionName:'getQs', uniqueNameId:'mymProject'}).then(function (result) {
+				console.log('got data: ', result);
+                dbQs.value = result;
+                sourceLoaded();
+            });
 
             questions.value = [{
                 Name: "q1",
@@ -118,6 +129,7 @@ angular.module('portalApp')
         // Expose init(), and variables
         return {
             init: init,
+            dbQs: dbQs,
             questions: questions,
             test: test,
             options: options
