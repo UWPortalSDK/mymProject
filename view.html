@@ -1,16 +1,24 @@
 <!-- Primary template that will get shown when widget loads -->
 
 <script type="text/ng-template" id="mymProjectMain.html">
-    
+
     <wr>
-<!--         <p>{{logo}}</p> -->
-        
-<!--         <div ng-controller = "testCtrl">{{test}}</div> -->
+        <!--         <p>{{logo}}</p> -->
+
+        <!--         <div ng-controller = "testCtrl">{{test}}</div> -->
         <!--<select ng-model="selectedItem" ng-options="option.title for option in items.value"></select> -->
+        <form name="myform">
+            <input name="myfield" class="form-control" ng-model="somefield" ng-minlength="5" required />
+        </form>
+
+        <div>
+           <p>Remove This Element on click of button</p>
+            <button remove-me>Remove</button>
+        </div>
 
         <form action="">
             <!--The below code will create multiple divs for each question along with the cooresponding question  -->
-            <div class="wrap" ng-repeat="question in questionsV2.value" ng-show = "question.question_number == 1">
+            <div class="wrap" ng-repeat="question in questionsV2.value" ng-show="question.question_number == 1">
                 <h4 class="likert-header">{{question.questions}}</h4>
 
                 <ul class='likert'>
@@ -24,9 +32,7 @@
             </div>
         </form>
 
-        <button  ng-click="showDetails()">Next</button>
-
-
+        <button ng-click="showDetails()">Next</button>
     </wr>
 
 </script>
@@ -34,8 +40,8 @@
 <!-- This template gets shown when user clicks one of the items in the list -->
 <script type="text/ng-template" id="mymProjectDetails.html">
     <div>
-        <img ng-src = "{{logo}}" />        
+        <img ng-src="{{logo}}" />
     </div>
-    
-	<button  ng-click="showDetails2()">Next</button>
+
+    <button ng-click="showDetails2()">Next</button>
 </script>
