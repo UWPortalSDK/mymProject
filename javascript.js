@@ -19,6 +19,7 @@ angular.module('portalApp')
     $scope.varTest = numTest;
     $scope.logo = mymLogo;
     $scope.questionsV2 = mymForm.dbQs;
+    $scope.testShow = mymForm.testShow;
 
     console.log($scope.items);
 
@@ -50,7 +51,9 @@ angular.module('portalApp')
 		link: function (scope, el, attrs) {
 			el.bind("click",function() {
                 el.parent().remove();
+                scope.testShow.value = false;
             });
+         
 		}
 	};
 }])
@@ -73,7 +76,9 @@ angular.module('portalApp')
         var questions = {
             value: null
         };
-
+    	var testShow = {
+            value: null
+        };
         var options = [];
         options = ["1", "2", "3", "4", "5"];
 
@@ -86,6 +91,7 @@ angular.module('portalApp')
             console.log('getting data.. ', $scope.portalHelpers, $scope.portalHelpers.invokeServerFunction);
 
             // Place your init code here:
+           testShow.value = true;
             $scope.portalHelpers.invokeServerFunction({
                 functionName: 'getQs',
                 uniqueNameId: 'mymProject'
@@ -140,6 +146,7 @@ angular.module('portalApp')
         // Expose init(), and variables
         return {
             init: init,
+            testShow: testShow,
             dbQs: dbQs,
             questions: questions,
             test: test,
