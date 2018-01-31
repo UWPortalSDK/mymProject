@@ -1,3 +1,7 @@
+.red {
+  border: solid 1px red;
+}
+
 .label{
 	margin-right:5px;
 }
