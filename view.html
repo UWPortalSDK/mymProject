@@ -24,8 +24,8 @@
                 <ul class='likert'>
                     <p>Not true for me.</p>
                     <li ng-repeat="option in options">
-                        <input type="radio" name="{{question.Name}}" id="{{question.Name}} + {{ option }}" value="{{ option }}" />
-                        <label for="{{question.Name}} + {{ option }}">{{ option }}</label>
+                        <input type="radio" name="{{question.questions}}" id="{{question.questions}} + {{ option }}" value="{{ option }}" />
+                        <label for="{{question.questions}} + {{ option }}">{{ option }}</label>
                     </li>
                     <p>Very true for me.</p>
                 </ul>
