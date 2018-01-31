@@ -3,7 +3,7 @@ var imports = ["test.js"];
 
 angular.module('portalApp')
 
-.controller('testCtrl', ['$scope', 'mymForm', function ($scope, mymForm) {            
+.controller('testCtrl', ['$scope', 'mymForm', function($scope, mymForm) {
     $scope.test = "hello";
 }])
 
@@ -15,10 +15,10 @@ angular.module('portalApp')
     $scope.test = mymForm.test;
     $scope.questions = mymForm.questions;
     $scope.options = mymForm.options;
-	$scope.num = square(2);
+    $scope.num = square(2);
     $scope.varTest = numTest;
     $scope.logo = mymLogo;
-	$scope.questionsV2 = mymForm.dbQs;
+    $scope.questionsV2 = mymForm.dbQs;
 
     console.log($scope.items);
 
@@ -34,9 +34,9 @@ angular.module('portalApp')
         // Make the item that user clicked available to the template
 
         $scope.portalHelpers.showView('mymProjectDetails.html', 1);
-        }
-    
-      $scope.showDetails2 = function() {
+    }
+
+    $scope.showDetails2 = function() {
         // Make the item that user clicked available to the template
 
         $scope.portalHelpers.showView('mymProjectMain.html', 1);
@@ -45,7 +45,15 @@ angular.module('portalApp')
 
 }])
 
-
+.directive('removeMe', ['$http', function ($http) {
+	return {
+		link: function (scope, el, attrs) {
+			el.bind("click",function() {
+                el.parent().remove();
+            });
+		}
+	};
+}])
 
 // Factory maintains the state of the widget
 .factory('mymForm', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
@@ -55,11 +63,11 @@ angular.module('portalApp')
         };
 
         var test = 1;
-    	
-    	var dbQs = {
-            value:null
+
+        var dbQs = {
+            value: null
         };
-		
+
 
 
         var questions = {
@@ -74,12 +82,15 @@ angular.module('portalApp')
                 return;
 
             initialized.value = true;
-			
-            console.log('getting data.. ', $scope.portalHelpers,  $scope.portalHelpers.invokeServerFunction);
-            
+
+            console.log('getting data.. ', $scope.portalHelpers, $scope.portalHelpers.invokeServerFunction);
+
             // Place your init code here:
-            $scope.portalHelpers.invokeServerFunction({functionName:'getQs', uniqueNameId:'mymProject'}).then(function (result) {
-				console.log('got data: ', result);
+            $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getQs',
+                uniqueNameId: 'mymProject'
+            }).then(function(result) {
+                console.log('got data: ', result);
                 dbQs.value = result;
                 sourceLoaded();
             });
