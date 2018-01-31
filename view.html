@@ -8,8 +8,13 @@
         <!--         <div ng-controller = "testCtrl">{{test}}</div> -->
         <!--<select ng-model="selectedItem" ng-options="option.title for option in items.value"></select> -->
         <form name="myform">
-            <input name="myfield" ng-model="somefield" ng-minlength="5" required ng-class="{red: myform.myfield.$error.required}" />
+            <input name="myfield" class="form-control" ng-model="somefield" ng-minlength="5" required />
         </form>
+
+        <div>
+           <p>Remove This Element on click of button</p>
+            <button remove-me>Remove</button>
+        </div>
 
         <form action="">
             <!--The below code will create multiple divs for each question along with the cooresponding question  -->
@@ -28,8 +33,6 @@
         </form>
 
         <button ng-click="showDetails()">Next</button>
-
-
     </wr>
 
 </script>
