@@ -7,38 +7,56 @@
 
         <!--         <div ng-controller = "testCtrl">{{test}}</div> -->
         <!--<select ng-model="selectedItem" ng-options="option.title for option in items.value"></select> -->
-        <form name="myform">
-            <input name="myfield" class="form-control" ng-model="somefield" ng-minlength="5" required />
-        </form>
-
-        <div ng-show="testShow.value">
-            <p>Remove This Element on click of button</p>
-            <button remove-me>Remove</button>
-        </div>
-        
-        <div class="slidecontainer">
-            <p>Custom range slider:</p>
-            <input type="range" min="1" max="10" value="5" class="slider" id="myRange"/>
-            <span title="">Test</span>
-        </div>
-
-        <form action="">
-            <!--The below code will create multiple divs for each question along with the cooresponding question  -->
-            <div class="wrap" ng-repeat="question in questionsV2.value" ng-show="question.question_type == 1 && question.question_active == true">
-                <h4 class="likert-header">{{question.questions}}</h4>
-
-                <ul class='likert'>
-                    <p>Not true for me.</p>
-                    <li ng-repeat="option in options">
-                        <input type="radio" name="{{question.questions}}" id="{{question.questions}} + {{ option }}" value="{{ option }}" />
-                        <label for="{{question.questions}} + {{ option }}">{{ option }}</label>
-                    </li>
-                    <p>Very true for me.</p>
-                </ul>
+        <div class="AllContent">
+            <div class="UpBanner">
+                <div class="UwaterlooLogo">
+        			<img ng-src="{{UWlogo}}" />
+    			</div>
             </div>
-        </form>
+            <div class="ContentDownBanner">
+                <div class="leftSelectMenu">
+                    <div class="FormtoView1">
+                        <a ng-click="showDetails2()">Form1</a>
+                    </div>
+                </div>
+                <div class="MainContent">
+                    <form name="myform">
+                        <input name="myfield" class="form-control" ng-model="somefield" ng-minlength="5" required />
+                    </form>
 
-        <button ng-click="showDetails()">Next</button>
+                    <div ng-show="testShow.value">
+                        <p>Remove This Element on click of button</p>
+                        <button remove-me>Remove</button>
+                    </div>
+
+                    <div class="slidecontainer">
+                        <p>Custom range slider:</p>
+                        <input type="range" min="1" max="10" value="5" class="slider" id="{{question.questions}} + {{ option }}"/>
+                        <span title="">Test</span>
+                    </div>
+
+                    <form action="">
+                        <!--The below code will create multiple divs for each question along with the cooresponding question  -->
+                        <div class="wrap" ng-repeat="question in questionsV2.value" ng-show="question.question_type == 1 && question.question_active == true">
+                            <h4 class="likert-header">{{question.questions}}</h4>
+
+                            <div class="QuestionAnswerArea">
+                                <p>Not true for me.</p>
+                                <div class="slidecontainer">
+                                    <input type="range" min="1" max="10" value="5" class="slider" id="Slider + {{question.questions}} + {{ option }}"/>
+                                </div>
+                                <p>Value: <span id="value + {{question.questions}} + {{ option }}"></span></p>
+                                <p>Very true for me.</p>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+                    <button ng-click="showDetails()">Next</button>
+                </div>
+            </div>
+        </div>
     </wr>
 
 </script>
