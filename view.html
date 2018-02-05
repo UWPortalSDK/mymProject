@@ -24,7 +24,7 @@
                         <input name="myfield" class="form-control" ng-model="somefield" ng-minlength="5" required />
                     </form>
 
-                    <div ng-show="testShow.value">
+<!--                     <div ng-show="testShow.value">
                         <p>Remove This Element on click of button</p>
                         <button remove-me>Remove</button>
                     </div>
@@ -34,7 +34,7 @@
                         <input type="range" min="1" max="10" value="5" class="slider" id="{{question.questions}} + {{ option }}"/>
                         <span title="">Test</span>
                     </div>
-
+ -->
                     <form action="">
                         <!--The below code will create multiple divs for each question along with the cooresponding question  -->
                         <div class="wrap" ng-repeat="question in questionsV2.value" ng-show="question.question_type == 1 && question.question_active == true">
