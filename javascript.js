@@ -21,15 +21,16 @@ angular.module('portalApp')
     $scope.UWlogo = UwaterlooLogo;
     $scope.questionsV2 = mymForm.dbQs;
     $scope.testShow = mymForm.testShow;
-
-    console.log($scope.items);
-
+	
+    $scope.formOne =[];
+    
 
     // initialize the service
     mymForm.init($scope);
 
     // Show main view in the first column
-    $scope.portalHelpers.showView('mymProjectMain.html', 1);
+    $scope.portalHelpers.showView('page.html', 1);
+    
 
     // This function gets called when user clicks an item in the list
     $scope.showDetails = function() {
@@ -42,6 +43,12 @@ angular.module('portalApp')
         // Make the item that user clicked available to the template
 
         $scope.portalHelpers.showView('mymProjectMain.html', 1);
+    }
+    
+    $scope.testSubmit = function() {
+        // Make the item that user clicked available to the template
+
+        console.log($scope.formOne);
     }
 
 
