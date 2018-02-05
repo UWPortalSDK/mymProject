@@ -18,6 +18,7 @@ angular.module('portalApp')
     $scope.num = square(2);
     $scope.varTest = numTest;
     $scope.logo = mymLogo;
+    $scope.UWlogo = UwaterlooLogo;
     $scope.questionsV2 = mymForm.dbQs;
     $scope.testShow = mymForm.testShow;
 
@@ -162,3 +163,13 @@ angular.module('portalApp')
             return output;
         }
     });
+
+// function GetSliderValue(SliderID, OutputID) {
+//     var slider = document.getElementById(SliderID);
+// 	var output = document.getElementById(OutputID);
+// 	output.innerHTML = slider.value;
+
+// 	slider.oninput = function() {
+//   		output.innerHTML = this.value;
+// 	}
+// }
