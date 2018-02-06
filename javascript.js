@@ -39,6 +39,8 @@ angular.module('portalApp')
         $scope.value1 = false;
         $scope.value2 = true;
         $scope.selectedStudent.value = name;
+        document.getElementById("Studentnamesearchbox").value = id;
+        $scope.searchKeyword = id;
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'getTerms',
             uniqueNameId: 'mymProject',
