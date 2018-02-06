@@ -3,6 +3,7 @@ var imports = ["test.js"];
 
 angular.module('portalApp')
 
+
 .controller('profileCtrl', ['$scope', function($scope) {
 
     $scope.studentInfo = {
@@ -12,7 +13,12 @@ angular.module('portalApp')
         value: null
     };
 
-
+    $scope.status = {
+        isCustomHeaderOpen: false,
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
+    
     $scope.portalHelpers.invokeServerFunction({
         functionName: 'getStudents',
         uniqueNameId: 'mymProject'
@@ -22,14 +28,14 @@ angular.module('portalApp')
         sourceLoaded();
     });
 
-    $scope.selectedItemChanged = function() {
+    $scope.selectedItemChanged = function(input) {
         // Make the item that user clicked available to the template
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'getTerms',
             uniqueNameId: 'mymProject',
             sqlArgs: {
-                        value: $scope.selectedItem.name
-                    }
+                value: input
+            }
         }).then(function(result) {
             console.log('got data: ', result);
             $scope.terms.value = result;
@@ -55,8 +61,6 @@ angular.module('portalApp')
     $scope.testShow = mymForm.testShow;
 
     $scope.formOne = [];
-
-
     // initialize the service
     mymForm.init($scope);
 
