@@ -10,7 +10,7 @@ function getQs() {
 
 // Retreive student data from the database
 function getStudents() {
-    var queryResult = db.Execute('SELECT DISTINCT name FROM StudentProfile');
+    var queryResult = db.Execute('select distinct name, student_id from StudentProfile');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -20,7 +20,7 @@ function getStudents() {
 
 // Retreive student data from the database
 function getTerms() {
-    var queryResult = db.Execute('SELECT * FROM StudentProfile WHERE name = @value ');
+    var queryResult = db.Execute('SELECT * FROM StudentProfile WHERE student_id = @value ');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
