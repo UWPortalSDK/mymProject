@@ -3,8 +3,43 @@ var imports = ["test.js"];
 
 angular.module('portalApp')
 
-.controller('testCtrl', ['$scope', 'mymForm', function($scope, mymForm) {
-    $scope.test = "hello";
+.controller('profileCtrl', ['$scope', 'mymForm', function($scope, mymForm) {
+    
+    $scope.term = {
+        value: null
+    };
+    
+    $scope.students = [{
+        Name: "Bob",
+        question: "I value the benefits of exercise",
+        Type: 1
+
+    }, {
+        Name: "Billy",
+        question: "It's important to me to exercise regularly",
+        Type: 1
+    }, {
+        Name: "Sally",
+        question: "I exercise because it is fun",
+        Type: 1
+    }, {
+        Name: "Barb",
+        question: "I feel pleasure and satisfaction from exercising",
+        Type: 1
+    }];
+
+    $scope.selectedItemChanged = function() {
+        // Make the item that user clicked available to the template
+        $scope.term.value = [{
+            Name: "Bob",
+            Term: "Fall 2016"
+
+        }, {
+            Name: "Bob",
+            Term: "Winter 2016"
+        }];
+
+    }
 }])
 
 // Widget controller - runs every time widget is shown
@@ -21,16 +56,16 @@ angular.module('portalApp')
     $scope.UWlogo = UwaterlooLogo;
     $scope.questionsV2 = mymForm.dbQs;
     $scope.testShow = mymForm.testShow;
-	
-    $scope.formOne =[];
-    
+
+    $scope.formOne = [];
+
 
     // initialize the service
     mymForm.init($scope);
 
     // Show main view in the first column
-    $scope.portalHelpers.showView('page.html', 1);
-    
+    $scope.portalHelpers.showView('profile.html', 1);
+
 
     // This function gets called when user clicks an item in the list
     $scope.showDetails = function() {
@@ -44,7 +79,7 @@ angular.module('portalApp')
 
         $scope.portalHelpers.showView('mymProjectMain.html', 1);
     }
-    
+
     $scope.testSubmit = function() {
         // Make the item that user clicked available to the template
 
@@ -54,16 +89,16 @@ angular.module('portalApp')
 
 }])
 
-.directive('removeMe', ['$http', function ($http) {
-	return {
-		link: function (scope, el, attrs) {
-			el.bind("click",function() {
+.directive('removeMe', ['$http', function($http) {
+    return {
+        link: function(scope, el, attrs) {
+            el.bind("click", function() {
                 el.parent().remove();
                 scope.testShow.value = false;
             });
-         
-		}
-	};
+
+        }
+    };
 }])
 
 // Factory maintains the state of the widget
@@ -84,7 +119,7 @@ angular.module('portalApp')
         var questions = {
             value: null
         };
-    	var testShow = {
+        var testShow = {
             value: null
         };
         var options = [];
@@ -99,7 +134,7 @@ angular.module('portalApp')
             console.log('getting data.. ', $scope.portalHelpers, $scope.portalHelpers.invokeServerFunction);
 
             // Place your init code here:
-           testShow.value = true;
+            testShow.value = true;
             $scope.portalHelpers.invokeServerFunction({
                 functionName: 'getQs',
                 uniqueNameId: 'mymProject'
