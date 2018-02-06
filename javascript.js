@@ -5,8 +5,14 @@ angular.module('portalApp')
 
 
 .controller('profileCtrl', ['$scope', function($scope) {
-
+	$scope.value1 = true;
+	$scope.value2 = false;
+    
     $scope.studentInfo = {
+        value: null
+    };
+    
+     $scope.selectedStudent = {
         value: null
     };
     $scope.terms = {
@@ -28,13 +34,16 @@ angular.module('portalApp')
         sourceLoaded();
     });
 
-    $scope.selectedItemChanged = function(input) {
+    $scope.selectedItemChanged = function(id,name) {
         // Make the item that user clicked available to the template
+        $scope.value1 = false;
+        $scope.value2 = true;
+        $scope.selectedStudent.value = name;
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'getTerms',
             uniqueNameId: 'mymProject',
             sqlArgs: {
-                value: input
+                value: id
             }
         }).then(function(result) {
             console.log('got data: ', result);
