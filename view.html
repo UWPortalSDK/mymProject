@@ -103,7 +103,7 @@
                     <th>Name
                     </th>
                 </tr>
-                <tr ng-repeat="student in studentInfo.value  | filter: searchKeyword ">
+                <tr ng-repeat="student in studentInfo.value  | filter: searchKeyword | limitTo : 4 ">
                     <td>
                         {{student.student_id}}
                     </td>
@@ -111,28 +111,33 @@
                         {{student.name}}
                     </td>
                     <td>
-                        
+                        <input type="button" value="Select" class="btn btn-primary" ng-click="selectedItemChanged(student.student_id)" />
                     </td>
-                 </tr>
+                </tr>
             </table>
 
         </div>
-        <p> Student Name:
+        <!--         <p> Student Name:
             <select ng-options="student.name for student in studentInfo.value" ng-model="selectedItem" ng-change="selectedItemChanged()">
             </select>
-        </p>
-        <p>{{selectedItem.student_id}}</p>
+        </p> -->
+        <!--         <p>{{selectedItem.student_id}}</p> -->
         <p>Term:
             <select ng-options="term.current_term for term in terms.value" ng-model="selectedTerm">
             </select>
         </p>
         <uib-accordion close-others="oneAtATime">
             <div uib-accordion-group class="panel-default" heading="Student Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                <p>Student Name: {{selectedTerm.ame}}</p>
                 <p>Student ID: {{selectedTerm.student_id}}</p>
                 <p>Email: {{selectedTerm.email}}</p>
                 <p>Gender: {{selectedTerm.gender}}</p>
                 <p>Department: {{selectedTerm.department}}</p>
                 <p>Academic Term: {{selectedTerm.academic_term}}</p>
+            </div>
+        </uib-accordion>
+        <uib-accordion close-others="oneAtATime">
+            <div uib-accordion-group class="panel-default" heading="Progress" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
             </div>
         </uib-accordion>
 
