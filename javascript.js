@@ -28,13 +28,13 @@ angular.module('portalApp')
         sourceLoaded();
     });
 
-    $scope.selectedItemChanged = function() {
+    $scope.selectedItemChanged = function(input) {
         // Make the item that user clicked available to the template
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'getTerms',
             uniqueNameId: 'mymProject',
             sqlArgs: {
-                value: $scope.selectedItem.student_id
+                value: input
             }
         }).then(function(result) {
             console.log('got data: ', result);
