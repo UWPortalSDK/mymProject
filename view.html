@@ -95,7 +95,7 @@
 <script type="text/ng-template" id="profile.html">
     <widget-row ng-controller="profileCtrl">
         <div>Search
-            <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text" />
+            <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text"  placeholder="{{selectedStudent.value}}" />
             <table class="table">
                 <tr>
                     <th>Student ID:
@@ -111,24 +111,19 @@
                         {{student.name}}
                     </td>
                     <td>
-                        <input type="button" value="Select" class="btn btn-primary" ng-click="selectedItemChanged(student.student_id)" />
+                        <input type="button" value="Select" ng-class="{'btn-warning': value2, 'btn-success': value1}" ng-click="selectedItemChanged(student.student_id,student.name)" />
                     </td>
                 </tr>
             </table>
 
         </div>
-        <!--         <p> Student Name:
-            <select ng-options="student.name for student in studentInfo.value" ng-model="selectedItem" ng-change="selectedItemChanged()">
-            </select>
-        </p> -->
-        <!--         <p>{{selectedItem.student_id}}</p> -->
         <p>Term:
             <select ng-options="term.current_term for term in terms.value" ng-model="selectedTerm">
             </select>
         </p>
         <uib-accordion close-others="oneAtATime">
             <div uib-accordion-group class="panel-default" heading="Student Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                <p>Student Name: {{selectedTerm.ame}}</p>
+                <p>Student Name: {{selectedTerm.name}}</p>
                 <p>Student ID: {{selectedTerm.student_id}}</p>
                 <p>Email: {{selectedTerm.email}}</p>
                 <p>Gender: {{selectedTerm.gender}}</p>
