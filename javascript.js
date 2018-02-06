@@ -11,7 +11,12 @@ angular.module('portalApp')
     $scope.terms = {
         value: null
     };
-
+    
+    $scope.status = {
+        isCustomHeaderOpen: false,
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
 
     $scope.portalHelpers.invokeServerFunction({
         functionName: 'getStudents',
@@ -28,8 +33,8 @@ angular.module('portalApp')
             functionName: 'getTerms',
             uniqueNameId: 'mymProject',
             sqlArgs: {
-                        value: $scope.selectedItem.name
-                    }
+                value: $scope.selectedItem.name
+            }
         }).then(function(result) {
             console.log('got data: ', result);
             $scope.terms.value = result;
