@@ -48,8 +48,6 @@
                                 <p>Value: <span id="value + {{question.questions}} + {{ option }}"></span>{{q.test}}</p>
                                 <p>Very true for me.</p>
                             </div>
-
-
                         </div>
                     </form>
 
@@ -96,9 +94,10 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="profile.html">
     <widget-row ng-controller="profileCtrl">
-        <select ng-options="student.Name for student in students" ng-model="selectedItem" ng-change="selectedItemChanged()">
+        <select ng-options="student.name for student in studentInfo.value" ng-model="selectedItem" ng-change="selectedItemChanged()">
         </select>
-        <select ng-options="term.Term for term in term.value" ng-model="test2">
+        <p>{{selectedItem.name}}</p>
+        <select ng-options="term.current_term for term in terms.value"  ng-model="test2">
         </select>
     </widget-row>
 </script>
