@@ -94,48 +94,50 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="profile.html">
     <widget-row ng-controller="profileCtrl">
-        <div>Search
-            <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text"  placeholder="{{selectedStudent.value}}" />
-            <table class="table">
-                <tr>
-                    <th>Student ID:
-                    </th>
-                    <th>Name
-                    </th>
-                </tr>
-                <tr ng-repeat="student in studentInfo.value  | filter: searchKeyword | limitTo : 4 ">
-                    <td>
-                        {{student.student_id}}
-                    </td>
-                    <td>
-                        {{student.name}}
-                    </td>
-                    <td>
-                        <input type="button" value="Select" ng-class="{'btn-warning': value2, 'btn-success': value1}" ng-click="selectedItemChanged(student.student_id,student.name)" />
-                    </td>
-                </tr>
-            </table>
+    	<div class = "ProfileAllContent">
+	        <div class = "ProfileSearchShow">
+	            <p>Search</p>
+	            <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text" id="Studentnamesearchbox" placeholder="{{selectedStudent.value}}" />
+	            <table class="table">
+	                <tr>
+	                    <th>Student ID:
+	                    </th>
+	                    <th>Name
+	                    </th>
+	                </tr>
+	                <tr ng-repeat="student in studentInfo.value  | filter: searchKeyword | limitTo : 4 ">
+	                    <td>
+	                        {{student.student_id}}
+	                    </td>
+	                    <td>
+	                        {{student.name}}
+	                    </td>
+	                    <td>
+	                        <input type="button" value="Select" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click="selectedItemChanged(student.student_id,student.name)" />
+	                    </td>
+	                </tr>
+	            </table>
 
-        </div>
-        <p>Term:
-            <select ng-options="term.current_term for term in terms.value" ng-model="selectedTerm">
-            </select>
-        </p>
-        <uib-accordion close-others="oneAtATime">
-            <div uib-accordion-group class="panel-default" heading="Student Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                <p>Student Name: {{selectedTerm.name}}</p>
-                <p>Student ID: {{selectedTerm.student_id}}</p>
-                <p>Email: {{selectedTerm.email}}</p>
-                <p>Gender: {{selectedTerm.gender}}</p>
-                <p>Department: {{selectedTerm.department}}</p>
-                <p>Academic Term: {{selectedTerm.academic_term}}</p>
-            </div>
-        </uib-accordion>
-        <uib-accordion close-others="oneAtATime">
-            <div uib-accordion-group class="panel-default" heading="Progress" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-            </div>
-        </uib-accordion>
-
+	        </div>
+	        <p>Term:
+	            <select ng-options="term.current_term for term in terms.value" ng-model="selectedTerm">
+	            </select>
+	        </p>
+	        <uib-accordion close-others="oneAtATime">
+	            <div uib-accordion-group class="panel-default" heading="Student Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+	                <p>Student Name: {{selectedTerm.name}}</p>
+	                <p>Student ID: {{selectedTerm.student_id}}</p>
+	                <p>Email: {{selectedTerm.email}}</p>
+	                <p>Gender: {{selectedTerm.gender}}</p>
+	                <p>Department: {{selectedTerm.department}}</p>
+	                <p>Academic Term: {{selectedTerm.academic_term}}</p>
+	            </div>
+	        </uib-accordion>
+	        <uib-accordion close-others="oneAtATime">
+	            <div uib-accordion-group class="panel-default" heading="Progress" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+	            </div>
+	        </uib-accordion>
+	    </div>
     </widget-row>
 </script>
 <!-- PAGE TEMPLATE EXAMPLE -->
