@@ -3,6 +3,7 @@ var imports = ["test.js"];
 
 angular.module('portalApp')
 
+
 .controller('profileCtrl', ['$scope', function($scope) {
 
     $scope.studentInfo = {
@@ -11,11 +12,15 @@ angular.module('portalApp')
     $scope.terms = {
         value: null
     };
-    
+
     $scope.status = {
         isCustomHeaderOpen: false,
         isFirstOpen: true,
         isFirstDisabled: false
+    };
+    
+    $scope.user = {
+        name: 'awesome user'
     };
 
     $scope.portalHelpers.invokeServerFunction({
