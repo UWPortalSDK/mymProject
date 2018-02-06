@@ -19,10 +19,6 @@ angular.module('portalApp')
         isFirstDisabled: false
     };
     
-    $scope.user = {
-        name: 'awesome user'
-    };
-
     $scope.portalHelpers.invokeServerFunction({
         functionName: 'getStudents',
         uniqueNameId: 'mymProject'
@@ -38,7 +34,7 @@ angular.module('portalApp')
             functionName: 'getTerms',
             uniqueNameId: 'mymProject',
             sqlArgs: {
-                value: $scope.selectedItem.name
+                value: $scope.selectedItem.student_id
             }
         }).then(function(result) {
             console.log('got data: ', result);
@@ -65,8 +61,6 @@ angular.module('portalApp')
     $scope.testShow = mymForm.testShow;
 
     $scope.formOne = [];
-
-
     // initialize the service
     mymForm.init($scope);
 
