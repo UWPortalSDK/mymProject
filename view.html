@@ -94,11 +94,34 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="profile.html">
     <widget-row ng-controller="profileCtrl">
+        <div>Search
+            <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text" />
+            <table class="table">
+                <tr>
+                    <th>Student ID:
+                    </th>
+                    <th>Name
+                    </th>
+                </tr>
+                <tr ng-repeat="student in studentInfo.value  | filter: searchKeyword ">
+                    <td>
+                        {{student.student_id}}
+                    </td>
+                    <td>
+                        {{student.name}}
+                    </td>
+                    <td>
+                        
+                    </td>
+                 </tr>
+            </table>
+
+        </div>
         <p> Student Name:
             <select ng-options="student.name for student in studentInfo.value" ng-model="selectedItem" ng-change="selectedItemChanged()">
             </select>
         </p>
-        <p>{{selectedItem.name}}</p>
+        <p>{{selectedItem.student_id}}</p>
         <p>Term:
             <select ng-options="term.current_term for term in terms.value" ng-model="selectedTerm">
             </select>
@@ -110,7 +133,7 @@
                 <p>Gender: {{selectedTerm.gender}}</p>
                 <p>Department: {{selectedTerm.department}}</p>
                 <p>Academic Term: {{selectedTerm.academic_term}}</p>
-            </div>            
+            </div>
         </uib-accordion>
 
     </widget-row>
