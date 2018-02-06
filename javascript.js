@@ -3,41 +3,38 @@ var imports = ["test.js"];
 
 angular.module('portalApp')
 
-.controller('profileCtrl', ['$scope', 'mymForm', function($scope, mymForm) {
-    
-    $scope.term = {
+.controller('profileCtrl', ['$scope', function($scope) {
+
+    $scope.studentInfo = {
         value: null
     };
-    
-    $scope.students = [{
-        Name: "Bob",
-        question: "I value the benefits of exercise",
-        Type: 1
+    $scope.terms = {
+        value: null
+    };
 
-    }, {
-        Name: "Billy",
-        question: "It's important to me to exercise regularly",
-        Type: 1
-    }, {
-        Name: "Sally",
-        question: "I exercise because it is fun",
-        Type: 1
-    }, {
-        Name: "Barb",
-        question: "I feel pleasure and satisfaction from exercising",
-        Type: 1
-    }];
+
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'getStudents',
+        uniqueNameId: 'mymProject'
+    }).then(function(result) {
+        console.log('got data: ', result);
+        $scope.studentInfo.value = result;
+        sourceLoaded();
+    });
 
     $scope.selectedItemChanged = function() {
         // Make the item that user clicked available to the template
-        $scope.term.value = [{
-            Name: "Bob",
-            Term: "Fall 2016"
-
-        }, {
-            Name: "Bob",
-            Term: "Winter 2016"
-        }];
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getTerms',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                        value: $scope.selectedItem.name
+                    }
+        }).then(function(result) {
+            console.log('got data: ', result);
+            $scope.terms.value = result;
+            sourceLoaded();
+        });
 
     }
 }])
@@ -104,107 +101,106 @@ angular.module('portalApp')
 // Factory maintains the state of the widget
 .factory('mymForm', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
 
-        var initialized = {
-            value: false
-        };
+    var initialized = {
+        value: false
+    };
 
-        var test = 1;
+    var test = 1;
 
-        var dbQs = {
-            value: null
-        };
+    var dbQs = {
+        value: null
+    };
+    var questions = {
+        value: null
+    };
+    var testShow = {
+        value: null
+    };
+    var options = [];
+    options = ["1", "2", "3", "4", "5"];
 
+    var init = function($scope) {
+        if (initialized.value)
+            return;
 
+        initialized.value = true;
 
-        var questions = {
-            value: null
-        };
-        var testShow = {
-            value: null
-        };
-        var options = [];
-        options = ["1", "2", "3", "4", "5"];
+        console.log('getting data.. ', $scope.portalHelpers, $scope.portalHelpers.invokeServerFunction);
 
-        var init = function($scope) {
-            if (initialized.value)
-                return;
+        // Place your init code here:
+        testShow.value = true;
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getQs',
+            uniqueNameId: 'mymProject'
+        }).then(function(result) {
+            console.log('got data: ', result);
+            dbQs.value = result;
+            sourceLoaded();
+        });
 
-            initialized.value = true;
+        questions.value = [{
+            Name: "q1",
+            question: "I value the benefits of exercise",
+            Type: 1
 
-            console.log('getting data.. ', $scope.portalHelpers, $scope.portalHelpers.invokeServerFunction);
+        }, {
+            Name: "q2",
+            question: "It's important to me to exercise regularly",
+            Type: 1
+        }, {
+            Name: "q3",
+            question: "I exercise because it is fun",
+            Type: 1
+        }, {
+            Name: "q4",
+            question: "I feel pleasure and satisfaction from exercising",
+            Type: 1
+        }, {
+            Name: "q5",
+            question: "I feel pressured to exercise",
+            Type: 0
+        }, {
+            Name: "q6",
+            question: "I feel guilty when I don't exercise",
+            Type: 0
+        }, {
+            Name: "q7",
+            question: "I don't see why I should have to exercise",
+            Type: 0
+        }, {
+            Name: "q8",
+            question: "I feel disappointed in myself when I have not exercised in a while",
+            Type: 0
+        }, {
+            Name: "q9",
+            question: "I exercise due to other's expectation",
+            Type: 0
+        }];
 
-            // Place your init code here:
-            testShow.value = true;
-            $scope.portalHelpers.invokeServerFunction({
-                functionName: 'getQs',
-                uniqueNameId: 'mymProject'
-            }).then(function(result) {
-                console.log('got data: ', result);
-                dbQs.value = result;
-                sourceLoaded();
-            });
-
-            questions.value = [{
-                Name: "q1",
-                question: "I value the benefits of exercise",
-                Type: 1
-
-            }, {
-                Name: "q2",
-                question: "It's important to me to exercise regularly",
-                Type: 1
-            }, {
-                Name: "q3",
-                question: "I exercise because it is fun",
-                Type: 1
-            }, {
-                Name: "q4",
-                question: "I feel pleasure and satisfaction from exercising",
-                Type: 1
-            }, {
-                Name: "q5",
-                question: "I feel pressured to exercise",
-                Type: 0
-            }, {
-                Name: "q6",
-                question: "I feel guilty when I don't exercise",
-                Type: 0
-            }, {
-                Name: "q7",
-                question: "I don't see why I should have to exercise",
-                Type: 0
-            }, {
-                Name: "q8",
-                question: "I feel disappointed in myself when I have not exercised in a while",
-                Type: 0
-            }, {
-                Name: "q9",
-                question: "I exercise due to other's expectation",
-                Type: 0
-            }];
-
-        }
+    }
 
 
-        // Expose init(), and variables
-        return {
-            init: init,
-            testShow: testShow,
-            dbQs: dbQs,
-            questions: questions,
-            test: test,
-            options: options
+    // Expose init(), and variables
+    return {
+        init: init,
+        testShow: testShow,
+        dbQs: dbQs,
+        questions: questions,
+        test: test,
+        options: options
 
-        };
-    }])
-    // Custom filter example
-    .filter('mymProjectFilterName', function() {
-        return function(input, arg1, arg2) {
-            // Filter your output here by iterating over input elements
-            var output = input;
-            return output;
-        }
-    });
+    };
+}])
+
+
+// Custom filter example
+.filter('mymProjectFilterName', function() {
+    return function(input, arg1, arg2) {
+        // Filter your output here by iterating over input elements
+        var output = input;
+        return output;
+    }
+});
 
 // function GetSliderValue(SliderID, OutputID) {
 //     var slider = document.getElementById(SliderID);
