@@ -10,8 +10,8 @@
         <div class="AllContent">
             <div class="UpBanner">
                 <div class="UwaterlooLogo">
-        			<img ng-src="{{UWlogo}}" />
-    			</div>
+                    <img ng-src="{{UWlogo}}" />
+                </div>
             </div>
             <div class="ContentDownBanner">
                 <div class="leftSelectMenu">
@@ -20,11 +20,11 @@
                     </div>
                 </div>
                 <div class="MainContent">
-<!--                     <form name="myform">
+                    <!--                     <form name="myform">
                         <input name="myfield" class="form-control" ng-model="somefield" ng-minlength="5" required />
                     </form> -->
 
-<!--                     <div ng-show="testShow.value">
+                    <!--                     <div ng-show="testShow.value">
                         <p>Remove This Element on click of button</p>
                         <button remove-me>Remove</button>
                     </div>
@@ -43,13 +43,11 @@
                             <div class="QuestionAnswerArea">
                                 <p>Not true for me.</p>
                                 <div class="slidecontainer">
-                                    <input type="range" min="1" max="10" value="5" class="slider" id="Slider + {{question.questions}} + {{ option }}" ng-model = 'q.test'/>
+                                    <input type="range" min="1" max="10" value="5" class="slider" id="Slider + {{question.questions}} + {{ option }}" ng-model='q.test' />
                                 </div>
                                 <p>Value: <span id="value + {{question.questions}} + {{ option }}"></span>{{q.test}}</p>
                                 <p>Very true for me.</p>
                             </div>
-
-
                         </div>
                     </form>
 
@@ -69,3 +67,42 @@
 
     <button ng-click="showDetails2()">Next</button>
 </script>
+
+<!-- PAGE TEMPLATE EXAMPLE -->
+<script type="text/ng-template" id="page.html">
+    <widget-row>
+        <form ng-submit="testSubmit()">
+            <!--The below code will create multiple divs for each question along with the cooresponding question  -->
+            <div class="wrap" ng-repeat="question in questionsV2.value" ng-show="question.question_type == 1 && question.question_active != true">
+                <h4 class="likert-header">{{question.questions}}</h4>
+
+                <div class="QuestionAnswerArea">
+                    <p>Not true for me.</p>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="10" value="5" class="slider" id="Slider + {{question.questions}} + {{ option }}" ng-model='formOne[$index]' />
+                    </div>
+                    <p>Value: <span id="value + {{question.questions}} + {{ option }}"></span>{{formOne[$index]}} "test" {{$index}}</p>
+                    <p>Very true for me.</p>
+                </div>
+            </div>
+            <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"></button>
+        </form>
+
+    </widget-row>
+</script>
+<!-- PAGE TEMPLATE EXAMPLE -->
+<!-- PAGE TEMPLATE EXAMPLE -->
+<script type="text/ng-template" id="profile.html">
+    <widget-row ng-controller="profileCtrl">
+        <p> Student Name: <select ng-options="student.name for student in studentInfo.value" ng-model="selectedItem" ng-change="selectedItemChanged()"> 
+        </select></p>
+        <p>{{selectedItem.name}}</p>
+        <p>Term: <select ng-options="term.current_term for term in terms.value"  ng-model="selectedTerm">
+            </select></p>
+        <p>Email: {{selectedTerm.email}}</p>
+        <p>Gender: {{selectedTerm.gender}}</p>
+        <p>Department: {{selectedTerm.department}}</p>
+        <p>Academic Term: {{selectedTerm.academic_term}}</p>
+    </widget-row>
+</script>
+<!-- PAGE TEMPLATE EXAMPLE -->
