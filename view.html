@@ -94,15 +94,34 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="profile.html">
     <widget-row ng-controller="profileCtrl">
-        <p> Student Name: <select ng-options="student.name for student in studentInfo.value" ng-model="selectedItem" ng-change="selectedItemChanged()"> 
-        </select></p>
+        <p> Student Name:
+            <select ng-options="student.name for student in studentInfo.value" ng-model="selectedItem" ng-change="selectedItemChanged()">
+            </select>
+        </p>
         <p>{{selectedItem.name}}</p>
-        <p>Term: <select ng-options="term.current_term for term in terms.value"  ng-model="selectedTerm">
-            </select></p>
-        <p>Email: {{selectedTerm.email}}</p>
-        <p>Gender: {{selectedTerm.gender}}</p>
-        <p>Department: {{selectedTerm.department}}</p>
-        <p>Academic Term: {{selectedTerm.academic_term}}</p>
+        <p>Term:
+            <select ng-options="term.current_term for term in terms.value" ng-model="selectedTerm">
+            </select>
+        </p>
+        <uib-accordion close-others="oneAtATime">
+            <div uib-accordion-group class="panel-default" heading="Student Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                <p>Email: {{selectedTerm.email}}</p>
+                <p>Gender: {{selectedTerm.gender}}</p>
+                <p>Department: {{selectedTerm.department}}</p>
+                <p>Academic Term: {{selectedTerm.academic_term}}</p>
+            </div>
+            <div uib-accordion-group class="panel-danger" heading="Delete account">
+                <p>Please, to delete your account, click the button below</p>
+                <button class="btn btn-danger">Delete</button>
+            </div>
+            <div uib-accordion-group class="panel-default" is-open="status.open">
+                <uib-accordion-heading>
+                    I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </uib-accordion-heading>
+                This is just some content to illustrate fancy headings.
+            </div>
+        </uib-accordion>
+
     </widget-row>
 </script>
 <!-- PAGE TEMPLATE EXAMPLE -->
