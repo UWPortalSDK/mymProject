@@ -1,6 +1,5 @@
 var imports = ["test.js"];
 
-
 angular.module('portalApp')
 
 
@@ -70,19 +69,19 @@ angular.module('portalApp')
     $scope.UWlogo = UwaterlooLogo;
     $scope.questionsV2 = mymForm.dbQs;
     $scope.testShow = mymForm.testShow;
-
+	$scope.test = [];
     $scope.formOne = [];
     // initialize the service
     mymForm.init($scope);
 
     // Show main view in the first column
-    $scope.portalHelpers.showView('profile.html', 1);
+    $scope.portalHelpers.showView('mymProjectMain.html', 1);
 
 
     // This function gets called when user clicks an item in the list
     $scope.showDetails = function() {
         // Make the item that user clicked available to the template
-
+		console.log($scope.test);
         $scope.portalHelpers.showView('mymProjectDetails.html', 1);
     }
 
@@ -226,3 +225,20 @@ angular.module('portalApp')
 //   		output.innerHTML = this.value;
 // 	}
 // }
+// 
+// 
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+document.getElementById("defaultOpen").click();
