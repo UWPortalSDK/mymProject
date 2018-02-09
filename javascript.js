@@ -4,14 +4,14 @@ angular.module('portalApp')
 
 
 .controller('profileCtrl', ['$scope', function($scope) {
-	$scope.value1 = true;
-	$scope.value2 = false;
-    
+    $scope.value1 = true;
+    $scope.value2 = false;
+
     $scope.studentInfo = {
         value: null
     };
-    
-     $scope.selectedStudent = {
+
+    $scope.selectedStudent = {
         value: null
     };
     $scope.terms = {
@@ -23,7 +23,7 @@ angular.module('portalApp')
         isFirstOpen: true,
         isFirstDisabled: false
     };
-    
+
     $scope.portalHelpers.invokeServerFunction({
         functionName: 'getStudents',
         uniqueNameId: 'mymProject'
@@ -33,7 +33,7 @@ angular.module('portalApp')
         sourceLoaded();
     });
 
-    $scope.selectedItemChanged = function(id,name) {
+    $scope.selectedItemChanged = function(id, name) {
         // Make the item that user clicked available to the template
         $scope.value1 = false;
         $scope.value2 = true;
@@ -69,11 +69,11 @@ angular.module('portalApp')
     $scope.UWlogo = UwaterlooLogo;
     $scope.questionsV2 = mymForm.dbQs;
     $scope.testShow = mymForm.testShow;
-	$scope.test = [];
+    $scope.test = [];
     $scope.formOne = [];
     // initialize the service
     mymForm.init($scope);
-
+    var formdata = new FormData();
     // Show main view in the first column
     $scope.portalHelpers.showView('mymProjectMain.html', 1);
 
@@ -81,21 +81,62 @@ angular.module('portalApp')
     // This function gets called when user clicks an item in the list
     $scope.showDetails = function() {
         // Make the item that user clicked available to the template
-		console.log($scope.test);
+        console.log($scope.test);
         $scope.portalHelpers.showView('mymProjectDetails.html', 1);
     }
 
-    $scope.showDetails2 = function() {
+    $scope.showPage = function(number) {
         // Make the item that user clicked available to the template
-
-        $scope.portalHelpers.showView('mymProjectMain.html', 1);
+        if (number == 1) {
+            
+            $scope.portalHelpers.showView('activitySuggestion.html', 1);
+        }
+        else if (number == 2) {
+            
+            $scope.portalHelpers.showView('profile.html', 1);
+        }
+        else if (number == 3) {
+            
+            $scope.portalHelpers.showView('mymProjectMain.html', 1);
+        }
+        
     }
 
-    $scope.testSubmit = function() {
+       $scope.testSubmit = function() {
         // Make the item that user clicked available to the template
 
         console.log($scope.formOne);
     }
+
+
+
+    $scope.getTheFiles = function($files) {
+        angular.forEach($files, function(value, key) {
+            formdata.append('file', value);
+        });
+    };
+
+    // UPLOAD THE FILES – that’s my server – please don’t kill it.
+    $scope.uploadFiles = function() {
+        var request = {
+            method: 'POST',
+            url: 'http://ml.joeradman.com/',
+            data: formdata,
+            headers: {
+                'Content-Type': undefined
+            }
+        };
+
+        // SEND THE FILES.
+        $http(request)
+            .success(function(d) {
+                // this is the result
+                console.log(d);
+            })
+            .error(function(e) {
+                alert(e);
+            });
+    };
 
 
 }])
