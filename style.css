@@ -12,9 +12,9 @@ body{
 
 .UpBanner {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
-    height: 150px;
+    max-height: 200px;
 }
 
 .UwaterlooLogo {
@@ -28,7 +28,7 @@ body{
 
 .MYMLogo {
     display: inline-block;
-    width: 13.66666666666666666666666666666666%
+    width: 18.185763888888888888%
 }
 
 .MYMLogo img{
