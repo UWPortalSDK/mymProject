@@ -47,7 +47,7 @@
                                 <div class="slidecontainer">
                                     <input type="range" min="1" max="10" value="5" class="slider" id="Slider + {{question.questions}} + {{ option }}" ng-model='q.test' />
                                 </div>
-                                <p>Value: <span id="value + {{question.questions}} + {{ option }}"></span>{{q.test}}</p>
+<!--                                 <p>Value: <span id="value + {{question.questions}} + {{ option }}"></span>{{q.test}}</p> -->
                                 <p>Very true for me.</p>
                             </div>
                         </div>
@@ -68,29 +68,8 @@
     </div>
 
     <button ng-click="showDetails2()">Next</button>
-</script>
 
-<!-- PAGE TEMPLATE EXAMPLE -->
-<script type="text/ng-template" id="page.html">
-    <widget-row>
-        <form ng-submit="testSubmit()">
-            <!--The below code will create multiple divs for each question along with the cooresponding question  -->
-            <div class="wrap" ng-repeat="question in questionsV2.value" ng-show="question.question_type == 1 && question.question_active != true">
-                <h4 class="likert-header">{{question.questions}}</h4>
 
-                <div class="QuestionAnswerArea">
-                    <p>Not true for me.</p>
-                    <div class="slidecontainer">
-                        <input type="range" min="1" max="10" value="5" class="slider" id="Slider + {{question.questions}} + {{ option }}" ng-model='formOne[$index]' />
-                    </div>
-                    <p>Value: <span id="value + {{question.questions}} + {{ option }}"></span>{{formOne[$index]}} "test" {{$index}}</p>
-                    <p>Very true for me.</p>
-                </div>
-            </div>
-            <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;"></button>
-        </form>
-
-    </widget-row>
 </script>
 <!-- PAGE TEMPLATE EXAMPLE -->
 <!-- PAGE TEMPLATE EXAMPLE -->
@@ -151,14 +130,22 @@
 <script type="text/ng-template" id="activitySuggestion.html">
     <widget-row>
         <widget-cell>
-            <div class="pDetails">
-                <button ng-click="showPage(3)">Home Page</button>
-                <br>
-                <br>
-                <p>
+            <div class="ActivitySuggestionPage">
+                <div class="ActivitySuggestionPageBanner">
+                    <div class="ActivitySuggestionPageTitle ActivitySuggestionPageContent">
+                        <p>Activity Suggestion Page</p>
+                    </div>
+                    <div  class="ActivitySuggestionPageBackButton ActivitySuggestionPageContent">
+                        <button ng-click="showPage(3)">Home Page</button>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="ActivitySuggestionPageContent">
+                    <p>Please upload the activity spreadsheet below.</p>
                     <input type="file" id="file" name="file" ng-files="getTheFiles($files)" />
                     <input type="button" ng-click="uploadFiles()" value="Upload" />
-                </p>
+                </div>
             </div>
         </widget-cell>
     </widget-row>
