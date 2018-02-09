@@ -65,7 +65,7 @@ angular.module('portalApp')
     $scope.options = mymForm.options;
     $scope.num = square(2);
     $scope.varTest = numTest;
-    $scope.logo = mymLogo;
+    $scope.MTMLogo = mymLogo;
     $scope.UWlogo = UwaterlooLogo;
     $scope.questionsV2 = mymForm.dbQs;
     $scope.testShow = mymForm.testShow;
