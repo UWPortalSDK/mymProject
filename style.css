@@ -1,23 +1,39 @@
+body{
+    background-color: rgb(231, 231, 232);
+}
 
 .AllContent {
     position: relative;
     width: 100%;
     max-width: 1200px;
+    background-color: rgb(231, 231, 232);
 }
 
 .UpBanner {
-    position: relative;
+    display: flex;
+    justify-content: space-around;
     width: 100%;
+    height: 150px;
 }
 
 .UwaterlooLogo {
     display: inline-block;
-    width:60%;
+    width: 50%;
 }
 
 .UwaterlooLogo img{
     width: 100%;
 }
+
+.MYMLogo {
+    display: inline-block;
+    width: 13.66666666666666666666666666666666%
+}
+
+.MYMLogo img{
+    width: 100%;
+}
+
 
 .ContentDownBanner {
     position: relative;
@@ -26,13 +42,17 @@
 
 .leftSelectMenu {
     display: inline-block;
-    width: 19%;
+    width: 22%;
     vertical-align: top;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 .MainContent {
     display: inline-block;
-    width: 79%;
+    width: 70%;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 .FormtoView1 {
@@ -41,13 +61,21 @@
     position: relative;
     top: 0;
     vertical-align: top;
+    margin-top:4px;
+}
+
+.FormtoView1 button {
+    width: 80%;
+    display: inline-block;
+    margin-top: 8px;
+    margin-bottom: 0px;
 }
 
 .slidecontainer {
     display:inline-block;
     margin-left:2%;
     margin-right:2%;
-    width: 48%;
+    width: 54%;
 }
 
 .slider {
@@ -87,10 +115,10 @@
 }
 
 .QuestionAnswerArea p {
-  margin-left: 1%;
-  margin-right: 1%;
+  margin-left: 2%;
+  margin-right: 2%;
   display:inline-block;
-  width:13%;
+  width:16%;
   text-align:center;
   vertical-align: top;
 /*   font-size: 3vw; */
@@ -100,7 +128,10 @@
 	margin-right:5px;
 }
 .wrap {
-  font:12px Arial, san-serif;
+    font:12px Arial, san-serif;
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .statement {
@@ -114,7 +145,7 @@
 .ActivitySuggestionPage {
     width: 100%;
     max-width: 1200px;
-    
+    margin: 0;
 }
 
 .ActivitySuggestionPageBanner {

@@ -3,8 +3,7 @@
 <script type="text/ng-template" id="mymProjectMain.html">
 
     <wr>
-         <button ng-click="showPage(1)">Activity Suggestion</button>
-         <button ng-click="showPage(2)">Student Profile</button>
+         
         <!--         <p>{{logo}}</p> -->
 
         <!--         <div ng-controller = "testCtrl">{{test}}</div> -->
@@ -14,12 +13,18 @@
                 <div class="UwaterlooLogo">
                     <img ng-src="{{UWlogo}}" />
                 </div>
+                <div class="MYMLogo">
+                    <img ng-src="{{MTMLogo}}" />
+                </div>
             </div>
             <div class="ContentDownBanner">
                 <div class="leftSelectMenu">
                     <div class="FormtoView1">
-                        <a ng-click="showDetails2()">Form1</a>
+                        <button ng-click="showPage(3)">Home Page</button>
+                        <button ng-click="showPage(1)">Activity Suggestion</button>
+                        <button ng-click="showPage(2)">Student Profile</button>
                     </div>
+                    
                 </div>
                 <div class="MainContent">
                     <!--                     <form name="myform">
