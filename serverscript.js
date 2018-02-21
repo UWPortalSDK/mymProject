@@ -27,3 +27,14 @@ function getTerms() {
     }
     return queryResult;
 }
+
+// Remove Data from cluster table
+function deleteCluster() {
+    db.Execute('Delete From cluster_data');
+    return getData();
+}
+// Remove Data from cluster table
+function insertResult() {
+    db.Execute('INSERT INTO cluster_data Values(@activity,@cluster)');
+    return getData();
+}
