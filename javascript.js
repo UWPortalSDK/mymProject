@@ -141,7 +141,7 @@ angular.module('portalApp')
 
                 for (var key in $scope.data) {
                     if ($scope.data.hasOwnProperty(key)) {
-                        console.log(key + " -> " + $scope.data[key]);
+                        //console.log(key + " -> " + $scope.data[key]);
                         $scope.portalHelpers.invokeServerFunction({
                             functionName: 'insertResult',
                             uniqueNameId: 'mymProject',
@@ -150,7 +150,7 @@ angular.module('portalApp')
                                 cluster: $scope.data[key]
                             }
                         }).then(function(result) {
-                            console.log("Inserted " + key);
+                            //console.log("Inserted " + key);
                             // console.log('got data: ', result);
                             // $scope.terms.value = result;
                             // sourceLoaded();
@@ -159,6 +159,8 @@ angular.module('portalApp')
                 }
 
                 $scope.data = "";
+            	d = "";
+            	alert("Successfully Wiped and Inserted");
 
 
             })
