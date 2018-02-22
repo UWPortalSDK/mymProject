@@ -88,21 +88,19 @@ angular.module('portalApp')
     $scope.showPage = function(number) {
         // Make the item that user clicked available to the template
         if (number == 1) {
-            
+
             $scope.portalHelpers.showView('activitySuggestion.html', 1);
-        }
-        else if (number == 2) {
-            
+        } else if (number == 2) {
+
             $scope.portalHelpers.showView('profile.html', 1);
-        }
-        else if (number == 3) {
-            
+        } else if (number == 3) {
+
             $scope.portalHelpers.showView('mymProjectMain.html', 1);
         }
-        
+
     }
 
-       $scope.testSubmit = function() {
+    $scope.testSubmit = function() {
         // Make the item that user clicked available to the template
 
         console.log($scope.formOne);
@@ -120,7 +118,7 @@ angular.module('portalApp')
     $scope.uploadFiles = function() {
         var request = {
             method: 'POST',
-            url: 'http://ml.joeradman.com/',
+            url: 'https://ml.joeradman.com/',
             data: formdata,
             headers: {
                 'Content-Type': undefined
@@ -131,7 +129,40 @@ angular.module('portalApp')
         $http(request)
             .success(function(d) {
                 // this is the result
+                $scope.data = d.activities;
                 console.log(d);
+                $scope.portalHelpers.invokeServerFunction({
+                    functionName: 'deleteCluster',
+                    uniqueNameId: 'mymProject'
+                }).then(function(result) {
+                    //$scope.dbData.value = result;
+                    console.log("Data Deleted");
+                });
+
+                for (var key in $scope.data) {
+                    if ($scope.data.hasOwnProperty(key)) {
+                        //console.log(key + " -> " + $scope.data[key]);
+                        $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'insertResult',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                activity: key,
+                                cluster: $scope.data[key]
+                            }
+                        }).then(function(result) {
+                            //console.log("Inserted " + key);
+                            // console.log('got data: ', result);
+                            // $scope.terms.value = result;
+                            // sourceLoaded();
+                        });
+                    }
+                }
+
+                $scope.data = "";
+            	d = "";
+            	alert("Successfully Wiped and Inserted");
+
+
             })
             .error(function(e) {
                 alert(e);
@@ -151,6 +182,20 @@ angular.module('portalApp')
 
         }
     };
+}])
+
+.directive('ngFiles', ['$parse', function($parse) {
+    function fn_link(scope, element, attrs) {
+        var onChange = $parse(attrs.ngFiles);
+        element.on('change', function(event) {
+            onChange(scope, {
+                $files: event.target.files
+            });
+        });
+    };
+    return {
+        link: fn_link
+    }
 }])
 
 // Factory maintains the state of the widget
