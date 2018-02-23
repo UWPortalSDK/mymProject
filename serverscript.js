@@ -6,7 +6,7 @@ function getQs() {
         return '{"status":"noTable"}';
     }
     return queryResult;
-}
+}https://portal.uwaterloo.ca/Index
 
 // Retreive student data from the database
 function getStudents() {
@@ -36,5 +36,10 @@ function deleteCluster() {
 // Remove Data from cluster table
 function insertResult() {
     db.Execute('INSERT INTO cluster_data Values(@activity,@cluster)');
+    return getData();
+}
+
+function registrate(){
+ 	db.Execute('INSERT INTO StudentProfile Values (@id,@term,@name,@email,@gender,@program,@date,@aterm,@wob,@wobname,@surveyid,@support)');
     return getData();
 }
