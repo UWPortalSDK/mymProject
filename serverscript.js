@@ -43,3 +43,13 @@ function registrate(){
  	db.Execute('INSERT INTO StudentProfile Values (@id,@term,@name,@email,@gender,@program,@date,@aterm,@wob,@wobname,@surveyid,@support)');
     return getData();
 }
+
+// Retreive student data from the database
+function getCenters() {
+    var queryResult = db.Execute('SELECT * FROM cluster_center');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
