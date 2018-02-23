@@ -10,14 +10,12 @@ angular.module('portalApp')
     $scope.studentInfo = {
         value: null
     };
-
     $scope.selectedStudent = {
         value: null
     };
     $scope.terms = {
         value: null
     };
-
     $scope.status = {
         isCustomHeaderOpen: false,
         isFirstOpen: true,
@@ -60,22 +58,19 @@ angular.module('portalApp')
 
 
     // Import variables and functions from service
-    $scope.test = mymForm.test;
-    $scope.questions = mymForm.questions;
     $scope.options = mymForm.options;
     $scope.num = square(2);
     $scope.varTest = numTest;
     $scope.MTMLogo = mymLogo;
     $scope.UWlogo = UwaterlooLogo;
-    $scope.questionsV2 = mymForm.dbQs;
-    $scope.testShow = mymForm.testShow;
-    $scope.test = [];
-    $scope.formOne = [];
+    $scope.buddy = false;
+    
+    
     // initialize the service
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('mymProjectMain.html', 1);
+    $scope.portalHelpers.showView('getSuggestion.html', 1);
 
 
     // This function gets called when user clicks an item in the list
@@ -95,14 +90,13 @@ angular.module('portalApp')
             $scope.portalHelpers.showView('profile.html', 1);
         } else if (number == 3) {
 
-            $scope.portalHelpers.showView('mymProjectMain.html', 1);
+            $scope.portalHelpers.showView('activitySuggestion.html', 1);
         }
 
     }
 
     $scope.testSubmit = function() {
         // Make the item that user clicked available to the template
-
         console.log($scope.formOne);
     }
 
@@ -135,7 +129,6 @@ angular.module('portalApp')
                     functionName: 'deleteCluster',
                     uniqueNameId: 'mymProject'
                 }).then(function(result) {
-                    //$scope.dbData.value = result;
                     console.log("Data Deleted");
                 });
 
@@ -161,8 +154,6 @@ angular.module('portalApp')
                 $scope.data = "";
             	d = "";
             	alert("Successfully Wiped and Inserted");
-
-
             })
             .error(function(e) {
                 alert(e);
@@ -205,17 +196,6 @@ angular.module('portalApp')
         value: false
     };
 
-    var test = 1;
-
-    var dbQs = {
-        value: null
-    };
-    var questions = {
-        value: null
-    };
-    var testShow = {
-        value: null
-    };
     var options = [];
     options = ["1", "2", "3", "4", "5"];
 
@@ -228,54 +208,6 @@ angular.module('portalApp')
         console.log('getting data.. ', $scope.portalHelpers, $scope.portalHelpers.invokeServerFunction);
 
         // Place your init code here:
-        testShow.value = true;
-        $scope.portalHelpers.invokeServerFunction({
-            functionName: 'getQs',
-            uniqueNameId: 'mymProject'
-        }).then(function(result) {
-            console.log('got data: ', result);
-            dbQs.value = result;
-            sourceLoaded();
-        });
-
-        questions.value = [{
-            Name: "q1",
-            question: "I value the benefits of exercise",
-            Type: 1
-
-        }, {
-            Name: "q2",
-            question: "It's important to me to exercise regularly",
-            Type: 1
-        }, {
-            Name: "q3",
-            question: "I exercise because it is fun",
-            Type: 1
-        }, {
-            Name: "q4",
-            question: "I feel pleasure and satisfaction from exercising",
-            Type: 1
-        }, {
-            Name: "q5",
-            question: "I feel pressured to exercise",
-            Type: 0
-        }, {
-            Name: "q6",
-            question: "I feel guilty when I don't exercise",
-            Type: 0
-        }, {
-            Name: "q7",
-            question: "I don't see why I should have to exercise",
-            Type: 0
-        }, {
-            Name: "q8",
-            question: "I feel disappointed in myself when I have not exercised in a while",
-            Type: 0
-        }, {
-            Name: "q9",
-            question: "I exercise due to other's expectation",
-            Type: 0
-        }];
 
     }
 
@@ -283,10 +215,6 @@ angular.module('portalApp')
     // Expose init(), and variables
     return {
         init: init,
-        testShow: testShow,
-        dbQs: dbQs,
-        questions: questions,
-        test: test,
         options: options
 
     };
