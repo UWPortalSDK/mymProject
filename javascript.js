@@ -64,13 +64,14 @@ angular.module('portalApp')
     $scope.MTMLogo = mymLogo;
     $scope.UWlogo = UwaterlooLogo;
     $scope.buddy = false;
-    
-    
+    $scope.centers = [];
+
+
     // initialize the service
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('getSuggestion.html', 1);
+    $scope.portalHelpers.showView('activitySuggestion.html', 1);
 
 
     // This function gets called when user clicks an item in the list
@@ -122,9 +123,16 @@ angular.module('portalApp')
         // SEND THE FILES.
         $http(request)
             .success(function(d) {
-                // this is the result
-                $scope.data = d.activities;
                 console.log(d);
+                // this is the result
+                var data = d.activities;
+                var centers = d.centers;
+                var temp;
+                var cNum;
+                var c1;
+                var c2;
+                var c3;
+
                 $scope.portalHelpers.invokeServerFunction({
                     functionName: 'deleteCluster',
                     uniqueNameId: 'mymProject'
@@ -132,28 +140,61 @@ angular.module('portalApp')
                     console.log("Data Deleted");
                 });
 
-                for (var key in $scope.data) {
-                    if ($scope.data.hasOwnProperty(key)) {
+                for (var key in data) {
+                    if (data.hasOwnProperty(key)) {
                         //console.log(key + " -> " + $scope.data[key]);
                         $scope.portalHelpers.invokeServerFunction({
                             functionName: 'insertResult',
                             uniqueNameId: 'mymProject',
                             sqlArgs: {
                                 activity: key,
-                                cluster: $scope.data[key]
+                                cluster: data[key]
                             }
                         }).then(function(result) {
-                            //console.log("Inserted " + key);
-                            // console.log('got data: ', result);
-                            // $scope.terms.value = result;
-                            // sourceLoaded();
+
                         });
                     }
                 }
 
-                $scope.data = "";
-            	d = "";
-            	alert("Successfully Wiped and Inserted");
+                $scope.portalHelpers.invokeServerFunction({
+                    functionName: 'deleteCenter',
+                    uniqueNameId: 'mymProject'
+                }).then(function(result) {
+                    console.log("Data Deleted");
+                });
+
+                for (var i = 0; i < centers.length; i++) {
+                    temp = centers[i];
+                    cNum = i;
+                    c1 = parseFloat(temp[0]);
+                    c2 = parseFloat(temp[1]);
+                    c3 = parseFloat(temp[2]);
+                    console.log(cNum);
+                    console.log(c1);
+                    console.log(c2);
+                    console.log(c3);
+
+                    //console.log(cNum + " " + c1 + " " c2 + " " + c3);
+
+                    $scope.portalHelpers.invokeServerFunction({
+                        functionName: 'insertCen',
+                        uniqueNameId: 'mymProject',
+                        sqlArgs: {
+                            cNum: cNum,
+                            c1: c1,
+                            c2: c2,
+                            c3: c3
+                        }
+                    }).then(function(result) {
+                        console.log("YAY");
+                    });
+                }
+
+
+                data = "";
+                d = "";
+                centers = [];
+                alert("Successfully Wiped and Inserted");
             })
             .error(function(e) {
                 alert(e);
