@@ -2,6 +2,19 @@ var imports = ["test.js"];
 
 angular.module('portalApp')
 
+.controller('suggestCtrl', ['$scope', function($scope) {
+    $scope.cog1;
+    $scope.cog2;
+    $scope.soc1;
+    $scope.soc2;
+    $scope.int1;
+    $scope.int2;
+    
+    
+    
+ 
+}])
+
 
 .controller('profileCtrl', ['$scope', function($scope) {
     $scope.value1 = true;
@@ -95,7 +108,7 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('enroll.html', 1);
+    $scope.portalHelpers.showView('getSuggestion.html', 1);
 
 
     // This function gets called when user clicks an item in the list
