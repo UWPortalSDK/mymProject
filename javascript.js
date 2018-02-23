@@ -9,17 +9,58 @@ angular.module('portalApp')
     $scope.soc2;
     $scope.int1;
     $scope.int2;
-    
-    
-    
- 
+    $scope.centerValues = {
+        value: null
+    };
+
+
+
+    $scope.getPred = function() {
+        //alert("Successfully entered the function");
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getCenters',
+            uniqueNameId: 'mymProject'
+        }).then(function(result) {
+            console.log('got data: ', result);
+            $scope.centerValues.value = result;
+            sourceLoaded();
+            console.log($scope.centerValues.value.length)
+        });
+		
+        console.log($scope.centerValues.value)
+
+        for (var key in $scope.centerValues.value) {
+            alert($scope.centerValues.value[key].cluster_number);
+
+        //     if ($scope.centerValues.hasOwnProperty(key)) continue;
+
+        //     var obj = $scope.centerValues[key];
+        //     for (var prop in obj) {
+        //         // skip loop if the property is from prototype
+        //         if (!obj.hasOwnProperty(prop)) continue;
+
+        //         // your code
+        //         alert(prop + " = " + obj[prop]);
+        //     };
+
+        };
+
+    };
+
+
+
+
+
+
+
+
 }])
 
 
 .controller('profileCtrl', ['$scope', function($scope) {
     $scope.value1 = true;
     $scope.value2 = false;
-//declare the $scope.___
+    //declare the $scope.___
     $scope.studentInfo = {
         value: null
     };
@@ -46,9 +87,9 @@ angular.module('portalApp')
 
     $scope.testSubmit = function() {
         //alert("Successfully entered the function");
-         $scope.portalHelpers.invokeServerFunction({
-             functionName: 'registrate',
-             uniqueNameId: 'mymProject',
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'registrate',
+            uniqueNameId: 'mymProject',
             sqlArgs: {
                 id: $scope.sid,
                 term: $scope.term,
@@ -56,15 +97,15 @@ angular.module('portalApp')
                 email: $scope.email,
                 gender: $scope.gender,
                 program: $scope.program,
-               	date: $scope.date,
+                date: $scope.date,
                 aterm: $scope.aterm,
                 wob: $scope.buddy,
                 wobname: $scope.wobname,
                 surveyid: $scope.surveyid,
-                support: $scope.support                
+                support: $scope.support
             }
         }).then(function(result) {
-			alert("inserted");
+            alert("inserted");
         })
     };
 
@@ -86,6 +127,7 @@ angular.module('portalApp')
             $scope.terms.value = result;
             sourceLoaded();
         });
+
 
     }
 }])
