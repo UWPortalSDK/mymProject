@@ -86,41 +86,41 @@
         <h2>Student Registration</h2>
         <br>
         <form action="">
-            <div class="form-group" >                
+            <div class="form-group">
 
                 <label for="fullName">Full Name:</label>
-                <input type="text"  ng-model = "name" class="form-control" id="fullName"></input>
-                
+                <input type="text" ng-model="name" class="form-control" id="fullName"></input>
+
                 <label for="mail">UW Email:</label>
-                <input type="email" ng-model = "email" class="form-control" id="mail"></input>
-                
+                <input type="email" ng-model="email" class="form-control" id="mail"></input>
+
                 <label for="sid">UW ID:</label>
-                <input type="number" ng-model = "sid" class="form-control" id="sid"></input>
-                
+                <input type="number" ng-model="sid" class="form-control" id="sid"></input>
+
                 <div class="dropdown">
-                <label>Gender: </label>
-                <select name="gender" ng-model = "gender">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="N/A">Prefer not to specify</option>
-                </select>
-            </div> 
+                    <label>Gender: </label>
+                    <select name="gender" ng-model="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="N/A">Prefer not to specify</option>
+                    </select>
+                </div>
 
                 <label for="program">Program</label>
-                <input type="text" ng-model = "program" class="form-control" id="program"></input>
+                <input type="text" ng-model="program" class="form-control" id="program"></input>
 
                 <label for="term">Registration Term</label>
-                <input type="text" ng-model = "term" class="form-control" id="term"></input>
-                
+                <input type="text" ng-model="term" class="form-control" id="term"></input>
+
                 <label for="aterm">Academic Term</label>
-                <input type="text" ng-model = "aterm" class="form-control" id="aterm"></input>
+                <input type="text" ng-model="aterm" class="form-control" id="aterm"></input>
 
                 <label for="date">Registration Date</label>
-                <input type="date" ng-model = "date" class="form-control" id="date"></input>
+                <input type="date" ng-model="date" class="form-control" id="date"></input>
             </div>
             <div class="dropdown">
                 <label>Support Level: </label>
-                <select name="support" ng-model = "support">
+                <select name="support" ng-model="support">
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
@@ -134,16 +134,16 @@
             </div>
             <div class="form-group" ng-show="buddy">
                 <label for="wBuddy">Workout Buddy Name</label>
-                <input type="text" ng-model = "wobname" class="form-control" id="wBuddy"></input>
+                <input type="text" ng-model="wobname" class="form-control" id="wBuddy"></input>
             </div>
 
             <div class="form-group">
                 <label for="wBuddy">Qualtrics Survey ID</label>
-                <input type="text" ng-model = "surveyid" class="form-control" id="wBuddy"></input>
+                <input type="text" ng-model="surveyid" class="form-control" id="wBuddy"></input>
             </div>
             <br>
-            <input type="button" value = "Submit" ng-click="testSubmit()" class="btn btn-default"/>
-      
+            <input type="button" value="Submit" ng-click="testSubmit()" class="btn btn-default" />
+
         </form>
 
     </widget-row>
@@ -153,14 +153,59 @@
 <script type="text/ng-template" id="getSuggestion.html">
     <widget-row>
         <form action="">
+
+            <h4 class="likert-header">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</h4>
+
             <div class="QuestionAnswerArea">
                 <p>Not true for me.</p>
                 <div class="slidecontainer">
-                    <input type="range" min="0" max="10" value="5" class="slider" id="social1"/>
+                    <input type="range" min="0" max="10" value="5" class="slider" id="cog1" ng-model='cog1'></input>
                 </div>
-               <p>Very true for me.</p>
-            </div>
 
+                <p>Very true for me.</p>
+            </div>
+            <h4 class="likert-header">I prefer activities that involve strategy.</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="cog2" ng-model='cog2'></input>
+                </div>
+
+                <p>Very true for me.</p>
+            </div>
+            <h4 class="likert-header">I prefer exercising on my own.</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="soc1" ng-model='soc1'></input>
+                </div>
+
+                <p>Very true for me.</p>
+            </div>
+            <h4 class="likert-header">I prefer exercising in an open environment(eg. Public Gym)</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='soc2'></input>
+                </div>
+                <p>Very true for me.</p>
+            </div>
+             <h4 class="likert-header">I prefer activities that stretch my physical limitiations.</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='int1'></input>
+                </div>
+                <p>Very true for me.</p>
+            </div>
+            <h4 class="likert-header">I prefer activities that are more relaxing and less intense.</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='int2'></input>
+                </div>
+                <p>Very true for me.</p>
+            </div>
         </form>
 
     </widget-row>
