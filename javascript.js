@@ -6,7 +6,7 @@ angular.module('portalApp')
 .controller('profileCtrl', ['$scope', function($scope) {
     $scope.value1 = true;
     $scope.value2 = false;
-
+//declare the $scope.___
     $scope.studentInfo = {
         value: null
     };
@@ -30,6 +30,30 @@ angular.module('portalApp')
         $scope.studentInfo.value = result;
         sourceLoaded();
     });
+
+    $scope.testSubmit = function() {
+        //alert("Successfully entered the function");
+         $scope.portalHelpers.invokeServerFunction({
+             functionName: 'registrate',
+             uniqueNameId: 'mymProject',
+            sqlArgs: {
+                id: $scope.sid,
+                term: $scope.term,
+                name: $scope.name,
+                email: $scope.email,
+                gender: $scope.gender,
+                program: $scope.program,
+               	date: $scope.date,
+                aterm: $scope.aterm,
+                wob: $scope.buddy,
+                wobname: $scope.wobname,
+                surveyid: $scope.surveyid,
+                support: $scope.support                
+            }
+        }).then(function(result) {
+			alert("inserted");
+        })
+    };
 
     $scope.selectedItemChanged = function(id, name) {
         // Make the item that user clicked available to the template
@@ -71,7 +95,7 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('activitySuggestion.html', 1);
+    $scope.portalHelpers.showView('enroll.html', 1);
 
 
     // This function gets called when user clicks an item in the list
