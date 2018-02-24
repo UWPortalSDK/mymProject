@@ -35,7 +35,7 @@ function deleteCluster() {
 }
 // Remove Data from cluster table
 function insertResult() {
-    db.Execute('INSERT INTO cluster_data Values(@activity,@cluster)');
+    db.Execute('INSERT INTO cluster_data(Activity,Cluster) Values(@activity,@cluster)');
     return getData();
 }
 
