@@ -33,9 +33,21 @@ function deleteCluster() {
     db.Execute('Delete From cluster_data');
     return getData();
 }
-// Remove Data from cluster table
+
+// Remove Data from cluster center table
+function deleteCenter() {
+    db.Execute('Delete From cluster_center');
+    return getData();
+}
+// Insert into cluster data table
 function insertResult() {
     db.Execute('INSERT INTO cluster_data(Activity,Cluster) Values(@activity,@cluster)');
+    return getData();
+}
+
+// insert int cluster_center table
+function insertCen() {
+    db.Execute('INSERT INTO cluster_center Values(@cNum,@c1,@c2,@c3)');
     return getData();
 }
 
