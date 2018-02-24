@@ -53,3 +53,13 @@ function getCenters() {
     }
     return queryResult;
 }
+
+function getClusters(){
+ 	var queryResult = db.Execute ('SELECT Activity FROM cluster_data WHERE Cluster = @cNumber'); 
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
