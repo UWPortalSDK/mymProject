@@ -88,7 +88,7 @@ angular.module('portalApp')
 .controller('profileCtrl', ['$scope', function($scope) {
     $scope.value1 = true;
     $scope.value2 = false;
-    //declare the $scope.___
+    $scope.wobname = "";
     $scope.studentInfo = {
         value: null
     };
@@ -178,7 +178,7 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('getSuggestion.html', 1);
+    $scope.portalHelpers.showView('enroll.html', 1);
 
 
     // This function gets called when user clicks an item in the list
