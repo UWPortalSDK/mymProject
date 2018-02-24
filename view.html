@@ -2,15 +2,18 @@
 
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="profile.html">
-    <widget-row ng-controller="profileCtrl">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+
         
 <!--         <form name="outerForm" class="tab-form-demo"> -->
-        
-        <div class = "MainPageAllContent">
-        
-            <uib-tabset active="activeForm">
-                
-                <uib-tab index="0" heading="Profile">
+
+    <div class = "MainPageAllContent">
+
+        <uib-tabset active="activeForm">
+
+            <uib-tab index="0" heading="Profile">
+                <widget-row ng-controller="profileCtrl">
                     <div class="ProfileAllContent">
                         <div class="ProfileSearch">
                             <p class = "FormHeader ProfileSearchTitle">Search: </p>
@@ -55,11 +58,11 @@
                             </div>
                         </uib-accordion>
                     </div>
-                    
-                </uib-tab>
-                
-                <uib-tab index="1" heading="Enrolment">
-                    
+                </widget-row>
+            </uib-tab>
+
+            <uib-tab index="1" heading="Enrolment">
+                <widget-row  ng-controller="profileCtrl">	
                     <h2>Student Registration</h2>
                     <br />
                     <form action="">
@@ -122,13 +125,13 @@
                         <input type="button" value = "Submit" ng-click="testSubmit()" ng-show = "term && sid && name && email && gender && program && aterm && date && support && surveyid" class="btn btn-default"/>      
 
                     </form>
-                    
-                </uib-tab>
-                
-                <uib-tab index="2" heading="Update Activities">
-                    
+                </widget-row>
+            </uib-tab>
+
+            <uib-tab index="2" heading="Update Activities">
+                <widget-row>
                     <div class="ActivitySuggestionPage">
-                        
+
                         <div class="ActivitySuggestionPageContent">
                             <p>Please upload the activity spreadsheet below.</p>
                             <input type="file" id="file" name="file" ng-files="getTheFiles($files)" />
@@ -136,11 +139,11 @@
                         </div>
                         <p>{{data}}</p>
                     </div>
-                    
-                </uib-tab>
-                
-                <uib-tab index="3" heading="Activities Suggestion">
-                   
+                </widget-row>
+            </uib-tab>
+
+            <uib-tab index="3" heading="Activities Suggestion">
+                <widget-row  ng-controller="suggestCtrl">
                     <form action="">
 
                         <h4 class="likert-header">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</h4>
@@ -202,37 +205,37 @@
                         <p>{{centerValues.value[0]}}</p>
 
                     </form>
-                    
-                </uib-tab>
-                
-                <uib-tab index="4" heading="General Report">
-                    
-                    
-                </uib-tab>
-                
-            </uib-tabset>
-<!--         </form> -->
-        
-        
-        </div>
-        
-        
-    </widget-row>
+                </widget-row>
+            </uib-tab>
+
+            <uib-tab index="4" heading="General Report">
+                <widget-row>
+                </widget-row>
+            </uib-tab>
+
+        </uib-tabset>
+        <!--         </form> -->
+
+
+    </div>
+
+
+
 </script>
 <!-- PAGE TEMPLATE EXAMPLE -->
 
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="activitySuggestion.html">
-    <widget-row>
+    
         <widget-cell>
             
         </widget-cell>
-    </widget-row>
+    
 </script>
 <!-- PAGE TEMPLATE EXAMPLE -->
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="enroll.html">
-    <widget-row ng-controller="profileCtrl">
+    <widget-row>
         
 
     </widget-row>
@@ -240,7 +243,7 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="getSuggestion.html">
-    <widget-row ng-controller="suggestCtrl">
+    <widget-row>
         
 
     </widget-row>
