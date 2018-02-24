@@ -1,6 +1,15 @@
-body{
-    background-color: rgb(231, 231, 232);
+.MainPageAllContent {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
 }
+
+
+
+
+
+
+
 
 .AllContent {
     position: relative;
