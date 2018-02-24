@@ -268,14 +268,15 @@ angular.module('portalApp')
             $http(request)
                 .success(function(d) {
                 console.log(d);
+                
                 // this is the result
                 var data = d.activities;
                 var centers = d.centers;
-                var temp;
-                var cNum;
-                var c1;
-                var c2;
-                var c3;
+                var temp = [];
+                var cNum = 0;
+                var c1 = 0;
+                var c2= 0;
+                var c3 = 0;
 
                 $scope.portalHelpers.invokeServerFunction({
                     functionName: 'deleteCluster',
@@ -337,8 +338,8 @@ angular.module('portalApp')
 
                 data = "";
                 d = "";
-                centers = [];
-                alert("Successfully Wiped and Inserted");
+                
+               alert("Successfully Wiped and Inserted");
             })
                 .error(function(e) {
                 alert(e);
