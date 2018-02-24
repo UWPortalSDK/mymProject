@@ -151,7 +151,7 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="getSuggestion.html">
-    <widget-row>
+    <widget-row ng-controller="suggestCtrl">
         <form action="">
 
             <h4 class="likert-header">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</h4>
@@ -194,7 +194,7 @@
             <div class="QuestionAnswerArea">
                 <p>Not true for me.</p>
                 <div class="slidecontainer">
-                    <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='int1'></input>
+                    <input type="range" min="0" max="10" value="5" class="slider" id="int1" ng-model='int1'></input>
                 </div>
                 <p>Very true for me.</p>
             </div>
@@ -202,10 +202,14 @@
             <div class="QuestionAnswerArea">
                 <p>Not true for me.</p>
                 <div class="slidecontainer">
-                    <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='int2'></input>
+                    <input type="range" min="0" max="10" value="5" class="slider" id="int2" ng-model='int2'></input>
                 </div>
                 <p>Very true for me.</p>
             </div>
+            
+            <input type="button" value="Submit" ng-click="getPred()" class="btn btn-default" />
+            <p>{{centerValues.value[0]}}</p>
+            
         </form>
 
     </widget-row>
