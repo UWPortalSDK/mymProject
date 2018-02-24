@@ -4,7 +4,7 @@
 <script type="text/ng-template" id="profile.html">
     <widget-row ng-controller="profileCtrl">
         
-        <form name="outerForm" class="tab-form-demo">
+<!--         <form name="outerForm" class="tab-form-demo"> -->
             <uib-tabset active="activeForm">
                 
                 <uib-tab index="0" heading="Profile">
@@ -127,16 +127,7 @@
                 <uib-tab index="2" heading="Update Activities">
                     
                     <div class="ActivitySuggestionPage">
-                        <div class="ActivitySuggestionPageBanner">
-                            <div class="ActivitySuggestionPageTitle ActivitySuggestionPageContent">
-                                <p>Activity Suggestion Page</p>
-                            </div>
-                            <div class="ActivitySuggestionPageBackButton ActivitySuggestionPageContent">
-                                <button ng-click="showPage(3)">Home Page</button>
-                            </div>
-                        </div>
-                        <br />
-                        <br />
+                        
                         <div class="ActivitySuggestionPageContent">
                             <p>Please upload the activity spreadsheet below.</p>
                             <input type="file" id="file" name="file" ng-files="getTheFiles($files)" />
@@ -219,7 +210,7 @@
                 </uib-tab>
                 
             </uib-tabset>
-        </form>
+<!--         </form> -->
         
         
         
