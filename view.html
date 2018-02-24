@@ -156,7 +156,7 @@
 
                             <p>Very true for me.</p>
                         </div>
-                        <p>{{cog1}}</p>
+<!--                         <p>{{cog1}}</p> -->
                         <h4 class="likert-header">I prefer activities that involve strategy.</h4>
                         <div class="QuestionAnswerArea">
                             <p>Not true for me.</p>
@@ -166,7 +166,7 @@
 
                             <p>Very true for me.</p>
                         </div>
-                        <p>{{cog2}}</p>
+<!--                         <p>{{cog2}}</p> -->
                         <h4 class="likert-header">I prefer exercising on my own.</h4>
                         <div class="QuestionAnswerArea">
                             <p>Not true for me.</p>
@@ -201,9 +201,19 @@
                             <p>Very true for me.</p>
                         </div>
 
+                        
                         <input type="button" value="Submit" ng-click="getPred()" class="btn btn-default" />
                         <p>{{centerValues.value[0]}}</p>
-
+                        
+                        <uib-accordion close-others="oneAtATime">
+                            <div uib-accordion-group class="panel-default" heading="List of Activities:" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                                <li class="cluster-repeat" ng-repeat="activity in clusters.value">  
+                                    <td>
+                                        {{activity.Activity}}
+                                    </td>
+                                </li>
+                            </div>
+                        </uib-accordion>                     
                     </form>
                 </widget-row>
             </uib-tab>
@@ -227,7 +237,7 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="activitySuggestion.html">
     
-        <widget-cell>
+        <widget-cell ng-controller="suggestCtrl">
             
         </widget-cell>
     
