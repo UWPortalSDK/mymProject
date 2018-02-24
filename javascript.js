@@ -9,9 +9,15 @@ angular.module('portalApp')
     $scope.soc2;
     $scope.int1;
     $scope.int2;
-    $scope.centerValues = {
+    var centerValues = {
         value: null
     };
+    var temp;
+    var cogScore;
+    var socScore;
+    var intScore;
+    var distance;
+    var clusterBelong = [0, 1000];
 
 
 
@@ -21,35 +27,57 @@ angular.module('portalApp')
             functionName: 'getCenters',
             uniqueNameId: 'mymProject'
         }).then(function(result) {
+            cogScore = 0;
+            socScore = 0;
+            intScore = 0;
+            distance = 0;
+
             console.log('got data: ', result);
-            $scope.centerValues.value = result;
-            sourceLoaded();
-            console.log($scope.centerValues.value.length)
+            centerValues.value = result;
+            //sourceLoaded();
+            //console.log(centerValues.value.length);
+
+            var cog1Edit = 10 - $scope.cog1;
+            cogScore = (parseFloat(cog1Edit) + parseFloat($scope.cog2)) / 2;
+
+            var soc1Edit = 10 - $scope.soc1;
+            socScore = (parseFloat(soc1Edit) + parseFloat($scope.soc2)) / 2;
+
+            var int2Edit = 10 - $scope.int2;
+            intScore = (parseFloat(int2Edit) + parseFloat($scope.int1)) / 2;
+
+            // alert(cogScore);
+            // alert(socScore);
+            // alert(intScore);
+
+            // cogScore = ((10-$scope.cog1)+$scope.cog2)/2;
+            // alert(cogScore);
+            for (var key in centerValues.value) {
+
+                temp = centerValues.value[key];
+
+                distance = Math.sqrt(Math.pow(parseFloat(temp.x_coord) - parseFloat(intScore), 2) + Math.pow(parseFloat(temp.y_coord) - parseFloat(cogScore), 2) + Math.pow(parseFloat(temp.z_coord) - parseFloat(socScore), 2));
+                alert(clusterBelong[1]);
+                if (parseFloat(distance) <= parseFloat(clusterBelong[1])) {
+                    clusterBelong = [temp.cluster_number, distance];
+                    alert("Changed Distance New Cluster is" + clusterBelong[0]);
+                };
+
+
+            };
+
+            temp = {};
+            centerValues = {
+                value: null
+            };
+
+
         });
-		
-        console.log($scope.centerValues.value)
 
-        for (var key in $scope.centerValues.value) {
-            alert($scope.centerValues.value[key].cluster_number);
 
-        //     if ($scope.centerValues.hasOwnProperty(key)) continue;
 
-        //     var obj = $scope.centerValues[key];
-        //     for (var prop in obj) {
-        //         // skip loop if the property is from prototype
-        //         if (!obj.hasOwnProperty(prop)) continue;
-
-        //         // your code
-        //         alert(prop + " = " + obj[prop]);
-        //     };
-
-        };
 
     };
-
-
-
-
 
 
 
