@@ -178,7 +178,7 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('enroll.html', 1);
+    $scope.portalHelpers.showView('profile.html', 1);
 
 
     // This function gets called when user clicks an item in the list
