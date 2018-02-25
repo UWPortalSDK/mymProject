@@ -3,17 +3,17 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="profile.html">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        
-<!--         <form name="outerForm" class="tab-form-demo"> -->
+
+    <!--         <form name="outerForm" class="tab-form-demo"> -->
 
     <div class = "MainPageAllContent">
-        
+
         <div class="logobanner">
             <div class="MYMLogo">
                 <img ng-src="{{MTMLogo}}" />
             </div>
         </div>
-        
+
         <uib-tabset active="activeForm" class="MainPageTabs">
 
             <uib-tab index="0" heading="Profile">
@@ -120,7 +120,7 @@
                             <label for="wBuddy">Workout Buddy Name</label>
                             <input type="text" ng-model="wobname" class="form-control" id="wBuddy"></input>
                         </div>
-<!---may need to remove because student needs to register in order to get the survey id  --->
+                        <!---may need to remove because student needs to register in order to get the survey id  --->
                         <div class="form-group">
                             <label for="wBuddy">Qualtrics Survey ID</label>
                             <input type="text" ng-model="surveyid" class="form-control" id="wBuddy"></input>
@@ -160,7 +160,7 @@
 
                             <p>Very true for me.</p>
                         </div>
-<!--                         <p>{{cog1}}</p> -->
+                        <!--                         <p>{{cog1}}</p> -->
                         <h4 class="likert-header">I prefer activities that involve strategy.</h4>
                         <div class="QuestionAnswerArea">
                             <p>Not true for me.</p>
@@ -170,7 +170,7 @@
 
                             <p>Very true for me.</p>
                         </div>
-<!--                         <p>{{cog2}}</p> -->
+                        <!--                         <p>{{cog2}}</p> -->
                         <h4 class="likert-header">I prefer exercising on my own.</h4>
                         <div class="QuestionAnswerArea">
                             <p>Not true for me.</p>
@@ -205,10 +205,10 @@
                             <p>Very true for me.</p>
                         </div>
 
-                        
+
                         <input type="button" value="Submit" ng-click="getPred()" class="btn btn-default" />
                         <p>{{centerValues.value[0]}}</p>
-                        
+
                         <uib-accordion close-others="oneAtATime">
                             <div uib-accordion-group class="panel-default" heading="List of Activities:" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
                                 <li class="cluster-repeat" ng-repeat="activity in clusters.value">  
@@ -240,17 +240,17 @@
 
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="activitySuggestion.html">
-    
-        <widget-cell ng-controller="suggestCtrl">
-            
-        </widget-cell>
-    
+
+    <widget-cell ng-controller="suggestCtrl">
+
+    </widget-cell>
+
 </script>
 <!-- PAGE TEMPLATE EXAMPLE -->
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="enroll.html">
     <widget-row>
-        
+
 
     </widget-row>
 </script>
@@ -258,8 +258,9 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="getSuggestion.html">
     <widget-row>
-        
+
 
     </widget-row>
 </script>
 <!-- PAGE TEMPLATE EXAMPLE -->
+

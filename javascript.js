@@ -209,8 +209,7 @@ angular.module('portalApp')
         $scope.UWlogo = UwaterlooLogo;
         $scope.buddy = false;
         $scope.centers = [];
-
-
+        
         // initialize the service
         mymForm.init($scope);
         var formdata = new FormData();
