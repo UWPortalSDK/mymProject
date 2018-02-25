@@ -7,8 +7,14 @@
 <!--         <form name="outerForm" class="tab-form-demo"> -->
 
     <div class = "MainPageAllContent">
-
-        <uib-tabset active="activeForm">
+        
+        <div class="logobanner">
+            <div class="MYMLogo">
+                <img ng-src="{{MTMLogo}}" />
+            </div>
+        </div>
+        
+        <uib-tabset active="activeForm" class="MainPageTabs">
 
             <uib-tab index="0" heading="Profile">
                 <widget-row ng-controller="profileCtrl">

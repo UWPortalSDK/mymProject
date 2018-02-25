@@ -1,9 +1,3 @@
-.MainPageAllContent {
-    width: 100%;
-    max-width: 1200px;
-    min-width: 300px;
-    margin: auto;
-}
 
 .PageTitle {
     font-family: "Open Sans";
@@ -41,6 +35,33 @@
     
 }
 
+.MainPageAllContent {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
+    margin: auto;
+}
+
+.MainPageTabs {
+    margin-top: 5px;
+}
+
+.logobanner {
+    width: 100%;
+}
+
+.MYMLogo {
+    display: inline-block;
+    width: 100%
+}
+
+.MYMLogo img{
+    width: 100%;
+}
+
+
+
+
 
 .AllContent {
     position: relative;
@@ -66,14 +87,7 @@
     width: 100%;
 }
 
-.MYMLogo {
-    display: inline-block;
-    width: 18.185763888888888888%
-}
 
-.MYMLogo img{
-    width: 100%;
-}
 
 
 .ContentDownBanner {
