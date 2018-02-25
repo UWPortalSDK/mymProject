@@ -126,7 +126,7 @@
                             <input type="text" ng-model="surveyid" class="form-control" id="wBuddy"></input>
                         </div>
                         <br />
-                        <input type="button" value = "Submit" ng-click="testSubmit()" ng-show = "term && sid && name && email && gender && program && aterm && date && support && surveyid" class="btn btn-default"/>      
+                        <input type="button" value = "Submit" ng-click="testSubmit()" ng-disabled = " !term || !sid || !name || !email || !gender || !program || !aterm || !date || !support || !surveyid" class="btn btn-default"/>      
 
                     </form>
                 </widget-row>
