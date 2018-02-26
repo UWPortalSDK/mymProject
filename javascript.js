@@ -82,9 +82,9 @@ angular.module('portalApp')
                 temp = centerValues.value[key];
 
                 distance = Math.sqrt(Math.pow(parseFloat(temp.x_coord) - parseFloat(intScore), 2) + Math.pow(parseFloat(temp.y_coord) - parseFloat(cogScore), 2) + Math.pow(parseFloat(temp.z_coord) - parseFloat(socScore), 2));
-                alert("The cluster currently belongs to " + clusterBelong[0]);
+                //alert("The cluster currently belongs to " + clusterBelong[0]);
                 //alert(clusterBelong[1]);
-                alert(parseFloat(distance));
+                //alert(parseFloat(distance));
                 if (parseFloat(distance) <= parseFloat(clusterBelong[1])) {
                     clusterBelong = [temp.cluster_number, distance];
                     //alert("Changed Distance New Cluster is " + clusterBelong[0]);
