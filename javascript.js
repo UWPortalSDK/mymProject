@@ -174,7 +174,7 @@ angular.module('portalApp')
         }).then(function(result) {
             //sourceLoaded();
         });
-		location.reload();
+        location.reload();
     };
 
     $scope.selectedItemChanged = function(id, name) {
@@ -275,7 +275,12 @@ angular.module('portalApp')
                 var data = d.activities;
                 var centers = d.centers;
                 var temp = [];
+                var holdTemp = [];
+                var scores = [];
                 var cNum = 0;
+                var xVal = 0;
+                var yVal = 0;
+                var zVal = 0;
                 var c1 = 0;
                 var c2 = 0;
                 var c3 = 0;
@@ -289,26 +294,41 @@ angular.module('portalApp')
 
                 for (var key in data) {
                     if (data.hasOwnProperty(key)) {
+                        holdTemp = data[key];
+                        scores = holdTemp[1];
+                        for (var j = 0; j < scores.length; j++) {
+
+                            xVal = scores[0];
+                            yVal = scores[1];
+                            zVal = scores[2];
+
+                        }
+
                         //console.log(key + " -> " + $scope.data[key]);
                         $scope.portalHelpers.invokeServerFunction({
                             functionName: 'insertResult',
                             uniqueNameId: 'mymProject',
                             sqlArgs: {
                                 activity: key,
-                                cluster: data[key]
+                                cluster: holdTemp[0],
+                                xVal: xVal,
+                                yVal: yVal,
+                                zVal: zVal,
+                                category: holdTemp[2]
                             }
                         }).then(function(result) {
+                            //console.log(result);
 
                         });
                     }
                 }
 
-                $scope.portalHelpers.invokeServerFunction({
-                    functionName: 'deleteCenter',
-                    uniqueNameId: 'mymProject'
-                }).then(function(result) {
-                    console.log("Data Deleted");
-                });
+                // $scope.portalHelpers.invokeServerFunction({
+                //     functionName: 'deleteCenter',
+                //     uniqueNameId: 'mymProject'
+                // }).then(function(result) {
+                //     console.log("Data Deleted");
+                // });
 
                 for (var i = 0; i < centers.length; i++) {
                     temp = centers[i];
@@ -340,8 +360,9 @@ angular.module('portalApp')
 
                 data = "";
                 d = "";
+            	centers = "";
 
-                alert("Successfully Wiped and Inserted");
+                //alert("Successfully Wiped and Inserted");
             })
             .error(function(e) {
                 alert(e);
