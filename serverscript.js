@@ -76,4 +76,22 @@ function getClusters(){
     }
     return queryResult;
 }
+// Retreive activities from the DB
+function getAct() {
+    var queryResult = db.Execute('SELECT * FROM cluster_data');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
 
+// Retreive individual scores from the DB
+function getScores() {
+    var queryResult = db.Execute('SELECT X_val, Y_val, Z_val FROM cluster_data WHERE Activity = @activity');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
