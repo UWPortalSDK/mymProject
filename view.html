@@ -257,14 +257,6 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="getSuggestion.html">
-    <widget-row>
-
-
-    </widget-row>
-</script>
-<!-- PAGE TEMPLATE EXAMPLE -->
-<!-- PAGE TEMPLATE EXAMPLE -->
-<script type="text/ng-template" id="getSuggestion.html">
     <widget-row ng-controller="preferenceCtrl">
         <p>{{input}}</p>
         <uib-accordion close-others="oneAtATime">
@@ -392,12 +384,10 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <!-- PAGE TEMPLATE EXAMPLE --> 
 <script type="text/ng-template" id="qStuff.html"> 
-    <widget-row> 
-        <widget-cell> 
+    <widget-row ng-controller="qCtrl"> 
             <div class="pDetails"> 
-                Your content here 
+                <input type="button" value="Submit" ng-click="ResponseExportPost()" class="btn btn-default" />
             </div> 
-        </widget-cell> 
     </widget-row> 
 </script> 
 <!-- PAGE TEMPLATE EXAMPLE --> 
