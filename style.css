@@ -216,3 +216,28 @@
 .ActivitySuggestionPageBackButton {
     
 }
+
+
+#TotalActivityGroups {
+    display: inline-block;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 400px;
+    justify-content: space-around;
+    align-items: flex-start;
+    vertical-align: top;
+}
+
+.ActivityGroups {
+    display: inline-block;
+    border-color:#ddd;
+    width: 24%;
+    min-width: 180px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 1%;
+    vertical-align: top;
+}
+
+
+    
