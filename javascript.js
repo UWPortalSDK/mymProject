@@ -20,6 +20,68 @@ angular.module('portalApp')
 
 })
 
+.controller('qCtrl', ['$scope', function($scope) {
+
+    $scope.GetMailinglists = function() {
+        $scope.portalHelpers.getApiData('Qualtrics/GetMailinglists').then(function(result) {
+            console.log(result.data);
+
+        });
+    };
+    $scope.SurveyDistribution = function() {
+        $scope.portalHelpers.getApiData('Qualtrics/SurveyDistribution?surveyid=SV_88qa5GGKuPcI4FD').then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data); // convert from string to json
+            console.log(result.data);
+        });
+    };
+    // Create a new mailing list
+
+    $scope.MailinglistCreate = function() {
+        $scope.mym = {
+            mainuser: 'UR_72plybg0V8sF3AF',
+            shortname: 'Test_Mail',
+            surveyid: 'SV_eRteDAkIY8P0eOx'
+            
+        };
+        // {
+        // "category": "Star Wars - Rebels", // hard set to 'invite' at server
+        // "libraryId": "UR_1234567890AbCdE",
+        // "name": "Rebel Contacts"
+        // }
+        console.log($scope.mym.mainuser);
+        console.log($scope.mym.shortname);
+        var jsn = [$scope.mym.mainuser, $scope.mym.shortname];
+        $scope.portalHelpers.postApiData('Qualtrics/MailinglistCreate', {
+            sources: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+        }, function(fail) {
+            console.log('MailinglistCreate FAIL', fail);
+        }, function(notify) {
+            console.log('MailinglistCreate notify');
+        });
+    };
+
+    // Create export request for this survey
+    $scope.ResponseExportPost = function() {
+        var jsn = ['SV_eRteDAkIY8P0eOx', "json"];
+        $scope.portalHelpers.postApiData('Qualtrics/ResponseExportPost', {
+            args: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+        }, function(fail) {
+            console.log('ResponseExportPost FAIL', fail);
+        }, function(notify) {
+            console.log('ResponseExportPost notify');
+        });
+    };
+
+
+}])
+
 .controller('preferenceCtrl', ['$scope', function($scope) {
 
     $scope.count = 1;
@@ -197,7 +259,7 @@ angular.module('portalApp')
 
 
         };
-        
+
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'getClusters',
             uniqueNameId: 'mymProject',
@@ -335,7 +397,7 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('getSuggestion.html', 1);
+    $scope.portalHelpers.showView('qStuff.html', 1);
 
 
     // This function gets called when user clicks an item in the list
