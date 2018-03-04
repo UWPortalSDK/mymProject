@@ -20,6 +20,122 @@ angular.module('portalApp')
 
 })
 
+.controller('preferenceCtrl', ['$scope', function($scope) {
+
+    $scope.count = 1;
+
+    $scope.actInfo = {
+        value: null
+    };
+    var allSources = {
+        value: null
+    };
+    $scope.scoreInfo = [];
+    $scope.input = [];
+
+
+
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'getAct',
+        uniqueNameId: 'mymProject'
+    }).then(function(result) {
+        console.log('got data: ', result);
+        $scope.actInfo.value = result;
+        //sourceLoaded();
+    });
+
+    function getScores(scores) {
+        //alert(scores);
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getScores',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                activity: scores
+            }
+        }).then(function(result) {
+            //alert("ENTERED");
+            $scope.x_val = $scope.x_val + result[0].X_val;
+            $scope.y_val = $scope.y_val + result[0].Y_val;
+            $scope.z_val = $scope.z_val + result[0].Z_val;
+            //alert($scope.x_val);
+            //$scope.x_val.push(result[0].X_val);
+            sourceLoaded();
+
+
+        });
+
+
+    };
+
+    function sourceLoaded() {
+        $scope.sourcesLoaded++;
+        //alert("sourcesLoaded");  
+        if ($scope.sourcesLoaded == $scope.input.length) {
+            alert("Triggered");
+            alert($scope.x_val);
+            alert($scope.y_val);
+            alert($scope.z_val);
+
+        }
+
+    }
+
+    function calculateScores() {
+
+    }
+
+    $scope.checkedItems = function(act_Activity, act_checked) {
+
+        if (act_checked) {
+            //alert("selected " + act_Activity);
+            if ($scope.count > 5) {
+                alert("Please select no more than 5");
+
+            } else {
+                $scope.count = $scope.count + 1;
+                $scope.input.push(act_Activity);
+                act_checked = true;
+            }
+
+
+        } else {
+
+            $scope.count = $scope.count - 1;
+            $scope.input.splice(act_Activity, 1);
+            act_checked = false;
+
+        }
+    };
+
+    $scope.getActivities = function() {
+
+        $scope.scoreInfo = [];
+        if ($scope.input.length > 0) {
+            $scope.x_val = 0;
+            $scope.y_val = 0;
+            $scope.z_val = 0;
+            $scope.sourcesLoaded = 0;
+
+            for (var k = 0; k < $scope.input.length; k++) {
+
+                //alert($scope.input[k]);
+                getScores($scope.input[k]);
+                //$scope.x_val.push(test);
+
+
+
+            }
+
+        }
+
+
+
+
+    };
+
+
+
+}])
 
 .controller('suggestCtrl', ['$scope', function($scope) {
     $scope.cog1;
@@ -39,9 +155,6 @@ angular.module('portalApp')
     var socScore;
     var intScore;
     var distance;
-
-
-
 
     $scope.getPred = function() {
 
@@ -217,7 +330,7 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('profile.html', 1);
+    $scope.portalHelpers.showView('getSuggestion.html', 1);
 
 
     // This function gets called when user clicks an item in the list
@@ -323,13 +436,6 @@ angular.module('portalApp')
                     }
                 }
 
-                // $scope.portalHelpers.invokeServerFunction({
-                //     functionName: 'deleteCenter',
-                //     uniqueNameId: 'mymProject'
-                // }).then(function(result) {
-                //     console.log("Data Deleted");
-                // });
-
                 for (var i = 0; i < centers.length; i++) {
                     temp = centers[i];
                     cNum = i;
@@ -360,7 +466,7 @@ angular.module('portalApp')
 
                 data = "";
                 d = "";
-            	centers = "";
+                centers = "";
 
                 //alert("Successfully Wiped and Inserted");
             })

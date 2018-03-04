@@ -263,4 +263,58 @@
     </widget-row>
 </script>
 <!-- PAGE TEMPLATE EXAMPLE -->
+<!-- PAGE TEMPLATE EXAMPLE -->
+<script type="text/ng-template" id="getSuggestion.html">
+    <widget-row ng-controller="preferenceCtrl">
+        <p>{{input}}</p>
+        <uib-accordion close-others="oneAtATime">
 
+            <div uib-accordion-group class="panel-default" heading="Team Activities" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                <div class="wrap" ng-repeat="act in actInfo.value">
+                    <div>
+                        <input type="checkbox" id="act.Activity" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Team'"></input>
+                        <label for="act.Activity" ng-show="act.Category =='Team'">{{act.Activity}}</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div uib-accordion-group class="panel-default" heading="Instructional Activities">
+                <div class="wrap" ng-repeat="act in actInfo.value">
+                    <div>
+                        <input type="checkbox" id="act.Activity" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Instructional'"></input>
+                        <label for="act.Activity" ng-show="act.Category =='Instructional'">{{act.Activity}}</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div uib-accordion-group class="panel-default" heading="Club Activities">
+                <div class="wrap" ng-repeat="act in actInfo.value">
+                    <div>
+                        <input type="checkbox" id="act.Activity" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Club'"></input>
+                        <label for="act.Activity" ng-show="act.Category =='Club'">{{act.Activity}}</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div uib-accordion-group class="panel-default" heading="Casual Activities">
+                <div class="wrap" ng-repeat="act in actInfo.value">
+                    <div>
+                        <input type="checkbox" id="act.Activity" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Casual'"></input>
+                        <label for="act.Activity" ng-show="act.Category =='Casual'">{{act.Activity}}</label>
+                    </div>
+                </div>
+
+            </div>
+        </uib-accordion>
+        
+        <input type="button" value = "Submit" ng-click="getActivities()" class="btn btn-default"/> 
+      <p>{{x_val}}</p>
+        <p>{{y_val}}</p>
+        <p>{{z_val}}</p>
+
+    </widget-row>
+</script>
+<!-- PAGE TEMPLATE EXAMPLE -->
