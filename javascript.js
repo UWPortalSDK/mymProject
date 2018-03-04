@@ -32,7 +32,15 @@ angular.module('portalApp')
     };
     $scope.scoreInfo = [];
     $scope.input = [];
-
+    $scope.cog1;
+    $scope.cog2;
+    $scope.soc1;
+    $scope.soc2;
+    $scope.int1;
+    $scope.int2;
+    $scope.clusters = {
+        value: null
+    };
 
 
     $scope.portalHelpers.invokeServerFunction({
@@ -43,46 +51,6 @@ angular.module('portalApp')
         $scope.actInfo.value = result;
         //sourceLoaded();
     });
-
-    function getScores(scores) {
-        //alert(scores);
-        $scope.portalHelpers.invokeServerFunction({
-            functionName: 'getScores',
-            uniqueNameId: 'mymProject',
-            sqlArgs: {
-                activity: scores
-            }
-        }).then(function(result) {
-            //alert("ENTERED");
-            $scope.x_val = $scope.x_val + result[0].X_val;
-            $scope.y_val = $scope.y_val + result[0].Y_val;
-            $scope.z_val = $scope.z_val + result[0].Z_val;
-            //alert($scope.x_val);
-            //$scope.x_val.push(result[0].X_val);
-            sourceLoaded();
-
-
-        });
-
-
-    };
-
-    function sourceLoaded() {
-        $scope.sourcesLoaded++;
-        //alert("sourcesLoaded");  
-        if ($scope.sourcesLoaded == $scope.input.length) {
-            alert("Triggered");
-            alert($scope.x_val);
-            alert($scope.y_val);
-            alert($scope.z_val);
-
-        }
-
-    }
-
-    function calculateScores() {
-
-    }
 
     $scope.checkedItems = function(act_Activity, act_checked) {
 
@@ -107,13 +75,53 @@ angular.module('portalApp')
         }
     };
 
-    $scope.getActivities = function() {
+    function getScores(scores) {
+        //alert("Entered getScores Function");
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getScores',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                activity: scores
+            }
+        }).then(function(result) {
+            //alert("ENTERED");
+            $scope.x_val = $scope.x_val + result[0].X_val;
+            $scope.y_val = $scope.y_val + result[0].Y_val;
+            $scope.z_val = $scope.z_val + result[0].Z_val;
+            //alert($scope.x_val);
+            //$scope.x_val.push(result[0].X_val);
+            sourceLoaded();
 
+
+        });
+
+
+    }
+
+    function sourceLoaded() {
+        $scope.sourcesLoaded++;
+        //alert("sourcesLoaded");  
+        if ($scope.sourcesLoaded == $scope.input.length) {
+            // alert("Triggered");
+            // alert($scope.x_val/3);
+            // alert($scope.y_val/3);
+            // alert($scope.z_val/3);
+            $scope.x_val = $scope.x_val / $scope.input.length;
+            $scope.y_val = $scope.y_val / $scope.input.length;
+            $scope.z_val = $scope.z_val / $scope.input.length;
+        }
+
+    }
+
+    function getActivities() {
+
+        //alert("Entered Activity Function");
         $scope.scoreInfo = [];
+        $scope.x_val = 0;
+        $scope.y_val = 0;
+        $scope.z_val = 0;
         if ($scope.input.length > 0) {
-            $scope.x_val = 0;
-            $scope.y_val = 0;
-            $scope.z_val = 0;
+
             $scope.sourcesLoaded = 0;
 
             for (var k = 0; k < $scope.input.length; k++) {
@@ -122,17 +130,150 @@ angular.module('portalApp')
                 getScores($scope.input[k]);
                 //$scope.x_val.push(test);
 
-
-
             }
 
         }
 
+    }
 
+    function calculateScores(result) {
+        //alert("Entered Score calculation function");
+        var centerValues = {
+            value: null
+        };
+        var temp;
+        var cogScore;
+        var socScore;
+        var intScore;
+        var distance;
+        cogScore = 0;
+        socScore = 0;
+        intScore = 0;
+        $scope.clusters = {
+            value: null
+        };
+        var centerValues = {
+            value: null
+        };
+        var temp;
+        var clusterBelong = [0, 100];
+
+
+        console.log('got data: ', result);
+        centerValues.value = result;
+
+        var cog1Edit = 10 - $scope.cog1;
+        cogScore = (parseFloat(cog1Edit) + parseFloat($scope.cog2)) / 2;
+        var soc1Edit = 10 - $scope.soc1;
+        socScore = (parseFloat(soc1Edit) + parseFloat($scope.soc2)) / 2;
+        var int2Edit = 10 - $scope.int2;
+        intScore = (parseFloat(int2Edit) + parseFloat($scope.int1)) / 2;
+
+        if ($scope.input.length > 0) {
+            //now weighted average calculation
+            $scope.y_val = 0.6 * cogScore + 0.4 * $scope.y_val;
+            $scope.z_val = 0.6 * socScore + 0.4 * $scope.z_val;
+            $scope.x_val = 0.6 * intScore + 0.4 * $scope.x_val;
+        } else {
+            alert("0 length");
+            $scope.y_val = cogScore;
+            $scope.z_val = socScore;
+            $scope.x_val = intScore;
+        }
+        alert("at the distance loop");
+        for (var key in centerValues.value) {
+
+            temp = centerValues.value[key];
+
+            distance = Math.sqrt(Math.pow(parseFloat(temp.x_coord) - parseFloat($scope.x_val), 2) + Math.pow(parseFloat(temp.y_coord) - parseFloat($scope.y_val), 2) + Math.pow(parseFloat(temp.z_coord) - parseFloat($scope.z_val), 2));
+            alert("The cluster currently belongs to " + clusterBelong[0]);
+            alert(clusterBelong[1]);
+            alert(parseFloat(distance));
+            if (parseFloat(distance) <= parseFloat(clusterBelong[1])) {
+                clusterBelong = [temp.cluster_number, distance];
+                alert("Changed Distance New Cluster is " + clusterBelong[0]);
+                alert(clusterBelong[0]);
+            }
+
+
+        };
+        
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getClusters',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                cNumber: clusterBelong[0]
+            }
+        }).then(function(result) {
+            console.log('got cluster content: ', result);
+            $scope.clusters.value = result;
+            //sourceLoaded();
+        });
+
+
+        temp = {};
+        centerValues = {
+            value: null
+        };
+
+
+    }
+
+    $scope.getPred = function() {
+
+        getActivities();
+
+        var clusterBelong = [0, 100];
+        distance = 0;
+        //alert("Successfully entered the function");
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getCenters',
+            uniqueNameId: 'mymProject'
+        }).then(function(result) {
+
+            distance = 0;
+            calculateScores(result);
+
+            // for (var key in centerValues.value) {
+
+            //     temp = centerValues.value[key];
+
+            //     distance = Math.sqrt(Math.pow(parseFloat(temp.x_coord) - parseFloat(intScore), 2) + Math.pow(parseFloat(temp.y_coord) - parseFloat(cogScore), 2) + Math.pow(parseFloat(temp.z_coord) - parseFloat(socScore), 2));
+            //     //alert("The cluster currently belongs to " + clusterBelong[0]);
+            //     //alert(clusterBelong[1]);
+            //     //alert(parseFloat(distance));
+            //     if (parseFloat(distance) <= parseFloat(clusterBelong[1])) {
+            //         clusterBelong = [temp.cluster_number, distance];
+            //         //alert("Changed Distance New Cluster is " + clusterBelong[0]);
+            //         //alert (clusterBelong[0]);
+            //     }
+
+
+            // };
+
+            // $scope.portalHelpers.invokeServerFunction({
+            //     functionName: 'getClusters',
+            //     uniqueNameId: 'mymProject',
+            //     sqlArgs: {
+            //         cNumber: clusterBelong[0]
+            //     }
+            // }).then(function(result) {
+            //     console.log('got cluster content: ', result);
+            //     $scope.clusters.value = result;
+            //     sourceLoaded();
+            // });
+
+
+            // temp = {};
+            // centerValues = {
+            //     value: null
+            // };
+
+
+        });
 
 
     };
-
 
 
 }])
