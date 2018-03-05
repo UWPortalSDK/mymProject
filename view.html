@@ -283,7 +283,7 @@
             <div uib-accordion-group class="panel-default ActivityGroups" heading="Club Activities" is-open="true">
                 <div class="wrap" ng-repeat="act in actInfo.value">
                     <div>
-                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Club'"><input type="checkbox" id="Act+{{act.Activity}} ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Club'"></input>{{act.Activity}}</label>
+                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Club'"><input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Club'"></input>{{act.Activity}}</label>
                      </div>
                 </div>
 
