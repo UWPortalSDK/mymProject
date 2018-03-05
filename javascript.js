@@ -21,6 +21,22 @@ angular.module('portalApp')
 })
 
 .controller('qCtrl', ['$scope', function($scope) {
+    $scope.mym = {
+        mainuser: 'UR_72plybg0V8sF3AF',
+        shortname: 'Test_Mail',
+        surveyid: 'SV_eRteDAkIY8P0eOx',
+        mailingid: 'ML_7U1n1bHTDwLvOzH',
+        contact_firstName: 'Jared',
+        contact_lastName: 'McDonald',
+        contact_email: 'test@test.com',
+        //use the extternal data ref for metadata could link to the database column
+        contact_externalDataRef: 'This is a test',
+        contact_language: 'en',
+        contact_id: 'MLRP_cZMrwTyWamV9dCR'
+
+
+
+    };
 
     $scope.GetMailinglists = function() {
         $scope.portalHelpers.getApiData('Qualtrics/GetMailinglists').then(function(result) {
@@ -38,12 +54,7 @@ angular.module('portalApp')
     // Create a new mailing list
 
     $scope.MailinglistCreate = function() {
-        $scope.mym = {
-            mainuser: 'UR_72plybg0V8sF3AF',
-            shortname: 'Test_Mail',
-            surveyid: 'SV_eRteDAkIY8P0eOx'
 
-        };
         // {
         // "category": "Star Wars - Rebels", // hard set to 'invite' at server
         // "libraryId": "UR_1234567890AbCdE",
@@ -57,6 +68,7 @@ angular.module('portalApp')
         }).then(function(result) {
             if (result.data)
                 result.data = JSON.parse(result.data);
+            console.log(result);
         }, function(fail) {
             console.log('MailinglistCreate FAIL', fail);
         }, function(notify) {
@@ -79,6 +91,45 @@ angular.module('portalApp')
         });
     };
 
+    // $scope.GetMailinglistContacts = function() {
+    //     $scope.portalHelpers.getApiData('Qualtrics/GetMailinglistContacts?mailinglistid=' + $scope.mym.mailinglist.id).then(function(result) {
+    //         if (result.data)
+    //             result.data = JSON.parse(result.data);
+    //         // Example - how to find our contact - store the first id found
+    //         var contactsEnum = Enumerable.From(result.data.result.elements);
+    //         var filtered = contactsEnum.Where(function(x) {
+    //             return x.email ==
+    //                 $scope.mym.contact_email
+    //         }).ToArray();
+    //         if (filtered.length > 0) {
+    //             if (filtered[0].id)
+    //                 $scope.mym.contact_id = filtered[0].id;
+    //         }
+    //     });
+    // };
+    $scope.MailinglistsPostContact = function() {
+        // mailing list id (created earlier)
+        // contact first, last, email
+        // arbitrary external data string
+        // contact language - 'en', 'fr'
+        var jsn = [$scope.mym.mailingid, $scope.mym.contact_firstName,
+            $scope.mym.contact_lastName, $scope.mym.contact_email,
+            $scope.mym.contact_externalDataRef, $scope.mym.contact_language
+        ];
+        $scope.portalHelpers.postApiData('Qualtrics/MailinglistsPostContact', {
+            sources: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+            console.log(result);
+        }, function(fail) {
+            console.log('MailinglistsPostContact FAIL', fail);
+        }, function(notify) {
+            console.log('MailinglistsPostContact notify');
+        });
+    };
+
+
 
 }])
 
@@ -94,12 +145,12 @@ angular.module('portalApp')
     };
     $scope.scoreInfo = [];
     $scope.input = [];
-    $scope.cog1;
-    $scope.cog2;
-    $scope.soc1;
-    $scope.soc2;
-    $scope.int1;
-    $scope.int2;
+    $scope.cog1 = 5;
+    $scope.cog2 = 5;
+    $scope.soc1 = 5;
+    $scope.soc2 = 5;
+    $scope.int1 = 5;
+    $scope.int2 = 5;
     $scope.clusters = {
         value: null
     };
@@ -250,19 +301,19 @@ angular.module('portalApp')
             $scope.z_val = socScore;
             $scope.x_val = intScore;
         }
-        alert("at the distance loop");
+        //alert("at the distance loop");
         for (var key in centerValues.value) {
 
             temp = centerValues.value[key];
 
             distance = Math.sqrt(Math.pow(parseFloat(temp.x_coord) - parseFloat($scope.x_val), 2) + Math.pow(parseFloat(temp.y_coord) - parseFloat($scope.y_val), 2) + Math.pow(parseFloat(temp.z_coord) - parseFloat($scope.z_val), 2));
-            alert("The cluster currently belongs to " + clusterBelong[0]);
-            alert(clusterBelong[1]);
-            alert(parseFloat(distance));
+            //alert("The cluster currently belongs to " + clusterBelong[0]);
+            //alert(clusterBelong[1]);
+            //alert(parseFloat(distance));
             if (parseFloat(distance) <= parseFloat(clusterBelong[1])) {
                 clusterBelong = [temp.cluster_number, distance];
-                alert("Changed Distance New Cluster is " + clusterBelong[0]);
-                alert(clusterBelong[0]);
+                //alert("Changed Distance New Cluster is " + clusterBelong[0]);
+                //alert(clusterBelong[0]);
             }
 
 
@@ -385,7 +436,7 @@ angular.module('portalApp')
         });
 
 
-    }
+    };
 }])
 
 // Widget controller - runs every time widget is shown
@@ -400,12 +451,13 @@ angular.module('portalApp')
     $scope.UWlogo = UwaterlooLogo;
     $scope.buddy = false;
     $scope.centers = [];
+    
 
     // initialize the service
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('getSuggestion.html', 1);
+    $scope.portalHelpers.showView('profile.html', 1);
 
 
     // This function gets called when user clicks an item in the list
@@ -413,27 +465,13 @@ angular.module('portalApp')
         // Make the item that user clicked available to the template
         console.log($scope.test);
         $scope.portalHelpers.showView('mymProjectDetails.html', 1);
-    }
+    };
 
-    $scope.showPage = function(number) {
-        // Make the item that user clicked available to the template
-        if (number == 1) {
-
-            $scope.portalHelpers.showView('activitySuggestion.html', 1);
-        } else if (number == 2) {
-
-            $scope.portalHelpers.showView('profile.html', 1);
-        } else if (number == 3) {
-
-            $scope.portalHelpers.showView('activitySuggestion.html', 1);
-        }
-
-    }
 
     $scope.testSubmit = function() {
         // Make the item that user clicked available to the template
         console.log($scope.formOne);
-    }
+    };
 
 
 
@@ -442,6 +480,128 @@ angular.module('portalApp')
             formdata.append('file', value);
         });
     };
+    
+    function insertCenters(cNum,c1,c2,c3){
+        
+        $scope.portalHelpers.invokeServerFunction({
+                        functionName: 'insertCen',
+                        uniqueNameId: 'mymProject',
+                        sqlArgs: {
+                            cNum: cNum,
+                            c1: c1,
+                            c2: c2,
+                            c3: c3
+                        }
+                    }).then(function(result) {
+                        console.log("YAY");
+                    });
+        
+    }
+    
+    function activiesLoaded(activityLength, centers) {
+        //alert("Entered Function");
+       	$scope.activities++;
+        //alert($scope.activities); 
+        
+        if ($scope.activities == activityLength) {
+            console.log(centers); 
+            //alert("at the end");
+            var c1 = 0;
+            var c2 = 0;
+            var temp = [];
+            var c3 = 0;
+            var cNum = 0;
+            //alert(centers.length);
+            
+            for (var i = 0; i < centers.length; i++) {
+                    temp = centers[i];
+                    cNum = i;
+                    c1 = parseFloat(temp[0]);
+                    c2 = parseFloat(temp[1]);
+                    c3 = parseFloat(temp[2]);
+                    console.log(cNum);
+                    console.log(c1);
+                    console.log(c2);
+                    console.log(c3);
+
+                    insertCenters(cNum,c1,c2,c3);                
+                }
+
+                centers = "";
+
+                alert("Successfully Wiped and Inserted");
+            
+        }
+
+    }
+    
+    function insertActivityRow(key,holdTemp,xVal,yVal,zVal, length, centers) {
+        
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'insertResult',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                activity: key,
+                cluster: holdTemp[0],
+                xVal: xVal,
+                yVal: yVal,
+                zVal: zVal,
+                category: holdTemp[2]
+            }
+        }).then(function(result) {
+            //alert("got here");
+            activiesLoaded(length,centers);
+
+        });
+    }
+
+    function insertNewData(data) {
+		
+        var act = data.activities;
+        //console.log(data);
+        var centers = data.centers;
+        //console.log(centers);
+        var holdTemp = [];
+        var scores = [];
+        var xVal = 0;
+        var yVal = 0;
+        var zVal = 0;
+        
+        var length = Object.keys(act).length;
+
+		//alert(Object.keys(act).length);
+        for (var key in act) {
+            if (act.hasOwnProperty(key)) {
+                holdTemp = act[key];
+                scores = holdTemp[1];
+                for (var j = 0; j < scores.length; j++) {
+
+                    xVal = scores[0];
+                    yVal = scores[1];
+                    zVal = scores[2];
+
+                }
+
+                insertActivityRow(key,holdTemp,xVal,yVal,zVal, length, centers);
+
+            }
+        }
+
+
+    }
+
+    
+    
+    function deleteData(data) {
+
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'deleteCluster',
+            uniqueNameId: 'mymProject'
+        }).then(function(result) {
+            console.log("Data Deleted");
+            insertNewData(data);
+        });
+    }
 
     // UPLOAD THE FILES – that’s my server – please don’t kill it.
     $scope.uploadFiles = function() {
@@ -458,92 +618,9 @@ angular.module('portalApp')
         $http(request)
             .success(function(d) {
                 console.log(d);
-
-                // this is the result
-                var data = d.activities;
-                var centers = d.centers;
-                var temp = [];
-                var holdTemp = [];
-                var scores = [];
-                var cNum = 0;
-                var xVal = 0;
-                var yVal = 0;
-                var zVal = 0;
-                var c1 = 0;
-                var c2 = 0;
-                var c3 = 0;
-
-                $scope.portalHelpers.invokeServerFunction({
-                    functionName: 'deleteCluster',
-                    uniqueNameId: 'mymProject'
-                }).then(function(result) {
-                    console.log("Data Deleted");
-                });
-
-                for (var key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        holdTemp = data[key];
-                        scores = holdTemp[1];
-                        for (var j = 0; j < scores.length; j++) {
-
-                            xVal = scores[0];
-                            yVal = scores[1];
-                            zVal = scores[2];
-
-                        }
-
-                        //console.log(key + " -> " + $scope.data[key]);
-                        $scope.portalHelpers.invokeServerFunction({
-                            functionName: 'insertResult',
-                            uniqueNameId: 'mymProject',
-                            sqlArgs: {
-                                activity: key,
-                                cluster: holdTemp[0],
-                                xVal: xVal,
-                                yVal: yVal,
-                                zVal: zVal,
-                                category: holdTemp[2]
-                            }
-                        }).then(function(result) {
-                            //console.log(result);
-
-                        });
-                    }
-                }
-
-                for (var i = 0; i < centers.length; i++) {
-                    temp = centers[i];
-                    cNum = i;
-                    c1 = parseFloat(temp[0]);
-                    c2 = parseFloat(temp[1]);
-                    c3 = parseFloat(temp[2]);
-                    console.log(cNum);
-                    console.log(c1);
-                    console.log(c2);
-                    console.log(c3);
-
-                    //console.log(cNum + " " + c1 + " " c2 + " " + c3);
-
-                    $scope.portalHelpers.invokeServerFunction({
-                        functionName: 'insertCen',
-                        uniqueNameId: 'mymProject',
-                        sqlArgs: {
-                            cNum: cNum,
-                            c1: c1,
-                            c2: c2,
-                            c3: c3
-                        }
-                    }).then(function(result) {
-                        console.log("YAY");
-                    });
-                }
-
-
-                data = "";
-                d = "";
-                centers = "";
-
-                //alert("Successfully Wiped and Inserted");
+            	//console.log(d.centers);
+            	$scope.activities =0;
+                deleteData(d);                
             })
             .error(function(e) {
                 alert(e);
