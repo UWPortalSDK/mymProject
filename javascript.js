@@ -42,7 +42,7 @@ angular.module('portalApp')
             mainuser: 'UR_72plybg0V8sF3AF',
             shortname: 'Test_Mail',
             surveyid: 'SV_eRteDAkIY8P0eOx'
-            
+
         };
         // {
         // "category": "Star Wars - Rebels", // hard set to 'invite' at server
@@ -129,9 +129,17 @@ angular.module('portalApp')
 
 
         } else {
-
+            //alert(act_Activity);
             $scope.count = $scope.count - 1;
-            $scope.input.splice(act_Activity, 1);
+
+            for (var i = 0; i < $scope.input.length; i++) {
+                if ($scope.input[i] === act_Activity) {
+                    //alert("found it");
+                    $scope.input.splice(i, 1);
+                    // break;       //<-- Uncomment  if only the first term has to be removed
+                }
+            }
+            //$scope.input.splice(act_Activity);
             act_checked = false;
 
         }
