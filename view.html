@@ -386,6 +386,30 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="qStuff.html">
     <widget-row ng-controller="qCtrl">
+        
+        <div>
+            <p>Survey id</p>
+            <input type="text" ng-model="mym.surveyid" />
+            <p>{{mym.surveyid}}</p>
+        </div>
+        <div>
+            <p>Term</p>
+            <select ng-options="year as year for year in yeararray" ng-model="selectYear"></select>
+            <select ng-options="term as term for term in termarray" ng-model="selectTerm"></select>
+            <p>{{selectYear}}   {{selectTerm}}</p>
+            <br />
+            <p>Survey Type</p>
+            <select ng-options="surveytype as surveytype for surveytype in surveytypearray" ng-model="selectsurveytype"></select>
+            <p>{{selectsurveytype}}</p>
+        </div>
+        <div class=""> 
+            <input type="button" value="Submit" ng-click="AddSurvey()" class="btn btn-default" />
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <h2>Post the contact</h2>
         <div class="pDetails">
             <input type="button" value="Submit" ng-click="MailinglistsPostContact()" class="btn btn-default" />
