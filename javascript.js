@@ -49,17 +49,17 @@ angular.module('portalApp')
             value: null
         };
     
-    $scope.getSurveyTerms = function (){
+
         
-        $scope.portalHelpers.invokeServerFunction({
-            functionName: 'SurveyTerms',
-            uniqueNameId: 'mymProject',
-        }).then(function(result) {
-            console.log('got data: ', result);
-            $scope.QueryResult.value = result;
-            //CheckTerms(QueryResult);
-        });
-    };
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'SurveyTerms',
+        uniqueNameId: 'mymProject',
+    }).then(function(result) {
+        console.log('got data: ', result);
+        $scope.QueryResult.value = result;
+        //CheckTerms(QueryResult);
+    });
+
 
 
     var yeardate = new Date();
@@ -83,9 +83,10 @@ angular.module('portalApp')
         value: null
     };
 
-    function CheckTerms(QueryResult) {
-        var termInfo = QueryResult.value;
-        var length = Object.keys(QueryResult).length;
+    function CheckTerms() {
+        var termInfo = $scope.QueryResult.value;
+        console.log($scope.QueryResult.value);
+        var length = Object.keys($scope.QueryResult).length;
         var foundTerm = false;
         //console.log(QueryResult.value[0].term);
         if (length > 0) {
@@ -93,7 +94,7 @@ angular.module('portalApp')
             var promise = new Promise(function(resolve, reject) {
                 // do a thing, possibly async, then…
                 for (var key in termInfo) {
-                    //alert("Entered loop");
+                    alert("Entered loop");
                     alert(termInfo[key].term);
                     var combinedTerm = $scope.selectTerm + $scope.selectYear;
                     //alert($scope.selectTerm + $scope.selectYear);
@@ -148,7 +149,7 @@ angular.module('portalApp')
     function AddSurvey() {
         
         //var QueryResult = $scope.QueryResult;
-        CheckTerms($scope.QueryResult);
+        CheckTerms();
         
         // $scope.portalHelpers.invokeServerFunction({
         //     functionName: 'SurveyTerms',
