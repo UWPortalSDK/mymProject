@@ -21,16 +21,20 @@ angular.module('portalApp')
 })
 
 .controller('qCtrl', ['$scope', function($scope) {
-    var date = new Date();
-    var test = new Date();
-    console.log(test.toISOString());
-	date.setMinutes(date.getMinutes() + 2);
-
+    
+    var yeardate = new Date();
+    yeardate = yeardate.getFullYear();
+    console.log(yeardate)
+    $scope.yeararray = [yeardate-2, yeardate-1, yeardate, yeardate+1, yeardate+2];
+	console.log($scope.yeararray);
+    $scope.termarray = ["Fall ", "Winter ", "Spring "];
+	console.log($scope.termarray);
+    $scope.surveytypearray = ["Mental Health Initial ", "Goals Initial ", "Midterm Evaluation Survey", "Mental Health Final ", "Goals Final ", "Final Exit Survey "];
+	console.log($scope.surveytypearray);
 // now you can get the string
 
     // console.log(isodate);
-    var n = test.toISOString();
-    //var f = new Date(d.getTime())
+    
     var y = new Date(2018, 04, 25);
     var z = y.toISOString();
     //console.log(n);
@@ -38,6 +42,53 @@ angular.module('portalApp')
     $scope.testResults = {
             value: null
             };
+    
+    var QueryResult = {
+            value: null
+            };
+    
+    function CheckTerms(QueryResult) {
+		var termInfo = QueryResult.value;
+        var length = Object.keys(QueryResult).length;
+        console.log(QueryResult.value[0].term);
+        if (length > 0)
+        {
+            for (var key in termInfo) {
+                alert("Entered loops");
+                alert(termInfo[key].term);
+                
+                
+                
+                // if (act.hasOwnProperty(key)) {
+                //     holdTemp = act[key];
+                //     scores = holdTemp[1];
+                //     for (var j = 0; j < scores.length; j++) {
+
+                //         xVal = scores[0];
+                //         yVal = scores[1];
+                //         zVal = scores[2];
+
+                //     }
+
+                //     insertActivityRow(key, holdTemp, xVal, yVal, zVal, length, centers);
+
+                // }
+            }
+
+        }
+    }
+    
+    $scope.AddSurvey = function() {
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'SurveyTerms',
+            uniqueNameId: 'mymProject'
+        }).then(function(result) {
+            console.log('got data: ', result);
+            QueryResult.value = result;
+            CheckTerms(QueryResult);
+        });
+    }
+    
     $scope.mym = {
         
                 mainuser: 'UR_72plybg0V8sF3AF',
@@ -55,7 +106,7 @@ angular.module('portalApp')
                 fromEmail: 'noreply@qemailserver.com',
                 replyToEmail: 'je2mcdon@uwaterloo.ca',
                 fromName: 'J-Money Spits FIRE',
-                subject: 'Yeah',
+                subject: 'Email Service test1',
                 distributionType: 'Individual',
                 sendDate: '',
                 message_id: 'MS_6XKJEMe39VyyUp7'
@@ -159,6 +210,7 @@ angular.module('portalApp')
             $scope.CreateSurveyDistribution = function() {
                 // String array sources = [surveyId, expirationDate, type, fromEmail,fromName,
                 // replyToEmail, subject, libraryId, messageId, mailingListId,contactId, sendDate]
+                var date = new Date();
                 var isodate = date.toISOString();
                 $scope.mym.sendDate = isodate;
                 var jsn = [$scope.mym.surveyid, $scope.mym.expirationDate, $scope.mym.distributionType, $scope.mym.fromEmail, $scope.mym.fromName, $scope.mym.replyToEmail, $scope.mym.subject, $scope.mym.mainuser, $scope.mym.message_id, $scope.mym.mailingid, $scope.mym.contact_id, $scope.mym.sendDate];
