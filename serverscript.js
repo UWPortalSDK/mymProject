@@ -95,3 +95,18 @@ function getScores() {
     }
     return queryResult;
 }
+
+function SurveyTerms() {
+    var queryResult = db.Execute('select distinct term from surveytable');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+
+
+
+
+
