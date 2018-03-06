@@ -66,11 +66,11 @@
             </uib-tab>
 
             <uib-tab index="1" heading="Enrolment">
-                <widget-row ng-controller="profileCtrl">
+                <widget-row ng-controller="qCtrl">
                     <h2>Student Registration</h2>
                     <br />
                     <form action="">
-                                                <div class="form-group">
+                            <div class="form-group">
 
                             <label for="fName">First Name:</label>
                             <input type="text" ng-model="fname" class="form-control" id="fName"></input>
@@ -82,7 +82,9 @@
                             <input type="number" ng-model="sid" class="form-control" id="sid" ng-minlength=8></input>            
 
                             <label for="term">Current Term</label>
-                            <input type="text" ng-model="term" class="form-control" id="term"></input>
+                            <select ng-options="term as term.term for term in QueryResult.value" ng-model="testy"></select>
+                                <p>{{testy.mailing_id}}</p>
+<!--                             <input type="text" ng-model="term" class="form-control" id="term"></input> -->
 <!--                             <div class="dropdown">                               
                                 <select name="sterm" ng-model="sterm">
                                     <option value="Fall">Fall</option>
