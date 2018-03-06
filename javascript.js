@@ -55,7 +55,7 @@ angular.module('portalApp')
         functionName: 'SurveyTerms',
         uniqueNameId: 'mymProject',
     }).then(function(result) {
-        console.log('got data: ', result);
+        console.log('got term data: ', result);
         $scope.QueryResult.value = result;
         //CheckTerms(QueryResult);
     });
