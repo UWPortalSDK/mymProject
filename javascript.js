@@ -588,7 +588,7 @@ angular.module('portalApp')
 .controller('profileCtrl', ['$scope', function($scope) {
     $scope.value1 = true;
     $scope.value2 = false;
-    $scope.wobname = "";
+    $scope.frequency = "";
     $scope.studentInfo = {
         value: null
     };
@@ -619,18 +619,24 @@ angular.module('portalApp')
             functionName: 'registrate',
             uniqueNameId: 'mymProject',
             sqlArgs: {
-                id: $scope.sid,
+                mailing:$scope.mailing,
+                contact:$scope.contact,
+                fname: $scope.fname,
+                lname:$scope.lname,
+                sid: $scope.sid,
                 term: $scope.term,
-                name: $scope.name,
+                program:$scope.program,
                 email: $scope.email,
-                gender: $scope.gender,
-                program: $scope.program,
-                date: $scope.date,
-                aterm: $scope.aterm,
-                wob: $scope.buddy,
-                wobname: $scope.wobname,
-                surveyid: $scope.surveyid,
-                support: $scope.support
+                gender:$scope.gender,
+                rName:$scope.rName,
+                rType:$scope.rType,
+                rEmail:$scope.rEmail,
+                rDepartment:$scope.rDepartment,
+                progress:$scope.progress,
+                frequency:$scope.frequency,
+                consideration:$scope.consideration,
+                dates:$scope.date,
+                aterm:$scope.aterm
             }
         }).then(function(result) {
             //sourceLoaded();
