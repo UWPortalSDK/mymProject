@@ -70,16 +70,41 @@
                     <h2>Student Registration</h2>
                     <br />
                     <form action="">
-                        <div class="form-group">
+                                                <div class="form-group">
 
-                            <label for="fullName">Full Name:</label>
-                            <input type="text" ng-model="name" class="form-control" id="fullName"></input>
+                            <label for="fName">First Name:</label>
+                            <input type="text" ng-model="fname" class="form-control" id="fName"></input>
+                            
+                            <label for="lName">Last Name:</label>
+                            <input type="text" ng-model="lname" class="form-control" id="lName"></input>
+                            
+                            <label for="sid">UW ID:</label>
+                            <input type="number" ng-model="sid" class="form-control" id="sid" ng-minlength=8></input>            
 
+                            <label for="term">Current Term</label>
+                            <input type="text" ng-model="term" class="form-control" id="term"></input>
+<!--                             <div class="dropdown">                               
+                                <select name="sterm" ng-model="sterm">
+                                    <option value="Fall">Fall</option>
+                                    <option value="Winter">Winter</option>
+                                    <option value="Spring">Spring</option>
+                                </select>
+                            </div>
+                            <div class="dropdown">                               
+                                <select name="year" ng-model="year">
+                                    <option value="Fall">Fall</option>
+                                    <option value="Winter">Winter</option>
+                                    <option value="Spring">Spring</option>
+                                </select>
+                            </div>                      -->
+                           
+
+                            <label for="program">Program</label>
+                            <input type="text" ng-model="program" class="form-control" id="program"></input>
+                          
                             <label for="mail">UW Email:</label>
                             <input type="email" ng-model="email" class="form-control" id="mail"></input>
-
-                            <label for="sid">UW ID:</label>
-                            <input type="number" ng-model="sid" class="form-control" id="sid"></input>
+                          
 
                             <div class="dropdown">
                                 <label>Gender: </label>
@@ -89,44 +114,70 @@
                                     <option value="N/A">Prefer not to specify</option>
                                 </select>
                             </div>
+                            
 
-                            <label for="program">Program</label>
-                            <input type="text" ng-model="program" class="form-control" id="program"></input>
+                            <label for="rName">Referral's Name:</label>
+                            <input type="text" ng-model="rName" class="form-control" id="rName"></input>
+                           
 
-                            <label for="term">Registration Term</label>
-                            <input type="text" ng-model="term" class="form-control" id="term"></input>
+                            <label for="rType">Referral's Type:</label>
+                            <p><small>*Please indicate if you are a student, staff, faculty, self referring, etc.</small></p>
+                            <input type="text" ng-model="rType" class="form-control" id="rType"></input>
+                          
+                            <label for="rEmail">Referral's Email:</label>
+                            <input type="email" ng-model="rEmail" class="form-control" id="rEmail"></input>
+                           
+                            <label for="rdepartment">Referral's Department:</label>
+                            <input type="text" ng-model="rDepartment" class="form-control" id="rDepartment"></input>
+                            
 
-                            <label for="aterm">Academic Term</label>
-                            <input type="text" ng-model="aterm" class="form-control" id="aterm"></input>
+                            <label for="rprogress">Would the referrer need progress update?</label>
+                            <div class="dropdown">
+                                <select name="progress" ng-model="progress">
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                            
 
-                            <label for="date">Registration Date</label>
+                            <div class="form-group" ng-show="progress=='yes'">
+                                <label for="frequency">How frequent?</label>
+                                <input type="text" ng-model="frequency" class="form-control" id="frequency"></input>
+                            </div>
+                           
+                            
+                           <label for="consideration">Consideration</label>
+                            <input type="text" ng-model="consideration" class="form-control" id="consideration"></input>
+                          
+
+                            <label for="date">Submission Date</label>
                             <input type="date" ng-model="date" class="form-control" id="date"></input>
+                          
+                            
+                            <label for="aterm">Academic Term</label>
+                            <input type="aterm" ng-model="aterm" class="form-control" id="aterm"></input>
+                         
+                            
+                            <label for="mailing">mailing id test</label>
+                            <input type="text" ng-model="mailing" class="form-control" id="mailing"></input>
+                         
+                            
+                            <label for="contactid">contactid</label>
+                            <input type="text" ng-model="contact" class="form-control" id="contact"></input>
+                           
+                            
                         </div>
-                        <div class="dropdown">
-                            <label>Support Level: </label>
-                            <select name="support" ng-model="support">
-                                <option value="Low">Low</option>
-                                <option value="Medium">Medium</option>
-                                <option value="High">High</option>
-                            </select>
-                        </div>
+
+                     
+<!--                         <div class="form-group">
+                            <label for="qualtrics">Qualtrics Survey ID</label>
+                            <input type="text" ng-model="survey" class="form-control" id="wBuddy"></input>
+                            {{survey}}
+                        </div> -->
                         <br />
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" ng-model="buddy">Workout Buddy</input>
-                            </label>
-                        </div>
-                        <div class="form-group" ng-show="buddy">
-                            <label for="wBuddy">Workout Buddy Name</label>
-                            <input type="text" ng-model="wobname" class="form-control" id="wBuddy"></input>
-                        </div>
-                        <!---may need to remove because student needs to register in order to get the survey id  --->
-                        <div class="form-group">
-                            <label for="wBuddy">Qualtrics Survey ID</label>
-                            <input type="text" ng-model="surveyid" class="form-control" id="wBuddy"></input>
-                        </div>
-                        <br />
-                        <input type="button" value="Submit" ng-click="testSubmit()" ng-disabled=" !term || !sid || !name || !email || !gender || !program || !aterm || !date || !support || !surveyid" class="btn btn-default" />
+                        <input type="button" value="Submit" ng-click="testSubmit()" class="btn btn-default" />
+                        
+<!--                         ng-disabled=" !term || !sid || !name || !email || !gender || !program || !aterm || !date || !support || !surveyid"  -->
 
                     </form>
                 </widget-row>
