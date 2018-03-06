@@ -112,6 +112,15 @@ function insertSurvey(){
     return getData();
 }
 
+//check if survey exists
+function checkSurveyExist(){
+ 	var queryResult = db.Execute('Select survey_id from surveytable WHERE survey_id = @survey_id');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
 
 
 
