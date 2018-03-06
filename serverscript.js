@@ -96,8 +96,9 @@ function getScores() {
     return queryResult;
 }
 
+//get existing surveys
 function SurveyTerms() {
-    var queryResult = db.Execute('select distinct term from surveytable');
+    var queryResult = db.Execute('select distinct term, mailing_id from surveytable');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -105,6 +106,11 @@ function SurveyTerms() {
     return queryResult;
 }
 
+//insert surveyData into table
+function insertSurvey(){
+ 	db.Execute('INSERT INTO surveytable Values (@mailing_id,@survey_id,@type,@term)');
+    return getData();
+}
 
 
 
