@@ -44,6 +44,23 @@ angular.module('portalApp')
         sendDate: '',
         message_id: 'MS_6XKJEMe39VyyUp7'
     };
+   
+    $scope.QueryResult = {
+            value: null
+        };
+    
+    $scope.getSurveyTerms = function (){
+        
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'SurveyTerms',
+            uniqueNameId: 'mymProject',
+        }).then(function(result) {
+            console.log('got data: ', result);
+            $scope.QueryResult.value = result;
+            //CheckTerms(QueryResult);
+        });
+    };
+
 
     var yeardate = new Date();
     yeardate = yeardate.getFullYear();
@@ -65,8 +82,6 @@ angular.module('portalApp')
     $scope.testResults = {
         value: null
     };
-
-
 
     function CheckTerms(QueryResult) {
         var termInfo = QueryResult.value;
@@ -132,21 +147,40 @@ angular.module('portalApp')
 
     function AddSurvey() {
         
-        var QueryResult = {
-            value: null
-        };
+        //var QueryResult = $scope.QueryResult;
+        CheckTerms($scope.QueryResult);
         
-        $scope.portalHelpers.invokeServerFunction({
-            functionName: 'SurveyTerms',
-            uniqueNameId: 'mymProject',
-        }).then(function(result) {
-            console.log('got data: ', result);
-            QueryResult.value = result;
-            CheckTerms(QueryResult);
-        });
+        // $scope.portalHelpers.invokeServerFunction({
+        //     functionName: 'SurveyTerms',
+        //     uniqueNameId: 'mymProject',
+        // }).then(function(result) {
+        //     console.log('got data: ', result);
+        //     QueryResult.value = result;
+        //     CheckTerms(QueryResult);
+        // });
     };
 
     $scope.checkExist = function() {
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'checkSurveyExist',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                survey_id: $scope.mym.surveyid
+            }
+        }).then(function(result) {
+            console.log('got data: ', result);
+            console.log(Object.keys(result).length);
+            if (Object.keys(result).length > 0){
+                alert("Survey Already Exists");
+            }
+            else {
+                AddSurvey();
+            }
+            //CheckTerms(QueryResult);
+        });
+    };
+    
+     $scope.submitEnroll = function() {
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'checkSurveyExist',
             uniqueNameId: 'mymProject',
