@@ -27,8 +27,8 @@ angular.module('portalApp')
 	date.setMinutes(date.getMinutes() + 2);
 
 // now you can get the string
-	var isodate = date.toISOString();
-    console.log(isodate);
+
+    // console.log(isodate);
     var n = test.toISOString();
     //var f = new Date(d.getTime())
     var y = new Date(2018, 04, 25);
@@ -39,24 +39,25 @@ angular.module('portalApp')
             value: null
             };
     $scope.mym = {
+        
                 mainuser: 'UR_72plybg0V8sF3AF',
                 shortname: 'Test_Mail',
                 surveyid: 'SV_a3sfBOgY7fA1Bch',
                 mailingid: 'ML_7U1n1bHTDwLvOzH',
-                contact_firstName: 'Jared',
-                contact_lastName: 'McDonald',
-                contact_email: 'je2mcdon@uwaterloo.ca',
+                contact_firstName: 'Zhenghan',
+                contact_lastName: 'Li',
+                contact_email: 'zhenghanli1994@gmail.com',
                 //use the extternal data ref for metadata could link to the database column
                 contact_externalDataRef: 'This is a test',
                 contact_language: 'en',
-                contact_id: 'MLRP_0JQMuXGUjLPw0iV',
+                contact_id: 'MLRP_78TMwbYOWATtM1v',
                 expirationDate: z,
                 fromEmail: 'noreply@qemailserver.com',
                 replyToEmail: 'je2mcdon@uwaterloo.ca',
                 fromName: 'J-Money Spits FIRE',
-                subject: 'Sup Mengfang',
+                subject: 'Yeah',
                 distributionType: 'Individual',
-                sendDate: isodate,
+                sendDate: '',
                 message_id: 'MS_6XKJEMe39VyyUp7'
             };
 
@@ -158,6 +159,8 @@ angular.module('portalApp')
             $scope.CreateSurveyDistribution = function() {
                 // String array sources = [surveyId, expirationDate, type, fromEmail,fromName,
                 // replyToEmail, subject, libraryId, messageId, mailingListId,contactId, sendDate]
+                var isodate = date.toISOString();
+                $scope.mym.sendDate = isodate;
                 var jsn = [$scope.mym.surveyid, $scope.mym.expirationDate, $scope.mym.distributionType, $scope.mym.fromEmail, $scope.mym.fromName, $scope.mym.replyToEmail, $scope.mym.subject, $scope.mym.mainuser, $scope.mym.message_id, $scope.mym.mailingid, $scope.mym.contact_id, $scope.mym.sendDate];
                 console.log(jsn);
                 $scope.portalHelpers.postApiData('Qualtrics/CreateSurveyDistribution', {
