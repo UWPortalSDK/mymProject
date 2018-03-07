@@ -20,6 +20,55 @@ angular.module('portalApp')
 
 })
 
+.controller('distributeCtrl', ['$scope', function($scope) {
+        $scope.terms = {
+            value: null
+        };
+
+        $scope.student = {
+            value: null
+        };
+
+        $scope.surveytype = {
+            value: null
+        };
+
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getTermsDist',
+            uniqueNameId: 'mymProject',
+        }).then(function(result) {
+            console.log('got term data: ', result);
+            $scope.terms.value = result;
+        });
+
+        $scope.getStudent = function() {
+            // alert($scope.selectedTermDis.current_term);
+            $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getStudentDist',
+                uniqueNameId: 'mymProject',
+                sqlArgs: {
+                    term: $scope.selectedTermDis.current_term
+                }
+            }).then(function(result) {
+                console.log('got student data: ', result);
+                $scope.student.value = result;
+            });
+        };
+
+        $scope.getType = function() {
+            $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getSurveyType',
+                uniqueNameId: 'mymProject',
+            }).then(function(result) {
+                console.log('got survey type: ', result);
+                $scope.surveytype.value = result;
+
+            });
+        };
+
+
+    }])
+
 .controller('qCtrl', ['$scope', function($scope) {
     var y = new Date(2018, 04, 25);
     var z = y.toISOString();
@@ -716,7 +765,7 @@ $scope.CreateLibraryMessage = function() {
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('profile.html', 1);
+    $scope.portalHelpers.showView('distribution.html', 1);
 
 
     // This function gets called when user clicks an item in the list
