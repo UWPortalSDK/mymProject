@@ -113,6 +113,56 @@ angular.module('portalApp')
     });
 
 
+    $scope.SurveyTerms = {
+            value: null
+        };
+    
+    $scope.SurveyTypes = {
+            value: null
+        };
+
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'searchSurveyTerm',
+        uniqueNameId: 'mymProject',
+    }).then(function(result) {
+        console.log('got survey data: ', result);
+        $scope.SurveyTerms.value = result;
+    });
+	
+    $scope.selecteSurveyType = function() {
+        // Make the item that user clicked available to the template
+        //document.getElementById("Studentnamesearchbox").value = id;
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getSurveyTerms',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                value: $scope.SelectSurveyTerm.term
+            }
+        }).then(function(result) {
+            console.log('got data: ', result);
+            $scope.SurveyTypes.value = result;
+        });
+    };
+    
+    $scope.DownloadResult = function() {
+        alert($scope.selectSurveyType.survey_id);
+        var jsn = [$scope.selectSurveyType.survey_id, "json"];
+        alert(jsn);
+        $scope.portalHelpers.postApiData('Qualtrics/ResponseExportPost', {
+            args: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+        }, function(fail) {
+            console.log('ResponseExportPost FAIL', fail);
+        }, function(notify) {
+            console.log('ResponseExportPost notify');
+        });
+        console.log(result);
+    };
+    
+
+
 
     var yeardate = new Date();
     yeardate = yeardate.getFullYear();
@@ -765,7 +815,7 @@ $scope.CreateLibraryMessage = function() {
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('distribution.html', 1);
+    $scope.portalHelpers.showView('qStuff.html', 1);
 
 
     // This function gets called when user clicks an item in the list
