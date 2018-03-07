@@ -60,7 +60,38 @@ angular.module('portalApp')
         //CheckTerms(QueryResult);
     });
 
+    $scope.SurveyTerms = {
+            value: null
+        };
+    
+    $scope.SurveyTypes = {
+            value: null
+        };
 
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'searchSurveyTerm',
+        uniqueNameId: 'mymProject',
+    }).then(function(result) {
+        console.log('got survey data: ', result);
+        $scope.SurveyTerms.value = result;
+    });
+	
+    $scope.selecteSurveyType = function() {
+        // Make the item that user clicked available to the template
+        //document.getElementById("Studentnamesearchbox").value = id;
+        alert($scope.SelectSurveyTerm.term);
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getTerms',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                value: $scope.SelectSurveyTerm.term
+            }
+        }).then(function(result) {
+            console.log('got data: ', result);
+            $scope.SurveyTypes.value = result;
+        });
+        alert(result);
+    };
 
     var yeardate = new Date();
     yeardate = yeardate.getFullYear();
@@ -273,6 +304,8 @@ angular.module('portalApp')
         });
     };
 
+    
+    
     // $scope.GetMailinglistContacts = function() {
     //     $scope.portalHelpers.getApiData('Qualtrics/GetMailinglistContacts?mailinglistid=' + $scope.mym.mailinglist.id).then(function(result) {
     //         if (result.data)
@@ -280,7 +313,7 @@ angular.module('portalApp')
     //         // Example - how to find our contact - store the first id found
     //         var contactsEnum = Enumerable.From(result.data.result.elements);
     //         var filtered = contactsEnum.Where(function(x) {
-    //             return x.email ==
+    //             return x.email 
     //                 $scope.mym.contact_email
     //         }).ToArray();
     //         if (filtered.length > 0) {
@@ -685,7 +718,7 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('profile.html', 1);
+    $scope.portalHelpers.showView('qStuff.html', 1);
 
 
     // This function gets called when user clicks an item in the list
