@@ -815,14 +815,13 @@ $scope.CreateLibraryMessage = function() {
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('qStuff.html', 1);
+    $scope.portalHelpers.showView('profile.html', 1);
 
 
     // This function gets called when user clicks an item in the list
     $scope.showDetails = function() {
-        // Make the item that user clicked available to the template
-        console.log($scope.test);
-        $scope.portalHelpers.showView('mymProjectDetails.html', 1);
+        
+        $scope.portalHelpers.showView('qStuff.html', 2);
     };
 
 
