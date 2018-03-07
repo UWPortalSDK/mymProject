@@ -149,3 +149,31 @@ function getSurveyTerms() {
     return queryResult;
 }
 
+//retrieve term information from the database for distribution page
+function getTermsDist() {
+    var queryResult = db.Execute('SELECT current_term From StudentProfile');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"test no table"}';
+    }
+    return queryResult;
+}
+
+//retrieve student information from the database for distribution page given a term
+function getStudentDist() {
+    var queryResult = db.Execute('SELECT pname_f, pname_l From StudentProfile WHERE current_term =  @term');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getSurveyType(){
+    var queryResult = db.Execute('SELECT type FROM surveytable');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
