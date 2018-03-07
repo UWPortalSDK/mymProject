@@ -122,6 +122,30 @@ function checkSurveyExist(){
     return queryResult;
 }
 
+function searchSurveyTerm(){
+ 	var queryResult = db.Execute('select distinct term from surveytable');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
 
+function searchSurveyType(){
+ 	var queryResult = db.Execute('select * from surveytable');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
 
+function getSurveyTerms() {
+    var queryResult = db.Execute('SELECT type FROM StudentProfile WHERE term = @value ');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
 

@@ -480,6 +480,18 @@
                 <input type="button" value="Submit" ng-click="CreateSurveyDistribution()" class="btn btn-default" />
             </div>
         <p>The contact id is: </p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div>
+            <p>Survey</p>
+            <select ng-options="term as term.term for term in SurveyTerms.value" ng-model="SelectSurveyTerm" ng-change="selecteSurveyType()"></select>
+            <select ng-options="type as type.type for type in SurveyTypes.value" ng-model="selectSurveyType"></select>
+            <p>{{SelectSurveyTerm.term}}        {{selectSurveyType}}</p>
+        </div>
+        
 
     </widget-row>
 </script>
