@@ -73,39 +73,23 @@
                             <div class="form-group">
 
                             <label for="fName">First Name:</label>
-                            <input type="text" ng-model="fname" class="form-control" id="fName"></input>
+                            <input type="text" ng-model="mym.contact_firstName" class="form-control" id="fName"></input>
                             
                             <label for="lName">Last Name:</label>
-                            <input type="text" ng-model="lname" class="form-control" id="lName"></input>
+                            <input type="text" ng-model="mym.contact_lastName" class="form-control" id="lName"></input>
                             
                             <label for="sid">UW ID:</label>
                             <input type="number" ng-model="sid" class="form-control" id="sid" ng-minlength=8></input>            
 
                             <label for="term">Current Term</label>
-                            <select ng-options="term as term.term for term in QueryResult.value" ng-model="testy"></select>
-                                <p>{{testy.mailing_id}}</p>
-<!--                             <input type="text" ng-model="term" class="form-control" id="term"></input> -->
-<!--                             <div class="dropdown">                               
-                                <select name="sterm" ng-model="sterm">
-                                    <option value="Fall">Fall</option>
-                                    <option value="Winter">Winter</option>
-                                    <option value="Spring">Spring</option>
-                                </select>
-                            </div>
-                            <div class="dropdown">                               
-                                <select name="year" ng-model="year">
-                                    <option value="Fall">Fall</option>
-                                    <option value="Winter">Winter</option>
-                                    <option value="Spring">Spring</option>
-                                </select>
-                            </div>                      -->
-                           
+                            <select ng-options="term as term.term for term in QueryResult.value" ng-model="termData"></select>
+                                <p>{{termData.mailing_id}}</p>                         
 
                             <label for="program">Program</label>
                             <input type="text" ng-model="program" class="form-control" id="program"></input>
                           
                             <label for="mail">UW Email:</label>
-                            <input type="email" ng-model="email" class="form-control" id="mail"></input>
+                            <input type="email" ng-model="mym.contact_email" class="form-control" id="mail"></input>
                           
 
                             <div class="dropdown">
@@ -157,16 +141,8 @@
                           
                             
                             <label for="aterm">Academic Term</label>
-                            <input type="aterm" ng-model="aterm" class="form-control" id="aterm"></input>
-                         
-                            
-                            <label for="mailing">mailing id test</label>
-                            <input type="text" ng-model="mailing" class="form-control" id="mailing"></input>
-                         
-                            
-                            <label for="contactid">contactid</label>
-                            <input type="text" ng-model="contact" class="form-control" id="contact"></input>
-                           
+                            <input type="aterm" ng-model="aterm" class="form-control" id="aterm"></input>                         
+                 
                             
                         </div>
 
@@ -177,7 +153,7 @@
                             {{survey}}
                         </div> -->
                         <br />
-                        <input type="button" value="Submit" ng-click="testSubmit()" class="btn btn-default" />
+                        <input type="button" value="Submit" ng-click="submitEnroll()" class="btn btn-default" />
                         
 <!--                         ng-disabled=" !term || !sid || !name || !email || !gender || !program || !aterm || !date || !support || !surveyid"  -->
 
