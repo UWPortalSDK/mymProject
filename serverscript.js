@@ -123,7 +123,7 @@ function checkSurveyExist(){
 }
 
 function searchSurveyTerm(){
- 	var queryResult = db.Execute('select distinct term from surveytable');
+    var queryResult = db.Execute('select distinct term from surveytable');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -132,7 +132,7 @@ function searchSurveyTerm(){
 }
 
 function searchSurveyType(){
- 	var queryResult = db.Execute('select * from surveytable');
+    var queryResult = db.Execute('select * from surveytable');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -141,13 +141,18 @@ function searchSurveyType(){
 }
 
 function getSurveyTerms() {
-    var queryResult = db.Execute('SELECT type FROM StudentProfile WHERE term = @value ');
+    var queryResult = db.Execute('SELECT type, survey_id FROM surveytable WHERE term = @value ');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
     }
     return queryResult;
 }
+
+
+
+
+
 
 //retrieve term information from the database for distribution page
 function getTermsDist() {
