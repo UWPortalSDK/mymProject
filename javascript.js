@@ -21,53 +21,145 @@ angular.module('portalApp')
 })
 
 .controller('distributeCtrl', ['$scope', function($scope) {
-        $scope.terms = {
-            value: null
-        };
+    $scope.terms = {
+        value: null
+    };
 
-        $scope.student = {
-            value: null
-        };
+    $scope.student = {
+        value: null
+    };
 
-        $scope.surveytype = {
-            value: null
-        };
+    $scope.surveytype = {
+        value: null
+    };
+    var y = new Date(2018, 04, 25);
+    var z = y.toISOString();
+    $scope.mym = {
 
+        mainuser: 'UR_72plybg0V8sF3AF',
+        shortname: '',
+        surveyid: 'SV_cH174dpYr7WryPr',
+        mailingid: '',
+        contact_firstName: '',
+        contact_lastName: '',
+        contact_email: '',
+        //use the extternal data ref for metadata could link to the database column
+        contact_externalDataRef: '',
+        contact_language: 'en',
+        contact_id: 'MLRP_78TMwbYOWATtM1v',
+        expirationDate: z,
+        fromEmail: 'noreply@qemailserver.com',
+        replyToEmail: 'je2mcdon@uwaterloo.ca',
+        fromName: 'Welcome Move Your Mind',
+        subject: '',
+        distributionType: 'Individual',
+        sendDate: '',
+        message: '',
+        message_id: ''
+    };
+
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'getTermsDist',
+        uniqueNameId: 'mymProject',
+    }).then(function(result) {
+        console.log('got term data: ', result);
+        $scope.terms.value = result;
+    });
+
+    $scope.getStudent = function() {
+        // alert($scope.selectedTermDis.current_term);
         $scope.portalHelpers.invokeServerFunction({
-            functionName: 'getTermsDist',
+            functionName: 'getStudentDist',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                term: $scope.selectedTermDis.current_term
+            }
+        }).then(function(result) {
+            console.log('got student data: ', result);
+            $scope.student.value = result;
+        });
+    };
+
+    $scope.getType = function() {
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getSurveyType',
             uniqueNameId: 'mymProject',
         }).then(function(result) {
-            console.log('got term data: ', result);
-            $scope.terms.value = result;
+            console.log('got survey type: ', result);
+            $scope.surveytype.value = result;
+
         });
+    };
 
-        $scope.getStudent = function() {
-            // alert($scope.selectedTermDis.current_term);
-            $scope.portalHelpers.invokeServerFunction({
-                functionName: 'getStudentDist',
-                uniqueNameId: 'mymProject',
-                sqlArgs: {
-                    term: $scope.selectedTermDis.current_term
-                }
-            }).then(function(result) {
-                console.log('got student data: ', result);
-                $scope.student.value = result;
-            });
-        };
+    $scope.distributeSurvey = function() {
+        var oneYear = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
+        var oneProper = oneYear.toISOString();
+        $scope.mym.expirationDate = oneProper;
+        $scope.mym.mailingid = $scope.selectedStudent.mailing_id;
+        console.log($scope.mym.mailingid);
+        $scope.mym.surveyid = $scope.selectedsurvey.survey_id;
+        $scope.mym.contact_id = $scope.selectedStudent.contact_id;
 
-        $scope.getType = function() {
-            $scope.portalHelpers.invokeServerFunction({
-                functionName: 'getSurveyType',
-                uniqueNameId: 'mymProject',
-            }).then(function(result) {
-                console.log('got survey type: ', result);
-                $scope.surveytype.value = result;
-
-            });
-        };
+        var jsn = [$scope.mym.surveyid, $scope.mym.expirationDate, $scope.mym.distributionType, $scope.mym.fromEmail, $scope.mym.fromName, $scope.mym.replyToEmail, $scope.mym.subject, $scope.mym.mainuser, $scope.mym.message_id, $scope.mym.mailingid, $scope.mym.contact_id, $scope.mym.sendDate];
+        console.log(jsn);
+        $scope.CreateSurveyDistribution();
 
 
-    }])
+        //console.log($scope.mym.survey_id);
+    };
+
+    // Create a survey distribution
+    $scope.CreateSurveyDistribution = function() {
+        // String array sources = [surveyId, expirationDate, type, fromEmail,fromName,
+        // replyToEmail, subject, libraryId, messageId, mailingListId,contactId, sendDate]
+        $scope.mym.sendDate = new Date().toISOString();
+        var jsn = [$scope.mym.surveyid, $scope.mym.expirationDate, $scope.mym.distributionType, $scope.mym.fromEmail, $scope.mym.fromName, $scope.mym.replyToEmail, $scope.mym.subject, $scope.mym.mainuser, $scope.mym.message_id, $scope.mym.mailingid, $scope.mym.contact_id, $scope.mym.sendDate];
+        console.log(jsn);
+        $scope.portalHelpers.postApiData('Qualtrics/CreateSurveyDistribution', {
+            sources: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+            	if (result.data.meta.httpStatus === "200 - OK") {
+                alert("Email Successfully Sent");
+            }
+            console.log(result.data);
+        }, function(fail) {
+            console.log('CreateSurveyDistribution FAIL', fail);
+        }, function(notify) {
+            console.log('CreateSurveyDistribution notify');
+        });
+        
+        
+    };
+    
+     $scope.CreateLibraryMessage = function() {
+         
+         var message = $scope.mym.message.replace(/\n/g, "<br>");
+         console.log($scope.mym.message);
+         var msg = "<p>" + message + "</p>" + "<br>" + " Follow this link to the Survey: ${l://SurveyLink?d=Take the Survey} Or copy and paste the URL below into your internet browser: ${l://SurveyURL} Follow the link to opt out of future emails: ${l://OptOutLink?d=Click here to unsubscribe}";
+         console.log(msg);
+        // args = [string library id, string category, string description,string message(en)]
+        var jsn = [$scope.mym.mainuser, "invite", "Custom Test", msg];
+        $scope.portalHelpers.postApiData('Qualtrics/CreateLibraryMessage', {
+            args: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+            console.log(result.data);
+            $scope.mym.message_id = result.data.result.id;
+            console.log($scope.mym.message_id);
+            $scope.distributeSurvey();
+            //console.log("I AM Amazing");
+        }, function(fail) {
+            console.log('CreateLibraryMessage FAIL', fail);
+        }, function(notify) {
+            console.log('CreateLibraryMessage notify');
+        });
+    };
+
+
+}])
 
 .controller('qCtrl', ['$scope', function($scope) {
     var y = new Date(2018, 04, 25);
@@ -90,11 +182,11 @@ angular.module('portalApp')
         expirationDate: z,
         fromEmail: 'noreply@qemailserver.com',
         replyToEmail: 'je2mcdon@uwaterloo.ca',
-        fromName: 'J-Money Spits FIRE 2.0',
+        fromName: 'Welcome Move Your Mind',
         subject: 'Email Service test1',
         distributionType: 'Individual',
         sendDate: '',
-        message_id: 'MS_6XKJEMe39VyyUp7'
+        message_id: 'MS_8AgaOtK8FM4QmCV'
     };
 
     $scope.QueryResult = {
@@ -114,12 +206,12 @@ angular.module('portalApp')
 
 
     $scope.SurveyTerms = {
-            value: null
-        };
-    
+        value: null
+    };
+
     $scope.SurveyTypes = {
-            value: null
-        };
+        value: null
+    };
 
     $scope.portalHelpers.invokeServerFunction({
         functionName: 'searchSurveyTerm',
@@ -128,7 +220,7 @@ angular.module('portalApp')
         console.log('got survey data: ', result);
         $scope.SurveyTerms.value = result;
     });
-	
+
     $scope.selecteSurveyType = function() {
         // Make the item that user clicked available to the template
         //document.getElementById("Studentnamesearchbox").value = id;
@@ -143,7 +235,7 @@ angular.module('portalApp')
             $scope.SurveyTypes.value = result;
         });
     };
-    
+
     $scope.DownloadResult = function() {
         alert($scope.selectSurveyType.survey_id);
         var jsn = [$scope.selectSurveyType.survey_id, "json"];
@@ -160,7 +252,7 @@ angular.module('portalApp')
         });
         console.log(result);
     };
-    
+
 
 
 
@@ -187,7 +279,6 @@ angular.module('portalApp')
         var foundTerm = false;
         //console.log(QueryResult.value[0].term);
         if (length > 0) {
-
             var promise = new Promise(function(resolve, reject) {
                 // do a thing, possibly async, then…
                 for (var key in termInfo) {
@@ -237,25 +328,16 @@ angular.module('portalApp')
             }, function(err) {
                 console.log(err); // Error: "It broke"
             });
-
-
         }
 
     }
 
     function AddSurvey() {
 
-        //var QueryResult = $scope.QueryResult;
+
         CheckTerms();
 
-        // $scope.portalHelpers.invokeServerFunction({
-        //     functionName: 'SurveyTerms',
-        //     uniqueNameId: 'mymProject',
-        // }).then(function(result) {
-        //     console.log('got data: ', result);
-        //     QueryResult.value = result;
-        //     CheckTerms(QueryResult);
-        // });
+
     };
 
     $scope.checkExist = function() {
@@ -292,7 +374,7 @@ angular.module('portalApp')
     };
 
     $scope.insertStudent = function() {
-        console.log($scope.mym.mailingid + " " + $scope.mym.contact_id + " " +  $scope.mym.contact_firstName + " " + $scope.mym.contact_lastName + " " + $scope.sid + " " + $scope.termData.term + " " + $scope.program + " " + $scope.mym.contact_email + " " + $scope.gender + " " + $scope.rName + " " + $scope.rType + " " + $scope.rEmail + " " + $scope.rDepartment + " " + $scope.progress + " " + $scope.frequency + " " + $scope.consideration + " " + $scope.date + " " + $scope.aterm);
+        console.log($scope.mym.mailingid + " " + $scope.mym.contact_id + " " + $scope.mym.contact_firstName + " " + $scope.mym.contact_lastName + " " + $scope.sid + " " + $scope.termData.term + " " + $scope.program + " " + $scope.mym.contact_email + " " + $scope.gender + " " + $scope.rName + " " + $scope.rType + " " + $scope.rEmail + " " + $scope.rDepartment + " " + $scope.progress + " " + $scope.frequency + " " + $scope.consideration + " " + $scope.date + " " + $scope.aterm);
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'registrate',
             uniqueNameId: 'mymProject',
@@ -319,167 +401,184 @@ angular.module('portalApp')
         }).then(function(result) {
             //sourceLoaded();
             console.log(result);
+            location.reload();
         });
-        //location.reload();
+
     };
 
+    $scope.GetMailinglists = function() {
+        $scope.portalHelpers.getApiData('Qualtrics/GetMailinglists').then(function(result) {
+            console.log(result.data);
 
-
-
-
-
-$scope.GetMailinglists = function() {
-    $scope.portalHelpers.getApiData('Qualtrics/GetMailinglists').then(function(result) {
-        console.log(result.data);
-
-    });
-};
-$scope.SurveyDistribution = function() {
-    $scope.portalHelpers.getApiData('Qualtrics/SurveyDistribution?surveyid=SV_88qa5GGKuPcI4FD').then(function(result) {
-        if (result.data)
-            result.data = JSON.parse(result.data); // convert from string to json
-        console.log(result.data);
-    });
-};
-// Create a new mailing list
-
-$scope.MailinglistCreate = function() {
-
-    // {
-    // "category": "Star Wars - Rebels", // hard set to 'invite' at server
-    // "libraryId": "UR_1234567890AbCdE",
-    // "name": "Rebel Contacts"
-    // }
-    console.log($scope.mym.mainuser);
-    console.log($scope.mym.shortname);
-    var jsn = [$scope.mym.mainuser, $scope.mym.shortname];
-    $scope.portalHelpers.postApiData('Qualtrics/MailinglistCreate', {
-        sources: JSON.stringify(jsn)
-    }).then(function(result) {
-        if (result.data)
-            result.data = JSON.parse(result.data);
-        console.log(result);
-        console.log(result.data.result.id);
-        $scope.mym.mailingid = result.data.result.id;
-        $scope.portalHelpers.invokeServerFunction({
-            functionName: 'insertSurvey',
-            uniqueNameId: 'mymProject',
-            sqlArgs: {
-                mailing_id: $scope.mym.mailingid,
-                survey_id: $scope.mym.surveyid,
-                type: $scope.selectsurveytype,
-                term: $scope.selectTerm + $scope.selectYear
-            }
-        }).then(function(result) {
-            console.log("Query Executed");
         });
+    };
+    $scope.SurveyDistribution = function() {
+        $scope.portalHelpers.getApiData('Qualtrics/SurveyDistribution?surveyid=SV_88qa5GGKuPcI4FD').then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data); // convert from string to json
+            console.log(result.data);
+        });
+    };
+    // Create a new mailing list
 
-    }, function(fail) {
-        console.log('MailinglistCreate FAIL', fail);
-    }, function(notify) {
-        console.log('MailinglistCreate notify');
-    });
-};
+    $scope.MailinglistCreate = function() {
 
-// Create export request for this survey
-$scope.ResponseExportPost = function() {
-    var jsn = ['SV_eRteDAkIY8P0eOx', "json"];
-    $scope.portalHelpers.postApiData('Qualtrics/ResponseExportPost', {
-        args: JSON.stringify(jsn)
-    }).then(function(result) {
-        if (result.data)
-            result.data = JSON.parse(result.data);
-    }, function(fail) {
-        console.log('ResponseExportPost FAIL', fail);
-    }, function(notify) {
-        console.log('ResponseExportPost notify');
-    });
-};
+        // {
+        // "category": "Star Wars - Rebels", // hard set to 'invite' at server
+        // "libraryId": "UR_1234567890AbCdE",
+        // "name": "Rebel Contacts"
+        // }
+        console.log($scope.mym.mainuser);
+        console.log($scope.mym.shortname);
+        var jsn = [$scope.mym.mainuser, $scope.mym.shortname];
+        $scope.portalHelpers.postApiData('Qualtrics/MailinglistCreate', {
+            sources: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+            console.log(result);
+            console.log(result.data.result.id);
+            $scope.mym.mailingid = result.data.result.id;
+            $scope.portalHelpers.invokeServerFunction({
+                functionName: 'insertSurvey',
+                uniqueNameId: 'mymProject',
+                sqlArgs: {
+                    mailing_id: $scope.mym.mailingid,
+                    survey_id: $scope.mym.surveyid,
+                    type: $scope.selectsurveytype,
+                    term: $scope.selectTerm + $scope.selectYear
+                }
+            }).then(function(result) {
+                console.log("Query Executed");
+            });
 
-// $scope.GetMailinglistContacts = function() {
-//     $scope.portalHelpers.getApiData('Qualtrics/GetMailinglistContacts?mailinglistid=' + $scope.mym.mailinglist.id).then(function(result) {
-//         if (result.data)
-//             result.data = JSON.parse(result.data);
-//         // Example - how to find our contact - store the first id found
-//         var contactsEnum = Enumerable.From(result.data.result.elements);
-//         var filtered = contactsEnum.Where(function(x) {
-//             return x.email ==
-//                 $scope.mym.contact_email
-//         }).ToArray();
-//         if (filtered.length > 0) {
-//             if (filtered[0].id)
-//                 $scope.mym.contact_id = filtered[0].id;
-//         }
-//     });
-// };
-$scope.MailinglistsPostContact = function() {
-    // mailing list id (created earlier)
-    // contact first, last, email
-    // arbitrary external data string
-    // contact language - 'en', 'fr'
-    var jsn = [$scope.mym.mailingid, $scope.mym.contact_firstName,
-        $scope.mym.contact_lastName, $scope.mym.contact_email,
-        $scope.mym.contact_externalDataRef, $scope.mym.contact_language
-    ];
-    console.log(jsn);
-    $scope.portalHelpers.postApiData('Qualtrics/MailinglistsPostContact', {
-        sources: JSON.stringify(jsn)
-    }).then(function(result) {
-        if (result.data)
-            result.data = JSON.parse(result.data);
-        console.log(result.data);
-        $scope.contactResults.value = result.data;
-        if ($scope.contactResults.value.meta.httpStatus === "200 - OK") {
-            console.log("Entered the if Statement");
-            $scope.mym.contact_id = $scope.contactResults.value.result.id;
-            $scope.insertStudent();
-        }
+        }, function(fail) {
+            console.log('MailinglistCreate FAIL', fail);
+        }, function(notify) {
+            console.log('MailinglistCreate notify');
+        });
+    };
 
-    }, function(fail) {
-        console.log('MailinglistsPostContact FAIL', fail);
-    }, function(notify) {
-        console.log('MailinglistsPostContact notify');
-    });
-};
+    // Create export request for this survey
+    $scope.ResponseExportPost = function() {
+        var jsn = ['SV_eRteDAkIY8P0eOx', "json"];
+        $scope.portalHelpers.postApiData('Qualtrics/ResponseExportPost', {
+            args: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+        }, function(fail) {
+            console.log('ResponseExportPost FAIL', fail);
+        }, function(notify) {
+            console.log('ResponseExportPost notify');
+        });
+    };
 
-// Create a survey distribution
-$scope.CreateSurveyDistribution = function() {
-    // String array sources = [surveyId, expirationDate, type, fromEmail,fromName,
-    // replyToEmail, subject, libraryId, messageId, mailingListId,contactId, sendDate]
-    var date = new Date();
-    var isodate = date.toISOString();
-    $scope.mym.sendDate = isodate;
-    var jsn = [$scope.mym.surveyid, $scope.mym.expirationDate, $scope.mym.distributionType, $scope.mym.fromEmail, $scope.mym.fromName, $scope.mym.replyToEmail, $scope.mym.subject, $scope.mym.mainuser, $scope.mym.message_id, $scope.mym.mailingid, $scope.mym.contact_id, $scope.mym.sendDate];
-    console.log(jsn);
-    $scope.portalHelpers.postApiData('Qualtrics/CreateSurveyDistribution', {
-        sources: JSON.stringify(jsn)
-    }).then(function(result) {
-        if (result.data)
-            result.data = JSON.parse(result.data);
-        console.log(result.data);
-    }, function(fail) {
-        console.log('CreateSurveyDistribution FAIL', fail);
-    }, function(notify) {
-        console.log('CreateSurveyDistribution notify');
-    });
-};
-// Create new library message
-$scope.CreateLibraryMessage = function() {
-    var msg = "<p><strong>FAMMMMMMM STAY LITTTTTTTTT:&nbsp;</strong><br / > $ {l: //SurveyLink?d=Take the Survey}</p><p>Or copy and paste the URL below                        into your internet browser: < br / > $ {l: //SurveyURL}</p><p><small>Follow the link to opt out of future emails: < br / > $ {l: //OptOutLink?d=Click here to   unsubscribe} < /small></p > ";
-    // args = [string library id, string category, string description,string message(en)]
-    var jsn = [$scope.mym.mainuser, "invite", "1185 Intake", msg];
-    $scope.portalHelpers.postApiData('Qualtrics/CreateLibraryMessage', {
-        args: JSON.stringify(jsn)
-    }).then(function(result) {
-        if (result.data)
-            result.data = JSON.parse(result.data);
-        console.log(result.data);
-    }, function(fail) {
-        console.log('CreateLibraryMessage FAIL', fail);
-    }, function(notify) {
-        console.log('CreateLibraryMessage notify');
-    });
-};
+    // $scope.GetMailinglistContacts = function() {
+    //     $scope.portalHelpers.getApiData('Qualtrics/GetMailinglistContacts?mailinglistid=' + $scope.mym.mailinglist.id).then(function(result) {
+    //         if (result.data)
+    //             result.data = JSON.parse(result.data);
+    //         // Example - how to find our contact - store the first id found
+    //         var contactsEnum = Enumerable.From(result.data.result.elements);
+    //         var filtered = contactsEnum.Where(function(x) {
+    //             return x.email ==
+    //                 $scope.mym.contact_email
+    //         }).ToArray();
+    //         if (filtered.length > 0) {
+    //             if (filtered[0].id)
+    //                 $scope.mym.contact_id = filtered[0].id;
+    //         }
+    //     });
+    // };
+    $scope.MailinglistsPostContact = function() {
+        // mailing list id (created earlier)
+        // contact first, last, email
+        // arbitrary external data string
+        // contact language - 'en', 'fr'
+        var jsn = [$scope.mym.mailingid, $scope.mym.contact_firstName,
+            $scope.mym.contact_lastName, $scope.mym.contact_email,
+            $scope.mym.contact_externalDataRef, $scope.mym.contact_language
+        ];
+        console.log(jsn);
+        $scope.portalHelpers.postApiData('Qualtrics/MailinglistsPostContact', {
+            sources: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+            console.log(result.data);
+            $scope.contactResults.value = result.data;
+            if ($scope.contactResults.value.meta.httpStatus === "200 - OK") {
+                console.log("Entered the if Statement");
+                $scope.mym.contact_id = $scope.contactResults.value.result.id;
+                $scope.insertStudent();
+            }
+
+        }, function(fail) {
+            console.log('MailinglistsPostContact FAIL', fail);
+        }, function(notify) {
+            console.log('MailinglistsPostContact notify');
+        });
+    };
+
+    // Create a survey distribution
+    $scope.CreateSurveyDistribution = function() {
+        // String array sources = [surveyId, expirationDate, type, fromEmail,fromName,
+        // replyToEmail, subject, libraryId, messageId, mailingListId,contactId, sendDate]
+        var date = new Date();
+        var isodate = date.toISOString();
+        $scope.mym.sendDate = isodate;
+        var jsn = [$scope.mym.surveyid, $scope.mym.expirationDate, $scope.mym.distributionType, $scope.mym.fromEmail, $scope.mym.fromName, $scope.mym.replyToEmail, $scope.mym.subject, $scope.mym.mainuser, $scope.mym.message_id, $scope.mym.mailingid, $scope.mym.contact_id, $scope.mym.sendDate];
+        console.log(jsn);
+        $scope.portalHelpers.postApiData('Qualtrics/CreateSurveyDistribution', {
+            sources: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+            console.log(result.data);
+        }, function(fail) {
+            console.log('CreateSurveyDistribution FAIL', fail);
+        }, function(notify) {
+            console.log('CreateSurveyDistribution notify');
+        });
+    };
+    // Create new library message
+    $scope.CreateLibraryMessage = function() {
+        var msg = "Follow this link to the Survey: ${l://SurveyLink?d=Take the Survey} Or copy and paste the URL below into your internet browser: ${l://SurveyURL} Follow the link to opt out of future emails: ${l://OptOutLink?d=Click here to unsubscribe}";
+        // args = [string library id, string category, string description,string message(en)]
+        var jsn = [$scope.mym.mainuser, "invite", "1185 Intake", msg];
+        $scope.portalHelpers.postApiData('Qualtrics/CreateLibraryMessage', {
+            args: JSON.stringify(jsn)
+        }).then(function(result) {
+            if (result.data)
+                result.data = JSON.parse(result.data);
+            console.log(result.data);
+        }, function(fail) {
+            console.log('CreateLibraryMessage FAIL', fail);
+        }, function(notify) {
+            console.log('CreateLibraryMessage notify');
+        });
+    };
+
+    // Return all distributions for this survey
+    $scope.SurveyDistribution = function() {
+        $scope.portalHelpers.getApiData('Qualtrics/SurveyDistribution?surveyid=' + $scope.mym.surveyid).then(function(result) {
+            if (result.data) {
+                result.data = JSON.parse(result.data);
+                console.log(result.data);
+                if(result.data.meta.httpStatus === "400 - Bad Request"){
+                    console.log("Successfully logged the error");
+                    alert("Invalid Request Please Verify the Suvey ID");
+                    
+                }
+                else {
+                    console.log("Proper Survey ID");
+                    $scope.checkExist();
+                }
+                
+            }
+            // convert from string to json
+        });
+    };
 
 
 
@@ -749,24 +848,24 @@ $scope.CreateLibraryMessage = function() {
             functionName: 'registrate',
             uniqueNameId: 'mymProject',
             sqlArgs: {
-                mailing:$scope.mailing,
-                contact:$scope.contact,
+                mailing: $scope.mailing,
+                contact: $scope.contact,
                 fname: $scope.fname,
-                lname:$scope.lname,
+                lname: $scope.lname,
                 sid: $scope.sid,
                 term: $scope.term,
-                program:$scope.program,
+                program: $scope.program,
                 email: $scope.email,
-                gender:$scope.gender,
-                rName:$scope.rName,
-                rType:$scope.rType,
-                rEmail:$scope.rEmail,
-                rDepartment:$scope.rDepartment,
-                progress:$scope.progress,
-                frequency:$scope.frequency,
-                consideration:$scope.consideration,
-                dates:$scope.date,
-                aterm:$scope.aterm
+                gender: $scope.gender,
+                rName: $scope.rName,
+                rType: $scope.rType,
+                rEmail: $scope.rEmail,
+                rDepartment: $scope.rDepartment,
+                progress: $scope.progress,
+                frequency: $scope.frequency,
+                consideration: $scope.consideration,
+                dates: $scope.date,
+                aterm: $scope.aterm
             }
         }).then(function(result) {
             //sourceLoaded();
@@ -815,12 +914,12 @@ $scope.CreateLibraryMessage = function() {
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('profile.html', 1);
+    $scope.portalHelpers.showView('distribution.html', 1);
 
 
     // This function gets called when user clicks an item in the list
     $scope.showDetails = function() {
-        
+
         $scope.portalHelpers.showView('qStuff.html', 2);
     };
 
@@ -1051,5 +1150,11 @@ $scope.CreateLibraryMessage = function() {
         // Filter your output here by iterating over input elements
         var output = input;
         return output;
+    }
+})
+
+.filter('linebreaks', function() {
+    return function(text) {
+        return text.replace(/\n/g, "<br>");
     }
 });
