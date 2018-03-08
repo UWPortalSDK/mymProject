@@ -38,7 +38,7 @@
                                         {{student.student_id}}
                                     </td>
                                     <td>
-                                        {{student.name}}
+                                        {{student.pname_f}}  {{student.pname_l}}
                                     </td>
                                     <td>
                                         <input type="button" value="Select" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click="selectedItemChanged(student.student_id,student.name)" />
@@ -53,9 +53,9 @@
                         </p>
                         <uib-accordion close-others="oneAtATime">
                             <div uib-accordion-group class="panel-default" heading="Student Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                                <p>Student Name: {{selectedTerm.name}}</p>
+                               <p>Student Name: {{selectedTerm.pname_f}} {{selectedTerm.pname_l}}</p>
                                 <p>Student ID: {{selectedTerm.student_id}}</p>
-                                <p>Email: {{selectedTerm.email}}</p>
+                                <p>Email: {{selectedTerm.p_email}}</p>
                                 <p>Gender: {{selectedTerm.gender}}</p>
                                 <p>Program: {{selectedTerm.program}}</p>
                                 <p>Academic Term: {{selectedTerm.academic_term}}</p>
@@ -73,93 +73,95 @@
                 <widget-row ng-controller="qCtrl">
                     <h2>Student Registration</h2>
                     <br />
-                    <form action="">
-                            <div class="form-group">
+                    <form name="enrollment" ng-submit="submitEnroll()">
+                        <div class="form-group">
 
                             <label for="fName">First Name:</label>
-                            <input type="text" ng-model="mym.contact_firstName" class="form-control" id="fName"></input>
-                            
+                            <input type="text" ng-model="mym.contact_firstName" class="form-control" id="fName" required></input>
+
                             <label for="lName">Last Name:</label>
-                            <input type="text" ng-model="mym.contact_lastName" class="form-control" id="lName"></input>
-                            
+                            <input type="text" ng-model="mym.contact_lastName" class="form-control" id="lName" required></input>
+
                             <label for="sid">UW ID:</label>
-                            <input type="number" ng-model="sid" class="form-control" id="sid" ng-minlength=8></input>            
+                            <input required type="number" ng-model="sid" class="form-control" id="sid" ng-minlength="{{minlength}}"></input>
 
                             <label for="term">Current Term</label>
-                            <select ng-options="term as term.term for term in QueryResult.value" ng-model="termData"></select>
-                                <p>{{termData.mailing_id}}</p>                         
+                            <select ng-options="term as term.term for term in QueryResult.value" ng-model="termData" required>
+                                <option></option>
+                            </select>
+                            <p>{{termData.mailing_id}}</p>
 
                             <label for="program">Program</label>
-                            <input type="text" ng-model="program" class="form-control" id="program"></input>
-                          
+                            <input type="text" ng-model="program" class="form-control" id="program" required></input>
+
                             <label for="mail">UW Email:</label>
-                            <input type="email" ng-model="mym.contact_email" class="form-control" id="mail"></input>
+                            <input type="email" ng-model="mym.contact_email" class="form-control" id="mail" required></input>
+                            <br>
+                            <label>Gender: </label>
+                            <select name="gender" ng-model="gender" required>
+                                <option value=""> </option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="N/A">Prefer not to specify</option>
+                            </select>
+                                <br>
                           
-
-                            <div class="dropdown">
-                                <label>Gender: </label>
-                                <select name="gender" ng-model="gender">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="N/A">Prefer not to specify</option>
-                                </select>
-                            </div>
-                            
-
                             <label for="rName">Referral's Name:</label>
-                            <input type="text" ng-model="rName" class="form-control" id="rName"></input>
-                           
+                            <input type="text" ng-model="rName" class="form-control" id="rName" required></input>
+
 
                             <label for="rType">Referral's Type:</label>
                             <p><small>*Please indicate if you are a student, staff, faculty, self referring, etc.</small></p>
-                            <input type="text" ng-model="rType" class="form-control" id="rType"></input>
-                          
+                            <input type="text" ng-model="rType" class="form-control" id="rType" required></input>
+
                             <label for="rEmail">Referral's Email:</label>
-                            <input type="email" ng-model="rEmail" class="form-control" id="rEmail"></input>
-                           
+                            <input type="email" ng-model="rEmail" class="form-control" id="rEmail" required></input>
+
                             <label for="rdepartment">Referral's Department:</label>
-                            <input type="text" ng-model="rDepartment" class="form-control" id="rDepartment"></input>
+                            <input type="text" ng-model="rDepartment" class="form-control" id="rDepartment" required></input>
+
+
+                        <label>Would the referrer need progress update?</label>
+                                <br>
+                            <select name="progress" ng-model="progress" required>
+                                <option value=""> </option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                            <br>
                             
 
-                            <label for="rprogress">Would the referrer need progress update?</label>
-                            <div class="dropdown">
-                                <select name="progress" ng-model="progress">
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
-                                </select>
-                            </div>
-                            
 
                             <div class="form-group" ng-show="progress=='yes'">
                                 <label for="frequency">How frequent?</label>
                                 <input type="text" ng-model="frequency" class="form-control" id="frequency"></input>
                             </div>
-                           
-                            
-                           <label for="consideration">Consideration</label>
-                            <input type="text" ng-model="consideration" class="form-control" id="consideration"></input>
-                          
+
+
+                            <label for="consideration">Consideration</label>
+                            <input type="text" ng-model="consideration" class="form-control" id="consideration" required></input>
+
 
                             <label for="date">Submission Date</label>
-                            <input type="date" ng-model="date" class="form-control" id="date"></input>
-                          
-                            
+                            <input type="date" ng-model="date" class="form-control" id="date" required></input>
+
+
                             <label for="aterm">Academic Term</label>
-                            <input type="aterm" ng-model="aterm" class="form-control" id="aterm"></input>                         
-                 
-                            
+                            <input type="aterm" ng-model="aterm" class="form-control" id="aterm" required></input>
+
+
                         </div>
 
-                     
-<!--                         <div class="form-group">
+
+                        <!--                         <div class="form-group">
                             <label for="qualtrics">Qualtrics Survey ID</label>
                             <input type="text" ng-model="survey" class="form-control" id="wBuddy"></input>
                             {{survey}}
                         </div> -->
                         <br />
-                        <input type="button" value="Submit" ng-click="submitEnroll()" class="btn btn-default" />
-                        
-<!--                         ng-disabled=" !term || !sid || !name || !email || !gender || !program || !aterm || !date || !support || !surveyid"  -->
+                        <!--                         <input type="button" value="Submit" ng-click="submitEnroll()" class="btn btn-default" /> -->
+
+                        <input type="submit" />
 
                     </form>
                 </widget-row>
@@ -419,7 +421,7 @@
 <!-- PAGE TEMPLATE EXAMPLE -->
 <script type="text/ng-template" id="qStuff.html">
     <widget-row ng-controller="qCtrl">
-        
+        <form name = "surveyinput" ng-submit = "SurveyDistribution()">
         <div>
             <p>Survey id</p>
             <input type="text" ng-model="mym.surveyid" />
@@ -427,16 +429,19 @@
         </div>
         <div>
             <p>Term</p>
-            <select ng-options="year as year for year in yeararray" ng-model="selectYear"></select>
-            <select ng-options="term as term for term in termarray" ng-model="selectTerm"></select>
+            <select ng-options="year as year for year in yeararray" ng-model="selectYear"><option></option></select>
+            <select ng-options="term as term for term in termarray" ng-model="selectTerm"><option></option></select>
             <p>{{selectYear}}   {{selectTerm}}</p>
             <br />
             <p>Survey Type</p>
-            <select ng-options="surveytype as surveytype for surveytype in surveytypearray" ng-model="selectsurveytype"></select>
+            <select ng-options="surveytype as surveytype for surveytype in surveytypearray" ng-model="selectsurveytype"><option></option></select>
             <p>{{selectsurveytype}}</p>
         </div>
         <div class=""> 
-            <input type="button" value="Submit" ng-click="SurveyDistribution()" class="btn btn-default" />
+            <input type="submit" />
+        </div>
+        </form>
+<!--             <input type="button" value="Submit" ng-click="SurveyDistribution()" class="btn btn-default" /> -->
         </div>
         <br />
         <br />
