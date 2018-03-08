@@ -436,7 +436,7 @@
             <p>{{selectsurveytype}}</p>
         </div>
         <div class=""> 
-            <input type="button" value="Submit" ng-click="checkExist()" class="btn btn-default" />
+            <input type="button" value="Submit" ng-click="SurveyDistribution()" class="btn btn-default" />
         </div>
         <br />
         <br />
@@ -500,13 +500,28 @@
                 <p>Select Student:
                     <select ng-options = "student.pname_f + ' ' + student.pname_l for student in student.value" ng-model = "selectedStudent" ng-change="getType()">
                     </select>
+                    {{selectedStudent.mailing_id}}
                 </p>
                 <p>Select Survey Type:
                     <select ng-options="types.type for types in surveytype.value" ng-model="selectedsurvey">  
                     </select>
-                    {{selectedsurvey.type}}
+                    {{selectedsurvey.survey_id}}
                 </p>  
-                <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}"/>
+                
+                <p>Enter Message Subject: 
+                    <input type="text" ng-model = "mym.subject" />
+                    {{mym.subject}}
+                </p> 
+                
+                <p>Customize Message</p>  
+                    <p><textarea rows="10" cols="40" name="comment" ng-model = "mym.message">Enter text here...</textarea>
+<!--                 <p ng-bind-html="test | linebreaks"></p> -->
+                </p>
+                
+                <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "CreateLibraryMessage()"/>
+                    
+                
+<!--                 <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "CreateLibraryMessage()"/> -->
 
 
             </div>
