@@ -10,7 +10,7 @@ function getQs() {
 
 // Retreive student data from the database
 function getStudents() {
-    var queryResult = db.Execute('select distinct name, student_id from StudentProfile');
+    var queryResult = db.Execute('select distinct pname_f, pname_l,student_id from StudentProfile');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
