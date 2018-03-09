@@ -100,6 +100,10 @@
     color: rgb(0, 0, 0);
 }
 
+.ProfileTermSelect{
+    min-width: 150px;
+}
+
 .slidecontainer {
     display:inline-block;
     margin-left:2%;
