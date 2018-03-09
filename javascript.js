@@ -968,13 +968,28 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('qStuff.html', 1);
+    $scope.portalHelpers.showView('profile.html', 1);
 
 
     // This function gets called when user clicks an item in the list
     $scope.showDetails = function() {
 
         $scope.portalHelpers.showView('qStuff.html', 2);
+    };
+    
+    $scope.Qualtrics_Add = function() {
+
+        $scope.portalHelpers.showView('survey_creation.html', 2);
+    };
+    
+    $scope.Qualtrics_Send = function() {
+
+        $scope.portalHelpers.showView('survey_distribution.html', 2);
+    };
+    
+    $scope.Qualtrics_Export = function() {
+
+        $scope.portalHelpers.showView('survey_export.html', 2);
     };
 
 

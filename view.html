@@ -5,11 +5,11 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 
     <!--         <form name="outerForm" class="tab-form-demo"> -->
-	<div>
-        <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "showDetails()" />
+    <div>
+        
     </div>
-    
-    
+
+
     <div class="MainPageAllContent">
 
         <div class="logobanner">
@@ -53,7 +53,7 @@
                         </p>
                         <uib-accordion close-others="oneAtATime">
                             <div uib-accordion-group class="panel-default" heading="Student Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                               <p>Student Name: {{selectedTerm.pname_f}} {{selectedTerm.pname_l}}</p>
+                                <p>Student Name: {{selectedTerm.pname_f}} {{selectedTerm.pname_l}}</p>
                                 <p>Student ID: {{selectedTerm.student_id}}</p>
                                 <p>Email: {{selectedTerm.p_email}}</p>
                                 <p>Gender: {{selectedTerm.gender}}</p>
@@ -96,7 +96,7 @@
 
                             <label for="mail">UW Email:</label>
                             <input type="email" ng-model="mym.contact_email" class="form-control" id="mail" required></input>
-                            <br>
+                            <br />
                             <label>Gender: </label>
                             <select name="gender" ng-model="gender" required>
                                 <option value=""> </option>
@@ -104,8 +104,8 @@
                                 <option value="Female">Female</option>
                                 <option value="N/A">Prefer not to specify</option>
                             </select>
-                                <br>
-                          
+                            <br />
+
                             <label for="rName">Referral's Name:</label>
                             <input type="text" ng-model="rName" class="form-control" id="rName" required></input>
 
@@ -121,15 +121,15 @@
                             <input type="text" ng-model="rDepartment" class="form-control" id="rDepartment" required></input>
 
 
-                        <label>Would the referrer need progress update?</label>
-                                <br>
+                            <label>Would the referrer need progress update?</label>
+                            <br />
                             <select name="progress" ng-model="progress" required>
                                 <option value=""> </option>
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
-                            <br>
-                            
+                            <br />
+
 
 
                             <div class="form-group" ng-show="progress=='yes'">
@@ -257,7 +257,16 @@
                 </widget-row>
             </uib-tab>
 
-            <uib-tab index="4" heading="General Report">
+            <uib-tab index="4" heading="Qualtrics Survey">
+                <widget-row>
+                    <div>
+                        <input type="button" value="Add Qualtrics Survey" ng-click = "Qualtrics_Add()" />
+                        <input type="button" value="Send Qualtrics Survey" ng-click = "Qualtrics_Send()" />
+                        <input type="button" value="Export Qualtrics Survey Result" ng-click = "Qualtrics_Export()" />
+                    </div>
+                </widget-row>
+            </uib-tab>
+            <uib-tab index="5" heading="General Report">
                 <widget-row>
                 </widget-row>
             </uib-tab>
@@ -417,81 +426,10 @@
 
     </widget-row>
 </script>
-<!-- PAGE TEMPLATE EXAMPLE -->
-<!-- PAGE TEMPLATE EXAMPLE -->
-<script type="text/ng-template" id="qStuff.html">
-    <widget-row ng-controller="qCtrl">
-        <form name = "surveyinput" ng-submit = "SurveyDistribution()">
-        <div>
-            <p>Survey id</p>
-            <input type="text" ng-model="mym.surveyid" />
-            <p>{{mym.surveyid}}</p>
-        </div>
-        <div>
-            <p>Term</p>
-            <select ng-options="year as year for year in yeararray" ng-model="selectYear"><option></option></select>
-            <select ng-options="term as term for term in termarray" ng-model="selectTerm"><option></option></select>
-            <p>{{selectYear}}   {{selectTerm}}</p>
-            <br />
-            <p>Survey Type</p>
-            <select ng-options="surveytype as surveytype for surveytype in surveytypearray" ng-model="selectsurveytype"><option></option></select>
-            <p>{{selectsurveytype}}</p>
-        </div>
-        <div class=""> 
-            <input type="submit" />
-        </div>
-        </form>
-<!--             <input type="button" value="Submit" ng-click="SurveyDistribution()" class="btn btn-default" /> -->
-<!--         </div> -->
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <h2>Post the contact</h2>
-        <div class="pDetails">
-            <input type="button" value="Submit" ng-click="MailinglistsPostContact()" class="btn btn-default" />
-        </div>
-        <p>The contact id is: {{testResults.value.result.id}}</p>
-        
-        <h2>Create a message ID</h2>
-            <div class="pDetails"> 
-                <input type="button" value="Submit" ng-click="CreateLibraryMessage()" class="btn btn-default" />
-            </div>
-        <p>The contact id is: </p>
-        
-        <h2>Spam</h2>
-            <div class="pDetails"> 
-                <input type="button" value="Submit" ng-click="CreateSurveyDistribution()" class="btn btn-default" />
-            </div>
-        <p>The contact id is: </p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div>
-            <p>Survey</p>
-            <select ng-options="term as term.term for term in SurveyTerms.value" ng-model="SelectSurveyTerm" ng-change="selecteSurveyType()"></select>
-            <select ng-options="type as type.type for type in SurveyTypes.value" ng-model="selectSurveyType"></select>
-            <input type="button" value="Submit" ng-click="testTime()" class="btn btn-default" />
-            
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-       
-        
-        
-        
-        
 
-    </widget-row>
-</script>
 
-<script type="text/ng-template" id="distribution.html">
+
+<script type="text/ng-template" id="survey_distribution.html">
     <widget-row ng-controller="distributeCtrl">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <h2>Distribution Page</h2>
@@ -512,21 +450,21 @@
                     </select>
                     {{selectedsurvey.survey_id}}
                 </p>  
-                
+
                 <p>Enter Message Subject: 
                     <input type="text" ng-model = "mym.subject" />
                     {{mym.subject}}
                 </p> 
-                
+
                 <p>Customize Message</p>  
-                    <p><textarea rows="10" cols="40" name="comment" ng-model = "mym.message">Enter text here...</textarea>
-<!--                 <p ng-bind-html="test | linebreaks"></p> -->
+                <p><textarea rows="10" cols="40" name="comment" ng-model = "mym.message">Enter text here...</textarea>
+                    <!--                 <p ng-bind-html="test | linebreaks"></p> -->
                 </p>
-                
+
                 <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "CreateLibraryMessage()"/>
-                    
-                
-<!--                 <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "CreateLibraryMessage()"/> -->
+
+
+                <!--                 <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "CreateLibraryMessage()"/> -->
 
 
             </div>
@@ -534,4 +472,125 @@
     </widget-row>
 </script>
 
-<!-- PAGE TEMPLATE EXAMPLE -->
+<script type="text/ng-template" id="survey_creation.html">
+    <widget-row ng-controller="qCtrl">
+        <form name = "surveyinput" ng-submit = "SurveyDistribution()">
+            <div>
+                <p>Survey id</p>
+                <input type="text" ng-model="mym.surveyid" />
+                <p>{{mym.surveyid}}</p>
+            </div>
+            <div>
+                <p>Term</p>
+                <select ng-options="year as year for year in yeararray" ng-model="selectYear"><option></option></select>
+                <select ng-options="term as term for term in termarray" ng-model="selectTerm"><option></option></select>
+                <p>{{selectYear}}   {{selectTerm}}</p>
+                <br />
+                <p>Survey Type</p>
+                <select ng-options="surveytype as surveytype for surveytype in surveytypearray" ng-model="selectsurveytype"><option></option></select>
+                <p>{{selectsurveytype}}</p>
+            </div>
+            <div class=""> 
+                <input type="submit" />
+            </div>
+        </form>
+        <h2>Post the contact</h2>
+        <div class="pDetails">
+            <input type="button" value="Submit" ng-click="MailinglistsPostContact()" class="btn btn-default" />
+        </div>
+        <p>The contact id is: {{testResults.value.result.id}}</p>
+
+        <h2>Create a message ID</h2>
+        <div class="pDetails"> 
+            <input type="button" value="Submit" ng-click="CreateLibraryMessage()" class="btn btn-default" />
+        </div>
+        <p>The contact id is: </p>
+
+        <h2>Spam</h2>
+        <div class="pDetails"> 
+            <input type="button" value="Submit" ng-click="CreateSurveyDistribution()" class="btn btn-default" />
+        </div>
+        <p>The contact id is: </p>
+
+    </widget-row>
+</script>
+
+<script type="text/ng-template" id="survey_export.html">
+    <widget-row ng-controller="qCtrl">
+        <p>Survey</p>
+        <select ng-options="term as term.term for term in SurveyTerms.value" ng-model="SelectSurveyTerm" ng-change="selecteSurveyType()"></select>
+        <select ng-options="type as type.type for type in SurveyTypes.value" ng-model="selectSurveyType"></select>
+        <input type="button" value="Submit" ng-click="testTime()" class="btn btn-default" />
+    </widget-row>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+<script type="text/ng-template" id="qStuff.html">
+    <widget-row ng-controller="qCtrl">
+        <form name = "surveyinput" ng-submit = "SurveyDistribution()">
+            <div>
+                <p>Survey id</p>
+                <input type="text" ng-model="mym.surveyid" />
+                <p>{{mym.surveyid}}</p>
+            </div>
+            <div>
+                <p>Term</p>
+                <select ng-options="year as year for year in yeararray" ng-model="selectYear"><option></option></select>
+                <select ng-options="term as term for term in termarray" ng-model="selectTerm"><option></option></select>
+                <p>{{selectYear}}   {{selectTerm}}</p>
+                <br />
+                <p>Survey Type</p>
+                <select ng-options="surveytype as surveytype for surveytype in surveytypearray" ng-model="selectsurveytype"><option></option></select>
+                <p>{{selectsurveytype}}</p>
+            </div>
+            <div class=""> 
+                <input type="submit" />
+            </div>
+        </form>
+ <input type="button" value="Submit" ng-click="SurveyDistribution()" class="btn btn-default" /> 
+ </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div>
+            
+
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </widget-row>
+</script>
+ -->
