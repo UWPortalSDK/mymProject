@@ -178,3 +178,18 @@ function getSurveyType(){
     }
     return queryResult;
 }
+
+//update student profile
+function updateStudent(){
+ 	db.Execute('UPDATE StudentProfile SET pname_f=@fname, pname_l= @lname,student_id=@sid, p_email=@email, gender=@gender, program=@program, academic_term=@aterm, workout_buddy=@hbuddy, buddy_name=@bname, rfrequent=@confreq  WHERE current_term = @current_term AND student_id=@sid');
+    return ("Executed");
+}
+
+function getEditStudent(){
+    var queryResult = db.Execute('SELECT * FROM StudentProfile WHERE student_id=@sid AND current_term=@term');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
