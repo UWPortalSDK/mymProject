@@ -86,8 +86,18 @@
                     </div>
                 </widget-row>
             </uib-tab>
-
-            <uib-tab index="1" heading="Enrolment">
+            
+            <uib-tab index="1" heading="Qualtrics Survey">
+                <widget-row>
+                    <div class="QualtricsButtonContainer">
+                        <input type="button" value="Add Qualtrics Survey" ng-click = "Qualtrics_Add()" class="QualtricsOptionButton" />
+                        <input type="button" value="Send Qualtrics Survey" ng-click = "Qualtrics_Send()" class="QualtricsOptionButton" />
+                        <input type="button" value="Export Qualtrics Survey Result" ng-click = "Qualtrics_Export()" class="QualtricsOptionButton" />
+                    </div>
+                </widget-row>
+            </uib-tab>
+            
+            <uib-tab index="2" heading="Enrolment">
                 <widget-row ng-controller="qCtrl">
                     <h2>Student Registration</h2>
                     <br />
@@ -187,7 +197,7 @@
                 </widget-row>
             </uib-tab>
 
-            <uib-tab index="2" heading="Update Activities">
+            <uib-tab index="3" heading="Update Activities">
                 <widget-row>
                     <div class="ActivitySuggestionPage">
 
@@ -201,7 +211,7 @@
                 </widget-row>
             </uib-tab>
 
-            <uib-tab index="3" heading="Activities Suggestion">
+            <uib-tab index="4" heading="Activities Suggestion">
                 <widget-row ng-controller="preferenceCtrl">
                     <p>{{input}}</p>
 
@@ -328,15 +338,6 @@
                 </widget-row>
             </uib-tab>
 
-            <uib-tab index="4" heading="Qualtrics Survey">
-                <widget-row>
-                    <div class="QualtricsButtonContainer">
-                        <input type="button" value="Add Qualtrics Survey" ng-click = "Qualtrics_Add()" class="QualtricsOptionButton" />
-                        <input type="button" value="Send Qualtrics Survey" ng-click = "Qualtrics_Send()" class="QualtricsOptionButton" />
-                        <input type="button" value="Export Qualtrics Survey Result" ng-click = "Qualtrics_Export()" class="QualtricsOptionButton" />
-                    </div>
-                </widget-row>
-            </uib-tab>
             <uib-tab index="5" heading="General Report">
                 <widget-row>
                 </widget-row>
