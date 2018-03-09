@@ -1323,8 +1323,9 @@ angular.module('portalApp', ['nvd3'])
             }
         }).then(function(result) {
             //sourceLoaded();
+            location.reload();
         });
-        location.reload();
+        
     };
 
     $scope.updateStudent = function() {
