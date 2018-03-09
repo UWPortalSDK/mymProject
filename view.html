@@ -182,7 +182,57 @@
             </uib-tab>
 
             <uib-tab index="3" heading="Activities Suggestion">
-                <widget-row ng-controller="suggestCtrl">
+                <widget-row ng-controller="preferenceCtrl">
+                    <p>{{input}}</p>
+
+                    <uib-accordion id="TotalActivityGroups" close-others="false">
+
+                        <div uib-accordion-group class="panel-default ActivityGroups" heading="Team Activities" is-open="true">
+                            <div class="wrap" ng-repeat="act in actInfo.value">
+                                <div>
+                                    <label for="Act+{{act.Activity}}" ng-show="act.Category =='Team'">
+                                        <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Team'"></input>{{act.Activity}}</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div uib-accordion-group class="panel-default ActivityGroups" heading="Instructional Activities" is-open="true">
+                            <div class="wrap" ng-repeat="act in actInfo.value">
+                                <div>
+                                    <label for="Act+{{act.Activity}}" ng-show="act.Category =='Instructional'">
+                                        <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Instructional'"></input>{{act.Activity}}</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div uib-accordion-group class="panel-default ActivityGroups" heading="Club Activities" is-open="true">
+                            <div class="wrap" ng-repeat="act in actInfo.value">
+                                <div>
+                                    <label for="Act+{{act.Activity}}" ng-show="act.Category =='Club'">
+                                        <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Club'"></input>{{act.Activity}}</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div uib-accordion-group class="panel-default ActivityGroups" heading="Casual Activities" is-open="true">
+                            <div class="wrap" ng-repeat="act in actInfo.value">
+                                <div>
+                                    <label for="Act+{{act.Activity}}" ng-show="act.Category =='Casual'">
+                                        <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Casual'"></input>{{act.Activity}}</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </uib-accordion>
+
+
+                    <p>{{x_val}}</p>
+                    <p>{{y_val}}</p>
+                    <p>{{z_val}}</p>
+
                     <form action="">
 
                         <h4 class="likert-header">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</h4>
@@ -254,6 +304,7 @@
                             </div>
                         </uib-accordion>
                     </form>
+
                 </widget-row>
             </uib-tab>
 
@@ -300,132 +351,7 @@
 </script>
 <!-- PAGE TEMPLATE EXAMPLE -->
 <!-- PAGE TEMPLATE EXAMPLE -->
-<script type="text/ng-template" id="getSuggestion.html">
-    <widget-row ng-controller="preferenceCtrl">
-        <p>{{input}}</p>
 
-        <uib-accordion id="TotalActivityGroups" close-others="false">
-
-            <div uib-accordion-group class="panel-default ActivityGroups" heading="Team Activities" is-open="true">
-                <div class="wrap" ng-repeat="act in actInfo.value">
-                    <div>
-                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Team'">
-                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Team'"></input>{{act.Activity}}</label>
-                    </div>
-                </div>
-
-            </div>
-
-            <div uib-accordion-group class="panel-default ActivityGroups" heading="Instructional Activities" is-open="true">
-                <div class="wrap" ng-repeat="act in actInfo.value">
-                    <div>
-                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Instructional'">
-                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Instructional'"></input>{{act.Activity}}</label>
-                    </div>
-                </div>
-
-            </div>
-
-            <div uib-accordion-group class="panel-default ActivityGroups" heading="Club Activities" is-open="true">
-                <div class="wrap" ng-repeat="act in actInfo.value">
-                    <div>
-                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Club'">
-                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Club'"></input>{{act.Activity}}</label>
-                    </div>
-                </div>
-
-            </div>
-
-            <div uib-accordion-group class="panel-default ActivityGroups" heading="Casual Activities" is-open="true">
-                <div class="wrap" ng-repeat="act in actInfo.value">
-                    <div>
-                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Casual'">
-                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Casual'"></input>{{act.Activity}}</label>
-                    </div>
-                </div>
-
-            </div>
-        </uib-accordion>
-
-
-        <p>{{x_val}}</p>
-        <p>{{y_val}}</p>
-        <p>{{z_val}}</p>
-
-        <form action="">
-
-            <h4 class="likert-header">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</h4>
-
-            <div class="QuestionAnswerArea">
-                <p>Not true for me.</p>
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="10" value="5" class="slider" id="cog1" ng-model='cog1'></input>
-                </div>
-
-                <p>Very true for me.</p>
-            </div>
-            <!--                         <p>{{cog1}}</p> -->
-            <h4 class="likert-header">I prefer activities that involve strategy.</h4>
-            <div class="QuestionAnswerArea">
-                <p>Not true for me.</p>
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="10" value="5" class="slider" id="cog2" ng-model='cog2'></input>
-                </div>
-
-                <p>Very true for me.</p>
-            </div>
-            <!--                         <p>{{cog2}}</p> -->
-            <h4 class="likert-header">I prefer exercising on my own.</h4>
-            <div class="QuestionAnswerArea">
-                <p>Not true for me.</p>
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="10" value="5" class="slider" id="soc1" ng-model='soc1'></input>
-                </div>
-
-                <p>Very true for me.</p>
-            </div>
-            <h4 class="likert-header">I prefer exercising in an open environment(eg. Public Gym)</h4>
-            <div class="QuestionAnswerArea">
-                <p>Not true for me.</p>
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='soc2'></input>
-                </div>
-                <p>Very true for me.</p>
-            </div>
-            <h4 class="likert-header">I prefer activities that are physically demanding.</h4>
-            <div class="QuestionAnswerArea">
-                <p>Not true for me.</p>
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="10" value="5" class="slider" id="int1" ng-model='int1'></input>
-                </div>
-                <p>Very true for me.</p>
-            </div>
-            <h4 class="likert-header">I prefer activities that are more relaxing and less intense.</h4>
-            <div class="QuestionAnswerArea">
-                <p>Not true for me.</p>
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="10" value="5" class="slider" id="int2" ng-model='int2'></input>
-                </div>
-                <p>Very true for me.</p>
-            </div>
-
-
-            <input type="button" value="Submit" ng-click="getPred()" class="btn btn-default" />
-            <p>{{centerValues.value[0]}}</p>
-
-            <uib-accordion close-others="oneAtATime">
-                <div uib-accordion-group class="panel-default" heading="List of Activities:" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                    <li class="cluster-repeat" ng-repeat="activity in clusters.value">
-                        <td>
-                            {{activity.Activity}}
-                        </td>
-                    </li>
-                </div>
-            </uib-accordion>
-        </form>
-
-    </widget-row>
-</script>
 
 
 
@@ -594,3 +520,132 @@
     </widget-row>
 </script>
  -->
+
+<!-- 
+
+<script type="text/ng-template" id="getSuggestion.html">
+    <widget-row ng-controller="preferenceCtrl">
+        <p>{{input}}</p>
+
+        <uib-accordion id="TotalActivityGroups" close-others="false">
+
+            <div uib-accordion-group class="panel-default ActivityGroups" heading="Team Activities" is-open="true">
+                <div class="wrap" ng-repeat="act in actInfo.value">
+                    <div>
+                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Team'">
+                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Team'"></input>{{act.Activity}}</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div uib-accordion-group class="panel-default ActivityGroups" heading="Instructional Activities" is-open="true">
+                <div class="wrap" ng-repeat="act in actInfo.value">
+                    <div>
+                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Instructional'">
+                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Instructional'"></input>{{act.Activity}}</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div uib-accordion-group class="panel-default ActivityGroups" heading="Club Activities" is-open="true">
+                <div class="wrap" ng-repeat="act in actInfo.value">
+                    <div>
+                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Club'">
+                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Club'"></input>{{act.Activity}}</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div uib-accordion-group class="panel-default ActivityGroups" heading="Casual Activities" is-open="true">
+                <div class="wrap" ng-repeat="act in actInfo.value">
+                    <div>
+                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Casual'">
+                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Casual'"></input>{{act.Activity}}</label>
+                    </div>
+                </div>
+
+            </div>
+        </uib-accordion>
+
+
+        <p>{{x_val}}</p>
+        <p>{{y_val}}</p>
+        <p>{{z_val}}</p>
+
+        <form action="">
+
+            <h4 class="likert-header">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</h4>
+
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="cog1" ng-model='cog1'></input>
+                </div>
+
+                <p>Very true for me.</p>
+            </div>
+                                  <p>{{cog1}}</p>
+            <h4 class="likert-header">I prefer activities that involve strategy.</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="cog2" ng-model='cog2'></input>
+                </div>
+
+                <p>Very true for me.</p>
+            </div>
+                                   <p>{{cog2}}</p> 
+            <h4 class="likert-header">I prefer exercising on my own.</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="soc1" ng-model='soc1'></input>
+                </div>
+
+                <p>Very true for me.</p>
+            </div>
+            <h4 class="likert-header">I prefer exercising in an open environment(eg. Public Gym)</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='soc2'></input>
+                </div>
+                <p>Very true for me.</p>
+            </div>
+            <h4 class="likert-header">I prefer activities that are physically demanding.</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="int1" ng-model='int1'></input>
+                </div>
+                <p>Very true for me.</p>
+            </div>
+            <h4 class="likert-header">I prefer activities that are more relaxing and less intense.</h4>
+            <div class="QuestionAnswerArea">
+                <p>Not true for me.</p>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="10" value="5" class="slider" id="int2" ng-model='int2'></input>
+                </div>
+                <p>Very true for me.</p>
+            </div>
+
+
+            <input type="button" value="Submit" ng-click="getPred()" class="btn btn-default" />
+            <p>{{centerValues.value[0]}}</p>
+
+            <uib-accordion close-others="oneAtATime">
+                <div uib-accordion-group class="panel-default" heading="List of Activities:" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                    <li class="cluster-repeat" ng-repeat="activity in clusters.value">
+                        <td>
+                            {{activity.Activity}}
+                        </td>
+                    </li>
+                </div>
+            </uib-accordion>
+        </form>
+
+    </widget-row>
+</script> -->
