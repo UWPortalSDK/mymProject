@@ -154,37 +154,36 @@
     margin: 0;
 }
 
-.ActivitySuggestionPageBanner {
-    width: 100%;
+
+
+.TotalActivityGroups {
     display: flex;
     justify-content: space-between;
-}
-
-.ActivitySuggestionPageTitle p{
-    font-size: 1.5em;
-}
-
-.ActivitySuggestionPageBackButton {
-    
-}
-
-
-#TotalActivityGroups {
-    display: inline-block;
     width: 100%;
     max-width: 1200px;
     min-width: 400px;
     vertical-align: top;
 }
 
+.TotalActivityGroups .panel-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 400px;
+    vertical-align: top;
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+}
+
 .ActivityGroups {
     display: inline-block;
     border-color:#ddd;
-    width: 24.5%;
-    min-width: 180px;
     margin-top: 5px;
     margin-bottom: 10px;
     vertical-align: top;
+    white-space: nowrap;
+    min-width: 200px;
 }
 
 .QualtricsButtonContainer {
