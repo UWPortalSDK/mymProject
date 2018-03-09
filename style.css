@@ -17,6 +17,8 @@
 
 .FormHeader {
     font-family: "Open Sans";
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 .Basictext {
@@ -59,25 +61,6 @@
     width: 100%;
 }
 
-
-
-
-
-.AllContent {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    background-color: rgb(231, 231, 232);
-    min-width: 500px;
-}
-
-.UpBanner {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-height: 200px;
-}
-
 .UwaterlooLogo {
     display: inline-block;
     width: 60%;
@@ -87,44 +70,12 @@
     width: 100%;
 }
 
-
-
-
-.ContentDownBanner {
-    position: relative;
-    width: 100%;
-}
-
-.leftSelectMenu {
+.ProfileSearchTitle {
     display: inline-block;
-    width: 22%;
-    vertical-align: top;
-    margin-left: 1%;
-    margin-right: 1%;
 }
 
-.MainContent {
-    display: inline-block;
-    width: 70%;
-    margin-left: 1%;
-    margin-right: 1%;
-}
 
-.FormtoView1 {
-    width: 100%;
-    display: inline-block;
-    position: relative;
-    top: 0;
-    vertical-align: top;
-    margin-top:4px;
-}
 
-.FormtoView1 button {
-    width: 80%;
-    display: inline-block;
-    margin-top: 8px;
-    margin-bottom: 0px;
-}
 
 .slidecontainer {
     display:inline-block;
@@ -256,7 +207,7 @@
     color: #03A9F4;
     border-radius: 16px;
     font-family: "Open Sans";
-    font-size: 1.2em;
+    font-size: 1.25em;
     font-weight: bold;
     text-decoration: none;
     text-align: center;
