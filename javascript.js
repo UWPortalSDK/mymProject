@@ -867,8 +867,46 @@ angular.module('portalApp')
 
 }])
 
+.controller('editCtrl', ['$scope','mymForm', function($scope,mymForm) {
+    $scope.editStudent = {
+        value: null
+    };
+    
+    $scope.editStudent.value = mymForm.get();
+    
+    $scope.updateStudent = function() {
+        //alert("Successfully entered the function");
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'updateStudent',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                fname: $scope.editStudent.value[0].pname_f,
+                lname:  $scope.editStudent.value[0].pname_l,
+                sid: $scope.editStudent.value[0].student_id,
+                email: $scope.editStudent.value[0].p_email,
+                gender: $scope.editStudent.value[0].gender,
+                program: $scope.editStudent.value[0].program,
+                aterm: $scope.editStudent.value[0].academic_term,
+                hbuddy: $scope.editStudent.value[0].workout_buddy,
+                bname: $scope.editStudent.value[0].buddy_name,
+                confreq: $scope.editStudent.value[0].rfrequent,
+                current_term: $scope.editStudent.value[0].current_term
+                
+                
+            }
+        }).then(function(result) {
+            //sourceLoaded();
+            console.log(result);
+            location.reload();
+        });
+        //location.reload();
+    };
 
-.controller('profileCtrl', ['$scope', function($scope) {
+    
+
+}])
+
+.controller('profileCtrl', ['$scope','mymForm', function($scope,mymForm) {
     $scope.value1 = true;
     $scope.value2 = false;
     $scope.frequency = "";
@@ -886,6 +924,33 @@ angular.module('portalApp')
         isFirstOpen: true,
         isFirstDisabled: false
     };
+    $scope.editStudent = {
+        value: null
+    };
+        // This function gets called when user clicks an item in the list
+    $scope.showDetails = function(term,id) {
+        
+        console.log(term + id);
+        $scope.portalHelpers.invokeServerFunction({
+        functionName: 'getEditStudent',
+        uniqueNameId: 'mymProject',
+        sqlArgs: {
+            term: term,
+            sid: id
+        }
+        }).then(function(result) {
+            //console.log('got data: ', result);
+            $scope.editStudent.value = result;
+            //console.log($scope.editStudent.value);
+            console.log("Ran QUery");
+            mymForm.set(result);
+            $scope.portalHelpers.showView('profileEdit.html', 2);
+
+            
+        });        
+       
+
+    };
 
     $scope.portalHelpers.invokeServerFunction({
         functionName: 'getStudents',
@@ -893,7 +958,7 @@ angular.module('portalApp')
     }).then(function(result) {
         console.log('got data: ', result);
         $scope.studentInfo.value = result;
-        sourceLoaded();
+        //sourceLoaded();
     });
 
     $scope.testSubmit = function() {
@@ -926,6 +991,34 @@ angular.module('portalApp')
         });
         location.reload();
     };
+    
+    $scope.updateStudent = function() {
+        //alert("Successfully entered the function");
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'updateStudent',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {
+                fname: $scope.selectedTerm.pname_f,
+                lname: $scope.selectedTerm.pname_l,
+                sid: $scope.selectedTerm.student_id,
+                email: $scope.selectedTerm.p_email,
+                gender: $scope.selectedTerm.gender,
+                program: $scope.selectedTerm.program,
+                aterm: $scope.selectedTerm.academic_term,
+                hbuddy: $scope.selectedTerm.workout_buddy,
+                bname: $scope.selectedTerm.buddy_name,
+                confreq: $scope.selectedTerm.rfrequent,
+                current_term: $scope.selectedTerm.current_term
+                
+                
+            }
+        }).then(function(result) {
+            //sourceLoaded();
+            console.log(result);
+            location.reload();
+        });
+        //location.reload();
+    };
 
     $scope.selectedItemChanged = function(id, name) {
         // Make the item that user clicked available to the template
@@ -943,7 +1036,7 @@ angular.module('portalApp')
         }).then(function(result) {
             console.log('got data: ', result);
             $scope.terms.value = result;
-            sourceLoaded();
+            //sourceLoaded();
         });
 
 
@@ -1202,12 +1295,27 @@ angular.module('portalApp')
         // Place your init code here:
 
     }
+    
+     var savedData = {
+         value: null
+     };
+    
+     function set(data) {
+       savedData = data;
+     }
+    
+     function get() {
+         
+      	return savedData;
+     }
 
 
     // Expose init(), and variables
     return {
         init: init,
-        options: options
+        options: options,
+        set: set,
+      	get: get
 
     };
 }])
