@@ -36,7 +36,7 @@
                                     <th class = "FormHeader">
                                     </th>
                                 </tr>
-                                <tr ng-repeat="student in studentInfo.value  | filter: searchKeyword | limitTo : 4 ">
+                                <tr class="Basictext" ng-repeat="student in studentInfo.value  | filter: searchKeyword | limitTo : 4 ">
                                     <td>
                                         {{student.student_id}}
                                     </td>
@@ -44,7 +44,7 @@
                                         {{student.pname_f}}  {{student.pname_l}}
                                     </td>
                                     <td>
-                                        <input type="button" value="Select" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click="selectedItemChanged(student.student_id,student.name)" />
+                                        <input type="button" value="Select" class="ProfileSelectButton" ng-click="selectedItemChanged(student.student_id,student.name)" />
                                     </td>
                                 </tr>
                             </table>
