@@ -236,5 +236,32 @@
     vertical-align: top;
 }
 
+.QualtricsButtonContainer {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+}
 
+.QualtricsOptionButton {
+    width: 50%;
+    height: 110px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+	background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 5px;
+    border-color: #03A9F4;
+    color: #03A9F4;
+    border-radius: 16px;
+    font-family: "Open Sans";
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: normal;
+	word-wrap: break-word;
+}
     

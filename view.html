@@ -4,7 +4,6 @@
 <script type="text/ng-template" id="profile.html">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 
-    <!--         <form name="outerForm" class="tab-form-demo"> -->
     <div>
         
     </div>
@@ -310,10 +309,10 @@
 
             <uib-tab index="4" heading="Qualtrics Survey">
                 <widget-row>
-                    <div>
-                        <input type="button" value="Add Qualtrics Survey" ng-click = "Qualtrics_Add()" />
-                        <input type="button" value="Send Qualtrics Survey" ng-click = "Qualtrics_Send()" />
-                        <input type="button" value="Export Qualtrics Survey Result" ng-click = "Qualtrics_Export()" />
+                    <div class="QualtricsButtonContainer">
+                        <input type="button" value="Add Qualtrics Survey" ng-click = "Qualtrics_Add()" class="QualtricsOptionButton" />
+                        <input type="button" value="Send Qualtrics Survey" ng-click = "Qualtrics_Send()" class="QualtricsOptionButton" />
+                        <input type="button" value="Export Qualtrics Survey Result" ng-click = "Qualtrics_Export()" class="QualtricsOptionButton" />
                     </div>
                 </widget-row>
             </uib-tab>
