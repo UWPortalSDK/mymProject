@@ -107,6 +107,9 @@ angular.module('portalApp', ['nvd3'])
             if (result.data.meta.httpStatus === "200 - OK") {
                 alert("Email Successfully Sent");
             }
+            else {
+                alert("Invalid Entry");
+            }
             console.log(result.data);
         }, function(fail) {
             console.log('CreateSurveyDistribution FAIL', fail);
