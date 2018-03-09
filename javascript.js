@@ -470,7 +470,7 @@ angular.module('portalApp')
     $scope.testTime = function() {
 		
         function downloadResult(){
-            $scope.portalHelpers.getApiData('Qualtrics/ResponseExportFile?exportid='+$scope.mym.exportid).then(function(result) {
+            $scope.portalHelpers.getApiData('Qualtrics/ResponseExportFile?exportid=' + $scope.mym.exportid).then(function(result) {
                 console.log(result.data);
                 if(result.data){
                     result.data = JSON.parse(result.data);
