@@ -52,7 +52,7 @@
                         
                         <div class="ProfileTermContent">
                             <p class = "FormHeader">Term:
-                                <select class="ProfileTermSelect" ng-options="term.current_term for term in terms.value" ng-model="selectedTerm">
+                                <select class="ProfileTermSelect" ng-options="term.current_term for term in terms.value" ng-change = "getEmails()"ng-model="selectedTerm">
                                 </select>
                             </p>
                         </div>
@@ -73,6 +73,14 @@
                         </uib-accordion>
                         <uib-accordion class="StudentInfoSection" close-others="false">
                             <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="false" is-disabled="false">
+                                <h2>Mental Health Comparison</h2>        
+                                <nvd3 options="ChartOptions" data="MHBarData.value"></nvd3>
+                                <h2>Motivation Comparison</h2>
+                                <nvd3 options="ChartOptions" data="MotivateBarData.value"></nvd3>
+                                <h2>Goals</h2>
+                                <nvd3 options="pieChartOptions" data="pieChartDataGoal.value"></nvd3>
+                                <h2>Barriers</h2>
+                                <nvd3 options="pieChartOptions" data="pieChartDataBarrier.value"></nvd3>
                             </div>
                         </uib-accordion>
                     </div>

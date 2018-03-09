@@ -54,7 +54,7 @@ function insertCen() {
 }
 
 function registrate(){
- 	db.Execute('INSERT INTO StudentProfile(mailing_id,contact_id,pname_f,pname_l,student_id,current_term,program,p_email,gender,rname,rtype,remail,rdepartment,rprogress,rfrequent,consideration,submission_date,academic_term) Values(@mailing,@contact,@fname,@lname,@sid,@term,@program,@email,@gender,@rName,@rType,@rEmail,@rDepartment,@progress,@frequency,@consideration,@dates,@aterm)');
+    db.Execute('INSERT INTO StudentProfile(mailing_id,contact_id,pname_f,pname_l,student_id,current_term,program,p_email,gender,rname,rtype,remail,rdepartment,rprogress,rfrequent,consideration,submission_date,academic_term) Values(@mailing,@contact,@fname,@lname,@sid,@term,@program,@email,@gender,@rName,@rType,@rEmail,@rDepartment,@progress,@frequency,@consideration,@dates,@aterm)');
     return getData();
 }
 
@@ -69,7 +69,7 @@ function getCenters() {
 }
 
 function getClusters(){
- 	var queryResult = db.Execute ('SELECT Activity FROM cluster_data WHERE Cluster = @cNumber'); 
+    var queryResult = db.Execute ('SELECT Activity FROM cluster_data WHERE Cluster = @cNumber'); 
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -108,13 +108,13 @@ function SurveyTerms() {
 
 //insert surveyData into table
 function insertSurvey(){
- 	db.Execute('INSERT INTO surveytable Values (@mailing_id,@survey_id,@type,@term)');
+    db.Execute('INSERT INTO surveytable Values (@mailing_id,@survey_id,@type,@term)');
     return getData();
 }
 
 //check if survey exists
 function checkSurveyExist(){
- 	var queryResult = db.Execute('Select survey_id from surveytable WHERE survey_id = @survey_id');
+    var queryResult = db.Execute('Select survey_id from surveytable WHERE survey_id = @survey_id');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -181,7 +181,7 @@ function getSurveyType(){
 
 //update student profile
 function updateStudent(){
- 	db.Execute('UPDATE StudentProfile SET pname_f=@fname, pname_l= @lname,student_id=@sid, p_email=@email, gender=@gender, program=@program, academic_term=@aterm, workout_buddy=@hbuddy, buddy_name=@bname, rfrequent=@confreq  WHERE current_term = @current_term AND student_id=@sid');
+    db.Execute('UPDATE StudentProfile SET pname_f=@fname, pname_l= @lname,student_id=@sid, p_email=@email, gender=@gender, program=@program, academic_term=@aterm, workout_buddy=@hbuddy, buddy_name=@bname, rfrequent=@confreq  WHERE current_term = @current_term AND student_id=@sid');
     return ("Executed");
 }
 
@@ -194,4 +194,30 @@ function getEditStudent(){
     return queryResult;
 }
 
+function getBefore() {
+    var queryResult = db.Execute("SELECT * FROM PreIntakeMeeting where email=@email");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getAfter() {
+    var queryResult = db.Execute("SELECT * FROM FinalMeeting where email=@email");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getBeforeGB(){
+    var queryResult = db.Execute("SELECT * FROM Intake where email=@email");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
 
