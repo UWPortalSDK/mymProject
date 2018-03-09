@@ -100,9 +100,66 @@
     color: rgb(0, 0, 0);
 }
 
+.ProfileTableButton {
+    text-align: center;
+}
+
+.ProfileTermContent {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom 5px;
+}
+
 .ProfileTermSelect{
     min-width: 150px;
 }
+
+.StudentInfoSection .panel-group {
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(240,240,240);
+    border-radius: 8px;
+}
+
+.StudentInfoSection .panel {
+	border-style: solid;
+    border-width: 2px;
+    border-color: rgb(240,240,240);
+    border-radius: 8px;
+}
+
+.StudentInfoSection .panel-heading {
+    background-color: rgb(240,240,240);
+}
+
+.StudentInfoSection .panel-heading .panel-title{
+    display: inline-block;
+    font-family: "Open Sans";
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+.StudentInfoSection .panel-heading .panel-title:hover {
+    text-shadow: 0 0 2px rgb(100, 100, 100); ;
+}
+
+.StudentInfoSection .panel-body {
+    width: 100%;
+    position: relative;
+    font-family: "Open Sans";
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.StudentInfoUpgradeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: inline-block;
+}
+
+
+
 
 .slidecontainer {
     display:inline-block;
@@ -241,32 +298,7 @@
     white-space: normal;
 	word-wrap: break-word;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 

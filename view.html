@@ -43,21 +43,23 @@
                                     <td>
                                         {{student.pname_f}}  {{student.pname_l}}
                                     </td>
-                                    <td>
+                                    <td class="ProfileTableButton">
                                         <input type="button" value="Select" class="ProfileSelectButton" ng-click="selectedItemChanged(student.student_id,student.name)" />
                                     </td>
                                 </tr>
                             </table>
-
                         </div>
-                        <p class = "FormHeader">Term:
-                            <select class="ProfileTermSelect" ng-options="term.current_term for term in terms.value" ng-model="selectedTerm">
-                            </select>
-                        </p>
-                        <uib-accordion close-others="oneAtATime">
-                            <div uib-accordion-group class="panel-default" heading="Student Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                        
+                        <div class="ProfileTermContent">
+                            <p class = "FormHeader">Term:
+                                <select class="ProfileTermSelect" ng-options="term.current_term for term in terms.value" ng-model="selectedTerm">
+                                </select>
+                            </p>
+                        </div>
+                        
+                        <uib-accordion class="StudentInfoSection" close-others="false">
+                            <div uib-accordion-group class="StudentProfileSection" heading="Student Information" is-open="true" is-disabled="false">
                                 <p>Student Name: {{selectedTerm.pname_f}} {{selectedTerm.pname_l}}</p>
-                                <p> <input type="button" ng-click="showDetails(selectedTerm.current_term,selectedTerm.student_id)" value="Update" /> </p>
                                 <p>Student ID: {{selectedTerm.student_id}}</p>
                                 <p>Email: {{selectedTerm.p_email}}</p>
                                 <p>Gender: {{selectedTerm.gender}}</p>
@@ -66,10 +68,11 @@
                                 <p>Workout Buddy: {{selectedTerm.workout_buddy}}</p>
                                 <p>Workout Buddy Name: {{selectedTerm.buddy_name}}</p>
                                 <p>Feedback Frequency: {{selectedTerm.rfrequent}}</p>
+                                <input class="StudentInfoUpgradeButton ProfileSelectButton" type="button" ng-click="showDetails(selectedTerm.current_term,selectedTerm.student_id)" value="Update" />
                             </div>
                         </uib-accordion>
-                        <uib-accordion close-others="oneAtATime">
-                            <div uib-accordion-group class="panel-default" heading="Progress" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                        <uib-accordion class="StudentInfoSection" close-others="false">
+                            <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="false" is-disabled="false">
                             </div>
                         </uib-accordion>
                     </div>
@@ -486,22 +489,10 @@
         <input type="button" value="Update" ng-click="updateStudent()" />
 
 
+
     </widget-row>
 </script> 
 <!-- PAGE TEMPLATE EXAMPLE --> 
-
-<!-- PAGE TEMPLATE EXAMPLE --> 
-<script type="text/ng-template" id="d3.html"> 
-    <widget-row> 
-        <widget-cell> 
-            <div class="pDetails"> 
-                Your content here 
-            </div> 
-        </widget-cell> 
-    </widget-row> 
-</script> 
-<!-- PAGE TEMPLATE EXAMPLE --> 
-
 
 
 
