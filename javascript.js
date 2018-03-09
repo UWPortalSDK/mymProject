@@ -401,7 +401,7 @@ angular.module('portalApp', ['nvd3'])
         }).then(function(result) {
             //sourceLoaded();
             console.log(result);
-            //location.reload();
+            location.reload();
         });
 
     };
