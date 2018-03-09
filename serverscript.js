@@ -54,7 +54,7 @@ function insertCen() {
 }
 
 function registrate(){
- 	db.Execute('INSERT INTO StudentProfile Values(@mailing,@contact,@fname,@lname,@sid,@term,@program,@email,@gender,@rName,@rType,@rEmail,@rDepartment,@progress,@frequency,@consideration,@dates,@aterm)');
+ 	db.Execute('INSERT INTO StudentProfile(mailing_id,contact_id,pname_f,pname_l,student_id,current_term,program,p_email,gender,rname,rtype,remail,rdepartment,rprogress,rfrequent,consideration,submission_date,academic_term) Values(@mailing,@contact,@fname,@lname,@sid,@term,@program,@email,@gender,@rName,@rType,@rEmail,@rDepartment,@progress,@frequency,@consideration,@dates,@aterm)');
     return getData();
 }
 
