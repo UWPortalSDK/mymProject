@@ -468,8 +468,18 @@ angular.module('portalApp')
     // };
 
     $scope.testTime = function() {
+		
+        function downloadResult(){
+            $scope.portalHelpers.getApiData('Qualtrics/ResponseExportFile?exportid='+$scope.mym.exportid).then(function(result) {
+                console.log(result.data);
+                if(result.data){
+                    result.data = JSON.parse(result.data);
+                }
+            });
 
-        function checkExport() {
+        };
+        
+		function checkExport() {
             var myVar = setInterval(function() {
                 myTimer()
             }, 1000);
@@ -489,8 +499,8 @@ angular.module('portalApp')
                      console.log(result.data );
                     if(result.data.result.percentComplete === 100){
                         console.log("100% complete");
-                         myStopFunction();
-                        
+                        myStopFunction();
+                        downloadResult();
                     }
                    
                 }
@@ -958,7 +968,7 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('distribution.html', 1);
+    $scope.portalHelpers.showView('qStuff.html', 1);
 
 
     // This function gets called when user clicks an item in the list
