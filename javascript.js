@@ -120,7 +120,7 @@ angular.module('portalApp')
         }).then(function(result) {
             if (result.data)
                 result.data = JSON.parse(result.data);
-            	if (result.data.meta.httpStatus === "200 - OK") {
+            if (result.data.meta.httpStatus === "200 - OK") {
                 alert("Email Successfully Sent");
             }
             console.log(result.data);
@@ -129,16 +129,16 @@ angular.module('portalApp')
         }, function(notify) {
             console.log('CreateSurveyDistribution notify');
         });
-        
-        
+
+
     };
-    
-     $scope.CreateLibraryMessage = function() {
-         
-         var message = $scope.mym.message.replace(/\n/g, "<br>");
-         console.log($scope.mym.message);
-         var msg = "<p>" + message + "</p>" + "<br>" + " Follow this link to the Survey: ${l://SurveyLink?d=Take the Survey} Or copy and paste the URL below into your internet browser: ${l://SurveyURL} Follow the link to opt out of future emails: ${l://OptOutLink?d=Click here to unsubscribe}";
-         console.log(msg);
+
+    $scope.CreateLibraryMessage = function() {
+
+        var message = $scope.mym.message.replace(/\n/g, "<br>");
+        console.log($scope.mym.message);
+        var msg = "<p>" + message + "</p>" + "<br>" + " Follow this link to the Survey: ${l://SurveyLink?d=Take the Survey} Or copy and paste the URL below into your internet browser: ${l://SurveyURL} Follow the link to opt out of future emails: ${l://OptOutLink?d=Click here to unsubscribe}";
+        console.log(msg);
         // args = [string library id, string category, string description,string message(en)]
         var jsn = [$scope.mym.mainuser, "invite", "Custom Test", msg];
         $scope.portalHelpers.postApiData('Qualtrics/CreateLibraryMessage', {
@@ -253,9 +253,6 @@ angular.module('portalApp')
         console.log(result);
     };
 
-
-
-
     var yeardate = new Date();
     yeardate = yeardate.getFullYear();
     console.log(yeardate);
@@ -333,11 +330,7 @@ angular.module('portalApp')
     }
 
     function AddSurvey() {
-
-
         CheckTerms();
-
-
     };
 
     $scope.checkExist = function() {
@@ -412,17 +405,16 @@ angular.module('portalApp')
 
         });
     };
-    $scope.SurveyDistribution = function() {
-        $scope.portalHelpers.getApiData('Qualtrics/SurveyDistribution?surveyid=SV_88qa5GGKuPcI4FD').then(function(result) {
-            if (result.data)
-                result.data = JSON.parse(result.data); // convert from string to json
-            console.log(result.data);
-        });
-    };
+    // $scope.SurveyDistribution = function() {
+    //     $scope.portalHelpers.getApiData('Qualtrics/SurveyDistribution?surveyid=SV_88qa5GGKuPcI4FD').then(function(result) {
+    //         if (result.data)
+    //             result.data = JSON.parse(result.data); // convert from string to json
+    //         console.log(result.data);
+    //     });
+    // };
     // Create a new mailing list
 
     $scope.MailinglistCreate = function() {
-
         // {
         // "category": "Star Wars - Rebels", // hard set to 'invite' at server
         // "libraryId": "UR_1234567890AbCdE",
@@ -460,19 +452,76 @@ angular.module('portalApp')
     };
 
     // Create export request for this survey
-    $scope.ResponseExportPost = function() {
+    // $scope.ResponseExportPost = function() {
+    //     var jsn = ['SV_eRteDAkIY8P0eOx', "json"];
+    //     $scope.portalHelpers.postApiData('Qualtrics/ResponseExportPost', {
+    //         args: JSON.stringify(jsn)
+    //     }).then(function(result) {
+    //         if (result.data)
+    //             result.data = JSON.parse(result.data);
+    //         console.log(result.data);
+    //     }, function(fail) {
+    //         console.log('ResponseExportPost FAIL', fail);
+    //     }, function(notify) {
+    //         console.log('ResponseExportPost notify');
+    //     });
+    // };
+
+    $scope.testTime = function() {
+
+        function checkExport() {
+            var myVar = setInterval(function() {
+                myTimer()
+            }, 1000);
+            
+            function myStopFunction() {
+                clearInterval(myVar);
+            }
+            
+            function callExport(){
+                
+            }
+
+            function myTimer() {
+                $scope.portalHelpers.getApiData('Qualtrics/ResponseExportProgress?exportid=' + $scope.mym.exportid).then(function(result) {
+                if (result.data) {
+                    result.data = JSON.parse(result.data);
+                     console.log(result.data );
+                    if(result.data.result.percentComplete === 100){
+                        console.log("100% complete");
+                         myStopFunction();
+                        
+                    }
+                   
+                }
+            	});
+               
+            }
+
+            
+            
+
+        }
+
         var jsn = ['SV_eRteDAkIY8P0eOx', "json"];
         $scope.portalHelpers.postApiData('Qualtrics/ResponseExportPost', {
             args: JSON.stringify(jsn)
         }).then(function(result) {
             if (result.data)
                 result.data = JSON.parse(result.data);
+            console.log(result.data);
+            $scope.mym.exportid = result.data.result.id;
+            console.log($scope.mym.exportid);
+            checkExport();
         }, function(fail) {
             console.log('ResponseExportPost FAIL', fail);
         }, function(notify) {
             console.log('ResponseExportPost notify');
         });
+
+
     };
+
 
     // $scope.GetMailinglistContacts = function() {
     //     $scope.portalHelpers.getApiData('Qualtrics/GetMailinglistContacts?mailinglistid=' + $scope.mym.mailinglist.id).then(function(result) {
@@ -491,10 +540,6 @@ angular.module('portalApp')
     //     });
     // };
     $scope.MailinglistsPostContact = function() {
-        // mailing list id (created earlier)
-        // contact first, last, email
-        // arbitrary external data string
-        // contact language - 'en', 'fr'
         var jsn = [$scope.mym.mailingid, $scope.mym.contact_firstName,
             $scope.mym.contact_lastName, $scope.mym.contact_email,
             $scope.mym.contact_externalDataRef, $scope.mym.contact_language
@@ -565,16 +610,15 @@ angular.module('portalApp')
             if (result.data) {
                 result.data = JSON.parse(result.data);
                 console.log(result.data);
-                if(result.data.meta.httpStatus === "400 - Bad Request"){
+                if (result.data.meta.httpStatus === "400 - Bad Request") {
                     console.log("Successfully logged the error");
                     alert("Invalid Request Please Verify the Suvey ID");
-                    
-                }
-                else {
+
+                } else {
                     console.log("Proper Survey ID");
                     $scope.checkExist();
                 }
-                
+
             }
             // convert from string to json
         });
@@ -914,7 +958,7 @@ angular.module('portalApp')
     mymForm.init($scope);
     var formdata = new FormData();
     // Show main view in the first column
-    $scope.portalHelpers.showView('qStuff.html', 1);
+    $scope.portalHelpers.showView('distribution.html', 1);
 
 
     // This function gets called when user clicks an item in the list

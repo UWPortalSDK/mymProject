@@ -150,10 +150,6 @@ function getSurveyTerms() {
 }
 
 
-
-
-
-
 //retrieve term information from the database for distribution page
 function getTermsDist() {
     var queryResult = db.Execute('SELECT DISTINCT current_term From StudentProfile');
