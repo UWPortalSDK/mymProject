@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 
     <div>
-        
+
     </div>
 
 
@@ -25,13 +25,15 @@
                         <div class="ProfileSearch">
                             <div class="SearchInputPart">
                                 <p class="FormHeader ProfileSearchTitle">Search: </p>
-                               <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text" id="Studentnamesearchbox" placeholder="{{selectedStudent.value}}" />
+                                <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text" id="Studentnamesearchbox" placeholder="{{selectedStudent.value}}" />
                             </div>
                             <table class="table">
                                 <tr>
-                                    <th>Student ID:
+                                    <th class = "FormHeader">Student ID:
                                     </th>
-                                    <th>Name
+                                    <th class = "FormHeader">Name
+                                    </th>
+                                    <th class = "FormHeader">
                                     </th>
                                 </tr>
                                 <tr ng-repeat="student in studentInfo.value  | filter: searchKeyword | limitTo : 4 ">
@@ -54,7 +56,7 @@
                         </p>
                         <uib-accordion close-others="oneAtATime">
                             <div uib-accordion-group class="panel-default" heading="Student Information" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                               <p>Student Name: {{selectedTerm.pname_f}} {{selectedTerm.pname_l}}</p>
+                                <p>Student Name: {{selectedTerm.pname_f}} {{selectedTerm.pname_l}}</p>
                                 <p> <input type="button" ng-click="showDetails(selectedTerm.current_term,selectedTerm.student_id)" value="Update" /> </p>
                                 <p>Student ID: {{selectedTerm.student_id}}</p>
                                 <p>Email: {{selectedTerm.p_email}}</p>
@@ -62,7 +64,7 @@
                                 <p>Program: {{selectedTerm.program}}</p>
                                 <p>Academic Term: {{selectedTerm.academic_term}}</p>
                                 <p>Workout Buddy: {{selectedTerm.workout_buddy}}</p>
-                    			<p>Workout Buddy Name: {{selectedTerm.buddy_name}}</p>
+                                <p>Workout Buddy Name: {{selectedTerm.buddy_name}}</p>
                                 <p>Feedback Frequency: {{selectedTerm.rfrequent}}</p>
                             </div>
                         </uib-accordion>
@@ -78,9 +80,9 @@
                 <widget-row ng-controller="qCtrl">
                     <h2>Student Registration</h2>
                     <br />
-<!--                     <form name="enrollment" ng-submit="submitEnroll()"> -->
+                    <!--                     <form name="enrollment" ng-submit="submitEnroll()"> -->
                     <form name="enrollment" ng-submit="checkStudent()">
-                    
+
                         <div class="form-group">
 
                             <label for="fName">First Name:</label>
@@ -461,27 +463,27 @@
 <script type="text/ng-template" id="profileEdit.html"> 
     <widget-row ng-controller = "editCtrl">
 
-                <div >
-                    <p>{{editStudent.value[0].pname_f}}</p>
-                    <p>First Name: <input type="text" ng-model ="editStudent.value[0].pname_f" /></p>
-                    <p>Last Name: <input type="text"  ng-model = "editStudent.value[0].pname_l"/></p>
-                    <p>Student ID: <input type="number" ng-model = "editStudent.value[0].student_id"/></p>
-                    <p>Email: <input type="email" ng-model = "editStudent.value[0].p_email"/></p>
-                    <p>Gender: <select name="gender" ng-model="editStudent.value[0].gender" >
-                                <option value=""> </option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="N/A">Prefer not to specify</option>
-                        </select> </p>
-                    <p>Program: <input type="text"  ng-model = "editStudent.value[0].program" /></p>
-                    <p>Academic Term: <input type="text"  ng-model ="editStudent.value[0].academic_term"  /></p>
-                    <p>Workout Buddy: <input type="checkbox" ng-checked="editStudent.value[0].workout_buddy" ng-model = "editStudent.value[0].workout_buddy"/></p>
-                    <p>Workout Buddy Name: <input type="text" value="{{editStudent.value[0].buddy_name}}" ng-model = "editStudent.value[0].buddy_name"/></p>
-<!--                     <p>Contact Frequency: <input type="text" value="{{selectedTerm.rfrequent}}" ng-model = "selectedTerm.rfrequent" /></p> -->
-                    
-                </div>
-            
-            	<input type="button" value="Update" ng-click="updateStudent()" />
+        <div >
+            <p>{{editStudent.value[0].pname_f}}</p>
+            <p>First Name: <input type="text" ng-model ="editStudent.value[0].pname_f" /></p>
+            <p>Last Name: <input type="text"  ng-model = "editStudent.value[0].pname_l"/></p>
+            <p>Student ID: <input type="number" ng-model = "editStudent.value[0].student_id"/></p>
+            <p>Email: <input type="email" ng-model = "editStudent.value[0].p_email"/></p>
+            <p>Gender: <select name="gender" ng-model="editStudent.value[0].gender" >
+                <option value=""> </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="N/A">Prefer not to specify</option>
+                </select> </p>
+            <p>Program: <input type="text"  ng-model = "editStudent.value[0].program" /></p>
+            <p>Academic Term: <input type="text"  ng-model ="editStudent.value[0].academic_term"  /></p>
+            <p>Workout Buddy: <input type="checkbox" ng-checked="editStudent.value[0].workout_buddy" ng-model = "editStudent.value[0].workout_buddy"/></p>
+            <p>Workout Buddy Name: <input type="text" value="{{editStudent.value[0].buddy_name}}" ng-model = "editStudent.value[0].buddy_name"/></p>
+            <!--                     <p>Contact Frequency: <input type="text" value="{{selectedTerm.rfrequent}}" ng-model = "selectedTerm.rfrequent" /></p> -->
+
+        </div>
+
+        <input type="button" value="Update" ng-click="updateStudent()" />
 
 
         </div>
@@ -540,14 +542,14 @@
         <br />
         <br />
         <br />
-        
+
         <br />
         <br />
         <br />
         <br />
         <br />
         <div>
-            
+
 
         </div>
         <br />
