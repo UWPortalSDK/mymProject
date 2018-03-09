@@ -365,6 +365,32 @@ angular.module('portalApp')
         //console.log($scope.contactResults.value.meta.httpStatus);
 
     };
+    
+    
+      $scope.checkStudent = function () { 
+          console.log('$scope.sid',$scope.sid);
+          console.log('$scope.termData',$scope.termData);
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getEditStudent',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {                
+                sid: $scope.sid,
+                term: $scope.termData.term
+            }
+        }).then(function(result) {
+            console.log(result);
+            console.log('result length:',Object.keys(result).length);
+            if (Object.keys(result).length >0)
+            {
+             	alert ("Student is already enrolled");   
+            }
+            else
+            {
+             	$scope.submitEnroll();   
+            }
+                        
+        });    
+    }
 
     $scope.insertStudent = function() {
         console.log($scope.mym.mailingid + " " + $scope.mym.contact_id + " " + $scope.mym.contact_firstName + " " + $scope.mym.contact_lastName + " " + $scope.sid + " " + $scope.termData.term + " " + $scope.program + " " + $scope.mym.contact_email + " " + $scope.gender + " " + $scope.rName + " " + $scope.rType + " " + $scope.rEmail + " " + $scope.rDepartment + " " + $scope.progress + " " + $scope.frequency + " " + $scope.consideration + " " + $scope.date + " " + $scope.aterm);
@@ -394,7 +420,7 @@ angular.module('portalApp')
         }).then(function(result) {
             //sourceLoaded();
             console.log(result);
-            location.reload();
+            //location.reload();
         });
 
     };
