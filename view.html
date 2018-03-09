@@ -23,8 +23,10 @@
                 <widget-row ng-controller="profileCtrl">
                     <div class="ProfileAllContent">
                         <div class="ProfileSearch">
-                            <p class="FormHeader ProfileSearchTitle">Search: </p>
-                            <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text" id="Studentnamesearchbox" placeholder="{{selectedStudent.value}}" />
+                            <div class="SearchInputPart">
+                                <p class="FormHeader ProfileSearchTitle">Search: </p>
+                               <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text" id="Studentnamesearchbox" placeholder="{{selectedStudent.value}}" />
+                            </div>
                             <table class="table">
                                 <tr>
                                     <th>Student ID:
