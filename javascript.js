@@ -1276,7 +1276,6 @@ angular.module('portalApp')
     $scope.selectedItemChanged = function(id, name) {
         // Make the item that user clicked available to the template
         $scope.show = true;
-        alert($scope.show);
         $scope.value1 = false;
         $scope.value2 = true;
         $scope.selectedStudent.value = name;
@@ -1293,50 +1292,53 @@ angular.module('portalApp')
             $scope.terms.value = result;
             //$scope.testFunction();
         });
-
+		
 
     };
 
     $scope.getEmails = function() {
-		$scope.show = false;
-        console.log($scope.selectedTerm.p_email);
-        $scope.portalHelpers.invokeServerFunction({
-            functionName: 'getBefore',
-            uniqueNameId: 'mymProject',
-            sqlArgs: {
-                email: $scope.selectedTerm.p_email
-            }
-        }).then(function(result) {
-            console.log('got student data: ', result);
-            $scope.before.value = result;
-            //displayValue();
-        });
+        if($scope.selectedTerm != null)
+        {
+            $scope.show = false;
 
-        $scope.portalHelpers.invokeServerFunction({
-            functionName: 'getAfter',
-            uniqueNameId: 'mymProject',
-            sqlArgs: {
-                email: $scope.selectedTerm.p_email
-            }
-        }).then(function(result) {
-            console.log('got after data: ', result);
-            $scope.after.value = result;
-            //displayValue();
-        });
-        
-        $scope.portalHelpers.invokeServerFunction({
-            functionName: 'getBeforeGB',
-            uniqueNameId: 'mymProject',
-            sqlArgs: {
-                email: $scope.selectedTerm.p_email
-            }
-        }).then(function(result) {
-            console.log('got gb data: ', result);
-            $scope.gb.value = result;
-            //displayValue();
-        });
+            console.log($scope.selectedTerm.p_email);
+            $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getBefore',
+                uniqueNameId: 'mymProject',
+                sqlArgs: {
+                    email: $scope.selectedTerm.p_email
+                }
+            }).then(function(result) {
+                console.log('got student data: ', result);
+                $scope.before.value = result;
+                //displayValue();
+            });
 
-	
+            $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getAfter',
+                uniqueNameId: 'mymProject',
+                sqlArgs: {
+                    email: $scope.selectedTerm.p_email
+                }
+            }).then(function(result) {
+                console.log('got after data: ', result);
+                $scope.after.value = result;
+                //displayValue();
+            });
+
+            $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getBeforeGB',
+                uniqueNameId: 'mymProject',
+                sqlArgs: {
+                    email: $scope.selectedTerm.p_email
+                }
+            }).then(function(result) {
+                console.log('got gb data: ', result);
+                $scope.gb.value = result;
+                //displayValue();
+            });
+        }
+
     }
 
 
