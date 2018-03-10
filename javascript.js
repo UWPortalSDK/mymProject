@@ -1586,7 +1586,7 @@ angular.module('portalApp')
 
         mainuser: 'UR_72plybg0V8sF3AF',
         shortname: '',
-        surveyid: 'SV_cH174dpYr7WryPr',
+        surveyid: '',
         mailingid: '',
         contact_firstName: '',
         contact_lastName: '',
