@@ -861,6 +861,9 @@ angular.module('portalApp')
     $scope.editStudent = {
         value: null
     };
+    
+    $scope.show = true;
+    
      // function displayValue() {
      // $scope.ChartOptions = {
      //         "chart": {
@@ -1272,6 +1275,8 @@ angular.module('portalApp')
 
     $scope.selectedItemChanged = function(id, name) {
         // Make the item that user clicked available to the template
+        $scope.show = true;
+        alert($scope.show);
         $scope.value1 = false;
         $scope.value2 = true;
         $scope.selectedStudent.value = name;
@@ -1293,7 +1298,7 @@ angular.module('portalApp')
     };
 
     $scope.getEmails = function() {
-
+		$scope.show = false;
         console.log($scope.selectedTerm.p_email);
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'getBefore',
