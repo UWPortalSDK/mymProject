@@ -44,7 +44,7 @@
                                         {{student.pname_f}}  {{student.pname_l}}
                                     </td>
                                     <td class="ProfileTableButton">
-                                        <input type="button" value="Select" class="ProfileSelectButton" ng-click="selectedItemChanged(student.student_id,student.name)" />
+                                        <input type="button" value="Select" class="ProfileSelectButton mymbutton" ng-click="selectedItemChanged(student.student_id,student.name)" />
                                     </td>
                                 </tr>
                             </table>
@@ -68,7 +68,7 @@
                                 <p>Workout Buddy: {{selectedTerm.workout_buddy}}</p>
                                 <p>Workout Buddy Name: {{selectedTerm.buddy_name}}</p>
                                 <p>Feedback Frequency: {{selectedTerm.rfrequent}}</p>
-                                <input class="StudentInfoUpgradeButton ProfileSelectButton" type="button" ng-click="showDetails(selectedTerm.current_term,selectedTerm.student_id)" value="Update" />
+                                <input class="StudentInfoUpgradeButton ProfileSelectButton" type="button" ng-click="showDetails(selectedTerm.current_term,selectedTerm.student_id)" value="Update" ng-disabled = "show" />
                             </div>
                         </uib-accordion>
                         <uib-accordion class="StudentInfoSection" close-others="false">

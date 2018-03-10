@@ -37,6 +37,14 @@
     
 }
 
+.mymbutton {
+    transition: 0.3s;
+}
+
+.mymbutton.button: active {
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+}
+
 .MainPageAllContent {
     width: 100%;
     max-width: 1200px;
