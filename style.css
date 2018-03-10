@@ -34,15 +34,18 @@
 }
 
 .QuestionTitle {
-    
+    font-family: "Open Sans";
+}
+
+.NoticeFont {
+    font-family: "Open Sans";
+    font-size: 0.9em;
+    font-weight: normal;
+    color: Grey;
 }
 
 .mymbutton {
     transition: 0.3s;
-}
-
-.mymbutton.button: active {
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 }
 
 .MainPageAllContent {
@@ -112,14 +115,26 @@
     text-align: center;
 }
 
-.ProfileTermContent {
+.ProfileTermAllContent {
     width: 100%;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom 5px;
+    display: flex;
+}
+
+.ProfileTerm_Title {
+    display: inline-block;
+}
+
+.ProfileTermContent {
+    display: inline-block;
+    margin-left: 20px;
 }
 
 .ProfileTermSelect{
     min-width: 150px;
+    border-radius: 6px;
+    margin-left: 10px;
 }
 
 .StudentInfoSection .panel-group {
@@ -165,6 +180,43 @@
     right: 15px;
     display: inline-block;
 }
+
+.QualtricsButtonContainer {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.QualtricsOptionButton {
+    width: 30%;
+    min-width: 180px;
+    height: 90px;
+    margin-top: 35px;
+    margin-bottom: 0px;
+	background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(70, 70, 70);
+    color: rgb(70, 70, 70);
+    border-radius: 16px;
+    font-family: "Open Sans";
+    font-size: 1.3em;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: normal;
+	word-wrap: break-word;
+}
+
+.QualtricsOptionButton:hover {
+    box-shadow: 0 0 10px rgb(70, 70, 70);
+    border-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+}
+
 
 
 
@@ -278,45 +330,24 @@
     min-width: 200px;
 }
 
-.QualtricsButtonContainer {
-    display: flex;
-    display: -webkit-flex;
-    flex-direction: column;
-    -webkit-align-items: center;
-    align-items: center;
+
+
+
+
+
+
+
+
+.mymbutton:active {
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 }
 
-.QualtricsOptionButton {
-    width: 30%;
-    min-width: 200px;
-    height: 100px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-	background-color: rgb(255, 255, 255);
-    border-style: solid;
-    border-width: 5px;
-    border-color: rgb(70, 70, 70);
-    color: rgb(70, 70, 70);
-    border-radius: 16px;
-    font-family: "Open Sans";
-    font-size: 1.3em;
-    font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    white-space: normal;
-	word-wrap: break-word;
+.mymbutton:disabled {
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(200, 200, 200);
+    color: rgb(200, 200, 200);
+	cursor: no-drop;
 }
-
-.QualtricsOptionButton:hover {
-    box-shadow: 0 0 10px rgb(70, 70, 70);
-    border-color: rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
-}
-
-
-
-
 
 
     
