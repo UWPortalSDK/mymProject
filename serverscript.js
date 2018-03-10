@@ -181,7 +181,7 @@ function getSurveyType(){
 
 //update student profile
 function updateStudent(){
-    db.Execute('UPDATE StudentProfile SET pname_f=@fname, pname_l= @lname,student_id=@sid, p_email=@email, gender=@gender, program=@program, academic_term=@aterm, workout_buddy=@hbuddy, buddy_name=@bname, rfrequent=@confreq  WHERE current_term = @current_term AND student_id=@sid');
+    db.Execute('UPDATE StudentProfile SET pname_f=@fname, pname_l= @lname,student_id=@sid, p_email=@email, gender=@gender, program=@program, academic_term=@aterm, workout_buddy=@hbuddy, buddy_name=@bname, rfrequent=@confreq  WHERE current_term = @current_term AND contact_id= @contact_id');
     return ("Executed");
 }
 
