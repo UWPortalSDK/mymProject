@@ -49,14 +49,19 @@
                                 </tr>
                             </table>
                         </div>
-                        
-                        <div class="ProfileTermContent">
-                            <p class = "FormHeader">Term:
-                                <select class="ProfileTermSelect" ng-options="term.current_term for term in terms.value" ng-change = "getEmails()"ng-model="selectedTerm">
-                                </select>
-                            </p>
+
+                        <div class="ProfileTermAllContent">
+                            <div class = "ProfileTerm_Title">
+                                <p class = "FormHeader">Term:     
+                                    <select class="ProfileTermSelect" ng-options="term.current_term for term in terms.value" ng-change = "getEmails()"ng-model="selectedTerm">
+                                    </select>
+                                </p>	
+                            </div>
+                            <div class = "ProfileTermContent">
+                                <p class = "NoticeFont">*Please select the desired term</p>
+                            </div>
                         </div>
-                        
+
                         <uib-accordion class="StudentInfoSection" close-others="false">
                             <div uib-accordion-group class="StudentProfileSection" heading="Student Information" is-open="true" is-disabled="false">
                                 <p>Student Name: {{selectedTerm.pname_f}} {{selectedTerm.pname_l}}</p>
@@ -68,11 +73,11 @@
                                 <p>Workout Buddy: {{selectedTerm.workout_buddy}}</p>
                                 <p>Workout Buddy Name: {{selectedTerm.buddy_name}}</p>
                                 <p>Feedback Frequency: {{selectedTerm.rfrequent}}</p>
-                                <input class="StudentInfoUpgradeButton ProfileSelectButton" type="button" ng-click="showDetails(selectedTerm.current_term,selectedTerm.student_id)" value="Update" ng-disabled = "show" />
+                                <input class="StudentInfoUpgradeButton ProfileSelectButton mymbutton" type="button" ng-click="showDetails(selectedTerm.current_term,selectedTerm.student_id)" value="Update" ng-disabled = "show" />
                             </div>
                         </uib-accordion>
                         <uib-accordion class="StudentInfoSection" close-others="false">
-<!--                             <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="false" is-disabled="false">
+                            <!--                             <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="false" is-disabled="false">
                                 <h2>Mental Health Comparison</h2>        
                                 <nvd3 options="ChartOptions" data="MHBarData.value"></nvd3>
                                 <h2>Motivation Comparison</h2>
@@ -86,17 +91,17 @@
                     </div>
                 </widget-row>
             </uib-tab>
-            
+
             <uib-tab index="1" heading="Qualtrics Survey">
                 <widget-row>
                     <div class="QualtricsButtonContainer">
-                        <input type="button" value="Add Qualtrics Survey" ng-click = "Qualtrics_Add()" class="QualtricsOptionButton" />
-                        <input type="button" value="Send Qualtrics Survey" ng-click = "Qualtrics_Send()" class="QualtricsOptionButton" />
-                        <input type="button" value="Export Qualtrics Survey Result" ng-click = "Qualtrics_Export()" class="QualtricsOptionButton" />
+                        <input type="button" value="Add Qualtrics Survey" ng-click = "Qualtrics_Add()" class="QualtricsOptionButton mymbutton" />
+                        <input type="button" value="Send Qualtrics Survey" ng-click = "Qualtrics_Send()" class="QualtricsOptionButton mymbutton" />
+                        <input type="button" value="Export Qualtrics Survey Result" ng-click = "Qualtrics_Export()" class="QualtricsOptionButton mymbutton" />
                     </div>
                 </widget-row>
             </uib-tab>
-            
+
             <uib-tab index="2" heading="Enrolment">
                 <widget-row ng-controller="qCtrl">
                     <h2>Student Registration</h2>
@@ -438,7 +443,7 @@
                 <input type="submit" />
             </div>
         </form>
-<!--         <h2>Post the contact</h2>
+        <!--         <h2>Post the contact</h2>
         <div class="pDetails">
             <input type="button" value="Submit" ng-click="MailinglistsPostContact()" class="btn btn-default" />
         </div>
@@ -473,7 +478,7 @@
     <widget-row ng-controller = "editCtrl">
 
         <div >
-<!--             <p>{{editStudent.value[0].contact_id}}</p> -->
+            <!--             <p>{{editStudent.value[0].contact_id}}</p> -->
             <p>First Name: <input type="text" ng-model ="editStudent.value[0].pname_f" /></p>
             <p>Last Name: <input type="text"  ng-model = "editStudent.value[0].pname_l"/></p>
             <p>Student ID: <input type="number" ng-model = "editStudent.value[0].student_id"/></p>
