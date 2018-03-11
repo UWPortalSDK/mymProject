@@ -1,6 +1,8 @@
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
     font-weight: bold;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .PageTitle {
