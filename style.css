@@ -1,6 +1,12 @@
 
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    font-weight: bold;
+}
+
 .PageTitle {
     font-family: "Open Sans";
+    font-size: 1.6em;
+    font-weight: bold;
 }
 
 .SubpageTitle {
@@ -216,6 +222,35 @@
     border-color: rgb(0, 0, 0);
     color: rgb(0, 0, 0);
 }
+
+.EnrolmentTitle {
+    display: block;
+    margin-top: 20px;
+}
+
+.RegistrationQuestions {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.EnrolmentQ .form-control {
+    border-radius: 5px;
+}
+
+.EnrolmentQSelect {
+    border-radius: 5px;
+    min-width: 200px;
+    height: 36px;
+    font-size: 16px;
+    line-height: 1.42857;
+    color: #555;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+
 
 
 
