@@ -104,87 +104,108 @@
 
             <uib-tab index="2" heading="Enrolment">
                 <widget-row ng-controller="qCtrl">
-                    <h2>Student Registration</h2>
-                    <br />
-                    <!--                     <form name="enrollment" ng-submit="submitEnroll()"> -->
+                    <div class="EnrolmentTitle">
+                        <p class="PageTitle">Student Registration</p>
+                    </div>
+
                     <form name="enrollment" ng-submit="checkStudent()">
 
-                        <div class="form-group">
-
-                            <label for="fName">First Name:</label>
-                            <input type="text" ng-model="mym.contact_firstName" class="form-control" id="fName" required></input>
-
-                            <label for="lName">Last Name:</label>
-                            <input type="text" ng-model="mym.contact_lastName" class="form-control" id="lName" required></input>
-
-                            <label for="sid">UW ID:</label>
-                            <input required type="number" ng-model="sid" class="form-control" id="sid" ng-minlength="{{minlength}}"></input>
-
-                            <label for="term">Current Term</label>
-                            <select ng-options="term as term.term for term in QueryResult.value" ng-model="termData" required>
-                                <option></option>
-                            </select>
-                            <p>{{termData.mailing_id}}</p>
-
-                            <label for="program">Program</label>
-                            <input type="text" ng-model="program" class="form-control" id="program" required></input>
-
-                            <label for="mail">UW Email:</label>
-                            <input type="email" ng-model="mym.contact_email" class="form-control" id="mail" required></input>
-                            <br />
-                            <label>Gender: </label>
-                            <select name="gender" ng-model="gender" required>
-                                <option value=""> </option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="N/A">Prefer not to specify</option>
-                            </select>
-                            <br />
-
-                            <label for="rName">Referral's Name:</label>
-                            <input type="text" ng-model="rName" class="form-control" id="rName" required></input>
-
-
-                            <label for="rType">Referral's Type:</label>
-                            <p><small>*Please indicate if you are a student, staff, faculty, self referring, etc.</small></p>
-                            <input type="text" ng-model="rType" class="form-control" id="rType" required></input>
-
-                            <label for="rEmail">Referral's Email:</label>
-                            <input type="email" ng-model="rEmail" class="form-control" id="rEmail" required></input>
-
-                            <label for="rdepartment">Referral's Department:</label>
-                            <input type="text" ng-model="rDepartment" class="form-control" id="rDepartment" required></input>
-
-
-                            <label>Would the referrer need progress update?</label>
-                            <br />
-                            <select name="progress" ng-model="progress" required>
-                                <option value=""> </option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
-                            <br />
-
-
-
-                            <div class="form-group" ng-show="progress=='yes'">
-                                <label for="frequency">How frequent?</label>
-                                <input type="text" ng-model="frequency" class="form-control" id="frequency"></input>
+                        <div class="form-group EnrolmentQ">
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="fName">First Name:</label>
+                                <input type="text" ng-model="mym.contact_firstName" class="form-control EnrolmentTextInput" id="fName" required></input>
                             </div>
-
-
-                            <label for="consideration">Consideration</label>
-                            <input type="text" ng-model="consideration" class="form-control" id="consideration" required></input>
-
-
-                            <label for="date">Submission Date</label>
-                            <input type="date" ng-model="date" class="form-control" id="date" required></input>
-
-
-                            <label for="aterm">Academic Term</label>
-                            <input type="aterm" ng-model="aterm" class="form-control" id="aterm" required></input>
-
-
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="lName">Last Name:</label>
+                                <input type="text" ng-model="mym.contact_lastName" class="form-control EnrolmentTextInput" id="lName" required></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="sid">UW ID:</label>
+                                <input required type="number" ng-model="sid" class="form-control EnrolmentTextInput" id="sid" ng-minlength="{{minlength}}"></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="term">Current Term</label>
+                                <select class="EnrolmentQSelect" ng-options="term as term.term for term in QueryResult.value" ng-model="termData" required>
+                                    <option value=""></option>
+                                </select>
+                                <!--                             <p>{{termData.mailing_id}}</p> -->
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="program">Program</label>
+                                <input type="text" ng-model="program" class="form-control EnrolmentTextInput" id="program" required></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="mail">UW Email:</label>
+                                <input type="email" ng-model="mym.contact_email" class="form-control EnrolmentTextInput" id="mail" required></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label>Gender: </label>
+                                <select class="EnrolmentQSelect" name="gender" ng-model="gender" required>
+                                    <option value=""></option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="N/A">Prefer not to specify</option>
+                                </select>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="rName">Referral's Name:</label>
+                                <input type="text" ng-model="rName" class="form-control EnrolmentTextInput" id="rName" required></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="rType">Referral's Type:</label>
+                                <p class="NoticeFont">*Please indicate if you are a student, staff, faculty, self referring, etc.</p>
+                                <input type="text" ng-model="rType" class="form-control EnrolmentTextInput" id="rType" required></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="rEmail">Referral's Email:</label>
+                                <input type="email" ng-model="rEmail" class="form-control EnrolmentTextInput" id="rEmail" required></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="rdepartment">Referral's Department:</label>
+                                <input type="text" ng-model="rDepartment" class="form-control EnrolmentTextInput" id="rDepartment" required></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label>Would the referrer need progress update?</label>
+                                <select class="EnrolmentQSelect" name="progress" ng-model="progress" required>
+                                    <option value=""></option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <div class="form-group" ng-show="progress=='yes'">
+                                    <label for="frequency">How frequent?</label>
+                                    <input type="text" ng-model="frequency" class="form-control EnrolmentTextInput" id="frequency"></input>
+                                </div>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="consideration">Consideration</label>
+                                <input type="text" ng-model="consideration" class="form-control EnrolmentTextInput" id="consideration" required></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="date">Submission Date</label>
+                                <input type="date" ng-model="date" class="form-control EnrolmentTextInput" id="date" required></input>
+                            </div>
+                            
+                            <div class = "RegistrationQuestions">
+                                <label for="aterm">Academic Term</label>
+                                <input type="aterm" ng-model="aterm" class="form-control EnrolmentTextInput" id="aterm" required></input>
+                            </div>
                         </div>
 
 
