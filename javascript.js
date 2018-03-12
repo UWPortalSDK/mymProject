@@ -11,11 +11,7 @@ angular.module('portalApp')
     };
 
     $scope.actResults.value = mymForm.getAct();
-    //$scope.contact = $scope.editStudent.value[0].contact_id;
-    
-
-    
-
+    //$scope.contact = $scope.editStudent.value[0].contact_id; 
 
 }])
 
@@ -28,6 +24,9 @@ angular.module('portalApp')
     };
 
     $scope.SurveyTypes = {
+        value: null
+    };
+    $scope.exportResults = {
         value: null
     };
 
@@ -55,12 +54,27 @@ angular.module('portalApp')
     };    
     
     $scope.testTime = function() {
+        
+        function checkExists () {
+            
+        }
+        //loop to find the right terms and then insert
+        function insertData(){
+            console.log("Entered Loop");
+            var responses = $scope.exportResults.value.responses;
+             for (var i = 0; i < responses.length; i++) {
+                var temp = responses[i];
+                console.log(temp.sid);
+             }            
+            
+        };
 
         function downloadResult() {
             $scope.portalHelpers.getApiData('Qualtrics/ResponseExportFile?exportid=' + $scope.mym.exportid).then(function(result) {
                 console.log(result.data);
                 if (result.data) {
-                    result.data = JSON.parse(result.data);
+                    $scope.exportResults.value = JSON.parse(result.data);
+                    insertData();
                 }
             });
 
@@ -277,7 +291,7 @@ angular.module('portalApp')
     console.log($scope.yeararray);
     $scope.termarray = ["Fall ", "Winter ", "Spring "];
     console.log($scope.termarray);
-    $scope.surveytypearray = ["Mental Health Initial ", "Goals Initial ", "Midterm Evaluation Survey", "Mental Health Final ", "Goals Final ", "Final Exit Survey "];
+    $scope.surveytypearray = ["Initial Mental Health/Motivation", "Intake Survey", "Exit Survey", "Final Feeback Survey", "Final Mental Health/Motivation"];
     console.log($scope.surveytypearray);
     // now you can get the string
 
