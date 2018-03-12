@@ -5,6 +5,89 @@ var imports = ["test.js"];
 //angular.module('portalApp', ['nvd3'])
 angular.module('portalApp')
 
+.controller('getResultsTest', ['$scope', 'mymForm', function($scope, mymForm) {
+    $scope.InitialMHMotivate = {
+    	value:null
+    };
+    
+    $scope.IntakeSurvey = {
+    	value:null
+    };
+    
+    $scope.ExitSurvey = {
+    	value:null
+    };
+    
+    $scope.FinalFeedback = {
+    	value:null
+    };
+    
+    $scope.FinalMHMotivate = {
+    	value:null
+    };
+    
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'getInfoInitialMHMotivate',
+        uniqueNameId: 'mymProject',
+        sqlArgs: {
+                term: 
+            	id:
+            }
+    }).then(function(result) {
+        console.log('got survey data: ', result);
+        $scope.InitialMHMotivate.value = result;
+    });
+    
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'getInfoIntakeSurvey',
+        uniqueNameId: 'mymProject',
+        sqlArgs: {
+                term: 
+            	id:
+            }
+    }).then(function(result) {
+        console.log('got survey data: ', result);
+        $scope.IntakeSurvey.value = result;
+    });
+    
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'getInfoExitSurvey',
+        uniqueNameId: 'mymProject',
+        sqlArgs: {
+                term: 
+            	id:
+            }
+    }).then(function(result) {
+        console.log('got survey data: ', result);
+        $scope.ExitSurvey.value = result;
+    });
+    
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'getInfoFinalFeedback',
+        uniqueNameId: 'mymProject',
+        sqlArgs: {
+                term: 
+            	id:
+            }
+    }).then(function(result) {
+        console.log('got survey data: ', result);
+        $scope.FinalFeedback.value = result;
+    });
+    
+    $scope.portalHelpers.invokeServerFunction({
+        functionName: 'getInfoFinalMHMotivate',
+        uniqueNameId: 'mymProject',
+        sqlArgs: {
+                term: 
+            	id:
+            }
+    }).then(function(result) {
+        console.log('got survey data: ', result);
+        $scope.FinalMHMotivate.value = result;
+    });
+
+}])
+
 .controller('activityResults', ['$scope', 'mymForm', function($scope, mymForm) {
     $scope.actResults = {
         value: null
@@ -12,6 +95,7 @@ angular.module('portalApp')
 
     $scope.actResults.value = mymForm.getAct();
     //$scope.contact = $scope.editStudent.value[0].contact_id; 
+    //
 
 }])
 
