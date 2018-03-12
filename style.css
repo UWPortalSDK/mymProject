@@ -252,6 +252,97 @@
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
+.EnrolmentButton {
+    width: 100px;
+	background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(100, 100, 100);
+    color: rgb(100, 100, 100);
+    border-radius: 6px;
+    font-family: "Open Sans";
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: normal;
+	word-wrap: break-word;
+}
+
+.EnrolmentButton:hover {
+    box-shadow: 0 0 7px rgb(100, 100, 100);
+    border-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+}
+
+.ActivitySuggestionPage {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0;
+}
+
+.UpdateActButton {
+    width: 120px;
+    height: 40px;
+	background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(100, 100, 100);
+    color: rgb(100, 100, 100);
+    border-radius: 6px;
+    font-family: "Open Sans";
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: normal;
+	word-wrap: break-word;
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+.UpdateActButton:hover {
+    box-shadow: 0 0 7px rgb(100, 100, 100);
+    border-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+}
+
+
+.TotalActivityGroups {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 400px;
+    vertical-align: top;
+}
+
+.TotalActivityGroups .panel-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 400px;
+    vertical-align: top;
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+}
+
+.ActivityGroups {
+    display: inline-block;
+    border-color:#ddd;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    vertical-align: top;
+    white-space: nowrap;
+    min-width: 200px;
+}
+
+
+
 
 
 
@@ -329,43 +420,6 @@
   margin-bottom:10px;
 }
 
-.ActivitySuggestionPage {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0;
-}
-
-
-
-.TotalActivityGroups {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    min-width: 400px;
-    vertical-align: top;
-}
-
-.TotalActivityGroups .panel-group {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    min-width: 400px;
-    vertical-align: top;
-    display: -webkit-flex; /* Safari */
-    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
-}
-
-.ActivityGroups {
-    display: inline-block;
-    border-color:#ddd;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    vertical-align: top;
-    white-space: nowrap;
-    min-width: 200px;
-}
 
 
 
