@@ -109,7 +109,7 @@ angular.module('portalApp', ['nvd3'])
 
 }])
 
-.controller('distributeCtrl', ['$scope', function($scope) {
+.controller('distributeCtrl', ['$scope', 'mymForm', function($scope,mymForm) {
     $scope.terms = {
         value: null
     };
