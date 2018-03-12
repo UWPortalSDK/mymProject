@@ -77,7 +77,7 @@
                             </div>
                         </uib-accordion>
                         <uib-accordion class="StudentInfoSection" close-others="false">
-                            <!--                             <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="false" is-disabled="false">
+                            <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="false" is-disabled="false">
                                 <h2>Mental Health Comparison</h2>        
                                 <nvd3 options="ChartOptions" data="MHBarData.value"></nvd3>
                                 <h2>Motivation Comparison</h2>
@@ -86,7 +86,7 @@
                                 <nvd3 options="pieChartOptions" data="pieChartDataGoal.value"></nvd3>
                                 <h2>Barriers</h2>
                                 <nvd3 options="pieChartOptions" data="pieChartDataBarrier.value"></nvd3>
-                            </div> -->
+                            </div>
                         </uib-accordion>
                     </div>
                 </widget-row>
@@ -208,16 +208,10 @@
                             </div>
                         </div>
 
-
-                        <!--                         <div class="form-group">
-                            <label for="qualtrics">Qualtrics Survey ID</label>
-                            <input type="text" ng-model="survey" class="form-control" id="wBuddy"></input>
-                            {{survey}}
-                        </div> -->
                         <br />
                         <!--                         <input type="button" value="Submit" ng-click="submitEnroll()" class="btn btn-default" /> -->
 
-                        <input type="submit" />
+                        <input class="EnrolmentButton mymbutton" type="submit" />
 
                     </form>
                 </widget-row>
@@ -228,9 +222,9 @@
                     <div class="ActivitySuggestionPage">
 
                         <div class="ActivitySuggestionPageContent">
-                            <p>Please upload the activity spreadsheet below.</p>
-                            <input type="file" id="file" name="file" ng-files="getTheFiles($files)" />
-                            <input type="button" ng-click="uploadFiles()" value="Upload" />
+                            <p class="Basictext">Please upload the activity spreadsheet below.</p>
+                            <input class="" type="file" id="file" name="file" ng-files="getTheFiles($files)" />
+                            <input class="UpdateActButton mymbutton" type="button" ng-click="uploadFiles()" value="Upload" />
                         </div>
                         <p>{{data}}</p>
                     </div>
