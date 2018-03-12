@@ -221,3 +221,52 @@ function getBeforeGB(){
     return queryResult;
 }
 
+//the following 5 server scripts are for each of the 5 survey tables
+function getInfoInitialMHMotivate(){
+    var queryResult = db.Execute("SELECT * FROM InitialMHMotivate where student_id = @id and current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getInfoIntakeSurvey(){
+    var queryResult = db.Execute("SELECT * FROM IntakeSurvey where student_id = @id and current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getInfoExitSurvey(){
+    var queryResult = db.Execute("SELECT * FROM ExitSurvey where student_id = @id and current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getInfoFinalFeedback(){
+    var queryResult = db.Execute("SELECT * FROM FinalFeedback where student_id = @id and current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getInfoFinalMHMotivate(){
+    var queryResult = db.Execute("SELECT * FROM FinalMHMotivate where student_id = @id and current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+//end of the server scripts for the 5 surveys 
+
+
