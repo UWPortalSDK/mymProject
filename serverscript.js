@@ -162,7 +162,7 @@ function getTermsDist() {
 
 //retrieve student information from the database for distribution page given a term
 function getStudentDist() {
-    var queryResult = db.Execute('SELECT pname_f, pname_l, p_email, contact_id, mailing_id From StudentProfile WHERE current_term =  @term');
+    var queryResult = db.Execute('SELECT pname_f, pname_l, p_email, contact_id, mailing_id, student_id From StudentProfile WHERE current_term =  @term');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -171,7 +171,7 @@ function getStudentDist() {
 }
 
 function getSurveyType(){
-    var queryResult = db.Execute('SELECT type, survey_id FROM surveytable');
+    var queryResult = db.Execute('SELECT type, survey_id FROM surveytable WHERE term=@value');
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
