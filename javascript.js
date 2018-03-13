@@ -1158,16 +1158,18 @@ angular.module('portalApp')
         var promise3 = new Promise(function(resolve, reject) {
             // do a thing, possibly async, then…
             for (var key in centerValues.value) {
-
+				
                 temp = centerValues.value[key];
-
+				console.log(temp);
+                
                 distance = Math.sqrt(Math.pow(parseFloat(temp.x_coord) - parseFloat($scope.x_val), 2) + Math.pow(parseFloat(temp.y_coord) - parseFloat($scope.y_val), 2) + Math.pow(parseFloat(temp.z_coord) - parseFloat($scope.z_val), 2));
-                alert("The cluster currently belongs to " + clusterBelong[0]);
+                console.log(distance);
+                console.log("The cluster currently belongs to " + clusterBelong[0]);
                 //alert(clusterBelong[1]);
                 //alert(parseFloat(distance));
                 if (parseFloat(distance) <= parseFloat(clusterBelong[1])) {
                     clusterBelong = [temp.cluster_number, distance];
-                    alert("Changed Distance New Cluster is " + clusterBelong[0]);
+                    console.log("Changed Distance New Cluster is " + clusterBelong[0]);
                     //alert(clusterBelong[0]);
                 }
 
