@@ -1625,321 +1625,321 @@ angular.module('portalApp', ['nvd3'])
     
     $scope.show = true;
     
-     // function displayValue() {
-     // $scope.ChartOptions = {
-     //         "chart": {
-     //             "type": "multiBarChart",
-     //             "height": 450,
-     //             "margin": {
-     //                 "top": 45,
-     //                 "right": 20,
-     //                 "bottom": 45,
-     //                 "left": 45
-     //             },
-     //             "clipEdge": true,
-     //             "duration": 500,
-     //             "stacked": false,
-     //             "xAxis": {
-     //                 "axisLabel": "Components",
-     //                 "showMaxMin": false,
-     //                 "dispatch": {}
-     //             },
-     //             "yAxis": {
-     //                 "axisLabel": "Ratings",
-     //                 "axisLabelDistance": -20,
-     //                 "dispatch": {},
-     //                 "showMaxMin": true
-     //             },
-     //             "dispatch": {},
-     //             "interactive": true,
-     //             "useInteractiveGuideline": true,
-     //             "tooltip": {
-     //                 "duration": 0,
-     //                 "gravity": "w",
-     //                 "distance": 25,
-     //                 "snapDistance": 0,
-     //                 "classes": null,
-     //                 "chartContainer": null,
-     //                 "enabled": true,
-     //                 "hideDelay": 200,
-     //                 "headerEnabled": true,
-     //                 "fixedTop": null,
-     //                 "offset": {
-     //                     "left": 0,
-     //                     "top": 0
-     //                 },
-     //                 "hidden": true,
-     //                 "data": null,
-     //                 "id": "nvtooltip-40825"
-     //             },
-     //             "interactiveLayer": {
-     //                 "dispatch": {},
-     //                 "tooltip": {
-     //                     "duration": 0,
-     //                     "gravity": "w",
-     //                     "distance": 25,
-     //                     "snapDistance": 0,
-     //                     "classes": null,
-     //                     "chartContainer": null,
-     //                     "enabled": true,
-     //                     "hideDelay": 0,
-     //                     "headerEnabled": true,
-     //                     "fixedTop": null,
-     //                     "offset": {
-     //                         "left": 0,
-     //                         "top": 0
-     //                     },
-     //                     "hidden": false,
-     //                     "data": null,
-     //                     "id": "nvtooltip-38302"
-     //                 },
-     //                 "margin": {
-     //                     "left": 0,
-     //                     "top": 0
-     //                 },
-     //                 "width": null,
-     //                 "height": null,
-     //                 "showGuideLine": true,
-     //                 "svgContainer": null
-     //             },
-     //             "delay": 0,
-     //             "forceY": [0, 10],
-     //             "showLegend": true,
-     //             "showControls": false,
-     //             "reduceXTicks": true,
+     function displayValue() {
+     $scope.ChartOptions = {
+             "chart": {
+                 "type": "multiBarChart",
+                 "height": 450,
+                 "margin": {
+                     "top": 45,
+                     "right": 20,
+                     "bottom": 45,
+                     "left": 45
+                 },
+                 "clipEdge": true,
+                 "duration": 500,
+                 "stacked": false,
+                 "xAxis": {
+                     "axisLabel": "Components",
+                     "showMaxMin": false,
+                     "dispatch": {}
+                 },
+                 "yAxis": {
+                     "axisLabel": "Ratings",
+                     "axisLabelDistance": -20,
+                     "dispatch": {},
+                     "showMaxMin": true
+                 },
+                 "dispatch": {},
+                 "interactive": true,
+                 "useInteractiveGuideline": true,
+                 "tooltip": {
+                     "duration": 0,
+                     "gravity": "w",
+                     "distance": 25,
+                     "snapDistance": 0,
+                     "classes": null,
+                     "chartContainer": null,
+                     "enabled": true,
+                     "hideDelay": 200,
+                     "headerEnabled": true,
+                     "fixedTop": null,
+                     "offset": {
+                         "left": 0,
+                         "top": 0
+                     },
+                     "hidden": true,
+                     "data": null,
+                     "id": "nvtooltip-40825"
+                 },
+                 "interactiveLayer": {
+                     "dispatch": {},
+                     "tooltip": {
+                         "duration": 0,
+                         "gravity": "w",
+                         "distance": 25,
+                         "snapDistance": 0,
+                         "classes": null,
+                         "chartContainer": null,
+                         "enabled": true,
+                         "hideDelay": 0,
+                         "headerEnabled": true,
+                         "fixedTop": null,
+                         "offset": {
+                             "left": 0,
+                             "top": 0
+                         },
+                         "hidden": false,
+                         "data": null,
+                         "id": "nvtooltip-38302"
+                     },
+                     "margin": {
+                         "left": 0,
+                         "top": 0
+                     },
+                     "width": null,
+                     "height": null,
+                     "showGuideLine": true,
+                     "svgContainer": null
+                 },
+                 "delay": 0,
+                 "forceY": [0, 10],
+                 "showLegend": true,
+                 "showControls": false,
+                 "reduceXTicks": true,
 
-     //         },
-     //         "title": {
-     //             "enable": true,
-     //             "text": "Comparison Charts",
-     //             "className": "h4",
-     //             "css": {
-     //                 "width": "nullpx",
-     //                 "textAlign": "center"
-     //             }
-     //         },
-     //         "subtitle": {
-     //             "enable": false,
-     //             "text": "Mental Health",
-     //             "css": {
-     //                 "width": "nullpx",
-     //                 "textAlign": "center"
-     //             }
-     //         },
-     //         "caption": {
-     //             "enable": false,
-     //             "text": "Figure 1. Write Your Caption text.",
-     //             "css": {
-     //                 "width": "nullpx",
-     //                 "textAlign": "center"
-     //             }
-     //         }
-     //     },
+             },
+             "title": {
+                 "enable": true,
+                 "text": "Comparison Charts",
+                 "className": "h4",
+                 "css": {
+                     "width": "nullpx",
+                     "textAlign": "center"
+                 }
+             },
+             "subtitle": {
+                 "enable": false,
+                 "text": "Mental Health",
+                 "css": {
+                     "width": "nullpx",
+                     "textAlign": "center"
+                 }
+             },
+             "caption": {
+                 "enable": false,
+                 "text": "Figure 1. Write Your Caption text.",
+                 "css": {
+                     "width": "nullpx",
+                     "textAlign": "center"
+                 }
+             }
+         },
 
-     //     $scope.pieChartOptions = {
-     //         "chart": {
-     //             "type": "pieChart",
-     //             "height": 500,
-     //             "showLabels": true,
-     //             "duration": 500,
-     //             "showLegend": true,
-     //             "growOnHover": true,
-     //             "pieLabelsOutside": true,
-     //             "legendPosition": "top",
-     //             "labelSunbeamLayout": false,
-     //             "labelType": "percent",
-     //             "interactive": true,
-     //             "useInteractiveGuideline": true,
-     //             "legend": {
-     //                 "margin": {
-     //                     "top": 5,
-     //                     "right": 35,
-     //                     "bottom": 5,
-     //                     "left": 0
-     //                 }
-     //             },
-     //             "delay": 0,
-     //             "margin": {
-     //                 "top": 30,
-     //                 "right": 20,
-     //                 "bottom": 20,
-     //                 "left": 20
-     //             }
-     //         },
+         $scope.pieChartOptions = {
+             "chart": {
+                 "type": "pieChart",
+                 "height": 500,
+                 "showLabels": true,
+                 "duration": 500,
+                 "showLegend": true,
+                 "growOnHover": true,
+                 "pieLabelsOutside": true,
+                 "legendPosition": "top",
+                 "labelSunbeamLayout": false,
+                 "labelType": "percent",
+                 "interactive": true,
+                 "useInteractiveGuideline": true,
+                 "legend": {
+                     "margin": {
+                         "top": 5,
+                         "right": 35,
+                         "bottom": 5,
+                         "left": 0
+                     }
+                 },
+                 "delay": 0,
+                 "margin": {
+                     "top": 30,
+                     "right": 20,
+                     "bottom": 20,
+                     "left": 20
+                 }
+             },
 
-     //         "title": {
-     //             "enable": false,
-     //             "text": "Write Your Title",
-     //             "className": "h4",
-     //             "css": {
-     //                 "width": "nullpx",
-     //                 "textAlign": "center"
-     //             }
-     //         },
+             "title": {
+                 "enable": false,
+                 "text": "Write Your Title",
+                 "className": "h4",
+                 "css": {
+                     "width": "nullpx",
+                     "textAlign": "center"
+                 }
+             },
 
-     //         "subtitle": {
-     //             "enable": false,
-     //             "text": "Write Your Subtitle",
-     //             "css": {
-     //                 "width": "nullpx",
-     //                 "textAlign": "center"
-     //             }
-     //         },
+             "subtitle": {
+                 "enable": false,
+                 "text": "Write Your Subtitle",
+                 "css": {
+                     "width": "nullpx",
+                     "textAlign": "center"
+                 }
+             },
 
-     //         "caption": {
-     //             "enable": false,
-     //             "text": "Figure 1. Write Your Caption text.",
-     //             "css": {
-     //                 "width": "nullpx",
-     //                 "textAlign": "center"
-     //             }
-     //         }
-     //     },
+             "caption": {
+                 "enable": false,
+                 "text": "Figure 1. Write Your Caption text.",
+                 "css": {
+                     "width": "nullpx",
+                     "textAlign": "center"
+                 }
+             }
+         },
 
-     //     $scope.MHBarData = {
-     //         value: [{
-     //             key: "Entrance Survey",
-     //             values: [{
-     //                 x: "Life",
-     //                 y: $scope.before.value[0].mh_life
-     //             }, {
-     //                 x: "Nervous",
-     //                 y: $scope.before.value[0].mh_nervous
-     //             }, {
-     //                 x: "Sleep",
-     //                 y: $scope.before.value[0].mh_sleep
-     //             }, {
-     //                 x: "Stress",
-     //                 y: $scope.before.value[0].mh_stress
-     //             }, {
-     //                 x: "Concentrate",
-     //                 y: $scope.before.value[0].mh_concentrate
-     //             }, {
-     //                 x: "Tired",
-     //                 y: $scope.before.value[0].mh_tired
-     //             }]
-     //         }, {
-     //             key: "Exit Survey",
-     //             values: [{
-     //                 x: "Life",
-     //                 y: $scope.after.value[0].mh_life
-     //             }, {
-     //                 x: "Nervous",
-     //                 y: $scope.after.value[0].mh_nervous
-     //             }, {
-     //                 x: "Sleep",
-     //                 y: $scope.after.value[0].mh_sleep
-     //             }, {
-     //                 x: "Stress",
-     //                 y: $scope.after.value[0].mh_stress
-     //             }, {
-     //                 x: "Concentrate",
-     //                 y: $scope.after.value[0].mh_concentrate
-     //             }, {
-     //                 x: "Tired",
-     //                 y: $scope.after.value[0].mh_tired
-     //             }]
-     //         }, ]
-     //     },
+         $scope.MHBarData = {
+             value: [{
+                 key: "Entrance Survey",
+                 values: [{
+                     x: "Life",
+                     y: $scope.before.value[0].mh_life
+                 }, {
+                     x: "Nervous",
+                     y: $scope.before.value[0].mh_nervous
+                 }, {
+                     x: "Sleep",
+                     y: $scope.before.value[0].mh_sleep
+                 }, {
+                     x: "Stress",
+                     y: $scope.before.value[0].mh_stress
+                 }, {
+                     x: "Concentrate",
+                     y: $scope.before.value[0].mh_concentrate
+                 }, {
+                     x: "Tired",
+                     y: $scope.before.value[0].mh_tired
+                 }]
+             }, {
+                 key: "Exit Survey",
+                 values: [{
+                     x: "Life",
+                     y: $scope.after.value[0].mh_life
+                 }, {
+                     x: "Nervous",
+                     y: $scope.after.value[0].mh_nervous
+                 }, {
+                     x: "Sleep",
+                     y: $scope.after.value[0].mh_sleep
+                 }, {
+                     x: "Stress",
+                     y: $scope.after.value[0].mh_stress
+                 }, {
+                     x: "Concentrate",
+                     y: $scope.after.value[0].mh_concentrate
+                 }, {
+                     x: "Tired",
+                     y: $scope.after.value[0].mh_tired
+                 }]
+             }, ]
+         },
 
-     //     $scope.MotivateBarData = {
-     //         value: [{
-     //             key: "Entrance Survey",
-     //             values: [{
-     //                 x: "Benefit",
-     //                 y: $scope.before.value[0].exercise_benefit
-     //             }, {
-     //                 x: "Regular",
-     //                 y: $scope.before.value[0].exercise_regular
-     //             }, {
-     //                 x: "Fun",
-     //                 y: $scope.before.value[0].exercise_fun
-     //             }, {
-     //                 x: "Satisfaction",
-     //                 y: $scope.before.value[0].exercise_satisfaction
-     //             }, {
-     //                 x: "Pressure",
-     //                 y: $scope.before.value[0].exercise_pressure
-     //             }, {
-     //                 x: "Guilt",
-     //                 y: $scope.before.value[0].exercise_guilt
-     //             }]
-     //         }, {
-     //             key: "Exit Survey",
-     //             values: [{
-     //                 x: "Benefit",
-     //                 y: $scope.after.value[0].exercise_benefit
-     //             }, {
-     //                 x: "Regular",
-     //                 y: $scope.after.value[0].exercise_regular
-     //             }, {
-     //                 x: "Fun",
-     //                 y: $scope.after.value[0].exercise_fun
-     //             }, {
-     //                 x: "Satisfaction",
-     //                 y: $scope.after.value[0].exercise_satisfaction
-     //             }, {
-     //                 x: "Pressure",
-     //                 y: $scope.after.value[0].exercise_pressure
-     //             }, {
-     //                 x: "Guilt",
-     //                 y: $scope.after.value[0].exercise_guilt
-     //             }]
-     //         }, ]
-     //     },
-
-
-     //     $scope.pieChartDataGoal = {
-     //         value: [{
-     //             x: "Feel",
-     //             y: $scope.gb.value[0].gba_feel
-     //         }, {
-     //             x: "Look",
-     //             y: $scope.gb.value[0].gba_look
-     //         }, {
-     //             x: "Sleep",
-     //             y: $scope.gb.value[0].gba_sleep
-     //         }, {
-     //             x: "Energy",
-     //             y: $scope.gb.value[0].gba_energy
-     //         }, {
-     //             x: "Memory",
-     //             y: $scope.gb.value[0].gba_memory
-     //         }, {
-     //             x: "Health",
-     //             y: $scope.gb.value[0].gba_health
-     //         }, {
-     //             x: "People",
-     //             y: $scope.gb.value[0].gba_people
-     //         }]
-     //     },
-     //     $scope.pieChartDataBarrier = {
-     //         value: [{
-     //             x: "Motivate",
-     //             y: $scope.gb.value[0].gbb_motivate
-     //         }, {
-     //             x: "Support",
-     //             y: $scope.gb.value[0].gbb_support
-     //         }, {
-     //             x: "Account",
-     //             y: $scope.gb.value[0].gbb_account
-     //         }, {
-     //             x: "School",
-     //             y: $scope.gb.value[0].gbb_school
-     //         }, {
-     //             x: "Job",
-     //             y: $scope.gb.value[0].gbb_job
-     //         }, {
-     //             x: "Physical",
-     //             y: $scope.gb.value[0].gbb_physical
-     //         }, {
-     //             x: "Finance",
-     //             y: $scope.gb.value[0].gbb_finance
-     //         }]
-     //     };
+         $scope.MotivateBarData = {
+             value: [{
+                 key: "Entrance Survey",
+                 values: [{
+                     x: "Benefit",
+                     y: $scope.before.value[0].exercise_benefit
+                 }, {
+                     x: "Regular",
+                     y: $scope.before.value[0].exercise_regular
+                 }, {
+                     x: "Fun",
+                     y: $scope.before.value[0].exercise_fun
+                 }, {
+                     x: "Satisfaction",
+                     y: $scope.before.value[0].exercise_satisfaction
+                 }, {
+                     x: "Pressure",
+                     y: $scope.before.value[0].exercise_pressure
+                 }, {
+                     x: "Guilt",
+                     y: $scope.before.value[0].exercise_guilt
+                 }]
+             }, {
+                 key: "Exit Survey",
+                 values: [{
+                     x: "Benefit",
+                     y: $scope.after.value[0].exercise_benefit
+                 }, {
+                     x: "Regular",
+                     y: $scope.after.value[0].exercise_regular
+                 }, {
+                     x: "Fun",
+                     y: $scope.after.value[0].exercise_fun
+                 }, {
+                     x: "Satisfaction",
+                     y: $scope.after.value[0].exercise_satisfaction
+                 }, {
+                     x: "Pressure",
+                     y: $scope.after.value[0].exercise_pressure
+                 }, {
+                     x: "Guilt",
+                     y: $scope.after.value[0].exercise_guilt
+                 }]
+             }, ]
+         },
 
 
-     // }
+         $scope.pieChartDataGoal = {
+             value: [{
+                 x: "Feel",
+                 y: $scope.gb.value[0].gba_feel
+             }, {
+                 x: "Look",
+                 y: $scope.gb.value[0].gba_look
+             }, {
+                 x: "Sleep",
+                 y: $scope.gb.value[0].gba_sleep
+             }, {
+                 x: "Energy",
+                 y: $scope.gb.value[0].gba_energy
+             }, {
+                 x: "Memory",
+                 y: $scope.gb.value[0].gba_memory
+             }, {
+                 x: "Health",
+                 y: $scope.gb.value[0].gba_health
+             }, {
+                 x: "People",
+                 y: $scope.gb.value[0].gba_people
+             }]
+         },
+         $scope.pieChartDataBarrier = {
+             value: [{
+                 x: "Motivate",
+                 y: $scope.gb.value[0].gbb_motivate
+             }, {
+                 x: "Support",
+                 y: $scope.gb.value[0].gbb_support
+             }, {
+                 x: "Account",
+                 y: $scope.gb.value[0].gbb_account
+             }, {
+                 x: "School",
+                 y: $scope.gb.value[0].gbb_school
+             }, {
+                 x: "Job",
+                 y: $scope.gb.value[0].gbb_job
+             }, {
+                 x: "Physical",
+                 y: $scope.gb.value[0].gbb_physical
+             }, {
+                 x: "Finance",
+                 y: $scope.gb.value[0].gbb_finance
+             }]
+         };
+
+
+     }
     // This function gets called when user clicks an item in the list
     $scope.showDetails = function(term, id) {
 
@@ -2071,8 +2071,19 @@ angular.module('portalApp', ['nvd3'])
                 }
             }).then(function(result) {
                 console.log('got student data: ', result);
-                $scope.before.value = result;
-                //displayValue();
+                if (result.length == 0){
+                    console.log("Empty Result");
+                    
+                    $scope.before.value = [mymForm.mhData];
+                    console.log( $scope.before.value);
+                }
+                else {
+                    
+                    $scope.before.value = result;
+                    
+                }
+                //$scope.before.value = result;
+                displayValue();
             });
 
             $scope.portalHelpers.invokeServerFunction({
@@ -2083,8 +2094,19 @@ angular.module('portalApp', ['nvd3'])
                 }
             }).then(function(result) {
                 console.log('got after data: ', result);
-                $scope.after.value = result;
-                //displayValue();
+                if (result.length == 0){
+                    console.log("Empty Result");
+                    $scope.after.value = [mymForm.mhData];
+                    console.log( $scope.after.value);
+                }
+                else {
+                    
+                   $scope.after.value = result;
+                   console.log($scope.after.value = result);
+                    
+                }
+                //$scope.after.value = result;
+                displayValue();
             });
 
             $scope.portalHelpers.invokeServerFunction({
@@ -2095,8 +2117,19 @@ angular.module('portalApp', ['nvd3'])
                 }
             }).then(function(result) {
                 console.log('got gb data: ', result);
-                $scope.gb.value = result;
-                //displayValue();
+                if (result.length == 0){
+                    console.log("Empty Result");
+                    $scope.gb.value = [mymForm.intakeData];
+                    console.log( $scope.gb.value);
+                }
+                else {
+                    
+                   $scope.gb.value = result;
+                   console.log($scope.gb.value = result);
+                    
+                }
+                //$scope.gb.value = result;
+                displayValue();
             });
         }
 
@@ -2366,6 +2399,40 @@ angular.module('portalApp', ['nvd3'])
         message: '',
         message_id: ''
     };
+    
+    var mhData = {
+        mh_life: 0,
+        mh_nervous: 0,
+        mh_sleep: 0,
+        mh_stress: 0,
+        mh_concentrate: 0,
+        mh_tired: 0,
+        exercise_benefit: 0,
+        exercise_regular:0,
+        exercise_fun: 0,
+        exercise_satisfaction: 0,
+        exercise_pressure: 0,
+        exercise_guilt:0                       
+
+    };
+    
+    var intakeData = {
+        gba_feel: 0,
+        gba_look: 0,
+        gba_sleep: 0,
+        gba_energy: 0,
+        gba_memory: 0,
+        gba_health: 0,
+        gba_people: 0,
+        gbb_motivate:0,
+        gbb_support: 0,
+        gbb_account: 0,
+        gbb_school: 0,
+        gbb_job:0,
+        gbb_physical:0,
+        gbb_finance:0       
+
+    };
 
     var savedData = {
         value: null
@@ -2401,7 +2468,9 @@ angular.module('portalApp', ['nvd3'])
         setAct: setAct,
         getAct: getAct,
         set: set,
-        get: get
+        get: get,
+        mhData: mhData,
+        intakeData: intakeData
 
     };
 }])
