@@ -293,7 +293,7 @@
 }
 
 .EnrolmentButton {
-    width: 100px;
+    width: 120px;
     background-color: rgb(255, 255, 255);
     border-style: solid;
     border-width: 2px;
@@ -322,33 +322,7 @@
     margin-top: 20px;
 }
 
-.UpdateActButton {
-    width: 120px;
-    height: 40px;
-	background-color: rgb(255, 255, 255);
-    border-style: solid;
-    border-width: 2px;
-    border-color: rgb(100, 100, 100);
-    color: rgb(100, 100, 100);
-    border-radius: 6px;
-    font-family: "Open Sans";
-    font-size: 1em;
-    font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    white-space: normal;
-	word-wrap: break-word;
-    margin-top: 30px;
-    margin-right: 10px;
-    margin-bottom: 0px;
-}
 
-.UpdateActButton:hover {
-    box-shadow: 0 0 7px rgb(100, 100, 100);
-    border-color: rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
-}
 
 .TotalActivityGroups {
     display: flex;
@@ -602,10 +576,22 @@
 
 .GeneralTermTitle {
     font-family: "Open Sans";
+    margin-top: 30px;
+    font-size: 2em;
+    margin-left: 4%;
 }
 
+.GeneralRepChart {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 4%;
+    margin-right: 4%;
+}
 
-
+.chartTitle {
+    font-family:  "Open Sans";
+    font-size: 1.5em;
+}
 
 .activityResults_Page {
     width: 100%;
@@ -618,7 +604,91 @@
     margin: 10px 40px;
 }
 
+.SurveyDistribution_Page {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
+    margin: auto;
+}
 
+.SurveyDistributionPageTitle {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.SurveyDistFormQues {
+    margin: 30px 10px;
+}
+
+.SelectDropDown {
+    height: 32px;
+    min-width: 150px;
+    border-radius: 4px;
+    margin-left: 20px;
+    font-family: "Open Sans"; 
+}
+
+.SurveyDistFormSubject {
+    margin-left: 20px;
+    height: 32px;
+    width: 300px;
+}
+
+.SurveyDistFormSubject: focus{
+    border-color: rgb(0, 153, 255);
+}
+
+.subpageSubmitButton {
+    width: 120px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(100, 100, 100);
+    color: rgb(100, 100, 100);
+    border-radius: 6px;
+    font-family: "Open Sans";
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: normal;
+    word-wrap: break-word;
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+.subpageSubmitButton:hover {
+    box-shadow: 0 0 7px rgb(100, 100, 100);
+    border-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+}
+
+.InsertSurvey_Page {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
+    margin: auto;
+}
+
+.InsertSurveyPageTitle {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.InsertSurveyField {
+    margin: 30px 10px;
+}
+
+.InsertSurveySelect {
+    height: 32px;
+    min-width: 150px;
+    border-radius: 4px;
+    margin-right: 15px;
+    font-family: "Open Sans"; 
+}
 
 
 
