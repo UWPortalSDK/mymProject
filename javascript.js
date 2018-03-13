@@ -2043,7 +2043,7 @@ angular.module('portalApp', ['nvd3'])
         document.getElementById("Studentnamesearchbox").value = id;
         $scope.searchKeyword = id;
         $scope.portalHelpers.invokeServerFunction({
-            functionName: 'getTerms',
+            functionName: 'getTermsProfile',
             uniqueNameId: 'mymProject',
             sqlArgs: {
                 value: id
