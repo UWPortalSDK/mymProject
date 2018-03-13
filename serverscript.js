@@ -295,3 +295,52 @@ function insertFinalMHMotivate(){
 }
 //end of the server scripts for the 5 surveys 
 
+//the following server scripts are for the general report 
+function getTerms (){
+    var queryResult = db.Execute('SELECT DISTINCT current_term FROM StudentProfile');
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getNumStudents ()
+{
+	var queryResult = db.Execute("SELECT count (*) FROM StudentProfile where current_term = @term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getAvgBefore(){
+	var queryResult = db.Execute("select avg (mh_life) as life, avg (mh_nervous) as nervous, avg (mh_sleep) as sleep, avg (mh_stress) as stress,avg (mh_concentrate) as concentrate,avg (mh_tired) as tired,avg(exercise_benefit) as benefit,avg(exercise_regular) as regular,avg(exercise_fun) as fun,avg(exercise_satisfaction) as satisfaction,avg(exercise_pressure) as pressure,avg(exercise_guilt) as guilt from PreIntakeMeeting where current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getAvgAfter(){
+	var queryResult = db.Execute("select avg (mh_life) as life, avg (mh_nervous) as nervous, avg (mh_sleep) as sleep, avg (mh_stress) as stress,avg (mh_concentrate) as concentrate,avg (mh_tired) as tired,avg(exercise_benefit) as benefit,avg(exercise_regular) as regular,avg(exercise_fun) as fun,avg(exercise_satisfaction) as satisfaction,avg(exercise_pressure) as pressure,avg(exercise_guilt) as guilt from FinalMeeting where current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getAvgGBBefore(){
+	var queryResult = db.Execute("select avg(gba_feel) as feel,avg(gba_look) as look,avg(gba_sleep) as sleep,avg (gba_energy) as energy,avg(gba_memory) as memory,avg(gba_health) as health,avg(gba_people) as people,avg(gbb_motivate) as motivate,avg(gbb_support) as support,avg(gbb_account) as account,avg(gbb_school) as school,avg(gbb_job) as job,avg(gbb_physical) as physical,avg(gbb_finance) as finance from Intake where current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+//end of the general report queries
+
+
