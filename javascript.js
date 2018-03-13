@@ -5,7 +5,365 @@ var imports = ["test.js"];
 //angular.module('portalApp', ['nvd3'])
 angular.module('portalApp')
 
-.controller('activityResults', ['$scope', 'mymForm', function($scope, mymForm) {
+.controller('generalReportCtrl', ['$scope', function($scope) {       
+       
+        
+        $scope.terms = {
+        	value: null
+        };
+        
+        $scope.numStudents = {
+        	value: null
+        };
+        
+        $scope.avgBefore = {
+        	value:null
+        };
+        
+        $scope.avgAfter={
+        	value:null
+        };
+        
+        $scope.avgGB = {
+        	value: null
+        };    
+        
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getTerms',
+            uniqueNameId: 'd3chartmym',
+        }).then(function(result) {
+            $scope.terms.value = result;
+            console.log(result);
+        });  
+        
+         $scope.getTermDisplay = function(term) {
+                 console.log('term',term);
+            $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getNumStudents',
+                uniqueNameId: 'd3chartmym',
+                sqlArgs: {
+                    term: term
+                }
+            }).then(function(result) {
+                console.log('got student num: ', result);
+                $scope.numStudents.value = result;
+            });
+
+                 $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getAvgBefore',
+                uniqueNameId: 'd3chartmym',
+                     sqlArgs: {
+                     term: term
+                     }
+            }).then(function(result) {
+                $scope.avgBefore.value = result;
+                console.log(result);
+                     displayValue();
+            });  
+             
+              $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getAvgAfter',
+                uniqueNameId: 'd3chartmym',
+                     sqlArgs: {
+                     term: term
+                     }
+            }).then(function(result) {
+                $scope.avgAfter.value = result;
+                console.log(result);
+                    displayValue();
+            });  
+             
+             $scope.portalHelpers.invokeServerFunction({
+                functionName: 'getAvgGBBefore',
+                uniqueNameId: 'd3chartmym',
+                     sqlArgs: {
+                     term: term
+                     }
+            }).then(function(result) {
+                $scope.avgGB.value = result;
+                console.log(result);
+                    displayValue();
+            }); 
+        
+         };
+        
+   
+        
+        function displayValue() {
+        	 $scope.multiBarChartOptions = {
+        "chart": {
+            "type": "multiBarChart",
+            "height": 500,
+            "margin": {
+                "top": 45,
+                "right": 20,
+                "bottom": 45,
+                "left": 45
+            },
+            "clipEdge": true,
+            "duration": 500,
+            "stacked": false,
+            "xAxis": {
+                "axisLabel": "Components",
+                "showMaxMin": false,
+                "dispatch": {}
+            },
+            "yAxis": {
+                "axisLabel": "Ratings",
+                "axisLabelDistance": -20,
+                "dispatch": {},
+                "showMaxMin": true
+            },
+            "dispatch": {},
+            "interactive": true,
+            "useInteractiveGuideline": true,
+            "tooltip": {
+                "duration": 0,
+                "gravity": "w",
+                "distance": 25,
+                "snapDistance": 0,
+                "classes": null,
+                "chartContainer": null,
+                "enabled": true,
+                "hideDelay": 200,
+                "headerEnabled": true,
+                "fixedTop": null,
+                "offset": {
+                    "left": 0,
+                    "top": 0
+                },
+                "hidden": true,
+                "data": null,
+                "id": "nvtooltip-40825"
+            },
+            "interactiveLayer": {
+                "dispatch": {},
+                "tooltip": {
+                    "duration": 0,
+                    "gravity": "w",
+                    "distance": 25,
+                    "snapDistance": 0,
+                    "classes": null,
+                    "chartContainer": null,
+                    "enabled": true,
+                    "hideDelay": 0,
+                    "headerEnabled": true,
+                    "fixedTop": null,
+                    "offset": {
+                      "left": 0,
+                      "top": 0
+                    },
+                    "hidden": false,
+                    "data": null,
+                    "id": "nvtooltip-38302"
+                },
+                "margin": {
+                    "left": 0,
+                    "top": 0
+                },
+                "width": null,
+                "height": null,
+                "showGuideLine": true,
+                "svgContainer": null
+            },
+            "delay": 0,
+            "forceY": [0, 10],
+            "showLegend": true,
+            "showControls": false,
+            "reduceXTicks": true
+        }
+        },
+
+        $scope.pieChartOptions = {
+        "chart": {
+            "type": "pieChart",
+            "height": 500,
+            "showLabels": true,
+            "duration": 500,
+            "showLegend": true,
+            "growOnHover": true,
+            "pieLabelsOutside": true,
+            "legendPosition": "top",
+            "labelSunbeamLayout": false,
+            "labelType": "percent",
+            "interactive": true,
+            "useInteractiveGuideline": true,
+            "legend": {
+                "margin": {
+                    "top": 5,
+                    "right": 35,
+                    "bottom": 5,
+                    "left": 0
+                }
+            },
+            "delay": 0,
+            "margin": {
+                "top": 30,
+                "right": 20,
+                "bottom": 20,
+                "left": 20
+            }
+        },
+
+        "title": {
+            "enable": false,
+            "text": "Write Your Title",
+            "className": "h4",
+            "css": {
+                "width": "nullpx",
+                "textAlign": "center"
+            }
+        },
+
+        "subtitle": {
+            "enable": false,
+            "text": "Write Your Subtitle",
+            "css": {
+                "width": "nullpx",
+                "textAlign": "center"
+            }
+        },
+
+        "caption": {
+            "enable": false,
+            "text": "Figure 1. Write Your Caption text.",
+            "css": {
+                "width": "nullpx",
+                "textAlign": "center"
+            }
+        }
+        },
+
+      
+                $scope.MotivateAvgBarData = {
+                    value: [{
+                        key: "Entrance Survey",
+                        values: [{
+                            x: "Life",
+                            y: $scope.avgBefore.value[0].benefit
+                        }, {
+                            x: "Nervous",
+                            y: $scope.avgBefore.value[0].regular
+                        }, {
+                            x: "Sleep",
+                            y: $scope.avgBefore.value[0].fun
+                        }, {
+                            x: "Stress",
+                            y: $scope.avgBefore.value[0].satisfaction
+                        }, {
+                            x: "Concentrate",
+                            y: $scope.avgBefore.value[0].pressure
+                        }, {
+                            x: "Tired",
+                            y: $scope.avgBefore.value[0].guilt
+                        }]
+                    }, {
+                        key: "Exit Survey",
+                        values: [{
+                            x: "Life",
+                            y: $scope.avgAfter.value[0].benefit
+                        }, {
+                            x: "Nervous",
+                            y: $scope.avgAfter.value[0].regular
+                        }, {
+                            x: "Sleep",
+                            y: $scope.avgAfter.value[0].fun
+                        }, {
+                            x: "Stress",
+                            y: $scope.avgAfter.value[0].satisfaction
+                        }, {
+                            x: "Concentrate",
+                            y: $scope.avgAfter.value[0].pressure
+                        }, {
+                            x: "Tired",
+                            y: $scope.avgAfter.value[0].guilt
+                        }]
+                    }, ]
+                },
+                
+                $scope.MHAvgBarData = {
+                    value: [{
+                        key: "Entrance Survey",
+                        values: [{
+                            x: "Life",
+                            y: $scope.avgBefore.value[0].life
+                        }, {
+                            x: "Nervous",
+                            y: $scope.avgBefore.value[0].nervous
+                        }, {
+                            x: "Sleep",
+                            y: $scope.avgBefore.value[0].sleep
+                        }, {
+                            x: "Stress",
+                            y: $scope.avgBefore.value[0].stress
+                        }, {
+                            x: "Concentrate",
+                            y: $scope.avgBefore.value[0].concentrate
+                        }, {
+                            x: "Tired",
+                            y: $scope.avgBefore.value[0].tired
+                        }]
+                    }, {
+                        key: "Exit Survey",
+                        values: [{
+                            x: "Life",
+                            y: $scope.avgAfter.value[0].life
+                        }, {
+                            x: "Nervous",
+                            y: $scope.avgAfter.value[0].nervous
+                        }, {
+                            x: "Sleep",
+                            y: $scope.avgAfter.value[0].sleep
+                        }, {
+                            x: "Stress",
+                            y: $scope.avgAfter.value[0].stress
+                        }, {
+                            x: "Concentrate",
+                            y: $scope.avgAfter.value[0].concentrate
+                        }, {
+                            x: "Tired",
+                            y: $scope.avgAfter.value[0].tired
+                        }]
+                    }, ]
+                },              
+               
+
+
+            $scope.pieChartAvgDataGoal = {
+        value:[
+            {x: "Feel", y: $scope.avgGB.value[0].feel},
+            {x: "Look", y: $scope.avgGB.value[0].look},
+            {x: "Sleep", y: $scope.avgGB.value[0].sleep},
+            {x: "Energy", y: $scope.avgGB.value[0].energy},
+            {x: "Memory", y: $scope.avgGB.value[0].memory},
+            {x: "Health", y: $scope.avgGB.value[0].health},
+            {x: "People", y: $scope.avgGB.value[0].people}
+        ]
+        },
+           $scope.pieChartAvgDataBarrier = {
+        value:[
+            {x: "Motivate", y: $scope.avgGB.value[0].motivate},
+            {x: "Support", y: $scope.avgGB.value[0].support},
+            {x: "Account", y: $scope.avgGB.value[0].account},
+            {x: "School", y: $scope.avgGB.value[0].school},
+            {x: "Job", y: $scope.avgGB.value[0].job},
+            {x: "Physical", y: $scope.avgGB.value[0].physical},
+            {x: "Finance", y: $scope.avgGB.value[0].finance}
+        ]
+        };        
+        }//closing  displayValue function bracket
+        
+
+
+        // // Show main view in the first column as soon as controller loads
+         //$scope.portalHelpers.showView('testChartMYM.html', 1);
+
+         }])
+
+
+
+
+    .controller('activityResults', ['$scope', 'mymForm', function($scope, mymForm) {
     $scope.actResults = {
         value: null
     };

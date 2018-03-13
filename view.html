@@ -368,7 +368,30 @@
                 </widget-row>
             </uib-tab>
             <uib-tab index="5" heading="General Report">
-                <widget-row>
+                <widget-row ng-controller = "generalReportCtrl">
+                      <div class="ProfileTermContent">
+                            <p class = "selectterm">Term:
+                                <select ng-options="term.current_term for term in terms.value" ng-model="term" ng-change= "getTermDisplay(term.current_term)">                                    
+                                </select>
+                                {{term.current_term}}
+                                {{numStudents.value[0].Column1}}
+                                {{test.value}}
+
+                            </p>
+           </div>
+
+        					<p>In {{term.current_term}}, there are {{numStudents.value[0].Column1}} enrolled.</p>
+ 
+        <h2>{{term.current_term}}</h2>
+
+    <h2>avg MH data</h2>
+    <h2>avg Goals data</h2>
+    <nvd3 options="pieChartOptions" data="pieChartAvgDataGoal.value"></nvd3>
+   <h2>avg barrier data </h2>
+    <nvd3 options="pieChartOptions" data="pieChartAvgDataBarrier.value"></nvd3>
+        <nvd3 options="multiBarChartOptions" data="MHAvgBarData.value"></nvd3> 
+        <h2>avg motivate data</h2>
+        <nvd3 options="multiBarChartOptions" data="MotivateAvgBarData.value"></nvd3>
                 </widget-row>
             </uib-tab>
 
