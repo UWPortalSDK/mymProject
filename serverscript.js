@@ -316,7 +316,7 @@ function getNumStudents ()
 }
 
 function getAvgBefore(){
-	var queryResult = db.Execute("select avg (mh_life) as life, avg (mh_nervous) as nervous, avg (mh_sleep) as sleep, avg (mh_stress) as stress,avg (mh_concentrate) as concentrate,avg (mh_tired) as tired,avg(exercise_benefit) as benefit,avg(exercise_regular) as regular,avg(exercise_fun) as fun,avg(exercise_satisfaction) as satisfaction,avg(exercise_pressure) as pressure,avg(exercise_guilt) as guilt from PreIntakeMeeting where current_term=@term");
+	var queryResult = db.Execute("select avg (mh_life) as life, avg (mh_nervous) as nervous, avg (mh_sleep) as sleep, avg (mh_stress) as stress,avg (mh_concentrate) as concentrate,avg (mh_tired) as tired,avg(exercise_benefit) as benefit,avg(exercise_regular) as regular,avg(exercise_fun) as fun,avg(exercise_satisfaction) as satisfaction,avg(exercise_pressure) as pressure,avg(exercise_guilt) as guilt from InitialMHMotivate where current_term=@term");
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -325,7 +325,7 @@ function getAvgBefore(){
 }
 
 function getAvgAfter(){
-	var queryResult = db.Execute("select avg (mh_life) as life, avg (mh_nervous) as nervous, avg (mh_sleep) as sleep, avg (mh_stress) as stress,avg (mh_concentrate) as concentrate,avg (mh_tired) as tired,avg(exercise_benefit) as benefit,avg(exercise_regular) as regular,avg(exercise_fun) as fun,avg(exercise_satisfaction) as satisfaction,avg(exercise_pressure) as pressure,avg(exercise_guilt) as guilt from FinalMeeting where current_term=@term");
+	var queryResult = db.Execute("select avg (mh_life) as life, avg (mh_nervous) as nervous, avg (mh_sleep) as sleep, avg (mh_stress) as stress,avg (mh_concentrate) as concentrate,avg (mh_tired) as tired,avg(exercise_benefit) as benefit,avg(exercise_regular) as regular,avg(exercise_fun) as fun,avg(exercise_satisfaction) as satisfaction,avg(exercise_pressure) as pressure,avg(exercise_guilt) as guilt from FinalMHMotivate where current_term=@term");
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -334,7 +334,7 @@ function getAvgAfter(){
 }
 
 function getAvgGBBefore(){
-	var queryResult = db.Execute("select avg(gba_feel) as feel,avg(gba_look) as look,avg(gba_sleep) as sleep,avg (gba_energy) as energy,avg(gba_memory) as memory,avg(gba_health) as health,avg(gba_people) as people,avg(gbb_motivate) as motivate,avg(gbb_support) as support,avg(gbb_account) as account,avg(gbb_school) as school,avg(gbb_job) as job,avg(gbb_physical) as physical,avg(gbb_finance) as finance from Intake where current_term=@term");
+	var queryResult = db.Execute("select avg(gba_feel) as feel,avg(gba_look) as look,avg(gba_sleep) as sleep,avg (gba_energy) as energy,avg(gba_memory) as memory,avg(gba_health) as health,avg(gba_people) as people,avg(gbb_motivate) as motivate,avg(gbb_support) as support,avg(gbb_account) as account,avg(gbb_school) as school,avg(gbb_job) as job,avg(gbb_physical) as physical,avg(gbb_finance) as finance from IntakeSurvey where current_term=@term");
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
