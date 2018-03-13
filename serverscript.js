@@ -222,51 +222,76 @@ function getBeforeGB(){
 }
 
 //the following 5 server scripts are for each of the 5 survey tables
-function getInfoInitialMHMotivate(){
-    var queryResult = db.Execute("SELECT * FROM InitialMHMotivate where student_id = @id and current_term=@term");
-    var rows = JSON.parse(queryResult);
-    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
-        return '{"status":"noTable"}';
-    }
-    return queryResult;
+function deleteInitialMHMotivate(){
+    //SET @sql = 'INSERT INTO ' + @SourceTable + ' SELECT ....';
+    //var test = '@tableName';
+    //var sql = 'DELETE FROM ' + @tableName + ' WHERE current_term=@term';    
+    db.Execute('DELETE FROM InitialMHMotivate WHERE current_term=@term');
+    return ("DID some stuff");
 }
 
-function getInfoIntakeSurvey(){
-    var queryResult = db.Execute("SELECT * FROM IntakeSurvey where student_id = @id and current_term=@term");
-    var rows = JSON.parse(queryResult);
-    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
-        return '{"status":"noTable"}';
-    }
-    return queryResult;
+function deleteIntakeSurvey(){
+    
+    db.Execute('DELETE FROM IntakeSurvey WHERE current_term=@term');
+    return ("DID some stuff");
 }
 
-function getInfoExitSurvey(){
-    var queryResult = db.Execute("SELECT * FROM ExitSurvey where student_id = @id and current_term=@term");
-    var rows = JSON.parse(queryResult);
-    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
-        return '{"status":"noTable"}';
-    }
-    return queryResult;
+function deleteExitSurvey(){
+     db.Execute('DELETE FROM ExitSurvey WHERE current_term=@term');
+    return ("DID some stuff");
 }
 
-function getInfoFinalFeedback(){
-    var queryResult = db.Execute("SELECT * FROM FinalFeedback where student_id = @id and current_term=@term");
-    var rows = JSON.parse(queryResult);
-    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
-        return '{"status":"noTable"}';
-    }
-    return queryResult;
+function deleteFinalFeedback(){
+    db.Execute('DELETE FROM FinalFeedback WHERE current_term=@term');
+    return ("DID some stuff");
 }
 
-function getInfoFinalMHMotivate(){
-    var queryResult = db.Execute("SELECT * FROM FinalMHMotivate where student_id = @id and current_term=@term");
-    var rows = JSON.parse(queryResult);
-    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
-        return '{"status":"noTable"}';
-    }
-    return queryResult;
+function deleteFinalMHMotivate(){    
+    db.Execute('DELETE FROM FinalMHMotivate WHERE current_term=@term');
+    return ("DID some stuff");
 }
-
 //end of the server scripts for the 5 surveys 
 
+//the following 5 server scripts are for entering into survey results
+function insertInitialMHMotivate(){    
+    
+    db.Execute('Insert into InitialMHMotivate (survey_id,student_id,current_term,email,mh_life,mh_nervous,mh_sleep,mh_stress,mh_concentrate,mh_tired,mh_eval,exercise_benefit,exercise_regular,exercise_fun,exercise_satisfaction,exercise_pressure,exercise_guilt,exercise_other) ' + 
+                "Values(@survey_id,@student_id,@current_term,@email,@mh_life,@mh_nervous,@mh_sleep,@mh_stress,@mh_concentrate,@mh_tired,@mh_eval,@exercise_benefit,@exercise_regular,@exercise_fun,@exercise_satisfaction,@exercise_pressure,@exercise_guilt,@exercise_other)");
+    return ("DID some stuff");
+}
+
+// function insertInitialMHMotivate2(){    
+    
+//      db.Execute('Insert into InitialMHMotivate (survey_id,student_id,current_term,email,mh_life,mh_nervous,mh_sleep,mh_stress,mh_concentrate,mh_tired,mh_eval,exercise_benefit,exercise_regular,exercise_fun,exercise_satisfaction,exercise_pressure,exercise_guilt,exercise_other) ' + 
+//                 "Values(@survey_id,@student_id,@current_term,@email,@mh_life,@mh_nervous,@mh_sleep,@mh_stress,@mh_concentrate,@mh_tired,@mh_eval,@exercise_benefit,@exercise_regular,@exercise_fun,@exercise_satisfaction,@exercise_pressure,@exercise_guilt,@exercise_other)");
+//     return ("DID some stuff");
+// }
+
+function insertIntakeSurvey(){
+    
+    db.Execute('Insert Into IntakeSurvey (survey_id,student_id,current_term,email,gba_feel,gba_look,gba_sleep,gba_energy,gba_memory,gba_health,gba_people,gba_other,gbb_motivate,gbb_support,gbb_account,gbb_school,gbb_job,gbb_physical,gbb_finance,gbb_other,gbb_plan,gbb_notes) Values(@survey_id, @student_id, @current_term,@email,@gba_feel,@gba_look,@gba_sleep,@gba_energy,@gba_memory,@gba_health,@gba_people,@gba_other,@gbb_motivate,@gbb_support,@gbb_account,@gbb_school,@gbb_job,@gbb_physical,@gbb_finance,@gbb_other,@gbb_plan,@gbb_notes)');
+    return ("DID some stuff");
+}
+
+
+function insertExitSurvey2(){
+    
+     db.Execute('Insert INTO ExitSurvey(survey_id,student_id,current_term,email,gba_feel,gba_look,gba_sleep,gba_energy,gba_memory,gba_health,gba_people,gba_other,gb_goal_change,gb_goalchange_other,gb_achieve,gb_achieve_other,gbb_motivate,gbb_support,gbb_account,gbb_school,gbb_job,gbb_physical,gbb_finance,gbb_other,gbb_notes,f_level,f_participate,f_participate_rate,f_enjoy,f_enjoy_rate,f_not_enjoy,f_not_enjoy_rate,f_wo_contribute,f_feedback)' +
+                'Values(@survey_id,@student_id,@current_term,@email,@gba_feel,@gba_look,@gba_sleep,@gba_energy,@gba_memory,@gba_health,@gba_people,@gba_other,@gb_goal_change,@gb_goalchange_other,@gb_achieve,@gb_achieve_other,@gbb_motivate,@gbb_support,@gbb_account,@gbb_school,@gbb_job,@gbb_physical,@gbb_finance,@gbb_other,@gbb_notes,@f_level,@f_participate,@f_participate_rate,@f_enjoy,@f_enjoy_rate,@f_not_enjoy,@f_not_enjoy_rate,@f_wo_contribute,@f_feedback)');
+     return ("DID some stuff");
+     
+}
+
+function insertFinalFeedback(){
+     db.Execute('Insert Into FinalFeedback (survey_id,student_id,current_term,email,scm_cope,scm_other,scm_motivate,scm_impact,scm_reason,crs_contact,crs_amount,crs_improve,crs_confident,crs_conf_exp,crs_contact_yn,crs_enjoy,crs_comment) ' + 
+                "Values(@survey_id,@student_id,@current_term,@email,@scm_cope,@scm_other,@scm_motivate,@scm_impact,@scm_reason,@crs_contact,@crs_amount,@crs_improve,@crs_confident,@crs_conf_exp,@crs_contact_yn,@crs_enjoy,@crs_comment)");
+    return ("DID some stuff");
+}
+
+function insertFinalMHMotivate(){    
+    db.Execute('Insert into FinalMHMotivate (survey_id,student_id,current_term,email,mh_life,mh_nervous,mh_sleep,mh_stress,mh_concentrate,mh_tired,mh_eval,exercise_benefit,exercise_regular,exercise_fun,exercise_satisfaction,exercise_pressure,exercise_guilt,exercise_other) ' + 
+                "Values(@survey_id,@student_id,@current_term,@email,@mh_life,@mh_nervous,@mh_sleep,@mh_stress,@mh_concentrate,@mh_tired,@mh_eval,@exercise_benefit,@exercise_regular,@exercise_fun,@exercise_satisfaction,@exercise_pressure,@exercise_guilt,@exercise_other)");
+    return ("DID some stuff");
+}
+//end of the server scripts for the 5 surveys 
 
