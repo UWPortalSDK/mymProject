@@ -53,7 +53,7 @@
                         <div class="ProfileTermAllContent">
                             <div class = "ProfileTerm_Title">
                                 <p class = "FormHeader">Term:     
-                                    <select class="ProfileTermSelect" ng-options="term.current_term for term in terms.value" ng-change = "getEmails()" ng-model="selectedTerm">
+                                    <select class="ProfileTermSelect" ng-options="term.current_term for term in terms.value" ng-change = "getEmails()"ng-model="selectedTerm">
                                     </select>
                                 </p>	
                             </div>
@@ -355,7 +355,7 @@
                         <input type="button" value="Submit" ng-click="getPred()" class="getSuggestionButton mymbutton" />
                     </form>
 
-<!--                     <uib-accordion close-others="oneAtATime">
+                    <!--                     <uib-accordion close-others="oneAtATime">
                         <div uib-accordion-group class="panel-default" heading="List of Activities:" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
                             <li class="cluster-repeat" ng-repeat="activity in clusters.value">
                                 <td>
@@ -367,31 +367,51 @@
 
                 </widget-row>
             </uib-tab>
+            
             <uib-tab index="5" heading="General Report">
                 <widget-row ng-controller = "generalReportCtrl">
-                      <div class="ProfileTermContent">
-                            <p class = "selectterm">Term:
-                                <select ng-options="term.current_term for term in terms.value" ng-model="term" ng-change= "getTermDisplay(term.current_term)">                                    
-                                </select>
-                                {{term.current_term}}
-                                {{numStudents.value[0].Column1}}
-                                {{test.value}}
+                    <div class="ProfileTermContent">
+                        <p class = "selectterm">Term:
+                            <select class="GeneralRepTerm" ng-options="term.current_term for term in terms.value" ng-model="term" ng-change= "getTermDisplay(term.current_term)">                                    
+                            </select>
+<!--                             {{term.current_term}}
+                            {{numStudents.value[0].Column1}}
+                            {{test.value}} -->
+                        </p>
+                    </div>
+                    
+                    <div class="GeneralReportContent" ng-show="term != null">
+                    
+                        <div class = "GeneralRepStudNum">
+                            <p>In {{term.current_term}}, there are {{numStudents.value[0].Column1}} students enrolled.</p>
+                        </div>
+                    
+                        <div class="GeneralTermTitle">
+                            <p>{{term.current_term}} General Report</p>
+                        </div>
+                        
+                        <div class = "GeneralAvgGoal GeneralRepChart">
+                            <p>Avg Goals data</p>
+                            <nvd3 options="pieChartOptions" data="pieChartAvgDataGoal.value"></nvd3>
+                        </div>
 
-                            </p>
-           </div>
+                        <div class = "GeneralAvgBarrier GeneralRepChart">
+                            <p>Avg Barrier data </p>
+                            <nvd3 options="pieChartOptions" data="pieChartAvgDataBarrier.value"></nvd3>
+                        </div>
 
-        					<p>In {{term.current_term}}, there are {{numStudents.value[0].Column1}} enrolled.</p>
- 
-        <h2>{{term.current_term}}</h2>
+                        <div class = "GeneralAvgMH GeneralRepChart">
+                            <p>Avg MH data</p>
+                            <nvd3 options="multiBarChartOptions" data="MHAvgBarData.value"></nvd3> 
+                        </div>
 
-    <h2>avg MH data</h2>
-    <h2>avg Goals data</h2>
-    <nvd3 options="pieChartOptions" data="pieChartAvgDataGoal.value"></nvd3>
-   <h2>avg barrier data </h2>
-    <nvd3 options="pieChartOptions" data="pieChartAvgDataBarrier.value"></nvd3>
-        <nvd3 options="multiBarChartOptions" data="MHAvgBarData.value"></nvd3> 
-        <h2>avg motivate data</h2>
-        <nvd3 options="multiBarChartOptions" data="MotivateAvgBarData.value"></nvd3>
+                        <div class = "GeneralAvgMotivate GeneralRepChart">
+                            <p>Avg motivate data</p>
+                            <nvd3 options="multiBarChartOptions" data="MotivateAvgBarData.value"></nvd3>
+                        </div>
+
+                    </div>
+                    
                 </widget-row>
             </uib-tab>
 
@@ -404,27 +424,7 @@
 
 
 </script>
-<!-- PAGE TEMPLATE EXAMPLE -->
 
-<!-- PAGE TEMPLATE EXAMPLE -->
-<!-- <script type="text/ng-template" id="activitySuggestion.html">
-
-    <widget-cell ng-controller="suggestCtrl">
-
-    </widget-cell>
-
-</script> -->
-<!-- PAGE TEMPLATE EXAMPLE -->
-<!-- PAGE TEMPLATE EXAMPLE -->
-<script type="text/ng-template" id="enroll.html">
-    <widget-row>
-
-
-    </widget-row>
-</script>
-<!-- PAGE TEMPLATE EXAMPLE -->
-<!-- PAGE TEMPLATE EXAMPLE -->
-<!-- PAGE TEMPLATE EXAMPLE --> 
 <script type="text/ng-template" id="activityShow.html"> 
     <widget-row ng-controller="activityResults">
         <div class="activityResults_Page">
