@@ -2067,7 +2067,8 @@ angular.module('portalApp', ['nvd3'])
                 functionName: 'getBefore',
                 uniqueNameId: 'mymProject',
                 sqlArgs: {
-                    email: $scope.selectedTerm.p_email
+                    email: $scope.selectedTerm.p_email,
+                    term: $scope.selectedTerm.current_term
                 }
             }).then(function(result) {
                 console.log('got student data: ', result);
@@ -2090,7 +2091,8 @@ angular.module('portalApp', ['nvd3'])
                 functionName: 'getAfter',
                 uniqueNameId: 'mymProject',
                 sqlArgs: {
-                    email: $scope.selectedTerm.p_email
+                    email: $scope.selectedTerm.p_email,
+                    term: $scope.selectedTerm.current_term
                 }
             }).then(function(result) {
                 console.log('got after data: ', result);
@@ -2113,7 +2115,8 @@ angular.module('portalApp', ['nvd3'])
                 functionName: 'getBeforeGB',
                 uniqueNameId: 'mymProject',
                 sqlArgs: {
-                    email: $scope.selectedTerm.p_email
+                    email: $scope.selectedTerm.p_email,
+                    term: $scope.selectedTerm.current_term
                 }
             }).then(function(result) {
                 console.log('got gb data: ', result);
