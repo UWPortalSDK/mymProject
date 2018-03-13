@@ -5,99 +5,99 @@ var imports = ["test.js"];
 //angular.module('portalApp', ['nvd3'])
 angular.module('portalApp')
 
-.controller('getResultsTest', ['$scope', 'mymForm', function($scope, mymForm) {
-    $scope.InitialMHMotivate = {
-    	value:null
-    };
+// .controller('getResultsTest', ['$scope', 'mymForm', function($scope, mymForm) {
+//     $scope.InitialMHMotivate = {
+//     	value:null
+//     };
     
-    $scope.IntakeSurvey = {
-    	value:null
-    };
+//     $scope.IntakeSurvey = {
+//     	value:null
+//     };
     
-    $scope.ExitSurvey = {
-    	value:null
-    };
+//     $scope.ExitSurvey = {
+//     	value:null
+//     };
     
-    $scope.FinalFeedback = {
-    	value:null
-    };
+//     $scope.FinalFeedback = {
+//     	value:null
+//     };
     
-    $scope.FinalMHMotivate = {
-    	value:null
-    };
+//     $scope.FinalMHMotivate = {
+//     	value:null
+//     };
     
-    $scope.portalHelpers.invokeServerFunction({
-        functionName: 'getInfoInitialMHMotivate',
-        uniqueNameId: 'mymProject',
-        sqlArgs: {
-                term: 
-            	id:
-            }
-    }).then(function(result) {
-        console.log('got survey data: ', result);
-        $scope.InitialMHMotivate.value = result;
-    });
+//     $scope.portalHelpers.invokeServerFunction({
+//         functionName: 'getInfoInitialMHMotivate',
+//         uniqueNameId: 'mymProject',
+//         sqlArgs: {
+//                 term: 
+//             	id:
+//             }
+//     }).then(function(result) {
+//         console.log('got survey data: ', result);
+//         $scope.InitialMHMotivate.value = result;
+//     });
     
-    $scope.portalHelpers.invokeServerFunction({
-        functionName: 'getInfoIntakeSurvey',
-        uniqueNameId: 'mymProject',
-        sqlArgs: {
-                term: 
-            	id:
-            }
-    }).then(function(result) {
-        console.log('got survey data: ', result);
-        $scope.IntakeSurvey.value = result;
-    });
+//     $scope.portalHelpers.invokeServerFunction({
+//         functionName: 'getInfoIntakeSurvey',
+//         uniqueNameId: 'mymProject',
+//         sqlArgs: {
+//                 term: 
+//             	id:
+//             }
+//     }).then(function(result) {
+//         console.log('got survey data: ', result);
+//         $scope.IntakeSurvey.value = result;
+//     });
     
-    $scope.portalHelpers.invokeServerFunction({
-        functionName: 'getInfoExitSurvey',
-        uniqueNameId: 'mymProject',
-        sqlArgs: {
-                term: 
-            	id:
-            }
-    }).then(function(result) {
-        console.log('got survey data: ', result);
-        $scope.ExitSurvey.value = result;
-    });
+//     $scope.portalHelpers.invokeServerFunction({
+//         functionName: 'getInfoExitSurvey',
+//         uniqueNameId: 'mymProject',
+//         sqlArgs: {
+//                 term: 
+//             	id:
+//             }
+//     }).then(function(result) {
+//         console.log('got survey data: ', result);
+//         $scope.ExitSurvey.value = result;
+//     });
     
-    $scope.portalHelpers.invokeServerFunction({
-        functionName: 'getInfoFinalFeedback',
-        uniqueNameId: 'mymProject',
-        sqlArgs: {
-                term: 
-            	id:
-            }
-    }).then(function(result) {
-        console.log('got survey data: ', result);
-        $scope.FinalFeedback.value = result;
-    });
+//     $scope.portalHelpers.invokeServerFunction({
+//         functionName: 'getInfoFinalFeedback',
+//         uniqueNameId: 'mymProject',
+//         sqlArgs: {
+//                 term: 
+//             	id:
+//             }
+//     }).then(function(result) {
+//         console.log('got survey data: ', result);
+//         $scope.FinalFeedback.value = result;
+//     });
     
-    $scope.portalHelpers.invokeServerFunction({
-        functionName: 'getInfoFinalMHMotivate',
-        uniqueNameId: 'mymProject',
-        sqlArgs: {
-                term: 
-            	id:
-            }
-    }).then(function(result) {
-        console.log('got survey data: ', result);
-        $scope.FinalMHMotivate.value = result;
-    });
+//     $scope.portalHelpers.invokeServerFunction({
+//         functionName: 'getInfoFinalMHMotivate',
+//         uniqueNameId: 'mymProject',
+//         sqlArgs: {
+//                 term: 
+//             	id:
+//             }
+//     }).then(function(result) {
+//         console.log('got survey data: ', result);
+//         $scope.FinalMHMotivate.value = result;
+//     });
 
-}])
+// }])
 
-.controller('activityResults', ['$scope', 'mymForm', function($scope, mymForm) {
-    $scope.actResults = {
-        value: null
-    };
+// .controller('activityResults', ['$scope', 'mymForm', function($scope, mymForm) {
+//     $scope.actResults = {
+//         value: null
+//     };
 
-    $scope.actResults.value = mymForm.getAct();
-    //$scope.contact = $scope.editStudent.value[0].contact_id; 
-    //
+//     $scope.actResults.value = mymForm.getAct();
+//     //$scope.contact = $scope.editStudent.value[0].contact_id; 
+//     //
 
-}])
+// }])
 
 .controller('exportCtrl', ['$scope', 'mymForm', function($scope, mymForm) {
     
@@ -135,30 +135,344 @@ angular.module('portalApp')
             console.log('got data: ', result);
             $scope.SurveyTypes.value = result;
         });
-    };    
+    };
+    
+
     
     $scope.testTime = function() {
+        //creating functions to insert the data
         
-        function checkExists () {
+     
+        function replaceInfo () {
+            
+            console.log("Entered Loop");
+            var responses = $scope.exportResults.value.responses;
+            for (var i = 0; i < responses.length; i++) {
+                var temp = responses[i];
+                console.log(temp);
+               
+                if($scope.selectSurveyType.type === "Initial Mental Health/Motivation"){
+                   
+                        // do a thing, possibly async, then…
+                        for (var key in temp) {
+                            if (temp.hasOwnProperty(key)) {
+                                //console.log(key + " -> " + temp[key]);
+                                if(temp[key] === "NOT_APPLICABLE"){
+                                    temp[key] = 0;
+                                }                                   
+
+                            }
+                        }                        
+
+                        // "Stuff worked!"
+                        //console.log(temp.mh_sleep_4);             
+                        //console.log(itest);
+                        console.log("Initial Mental Health/Motivation " + $scope.SelectSurveyTerm.term);
+                        $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'insertInitialMHMotivate',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                survey_id: $scope.selectSurveyType.survey_id,
+                                student_id: temp.sid,
+                                current_term: $scope.SelectSurveyTerm.term,
+                                email: temp.email,
+                                mh_life: parseFloat(temp.mh_life_4),
+                                mh_nervous: parseFloat(temp.mh_nervous_4),
+                                mh_stress: parseFloat(temp.mh_stress_4),
+                                mh_sleep: parseFloat(temp.mh_sleep_4),
+                                mh_concentrate: parseFloat(temp.mh_concentrate_4),
+                                mh_tired: parseFloat(temp.mh_tired_4),
+                                mh_eval: parseFloat(temp.mh_eval_4),
+                                exercise_benefit: parseFloat(temp.exercise_benefit_1),
+                                exercise_regular: parseFloat(temp.exercise_regular_1),
+                                exercise_fun: parseFloat(temp.exercise_fun_1),
+                                exercise_satisfaction: parseFloat(temp.exercise_satisfactio_1),
+                                exercise_pressure: parseFloat(temp.exercise_pressure_1),
+                                exercise_guilt: parseFloat(temp.exercise_guilt_1),
+                                exercise_other: temp.exercise_other                
+
+                            }
+                        }).then(function(result) {
+                            console.log('Inserted');
+                            //replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+                                    
+
+                    
+
+                }
+                else if ($scope.selectSurveyType.type === "Intake Survey"){                  
+
+                    console.log("Intake Survey");
+                    console.log(temp.goals_1);
+                    $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'insertIntakeSurvey',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                survey_id: $scope.selectSurveyType.survey_id,
+                                student_id: temp.sid,
+                                current_term: $scope.SelectSurveyTerm.term,
+                                email: temp.email,
+                                gba_feel: parseFloat(temp.goals_1),
+                                gba_look: parseFloat(temp.goals_2),
+                                gba_sleep: parseFloat(temp.goals_3),
+                                gba_energy: parseFloat(temp.goals_4),
+                                gba_memory: parseFloat(temp.goals_5),
+                                gba_health: parseFloat(temp.goals_6),
+                                gba_people: parseFloat(temp.goals_7),
+                                gba_other: temp.gba_other,
+                                gbb_motivate: parseFloat(temp.Barriers_1),
+                                gbb_support: parseFloat(temp.Barriers_2),
+                                gbb_account: parseFloat(temp.Barriers_3),
+                                gbb_school: parseFloat(temp.Barriers_4),
+                                gbb_job: parseFloat(temp.Barriers_5),
+                                gbb_physical: parseFloat(temp.Barriers_6),
+                                gbb_finance: parseFloat(temp.Barriers_7),
+                                gbb_other: temp.gbb_other,
+                                gbb_plan: temp.gbb_plan,
+                                gbb_notes: temp.gbb_notes
+                                
+                            }
+                        }).then(function(result) {
+                            console.log('Inserted');
+                            //replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+                    console.log("WHERE AM I");
+
+
+
+                }
+                else if ($scope.selectSurveyType.type === "Exit Survey"){
+                    console.log("Exit Survey");                   
+                    console.log(temp.goals_1);
+                    $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'insertExitSurvey2',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                survey_id: $scope.selectSurveyType.survey_id,
+                                student_id: temp.sid,
+                                current_term: $scope.SelectSurveyTerm.term,
+                                email: temp.email,
+                                gba_feel: parseFloat(temp.goals_1),
+                                gba_look: parseFloat(temp.goals_2),
+                                gba_sleep: parseFloat(temp.goals_3),
+                                gba_energy: parseFloat(temp.goals_4),
+                                gba_memory: parseFloat(temp.goals_5),
+                                gba_health: parseFloat(temp.goals_6),
+                                gba_people: parseFloat(temp.goals_7),
+                                gba_other: temp.gba_other,
+                                gb_goal_change: temp.gb_goal_change,
+                                gb_goalchange_other: temp.gb_goalchange_other,
+                                gb_achieve: parseFloat(temp.gb_achieve),
+                                gb_achieve_other: temp.gb_achieve_other,                             
+                                gbb_motivate: parseFloat(temp.barriers_1),
+                                gbb_support: parseFloat(temp.barriers_2),
+                                gbb_account: parseFloat(temp.barriers_3),
+                                gbb_school: parseFloat(temp.barriers_4),
+                                gbb_job: parseFloat(temp.barriers_5),
+                                gbb_physical: parseFloat(temp.barriers_6),
+                                gbb_finance: parseFloat(temp.barriers_7),
+                                gbb_other: temp.gbb_other,
+                                gbb_notes: temp.gbb_notes,                             
+                                f_level: temp.f_level,
+                                f_participate: temp.f_participate_1,
+                                f_participate_rate: temp.f_participate_rate_1,
+                                f_enjoy: temp.f_enjoy_1,
+                                f_enjoy_rate: temp.f_enjoy_rate_1,
+                                f_not_enjoy_rate: temp.f_not_enjoy_rate_1,
+                                f_not_enjoy: temp.f_not_enjoy_1,
+                                f_wo_contribute: temp.f_wo_contribute,
+                                f_feedback: temp.f_feedback                               
+        
+                            }
+                        }).then(function(result) {
+                            console.log('Inserted');
+                            //replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+
+                }
+                else if ($scope.selectSurveyType.type === "Final Feeback Survey"){
+                     
+                    $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'insertFinalFeedback',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                survey_id: $scope.selectSurveyType.survey_id,
+                                student_id: temp.sid,
+                                current_term: $scope.SelectSurveyTerm.term,
+                                email: temp.email,
+                                scm_cope: temp.scm_cope,
+                                scm_other: temp.scm_other,
+                                scm_motivate: temp.scm_motivate_1,
+                                scm_impact: temp.scm_impact_1,
+                                scm_reason: temp.scm_reason,
+                                crs_contact: temp.crs_comment,
+                                crs_amount: temp.crs_amount_1,
+                                crs_improve: temp.crs_improve,
+                                crs_confident: temp.crs_confident_1,
+                                crs_conf_exp: temp.crs_conf_exp,
+                                crs_contact_yn: temp.crs_contact_yn,
+                                crs_enjoy: temp.crs_enjoy_1,
+                                crs_comment: temp.crs_comment            
+
+                            }
+                        }).then(function(result) {
+                            console.log('Inserted');
+                            //replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+                   
+
+                }
+                else if ($scope.selectSurveyType.type === "Final Mental Health/Motivation"){
+                    console.log("Final Mental Health/Motivation");
+                    //console.log("Final Feeback Survey");
+                    for (var key in temp) {
+                            if (temp.hasOwnProperty(key)) {
+                                //console.log(key + " -> " + temp[key]);
+                                if(temp[key] === "NOT_APPLICABLE"){
+                                    temp[key] = 0;
+                                }                                   
+
+                            }
+                        }
+                    	console.log(temp);
+                    	
+
+
+                        // console.log("Initial Mental Health/Motivation " + $scope.SelectSurveyTerm.term);
+                        $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'insertFinalMHMotivate',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                survey_id: $scope.selectSurveyType.survey_id,
+                                student_id: temp.sid,
+                                current_term: $scope.SelectSurveyTerm.term,
+                                email: temp.email,
+                                mh_life: parseFloat(temp.mh_life_4),
+                                mh_nervous: parseFloat(temp.mh_nervous_4),
+                                mh_stress: parseFloat(temp.mh_stress_4),
+                                mh_sleep: parseFloat(temp.mh_sleep_4),
+                                mh_concentrate: parseFloat(temp.mh_concentrate_4),
+                                mh_tired: parseFloat(temp.mh_tired_4),
+                                mh_eval: parseFloat(temp.mh_eval_4),
+                                exercise_benefit: parseFloat(temp.exercise_benefit_1),
+                                exercise_regular: parseFloat(temp.exercise_regular_1),
+                                exercise_fun: parseFloat(temp.exercise_fun_1),
+                                exercise_satisfaction: parseFloat(temp.exercise_satisfactio_1),
+                                exercise_pressure: parseFloat(temp.exercise_pressure_1),
+                                exercise_guilt: parseFloat(temp.exercise_guilt_1),
+                                exercise_other: temp.exercise_other                
+
+                            }
+                        }).then(function(result) {
+                            console.log('Inserted');
+                            //replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+
+                }
+                
+            }   
+            
             
         }
         //loop to find the right terms and then insert
-        function insertData(){
-            console.log("Entered Loop");
-            var responses = $scope.exportResults.value.responses;
-             for (var i = 0; i < responses.length; i++) {
-                var temp = responses[i];
-                console.log(temp.sid);
-             }            
+        // function insertData(){
+        //     console.log("Entered Loop");
+        //     var responses = $scope.exportResults.value.responses;
+        //      for (var i = 0; i < responses.length; i++) {
+        //         var temp = responses[i];
+        //         console.log(temp.sid);
+        //      }            
             
-        };
+        // };
 
         function downloadResult() {
             $scope.portalHelpers.getApiData('Qualtrics/ResponseExportFile?exportid=' + $scope.mym.exportid).then(function(result) {
                 console.log(result.data);
                 if (result.data) {
                     $scope.exportResults.value = JSON.parse(result.data);
-                    insertData();
+                    if($scope.selectSurveyType.type === "Initial Mental Health/Motivation"){
+                        
+                        console.log("Initial Mental Health/Motivation " + $scope.SelectSurveyTerm.term);
+                        $scope.tableName = "InitialMHMotivate";
+                        $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'deleteInitialMHMotivate',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                term: $scope.SelectSurveyTerm.term
+                            }
+                        }).then(function(result) {
+                            console.log('Deleted');
+                            replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+                        
+                    }
+                    else if ($scope.selectSurveyType.type === "Intake Survey"){
+                        
+                        console.log("Intake Survey");
+                        $scope.tableName = "IntakeSurvey";
+                        $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'deleteIntakeSurvey',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                term: $scope.SelectSurveyTerm.term
+                            }
+                        }).then(function(result) {
+                            console.log('Deleted');
+                            replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+
+                        
+                    }
+                    else if ($scope.selectSurveyType.type === "Exit Survey"){
+                        console.log("Exit Survey");
+                        $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'deleteExitSurvey',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                term: $scope.SelectSurveyTerm.term
+                            }
+                        }).then(function(result) {
+                            console.log('Deleted');
+                            replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+                    }
+                    else if ($scope.selectSurveyType.type === "Final Feeback Survey"){
+                        console.log("Final Feeback Survey");
+                        $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'deleteFinalFeedback',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                term: $scope.SelectSurveyTerm.term
+                            }
+                        }).then(function(result) {
+                            console.log('Deleted');
+                            replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+                    }
+                    else if ($scope.selectSurveyType.type === "Final Mental Health/Motivation"){
+                        console.log("Final Mental Health/Motivation");
+                        $scope.portalHelpers.invokeServerFunction({
+                            functionName: 'deleteFinalMHMotivate',
+                            uniqueNameId: 'mymProject',
+                            sqlArgs: {
+                                term: $scope.SelectSurveyTerm.term
+                            }
+                        }).then(function(result) {
+                            console.log('Deleted');
+                            replaceInfo();
+                            //$scope.InitialMHMotivate.value = result;
+                        });
+                    }
                 }
             });
 
