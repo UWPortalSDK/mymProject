@@ -88,16 +88,16 @@ angular.module('portalApp')
 
 // }])
 
-// .controller('activityResults', ['$scope', 'mymForm', function($scope, mymForm) {
-//     $scope.actResults = {
-//         value: null
-//     };
+.controller('activityResults', ['$scope', 'mymForm', function($scope, mymForm) {
+    $scope.actResults = {
+        value: null
+    };
 
-//     $scope.actResults.value = mymForm.getAct();
-//     //$scope.contact = $scope.editStudent.value[0].contact_id; 
-//     //
+    $scope.actResults.value = mymForm.getAct();
+    //$scope.contact = $scope.editStudent.value[0].contact_id; 
+    //
 
-// }])
+}])
 
 .controller('exportCtrl', ['$scope', 'mymForm', function($scope, mymForm) {
     
@@ -580,6 +580,9 @@ angular.module('portalApp')
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'getSurveyType',
             uniqueNameId: 'mymProject',
+            sqlArgs: {
+                value: $scope.selectedTermDis.current_term
+            }
         }).then(function(result) {
             console.log('got survey type: ', result);
             $scope.surveytype.value = result;
