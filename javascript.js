@@ -1,92 +1,9 @@
 //angular.module('portalApp').requires.push('nvd3');
 
-var imports = ["test.js"];
+var imports = ["test.js"]; 	
 
 //angular.module('portalApp', ['nvd3'])
 angular.module('portalApp')
-
-// .controller('getResultsTest', ['$scope', 'mymForm', function($scope, mymForm) {
-//     $scope.InitialMHMotivate = {
-//     	value:null
-//     };
-    
-//     $scope.IntakeSurvey = {
-//     	value:null
-//     };
-    
-//     $scope.ExitSurvey = {
-//     	value:null
-//     };
-    
-//     $scope.FinalFeedback = {
-//     	value:null
-//     };
-    
-//     $scope.FinalMHMotivate = {
-//     	value:null
-//     };
-    
-//     $scope.portalHelpers.invokeServerFunction({
-//         functionName: 'getInfoInitialMHMotivate',
-//         uniqueNameId: 'mymProject',
-//         sqlArgs: {
-//                 term: 
-//             	id:
-//             }
-//     }).then(function(result) {
-//         console.log('got survey data: ', result);
-//         $scope.InitialMHMotivate.value = result;
-//     });
-    
-//     $scope.portalHelpers.invokeServerFunction({
-//         functionName: 'getInfoIntakeSurvey',
-//         uniqueNameId: 'mymProject',
-//         sqlArgs: {
-//                 term: 
-//             	id:
-//             }
-//     }).then(function(result) {
-//         console.log('got survey data: ', result);
-//         $scope.IntakeSurvey.value = result;
-//     });
-    
-//     $scope.portalHelpers.invokeServerFunction({
-//         functionName: 'getInfoExitSurvey',
-//         uniqueNameId: 'mymProject',
-//         sqlArgs: {
-//                 term: 
-//             	id:
-//             }
-//     }).then(function(result) {
-//         console.log('got survey data: ', result);
-//         $scope.ExitSurvey.value = result;
-//     });
-    
-//     $scope.portalHelpers.invokeServerFunction({
-//         functionName: 'getInfoFinalFeedback',
-//         uniqueNameId: 'mymProject',
-//         sqlArgs: {
-//                 term: 
-//             	id:
-//             }
-//     }).then(function(result) {
-//         console.log('got survey data: ', result);
-//         $scope.FinalFeedback.value = result;
-//     });
-    
-//     $scope.portalHelpers.invokeServerFunction({
-//         functionName: 'getInfoFinalMHMotivate',
-//         uniqueNameId: 'mymProject',
-//         sqlArgs: {
-//                 term: 
-//             	id:
-//             }
-//     }).then(function(result) {
-//         console.log('got survey data: ', result);
-//         $scope.FinalMHMotivate.value = result;
-//     });
-
-// }])
 
 .controller('activityResults', ['$scope', 'mymForm', function($scope, mymForm) {
     $scope.actResults = {
@@ -175,7 +92,7 @@ angular.module('portalApp')
                                 survey_id: $scope.selectSurveyType.survey_id,
                                 student_id: temp.sid,
                                 current_term: $scope.SelectSurveyTerm.term,
-                                email: temp.email,
+                                email: temp.RecipientEmail,
                                 mh_life: parseFloat(temp.mh_life_4),
                                 mh_nervous: parseFloat(temp.mh_nervous_4),
                                 mh_stress: parseFloat(temp.mh_stress_4),
@@ -213,7 +130,7 @@ angular.module('portalApp')
                                 survey_id: $scope.selectSurveyType.survey_id,
                                 student_id: temp.sid,
                                 current_term: $scope.SelectSurveyTerm.term,
-                                email: temp.email,
+                                email: temp.RecipientEmail,
                                 gba_feel: parseFloat(temp.goals_1),
                                 gba_look: parseFloat(temp.goals_2),
                                 gba_sleep: parseFloat(temp.goals_3),
@@ -254,7 +171,7 @@ angular.module('portalApp')
                                 survey_id: $scope.selectSurveyType.survey_id,
                                 student_id: temp.sid,
                                 current_term: $scope.SelectSurveyTerm.term,
-                                email: temp.email,
+                                email: temp.RecipientEmail,
                                 gba_feel: parseFloat(temp.goals_1),
                                 gba_look: parseFloat(temp.goals_2),
                                 gba_sleep: parseFloat(temp.goals_3),
@@ -303,7 +220,7 @@ angular.module('portalApp')
                                 survey_id: $scope.selectSurveyType.survey_id,
                                 student_id: temp.sid,
                                 current_term: $scope.SelectSurveyTerm.term,
-                                email: temp.email,
+                                email: temp.RecipientEmail,
                                 scm_cope: temp.scm_cope,
                                 scm_other: temp.scm_other,
                                 scm_motivate: temp.scm_motivate_1,
@@ -351,7 +268,7 @@ angular.module('portalApp')
                                 survey_id: $scope.selectSurveyType.survey_id,
                                 student_id: temp.sid,
                                 current_term: $scope.SelectSurveyTerm.term,
-                                email: temp.email,
+                                email: temp.RecipientEmail,
                                 mh_life: parseFloat(temp.mh_life_4),
                                 mh_nervous: parseFloat(temp.mh_nervous_4),
                                 mh_stress: parseFloat(temp.mh_stress_4),
