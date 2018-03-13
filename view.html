@@ -391,22 +391,22 @@
                         </div>
                         
                         <div class = "GeneralAvgGoal GeneralRepChart">
-                            <p>Avg Goals data</p>
+                            <p class="chartTitle">Avg Goals data</p>
                             <nvd3 options="pieChartOptions" data="pieChartAvgDataGoal.value"></nvd3>
                         </div>
 
                         <div class = "GeneralAvgBarrier GeneralRepChart">
-                            <p>Avg Barrier data </p>
+                            <p class="chartTitle">Avg Barrier data </p>
                             <nvd3 options="pieChartOptions" data="pieChartAvgDataBarrier.value"></nvd3>
                         </div>
 
                         <div class = "GeneralAvgMH GeneralRepChart">
-                            <p>Avg MH data</p>
+                            <p class="chartTitle">Avg MH data</p>
                             <nvd3 options="multiBarChartOptions" data="MHAvgBarData.value"></nvd3> 
                         </div>
 
                         <div class = "GeneralAvgMotivate GeneralRepChart">
-                            <p>Avg motivate data</p>
+                            <p class="chartTitle">Avg motivate data</p>
                             <nvd3 options="multiBarChartOptions" data="MotivateAvgBarData.value"></nvd3>
                         </div>
 
@@ -445,68 +445,91 @@
 <script type="text/ng-template" id="survey_distribution.html">
     <widget-row ng-controller="distributeCtrl">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-        <h2>Distribution Page</h2>
-        <form action="">
-            <div class="form-group">
-                <p>Select Term:
-                    <select ng-options="term.current_term for term in terms.value" ng-model="selectedTermDis" ng-change="getStudent()">  
-                    </select>
-<!--                     {{selectedTermDis.current_term}} -->
-                </p>
-                <p>Select Student:
-                    <select ng-options = "student.student_id + '  ' + student.pname_f + ' ' + student.pname_l for student in student.value" ng-model = "selectedStudent" ng-change="getType()">
-                    </select>
-<!--                     {{selectedStudent.mailing_id}} -->
-                </p>
-                <p>Select Survey Type:
-                    <select ng-options="types.type for types in surveytype.value" ng-model="selectedsurvey">  
-                    </select>
-<!--                     {{selectedsurvey.survey_id}} -->
-                </p>  
-
-                <p>Enter Message Subject: 
-                    <input type="text" ng-model = "mym.subject" />
-                    {{mym.subject}}
-                </p> 
-
-                <p>Customize Message</p>  
-                <p><textarea rows="10" cols="40" name="comment" ng-model = "mym.message">Enter text here...</textarea>
-                    <!--                 <p ng-bind-html="test | linebreaks"></p> -->
-                </p>
-
-                <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "CreateLibraryMessage()"/>
-
-
-                <!--                 <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "CreateLibraryMessage()"/> -->
-
-
+        <div class="SurveyDistribution_Page">
+            
+            <div class="SurveyDistributionPageTitle">
+                <p class="PageTitle">Distribution Page</p>
             </div>
-        </form>
+            
+            <div class="SurveyDistributionForm">
+                <form action="">
+                    <div class="form-group">
+                        <div class="SurveyDistFormQues">
+                            <p class="FormHeader">Select Term:
+                                <select class="SelectDropDown" ng-options="term.current_term for term in terms.value" ng-model="selectedTermDis" ng-change="getStudent()">  
+                                </select>
+                            </p>
+                        </div>
+                        <div class="SurveyDistFormQues">
+                            <p class="FormHeader">Select Student:
+                                <select class="SelectDropDown" ng-options = "student.student_id + '  ' + student.pname_f + ' ' + student.pname_l for student in student.value" ng-model = "selectedStudent" ng-change="getType()">
+                                </select>
+                                <!--                     {{selectedStudent.mailing_id}} -->
+                            </p>
+                        </div>
+                        <div class="SurveyDistFormQues">
+                            <p class="FormHeader">Select Survey Type:
+                                <select class="SelectDropDown" ng-options="types.type for types in surveytype.value" ng-model="selectedsurvey">  
+                                </select>
+                                <!--                     {{selectedsurvey.survey_id}} -->
+                            </p>  
+                        </div>
+                        <div class="SurveyDistFormQues">
+                            <p class="FormHeader">Enter Message Subject: 
+                                <input type="text" ng-model = "mym.subject" class="SurveyDistFormSubject"/>
+<!--                                 {{mym.subject}} -->
+                            </p> 
+                        </div>
+                        <div class="SurveyDistFormQues">
+                            <p class="FormHeader">Customize Message</p>  
+                            <p><textarea rows="10" cols="40" name="comment" ng-model = "mym.message">Enter text here...</textarea>
+                                <!--                 <p ng-bind-html="test | linebreaks"></p> -->
+                            </p>
+                        </div>
+
+                        <input type="button" value="Submit" class="subpageSubmitButton mymbutton" ng-click = "CreateLibraryMessage()"/>
+
+
+                        <!--                 <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "CreateLibraryMessage()"/> -->
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
     </widget-row>
 </script>
 
 <script type="text/ng-template" id="survey_creation.html">
     <widget-row ng-controller="qCtrl">
-        <form name = "surveyinput" ng-submit = "SurveyDistribution()">
-            <div>
-                <p>Survey id</p>
-                <input type="text" ng-model="mym.surveyid" />
-                <p>{{mym.surveyid}}</p>
+        <div class="InsertSurvey_Page">
+            
+            <div class="InsertSurveyPageTitle">
+                <p class="PageTitle">Survey Creation</p>
             </div>
-            <div>
-                <p>Term</p>
-                <select ng-options="year as year for year in yeararray" ng-model="selectYear"><option></option></select>
-                <select ng-options="term as term for term in termarray" ng-model="selectTerm"><option></option></select>
-                <p>{{selectYear}}   {{selectTerm}}</p>
-                <br />
-                <p>Survey Type</p>
-                <select ng-options="surveytype as surveytype for surveytype in surveytypearray" ng-model="selectsurveytype"><option></option></select>
-                <p>{{selectsurveytype}}</p>
+
+            <div class="InsertSurveyPageContent">
+                <form name = "surveyinput" ng-submit = "SurveyDistribution()">
+                    <div class = "InsertSurveyField">
+                        <p class="FormHeader">Survey id</p>
+                        <input type="text" ng-model="mym.surveyid" />
+
+                    </div>
+                    <div class = "InsertSurveyField">
+                        <p class="FormHeader">Term</p>
+                        <select class="InsertSurveySelect" ng-options="year as year for year in yeararray" ng-model="selectYear"><option></option></select>
+                        <select class="InsertSurveySelect" ng-options="term as term for term in termarray" ng-model="selectTerm"><option></option></select>
+                    </div>
+                    <div class = "InsertSurveyField">  
+                        <p class="FormHeader">Survey Type</p>
+                        <select class="InsertSurveySelect" ng-options="surveytype as surveytype for surveytype in surveytypearray" ng-model="selectsurveytype"><option></option></select>
+                    </div>
+                    <div> 
+                        <input type="submit" class="subpageSubmitButton mymbutton" ng-disabled="selectYear == null || selectTerm == null || selectsurveytype == null" />
+                    </div>
+                </form>
             </div>
-            <div class=""> 
-                <input type="submit" />
-            </div>
-        </form>
+        </div>
     </widget-row>
 </script>
 
