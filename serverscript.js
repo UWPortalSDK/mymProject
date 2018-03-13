@@ -195,7 +195,7 @@ function getEditStudent(){
 }
 
 function getBefore() {
-    var queryResult = db.Execute("SELECT * FROM InitialMHMotivate where email=@email");
+    var queryResult = db.Execute("SELECT * FROM InitialMHMotivate where email=@email and current_term=@term" );
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -204,7 +204,7 @@ function getBefore() {
 }
 
 function getAfter() {
-    var queryResult = db.Execute("SELECT * FROM FinalMHMotivate where email=@email");
+    var queryResult = db.Execute("SELECT * FROM FinalMHMotivate where email=@email and current_term=@term");
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
@@ -213,7 +213,7 @@ function getAfter() {
 }
 
 function getBeforeGB(){
-    var queryResult = db.Execute("SELECT * FROM IntakeSurvey where email=@email");
+    var queryResult = db.Execute("SELECT * FROM IntakeSurvey where email=@email and current_term=@term");
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
