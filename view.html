@@ -27,7 +27,7 @@
                                 <p class="FormHeader ProfileSearchTitle">Search: </p>
                                 <input class="form-control ng-pristine ng-valid" ng-model="searchKeyword" type="text" id="Studentnamesearchbox" placeholder="{{selectedStudent.value}}" />
                             </div>
-                            <table class="table">
+                            <table class="table ProfileTable">
                                 <tr>
                                     <th class = "FormHeader">Student ID:
                                     </th>
@@ -64,19 +64,19 @@
 
                         <uib-accordion class="StudentInfoSection" close-others="false">
                             <div uib-accordion-group class="StudentProfileSection" heading="Student Information" is-open="true" is-disabled="false">
-                                <p>Student Name: {{selectedTerm.pname_f}} {{selectedTerm.pname_l}}</p>
-                                <p>Student ID: {{selectedTerm.student_id}}</p>
-                                <p>Email: {{selectedTerm.p_email}}</p>
-                                <p>Gender: {{selectedTerm.gender}}</p>
-                                <p>Program: {{selectedTerm.program}}</p>
-                                <p>Academic Term: {{selectedTerm.academic_term}}</p>
-                                <p>Workout Buddy: {{selectedTerm.workout_buddy}}</p>
-                                <p>Workout Buddy Name: {{selectedTerm.buddy_name}}</p>
-                                <p>Feedback Frequency: {{selectedTerm.rfrequent}}</p>
+                                <p><b>Student Name: </b>{{selectedTerm.pname_f}} {{selectedTerm.pname_l}}</p>
+                                <p><b>Student ID: </b>{{selectedTerm.student_id}}</p>
+                                <p><b>Email: </b>{{selectedTerm.p_email}}</p>
+                                <p><b>Gender: </b>{{selectedTerm.gender}}</p>
+                                <p><b>Program: </b>{{selectedTerm.program}}</p>
+                                <p><b>Academic Term: </b>{{selectedTerm.academic_term}}</p>
+                                <p><b>Workout Buddy: </b>{{selectedTerm.workout_buddy}}</p>
+                                <p><b>Workout Buddy Name: </b>{{selectedTerm.buddy_name}}</p>
+                                <p><b>Feedback Frequency: </b>{{selectedTerm.rfrequent}}</p>
                                 <input class="StudentInfoUpgradeButton ProfileSelectButton mymbutton" type="button" ng-click="showDetails(selectedTerm.current_term,selectedTerm.student_id)" value="Update" ng-disabled = "show" />
                             </div>
                         </uib-accordion>
-<!--                         <uib-accordion class="StudentInfoSection" close-others="false">
+                        <!--                         <uib-accordion class="StudentInfoSection" close-others="false">
                             <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="false" is-disabled="false">
                                 <h2>Mental Health Comparison</h2>        
                                 <nvd3 options="ChartOptions" data="MHBarData.value"></nvd3>
@@ -111,22 +111,22 @@
                     <form name="enrollment" ng-submit="checkStudent()">
 
                         <div class="form-group EnrolmentQ">
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="fName">First Name:</label>
                                 <input type="text" ng-model="mym.contact_firstName" class="form-control EnrolmentTextInput" id="fName" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="lName">Last Name:</label>
                                 <input type="text" ng-model="mym.contact_lastName" class="form-control EnrolmentTextInput" id="lName" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="sid">UW ID:</label>
                                 <input required type="number" ng-model="sid" class="form-control EnrolmentTextInput" id="sid" ng-minlength="{{minlength}}"></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="term">Current Term</label>
                                 <select class="EnrolmentQSelect" ng-options="term as term.term for term in QueryResult.value" ng-model="termData" required>
@@ -134,17 +134,17 @@
                                 </select>
                                 <!--                             <p>{{termData.mailing_id}}</p> -->
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="program">Program</label>
                                 <input type="text" ng-model="program" class="form-control EnrolmentTextInput" id="program" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="mail">UW Email:</label>
                                 <input type="email" ng-model="mym.contact_email" class="form-control EnrolmentTextInput" id="mail" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label>Gender: </label>
                                 <select class="EnrolmentQSelect" name="gender" ng-model="gender" required>
@@ -154,28 +154,28 @@
                                     <option value="N/A">Prefer not to specify</option>
                                 </select>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="rName">Referral's Name:</label>
                                 <input type="text" ng-model="rName" class="form-control EnrolmentTextInput" id="rName" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="rType">Referral's Type:</label>
                                 <p class="NoticeFont">*Please indicate if you are a student, staff, faculty, self referring, etc.</p>
                                 <input type="text" ng-model="rType" class="form-control EnrolmentTextInput" id="rType" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="rEmail">Referral's Email:</label>
                                 <input type="email" ng-model="rEmail" class="form-control EnrolmentTextInput" id="rEmail" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="rdepartment">Referral's Department:</label>
                                 <input type="text" ng-model="rDepartment" class="form-control EnrolmentTextInput" id="rDepartment" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label>Would the referrer need progress update?</label>
                                 <select class="EnrolmentQSelect" name="progress" ng-model="progress" required>
@@ -184,24 +184,24 @@
                                     <option value="no">No</option>
                                 </select>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <div class="form-group" ng-show="progress=='yes'">
                                     <label for="frequency">How frequent?</label>
                                     <input type="text" ng-model="frequency" class="form-control EnrolmentTextInput" id="frequency"></input>
                                 </div>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="consideration">Consideration</label>
                                 <input type="text" ng-model="consideration" class="form-control EnrolmentTextInput" id="consideration" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="date">Submission Date</label>
                                 <input type="date" ng-model="date" class="form-control EnrolmentTextInput" id="date" required></input>
                             </div>
-                            
+
                             <div class = "RegistrationQuestions">
                                 <label for="aterm">Academic Term</label>
                                 <input type="aterm" ng-model="aterm" class="form-control EnrolmentTextInput" id="aterm" required></input>
@@ -219,25 +219,26 @@
 
             <uib-tab index="3" heading="Update Activities">
                 <widget-row>
-                    <div class="ActivitySuggestionPage">
+                    <div class="UpdateActPage">
 
-                        <div class="ActivitySuggestionPageContent">
+                        <div class="UpdateActPageContent">
                             <p class="Basictext">Please upload the activity spreadsheet below.</p>
                             <input class="" type="file" id="file" name="file" ng-files="getTheFiles($files)" />
                             <input class="UpdateActButton mymbutton" type="button" ng-click="uploadFiles()" value="Upload" />
                         </div>
-                        <p>{{data}}</p>
+<!--                         <p>{{data}}</p> -->
                     </div>
                 </widget-row>
             </uib-tab>
 
+
             <uib-tab index="4" heading="Activities Suggestion">
                 <widget-row ng-controller="preferenceCtrl">
-                    <p>{{input}}</p>
+<!--                     <p>{{input}}</p> -->
 
                     <uib-accordion class="TotalActivityGroups" close-others="false">
 
-                        <div uib-accordion-group class="panel-default ActivityGroups" heading="Team Activities" is-open="true">
+                        <div uib-accordion-group class="ActivityGroups" heading="Team Activities" is-open="true">
                             <div class="wrap" ng-repeat="act in actInfo.value">
                                 <div>
                                     <label for="Act+{{act.Activity}}" ng-show="act.Category =='Team'">
@@ -247,7 +248,7 @@
 
                         </div>
 
-                        <div uib-accordion-group class="panel-default ActivityGroups" heading="Instructional Activities" is-open="true">
+                        <div uib-accordion-group class="ActivityGroups" heading="Instructional Activities" is-open="true">
                             <div class="wrap" ng-repeat="act in actInfo.value">
                                 <div>
                                     <label for="Act+{{act.Activity}}" ng-show="act.Category =='Instructional'">
@@ -257,7 +258,7 @@
 
                         </div>
 
-                        <div uib-accordion-group class="panel-default ActivityGroups" heading="Club Activities" is-open="true">
+                        <div uib-accordion-group class="ActivityGroups" heading="Club Activities" is-open="true">
                             <div class="wrap" ng-repeat="act in actInfo.value">
                                 <div>
                                     <label for="Act+{{act.Activity}}" ng-show="act.Category =='Club'">
@@ -267,7 +268,7 @@
 
                         </div>
 
-                        <div uib-accordion-group class="panel-default ActivityGroups" heading="Casual Activities" is-open="true">
+                        <div uib-accordion-group class="ActivityGroups" heading="Casual Activities" is-open="true">
                             <div class="wrap" ng-repeat="act in actInfo.value">
                                 <div>
                                     <label for="Act+{{act.Activity}}" ng-show="act.Category =='Casual'">
@@ -278,86 +279,94 @@
                         </div>
                     </uib-accordion>
 
-
+<!-- 
                     <p>{{x_val}}</p>
                     <p>{{y_val}}</p>
                     <p>{{z_val}}</p>
-
+ -->
                     <form action="">
-
-                        <h4 class="likert-header">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</h4>
-
-                        <div class="QuestionAnswerArea">
-                            <p>Not true for me.</p>
-                            <div class="slidecontainer">
-                                <input type="range" min="0" max="10" value="5" class="slider" id="cog1" ng-model='cog1'></input>
+                        
+                        <div class="QuestionField">
+                            <p class="QuestionTitle">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</p>
+                            <div class="QuestionAnswerArea">
+                                <p class="QuestionLable">Not true for me.</p>
+                                <div class="slidecontainer">
+                                    <input type="range" min="0" max="10" value="5" class="slider" id="cog1" ng-model='cog1'></input>
+                                </div>
+                                <p class="QuestionLable">Very true for me.</p>
                             </div>
-
-                            <p>Very true for me.</p>
                         </div>
-                        <!--                         <p>{{cog1}}</p> -->
-                        <h4 class="likert-header">I prefer activities that involve strategy.</h4>
-                        <div class="QuestionAnswerArea">
-                            <p>Not true for me.</p>
-                            <div class="slidecontainer">
-                                <input type="range" min="0" max="10" value="5" class="slider" id="cog2" ng-model='cog2'></input>
+                        
+                        <div class="QuestionField">
+                            <p class="QuestionTitle">I prefer activities that involve strategy.</p>
+                            <div class="QuestionAnswerArea">
+                                <p class="QuestionLable">Not true for me.</p>
+                                <div class="slidecontainer">
+                                    <input type="range" min="0" max="10" value="5" class="slider" id="cog2" ng-model='cog2'></input>
+                                </div>
+                                <p class="QuestionLable">Very true for me.</p>
                             </div>
-
-                            <p>Very true for me.</p>
                         </div>
-                        <!--                         <p>{{cog2}}</p> -->
-                        <h4 class="likert-header">I prefer exercising on my own.</h4>
-                        <div class="QuestionAnswerArea">
-                            <p>Not true for me.</p>
-                            <div class="slidecontainer">
-                                <input type="range" min="0" max="10" value="5" class="slider" id="soc1" ng-model='soc1'></input>
+                        
+                        <div class="QuestionField">
+                            <p class="QuestionTitle">I prefer exercising on my own.</h4>
+                            <div class="QuestionAnswerArea">
+                                <p class="QuestionLable">Not true for me.</p>
+                                <div class="slidecontainer">
+                                    <input type="range" min="0" max="10" value="5" class="slider" id="soc1" ng-model='soc1'></input>
+                                </div>
+                                <p class="QuestionLable">Very true for me.</p>
                             </div>
-
-                            <p>Very true for me.</p>
                         </div>
-                        <h4 class="likert-header">I prefer exercising in an open environment(eg. Public Gym)</h4>
-                        <div class="QuestionAnswerArea">
-                            <p>Not true for me.</p>
-                            <div class="slidecontainer">
-                                <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='soc2'></input>
+                        
+                        <div class="QuestionField">
+                            <p class="QuestionTitle">I prefer exercising in an open environment (eg. Public Gym)</p>
+                            <div class="QuestionAnswerArea">
+                                <p class="QuestionLable">Not true for me.</p>
+                                <div class="slidecontainer">
+                                    <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='soc2'></input>
+                                </div>
+                                <p class="QuestionLable">Very true for me.</p>
                             </div>
-                            <p>Very true for me.</p>
                         </div>
-                        <h4 class="likert-header">I prefer activities that are physically demanding.</h4>
-                        <div class="QuestionAnswerArea">
-                            <p>Not true for me.</p>
-                            <div class="slidecontainer">
-                                <input type="range" min="0" max="10" value="5" class="slider" id="int1" ng-model='int1'></input>
+                        
+                        <div class="QuestionField">
+                            <p class="QuestionTitle">I prefer activities that are physically demanding.</p>
+                            <div class="QuestionAnswerArea">
+                                <p class="QuestionLable">Not true for me.</p>
+                                <div class="slidecontainer">
+                                    <input type="range" min="0" max="10" value="5" class="slider" id="int1" ng-model='int1'></input>
+                                </div>
+                                <p class="QuestionLable">Very true for me.</p>
                             </div>
-                            <p>Very true for me.</p>
                         </div>
-                        <h4 class="likert-header">I prefer activities that are more relaxing and less intense.</h4>
-                        <div class="QuestionAnswerArea">
-                            <p>Not true for me.</p>
-                            <div class="slidecontainer">
-                                <input type="range" min="0" max="10" value="5" class="slider" id="int2" ng-model='int2'></input>
+                        
+                        <div class="QuestionField">
+                            <p class="QuestionTitle">I prefer activities that are more relaxing and less intense.</p>
+                            <div class="QuestionAnswerArea">
+                                <p class="QuestionLable">Not true for me.</p>
+                                <div class="slidecontainer">
+                                    <input type="range" min="0" max="10" value="5" class="slider" id="int2" ng-model='int2'></input>
+                                </div>
+                                <p class="QuestionLable">Very true for me.</p>
                             </div>
-                            <p>Very true for me.</p>
                         </div>
 
-
-                        <input type="button" value="Submit" ng-click="getPred()" class="btn btn-default" />
-                        <p>{{centerValues.value[0]}}</p>
-
-                        <uib-accordion close-others="oneAtATime">
-                            <div uib-accordion-group class="panel-default" heading="List of Activities:" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                                <li class="cluster-repeat" ng-repeat="activity in clusters.value">
-                                    <td>
-                                        {{activity.Activity}}
-                                    </td>
-                                </li>
-                            </div>
-                        </uib-accordion>
+                        <input type="button" value="Submit" ng-click="getPred()" class="getSuggestionButton mymbutton" />
                     </form>
+
+<!--                     <uib-accordion close-others="oneAtATime">
+                        <div uib-accordion-group class="panel-default" heading="List of Activities:" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                            <li class="cluster-repeat" ng-repeat="activity in clusters.value">
+                                <td>
+                                    {{activity.Activity}}
+                                </td>
+                            </li>
+                        </div>
+                    </uib-accordion> -->
 
                 </widget-row>
             </uib-tab>
-
             <uib-tab index="5" heading="General Report">
                 <widget-row>
                 </widget-row>
@@ -395,7 +404,16 @@
 <!-- PAGE TEMPLATE EXAMPLE --> 
 <script type="text/ng-template" id="activityShow.html"> 
     <widget-row ng-controller="activityResults">
-        <p>{{actResults.value}}</p>        
+        <div class="activityResults_Page">
+            <div class="activityResults_PageContent">
+                <p class="FormHeader">List of suggested activities:</p>
+                <li ng-repeat="activity in actResults.value">
+                    <td>
+                        {{activity.Activity}}
+                    </td>
+                </li>
+            </div>
+        </div>
     </widget-row> 
 </script> 
 <!-- PAGE TEMPLATE EXAMPLE --> 
@@ -410,17 +428,17 @@
                 <p>Select Term:
                     <select ng-options="term.current_term for term in terms.value" ng-model="selectedTermDis" ng-change="getStudent()">  
                     </select>
-                    {{selectedTermDis.current_term}}
+<!--                     {{selectedTermDis.current_term}} -->
                 </p>
                 <p>Select Student:
-                    <select ng-options = "student.pname_f + ' ' + student.pname_l for student in student.value" ng-model = "selectedStudent" ng-change="getType()">
+                    <select ng-options = "student.student_id + '  ' + student.pname_f + ' ' + student.pname_l for student in student.value" ng-model = "selectedStudent" ng-change="getType()">
                     </select>
-                    {{selectedStudent.mailing_id}}
+<!--                     {{selectedStudent.mailing_id}} -->
                 </p>
                 <p>Select Survey Type:
                     <select ng-options="types.type for types in surveytype.value" ng-model="selectedsurvey">  
                     </select>
-                    {{selectedsurvey.survey_id}}
+<!--                     {{selectedsurvey.survey_id}} -->
                 </p>  
 
                 <p>Enter Message Subject: 
