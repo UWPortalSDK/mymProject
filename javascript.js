@@ -1004,16 +1004,16 @@ angular.module('portalApp', ['nvd3'])
             var promise = new Promise(function(resolve, reject) {
                 // do a thing, possibly async, then…
                 for (var key in termInfo) {
-                    alert("Entered loop");
-                    alert(termInfo[key].term);
+                    // alert("Entered loop");
+                    // alert(termInfo[key].term);
                     var combinedTerm = $scope.selectTerm + $scope.selectYear;
                     //alert($scope.selectTerm + $scope.selectYear);
                     console.log(termInfo[key].term === combinedTerm);
                     if (termInfo[key].term === combinedTerm) {
                         foundTerm = true;
-                        alert("Found Term");
+                        // alert("Found Term");
                         $scope.mym.mailingid = termInfo[key].mailing_id;
-                        alert("Successfully entered the function");
+                        // alert("Successfully entered the function");
                         $scope.portalHelpers.invokeServerFunction({
                             functionName: 'insertSurvey',
                             uniqueNameId: 'mymProject',
@@ -1442,7 +1442,7 @@ angular.module('portalApp', ['nvd3'])
             $scope.z_val = 0.6 * socScore + 0.4 * $scope.z_val;
             $scope.x_val = 0.6 * intScore + 0.4 * $scope.x_val;
         } else {
-            alert("0 length");
+            // alert("0 length");
             $scope.y_val = cogScore;
             $scope.z_val = socScore;
             $scope.x_val = intScore;
@@ -1576,7 +1576,7 @@ angular.module('portalApp', ['nvd3'])
     $scope.updateStudent = function() {
         
         var sid = parseInt($scope.editStudent.value[0].student_id);
-        alert($scope.contact);
+        // alert($scope.contact);
         //alert("Successfully entered the function");
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'updateStudent',
