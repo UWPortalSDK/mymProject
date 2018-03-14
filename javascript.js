@@ -647,6 +647,9 @@ angular.module('portalApp', ['nvd3'])
                         });
 
                 }
+                 if(i === responses.length -1){
+                    alert("Successfully Entered Survey Data");
+                }
                 
             }   
             
