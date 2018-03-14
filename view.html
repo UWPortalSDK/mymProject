@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                             </uib-accordion>
-                            </div>
+                        </div>
                     </div>
                 </widget-row>
             </uib-tab>
@@ -236,7 +236,7 @@
                             <input class="" type="file" id="file" name="file" ng-files="getTheFiles($files)" />
                             <input class="UpdateActButton mymbutton" type="button" ng-click="uploadFiles()" value="Upload" />
                         </div>
-<!--                         <p>{{data}}</p> -->
+                        <!--                         <p>{{data}}</p> -->
                     </div>
                 </widget-row>
             </uib-tab>
@@ -244,127 +244,135 @@
 
             <uib-tab index="4" heading="Activities Suggestion">
                 <widget-row ng-controller="preferenceCtrl">
-<!--                     <p>{{input}}</p> -->
+                    <!--                     <p>{{input}}</p> -->
+                    <div class="ActSuggIntro">
+                        <p class="IntroFont">Step1: Please select up to 5 activities you enjoyed in the past from the categories below </p>
+                    </div>
+                    <div>
+                        <uib-accordion class="TotalActivityGroups" close-others="false">
 
-                    <uib-accordion class="TotalActivityGroups" close-others="false">
-
-                        <div uib-accordion-group class="ActivityGroups" heading="Team Activities" is-open="true">
-                            <div class="wrap" ng-repeat="act in actInfo.value">
-                                <div>
-                                    <label for="Act+{{act.Activity}}" ng-show="act.Category =='Team'">
-                                        <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Team'"></input>{{act.Activity}}</label>
+                            <div uib-accordion-group class="ActivityGroups" heading="Team Activities" is-open="true">
+                                <div class="wrap" ng-repeat="act in actInfo.value">
+                                    <div>
+                                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Team'">
+                                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Team'"></input>{{act.Activity}}</label>
+                                    </div>
                                 </div>
+
                             </div>
 
-                        </div>
-
-                        <div uib-accordion-group class="ActivityGroups" heading="Instructional Activities" is-open="true">
-                            <div class="wrap" ng-repeat="act in actInfo.value">
-                                <div>
-                                    <label for="Act+{{act.Activity}}" ng-show="act.Category =='Instructional'">
-                                        <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Instructional'"></input>{{act.Activity}}</label>
+                            <div uib-accordion-group class="ActivityGroups" heading="Instructional Activities" is-open="true">
+                                <div class="wrap" ng-repeat="act in actInfo.value">
+                                    <div>
+                                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Instructional'">
+                                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Instructional'"></input>{{act.Activity}}</label>
+                                    </div>
                                 </div>
+
                             </div>
 
-                        </div>
-
-                        <div uib-accordion-group class="ActivityGroups" heading="Club Activities" is-open="true">
-                            <div class="wrap" ng-repeat="act in actInfo.value">
-                                <div>
-                                    <label for="Act+{{act.Activity}}" ng-show="act.Category =='Club'">
-                                        <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Club'"></input>{{act.Activity}}</label>
+                            <div uib-accordion-group class="ActivityGroups" heading="Club Activities" is-open="true">
+                                <div class="wrap" ng-repeat="act in actInfo.value">
+                                    <div>
+                                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Club'">
+                                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Club'"></input>{{act.Activity}}</label>
+                                    </div>
                                 </div>
+
                             </div>
 
-                        </div>
-
-                        <div uib-accordion-group class="ActivityGroups" heading="Casual Activities" is-open="true">
-                            <div class="wrap" ng-repeat="act in actInfo.value">
-                                <div>
-                                    <label for="Act+{{act.Activity}}" ng-show="act.Category =='Casual'">
-                                        <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Casual'"></input>{{act.Activity}}</label>
+                            <div uib-accordion-group class="ActivityGroups" heading="Casual Activities" is-open="true">
+                                <div class="wrap" ng-repeat="act in actInfo.value">
+                                    <div>
+                                        <label for="Act+{{act.Activity}}" ng-show="act.Category =='Casual'">
+                                            <input type="checkbox" id="Act+{{act.Activity}}" ng-model="act.checked" ng-change="checkedItems(act.Activity,act.checked)" ng-disabled="count ==6 && act.checked != true" ng-show="act.Category =='Casual'"></input>{{act.Activity}}</label>
+                                    </div>
                                 </div>
+
                             </div>
-
-                        </div>
-                    </uib-accordion>
-
-<!-- 
+                        </uib-accordion>
+                    </div>
+                    <!-- 
                     <p>{{x_val}}</p>
                     <p>{{y_val}}</p>
                     <p>{{z_val}}</p>
  -->
-                    <form action="">
-                        
-                        <div class="QuestionField">
-                            <p class="QuestionTitle">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</p>
-                            <div class="QuestionAnswerArea">
-                                <p class="QuestionLable">Not true for me.</p>
-                                <div class="slidecontainer">
-                                    <input type="range" min="0" max="10" value="5" class="slider" id="cog1" ng-model='cog1'></input>
-                                </div>
-                                <p class="QuestionLable">Very true for me.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="QuestionField">
-                            <p class="QuestionTitle">I prefer activities that involve strategy.</p>
-                            <div class="QuestionAnswerArea">
-                                <p class="QuestionLable">Not true for me.</p>
-                                <div class="slidecontainer">
-                                    <input type="range" min="0" max="10" value="5" class="slider" id="cog2" ng-model='cog2'></input>
-                                </div>
-                                <p class="QuestionLable">Very true for me.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="QuestionField">
-                            <p class="QuestionTitle">I prefer exercising on my own.</h4>
-                            <div class="QuestionAnswerArea">
-                                <p class="QuestionLable">Not true for me.</p>
-                                <div class="slidecontainer">
-                                    <input type="range" min="0" max="10" value="5" class="slider" id="soc1" ng-model='soc1'></input>
-                                </div>
-                                <p class="QuestionLable">Very true for me.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="QuestionField">
-                            <p class="QuestionTitle">I prefer exercising in an open environment (eg. Public Gym)</p>
-                            <div class="QuestionAnswerArea">
-                                <p class="QuestionLable">Not true for me.</p>
-                                <div class="slidecontainer">
-                                    <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='soc2'></input>
-                                </div>
-                                <p class="QuestionLable">Very true for me.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="QuestionField">
-                            <p class="QuestionTitle">I prefer activities that are physically demanding.</p>
-                            <div class="QuestionAnswerArea">
-                                <p class="QuestionLable">Not true for me.</p>
-                                <div class="slidecontainer">
-                                    <input type="range" min="0" max="10" value="5" class="slider" id="int1" ng-model='int1'></input>
-                                </div>
-                                <p class="QuestionLable">Very true for me.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="QuestionField">
-                            <p class="QuestionTitle">I prefer activities that are more relaxing and less intense.</p>
-                            <div class="QuestionAnswerArea">
-                                <p class="QuestionLable">Not true for me.</p>
-                                <div class="slidecontainer">
-                                    <input type="range" min="0" max="10" value="5" class="slider" id="int2" ng-model='int2'></input>
-                                </div>
-                                <p class="QuestionLable">Very true for me.</p>
-                            </div>
-                        </div>
+                    <div class="ActSuggIntro">
+                        <p class="IntroFont">Step2: Please answer the below questions using the sliders provided.</p>
+                    </div>
 
-                        <input type="button" value="Submit" ng-click="getPred()" class="getSuggestionButton mymbutton" />
-                    </form>
+                    <div>
+                        <form action="">
 
+                            <div class="QuestionField">
+                                <p class="QuestionTitle">I prefer relaxing "meditative" exercises that do not involve a lot of concentration.</p>
+                                <div class="QuestionAnswerArea">
+                                    <p class="QuestionLable">Not true for me.</p>
+                                    <div class="slidecontainer">
+                                        <input type="range" min="0" max="10" value="5" class="slider" id="cog1" ng-model='cog1'></input>
+                                    </div>
+                                    <p class="QuestionLable">Very true for me.</p>
+                                </div>
+                            </div>
+
+                            <div class="QuestionField">
+                                <p class="QuestionTitle">I prefer activities that involve strategy.</p>
+                                <div class="QuestionAnswerArea">
+                                    <p class="QuestionLable">Not true for me.</p>
+                                    <div class="slidecontainer">
+                                        <input type="range" min="0" max="10" value="5" class="slider" id="cog2" ng-model='cog2'></input>
+                                    </div>
+                                    <p class="QuestionLable">Very true for me.</p>
+                                </div>
+                            </div>
+
+                            <div class="QuestionField">
+                                <p class="QuestionTitle">I prefer exercising on my own.</h4>
+                                <div class="QuestionAnswerArea">
+                                    <p class="QuestionLable">Not true for me.</p>
+                                    <div class="slidecontainer">
+                                        <input type="range" min="0" max="10" value="5" class="slider" id="soc1" ng-model='soc1'></input>
+                                    </div>
+                                    <p class="QuestionLable">Very true for me.</p>
+                                </div>
+                            </div>
+
+                            <div class="QuestionField">
+                                <p class="QuestionTitle">I prefer exercising in an open environment (eg. Public Gym)</p>
+                                <div class="QuestionAnswerArea">
+                                    <p class="QuestionLable">Not true for me.</p>
+                                    <div class="slidecontainer">
+                                        <input type="range" min="0" max="10" value="5" class="slider" id="soc2" ng-model='soc2'></input>
+                                    </div>
+                                    <p class="QuestionLable">Very true for me.</p>
+                                </div>
+                            </div>
+
+                            <div class="QuestionField">
+                                <p class="QuestionTitle">I prefer activities that are physically demanding.</p>
+                                <div class="QuestionAnswerArea">
+                                    <p class="QuestionLable">Not true for me.</p>
+                                    <div class="slidecontainer">
+                                        <input type="range" min="0" max="10" value="5" class="slider" id="int1" ng-model='int1'></input>
+                                    </div>
+                                    <p class="QuestionLable">Very true for me.</p>
+                                </div>
+                            </div>
+
+                            <div class="QuestionField">
+                                <p class="QuestionTitle">I prefer activities that are more relaxing and less intense.</p>
+                                <div class="QuestionAnswerArea">
+                                    <p class="QuestionLable">Not true for me.</p>
+                                    <div class="slidecontainer">
+                                        <input type="range" min="0" max="10" value="5" class="slider" id="int2" ng-model='int2'></input>
+                                    </div>
+                                    <p class="QuestionLable">Very true for me.</p>
+                                </div>
+                            </div>
+
+                            <input type="button" value="Submit" ng-click="getPred()" class="getSuggestionButton mymbutton" />
+                        </form>
+                    </div>
                     <!--                     <uib-accordion close-others="oneAtATime">
                         <div uib-accordion-group class="panel-default" heading="List of Activities:" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
                             <li class="cluster-repeat" ng-repeat="activity in clusters.value">
@@ -377,29 +385,29 @@
 
                 </widget-row>
             </uib-tab>
-            
+
             <uib-tab index="5" heading="General Report">
                 <widget-row ng-controller = "generalReportCtrl">
                     <div class="GeneralProfileTermContent">
                         <p class = "selectterm">Term:
                             <select class="GeneralRepTerm" ng-options="term.current_term for term in terms.value" ng-model="term" ng-change= "getTermDisplay(term.current_term)">                                    
                             </select>
-<!--                             {{term.current_term}}
+                            <!--                             {{term.current_term}}
                             {{numStudents.value[0].Column1}}
                             {{test.value}} -->
                         </p>
                     </div>
-                    
+
                     <div class="GeneralReportContent" ng-show="term != null">
-                    
+
                         <div class = "GeneralRepStudNum">
                             <p>In {{term.current_term}}, there are {{numStudents.value[0].Column1}} students enrolled.</p>
                         </div>
-                    
+
                         <div class="GeneralTermTitle">
                             <p>{{term.current_term}} General Report</p>
                         </div>
-                        
+
                         <div class = "GeneralAvgGoal GeneralRepChart">
                             <p class="chartTitle">Avg Goals data</p>
                             <nvd3 options="pieChartOptions" data="pieChartAvgDataGoal.value"></nvd3>
@@ -421,7 +429,7 @@
                         </div>
 
                     </div>
-                    
+
                 </widget-row>
             </uib-tab>
 
@@ -456,11 +464,11 @@
     <widget-row ng-controller="distributeCtrl">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <div class="SurveyDistribution_Page">
-            
+
             <div class="SurveyDistributionPageTitle">
                 <p class="PageTitle">Survey Distribution</p>
             </div>
-            
+
             <div class="SurveyDistributionForm">
                 <form action="">
                     <div class="form-group">
@@ -487,7 +495,7 @@
                         <div class="SurveyDistFormQues">
                             <p class="FormHeader">Enter Message Subject: 
                                 <input type="text" ng-model = "mym.subject" class="SurveyDistFormSubject"/>
-<!--                                 {{mym.subject}} -->
+                                <!--                                 {{mym.subject}} -->
                             </p> 
                         </div>
                         <div class="SurveyDistFormQues">
@@ -513,7 +521,7 @@
 <script type="text/ng-template" id="survey_creation.html">
     <widget-row ng-controller="qCtrl">
         <div class="InsertSurvey_Page">
-            
+
             <div class="InsertSurveyPageTitle">
                 <p class="PageTitle">Survey Creation</p>
             </div>
