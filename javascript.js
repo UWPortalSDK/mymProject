@@ -2083,57 +2083,56 @@ angular.module('portalApp', ['nvd3'])
                     $scope.before.value = result;
                     
                 }
-                //$scope.before.value = result;
-                displayValue();
-            });
+                $scope.portalHelpers.invokeServerFunction({
+                    functionName: 'getAfter',
+                    uniqueNameId: 'mymProject',
+                    sqlArgs: {
+                        email: $scope.selectedTerm.p_email,
+                        term: $scope.selectedTerm.current_term
+                    }
+                }).then(function(result) {
+                    console.log('got after data: ', result);
+                    if (result.length == 0){
+                        console.log("Empty Result");
+                        $scope.after.value = [mymForm.mhData];
+                        console.log( $scope.after.value);
+                    }
+                    else {
 
-            $scope.portalHelpers.invokeServerFunction({
-                functionName: 'getAfter',
-                uniqueNameId: 'mymProject',
-                sqlArgs: {
-                    email: $scope.selectedTerm.p_email,
-                    term: $scope.selectedTerm.current_term
-                }
-            }).then(function(result) {
-                console.log('got after data: ', result);
-                if (result.length == 0){
-                    console.log("Empty Result");
-                    $scope.after.value = [mymForm.mhData];
-                    console.log( $scope.after.value);
-                }
-                else {
-                    
-                   $scope.after.value = result;
-                   console.log($scope.after.value = result);
-                    
-                }
-                //$scope.after.value = result;
-                displayValue();
-            });
+                        $scope.after.value = result;
+                        console.log($scope.after.value = result);
 
-            $scope.portalHelpers.invokeServerFunction({
-                functionName: 'getBeforeGB',
-                uniqueNameId: 'mymProject',
-                sqlArgs: {
-                    email: $scope.selectedTerm.p_email,
-                    term: $scope.selectedTerm.current_term
-                }
-            }).then(function(result) {
-                console.log('got gb data: ', result);
-                if (result.length == 0){
-                    console.log("Empty Result");
-                    $scope.gb.value = [mymForm.intakeData];
-                    console.log( $scope.gb.value);
-                }
-                else {
-                    
-                   $scope.gb.value = result;
-                   console.log($scope.gb.value = result);
-                    
-                }
-                //$scope.gb.value = result;
-                displayValue();
+                    }
+                    //$scope.after.value = result;
+                    $scope.portalHelpers.invokeServerFunction({
+                        functionName: 'getBeforeGB',
+                        uniqueNameId: 'mymProject',
+                        sqlArgs: {
+                            email: $scope.selectedTerm.p_email,
+                            term: $scope.selectedTerm.current_term
+                        }
+                    }).then(function(result) {
+                        console.log('got gb data: ', result);
+                        if (result.length == 0){
+                            console.log("Empty Result");
+                            $scope.gb.value = [mymForm.intakeData];
+                            console.log( $scope.gb.value);
+                        }
+                        else {
+
+                            $scope.gb.value = result;
+                            console.log($scope.gb.value = result);
+
+                        }
+                        //$scope.gb.value = result;
+                        displayValue(); 
+                    });
+                });
+                
             });
+           
+
+          
         }
 
     }
