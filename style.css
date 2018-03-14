@@ -97,10 +97,10 @@
     margin-top: 10px;
     margin-bottom: 5px;
 }
-	
+
 .ProfileSelectButton {
     width: 100px;
-	background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     border-style: solid;
     border-width: 2px;
     border-color: rgb(100, 100, 100);
@@ -113,7 +113,7 @@
     text-align: center;
     cursor: pointer;
     white-space: normal;
-	word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .ProfileSelectButton:hover {
@@ -168,7 +168,7 @@
 }
 
 .StudentInfoSection .panel {
-	border-style: solid;
+    border-style: solid;
     border-width: 2px;
     border-color: rgb(240,240,240);
     border-radius: 6px;
@@ -436,12 +436,12 @@
 }
 
 .QuestionAnswerArea p {
-  margin-left: 2%;
-  margin-right: 2%;
-  display:inline-block;
-  width:14%;
-  text-align:center;
-  vertical-align: top;
+    margin-left: 2%;
+    margin-right: 2%;
+    display:inline-block;
+    width:14%;
+    text-align:center;
+    vertical-align: top;
 }
 
 .slidecontainer {
@@ -524,7 +524,7 @@
 .getSuggestionButton {
     margin-top: 30px;
     width: 120px;
-	background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     border-style: solid;
     border-width: 2px;
     border-color: rgb(100, 100, 100);
@@ -537,7 +537,7 @@
     text-align: center;
     cursor: pointer;
     white-space: normal;
-	word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .getSuggestionButton:hover {
@@ -546,11 +546,11 @@
     color: rgb(0, 0, 0);
 }
 
-.ProfileTermContent {
+.GeneralProfileTermContent {
     margin-top: 20px;
 }
 
-.ProfileTermContent p{
+.GeneralProfileTermContent p{
     font-family: "Open Sans";
     font-size: 1.1em;
     font-weight: bold;
@@ -690,7 +690,74 @@
     font-family: "Open Sans"; 
 }
 
+.SurveyExport_Page {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
+    margin: auto;
+}
 
+.SurveyExportPageTitle {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.SurveyExportContent {
+    margin: 30px 10px;
+}
+
+.ExportSurveySelect {
+    height: 32px;
+    min-width: 150px;
+    border-radius: 4px;
+    margin-right: 15px;
+    font-family: "Open Sans"; 
+}
+
+.StudentProfileUpdate_Page {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
+    margin: auto;
+}
+
+.StuProfileUdPageTitle {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.StuProfileUpdateField {
+    margin: 30px 10px;
+}
+
+.StuProfileUdGenInput {
+    margin-left: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 32px;
+    min-width: 240px;
+}
+
+.StuProfileUdGenInput[type=checkbox] {
+    margin-left: 15px;
+    height: default;
+    min-width: 0px;
+}
+
+.StuProfileUdSelect {
+    height: 32px;
+    min-width: 200px;
+    border-radius: 4px;
+    margin-right: 15px;
+    font-family: "Open Sans"; 
+}
+
+.PersonalRepChart {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 4%;
+    margin-right: 4%;
+}
 
 .mymbutton:active {
     box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
@@ -700,18 +767,11 @@
     background-color: rgb(255, 255, 255);
     border-color: rgb(200, 200, 200);
     color: rgb(200, 200, 200);
-	cursor: no-drop;
+    cursor: no-drop;
 }
 
-
-
-    
-
-
-
-
 .label{
-	margin-right:5px;
+    margin-right:5px;
 }
 
 /* nvd3 version 1.8.1 (https://github.com/novus/nvd3) 2015-06-15 */
@@ -742,7 +802,7 @@
 }
 
 .nvd3 .nv-axis .zero line,
-    /*this selector may not be necessary*/ .nvd3 .nv-axis line.zero {
+/*this selector may not be necessary*/ .nvd3 .nv-axis line.zero {
     stroke-opacity: .75;
 }
 
@@ -810,23 +870,23 @@
 
 /* boxplot CSS */
 .nvd3 .nv-boxplot circle {
-  fill-opacity: 0.5;
+    fill-opacity: 0.5;
 }
 
 .nvd3 .nv-boxplot circle:hover {
-  fill-opacity: 1;
+    fill-opacity: 1;
 }
 
 .nvd3 .nv-boxplot rect:hover {
-  fill-opacity: 1;
+    fill-opacity: 1;
 }
 
 .nvd3 line.nv-boxplot-median {
-  stroke: black;
+    stroke: black;
 }
 
 .nv-boxplot-tick:hover {
-  stroke-width: 2.5px;
+    stroke-width: 2.5px;
 }
 /* bullet */
 .nvd3.nv-bullet { font: 10px sans-serif; }
@@ -959,11 +1019,11 @@
 }
 
 /********************
- * SVG CSS
- */
+* SVG CSS
+*/
 
 /********************
-  Default CSS for an svg element nvd3 used
+Default CSS for an svg element nvd3 used
 */
 svg.nvd3-svg {
     -webkit-touch-callout: none;
@@ -978,7 +1038,7 @@ svg.nvd3-svg {
 }
 
 /********************
-  Box shadow and border radius styling
+Box shadow and border radius styling
 */
 .nvtooltip.with-3d-shadow, .with-3d-shadow .nvtooltip {
     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
@@ -1089,16 +1149,16 @@ svg.nvd3-svg {
 
 .nvd3 .nv-parallelCoordinates .hover  {
     fill-opacity: 1;
-	stroke-width: 3px;
+    stroke-width: 3px;
 }
 
 
 .nvd3 .missingValuesline line {
-  fill: none;
-  stroke: black;
-  stroke-width: 1;
-  stroke-opacity: 1;
-  stroke-dasharray: 5, 5; 
+    fill: none;
+    stroke: black;
+    stroke-width: 1;
+    stroke-opacity: 1;
+    stroke-dasharray: 5, 5; 
 }
 .nvd3.nv-pie path {
     stroke-opacity: 0;
@@ -1252,7 +1312,7 @@ svg.nvd3-svg {
 }
 
 /*Give tooltips that old fade in transition by
-    putting a "with-transitions" class on the container div.
+putting a "with-transitions" class on the container div.
 */
 .nvtooltip.with-transitions, .with-transitions .nvtooltip {
     transition: opacity 50ms linear;

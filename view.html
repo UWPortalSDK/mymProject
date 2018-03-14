@@ -76,18 +76,28 @@
                                 <input class="StudentInfoUpgradeButton ProfileSelectButton mymbutton" type="button" ng-click="showDetails(selectedTerm.current_term,selectedTerm.student_id)" value="Update" ng-disabled = "show" />
                             </div>
                         </uib-accordion>
-                        <uib-accordion class="StudentInfoSection" close-others="false">
-                            <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="false" is-disabled="false">
-                                <h2>Mental Health Comparison</h2>        
-                                <nvd3 options="ChartOptions" data="MHBarData.value"></nvd3>
-                                <h2>Motivation Comparison</h2>
-                                <nvd3 options="ChartOptions" data="MotivateBarData.value"></nvd3>
-                                <h2>Goals</h2>
-                                <nvd3 options="pieChartOptions" data="pieChartDataGoal.value"></nvd3>
-                                <h2>Barriers</h2>
-                                <nvd3 options="pieChartOptions" data="pieChartDataBarrier.value"></nvd3>
+                        <div ng-show="selectedTerm != null">
+                            <uib-accordion class="StudentInfoSection" close-others="false">
+                                <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="true" is-disabled="false">
+                                    <div class = "PersonalAvgMH PersonalRepChart"  ng-show="selectedTerm != null">
+                                        <p class="chartTitle">Mental Health Comparison</p>
+                                        <nvd3 options="ChartOptions" data="MHBarData.value"></nvd3>
+                                    </div>
+                                    <div class = "PersonalAvgMotivation PersonalRepChart"  ng-show="selectedTerm != null">
+                                        <p class="chartTitle">Motivation Comparison</p>
+                                        <nvd3 options="ChartOptions" data="MotivateBarData.value"></nvd3>
+                                    </div>
+                                    <div class = "PersonalAvgGoal PersonalRepChart"  ng-show="selectedTerm != null">
+                                        <p class="chartTitle">Goals</p>
+                                        <nvd3 options="pieChartOptions" data="pieChartDataGoal.value"></nvd3>
+                                    </div>
+                                    <div class = "PersonalAvgBarriers PersonalRepChart"  ng-show="selectedTerm != null">
+                                        <p class="chartTitle">Barriers</p>
+                                        <nvd3 options="pieChartOptions" data="pieChartDataBarrier.value"></nvd3>
+                                    </div>
+                                </div>
+                            </uib-accordion>
                             </div>
-                        </uib-accordion>
                     </div>
                 </widget-row>
             </uib-tab>
@@ -370,7 +380,7 @@
             
             <uib-tab index="5" heading="General Report">
                 <widget-row ng-controller = "generalReportCtrl">
-                    <div class="ProfileTermContent">
+                    <div class="GeneralProfileTermContent">
                         <p class = "selectterm">Term:
                             <select class="GeneralRepTerm" ng-options="term.current_term for term in terms.value" ng-model="term" ng-change= "getTermDisplay(term.current_term)">                                    
                             </select>
@@ -535,40 +545,72 @@
 
 <script type="text/ng-template" id="survey_export.html">
     <widget-row ng-controller="exportCtrl">
-        <p>Survey</p>
-        <select ng-options="term as term.term for term in SurveyTerms.value" ng-model="SelectSurveyTerm" ng-change="selecteSurveyType()"></select>
-        <select ng-options="type as type.type for type in SurveyTypes.value" ng-model="selectSurveyType"></select>
-        <input type="button" value="Submit" ng-click="testTime()" class="btn btn-default" />
+        <div class="SurveyExport_Page">
+            <div class="SurveyExportPageTitle">
+                <p class="PageTitle">Survey Creation</p>
+            </div>
+            <div class="SurveyExportContent">
+                <p class="FormHeader">Survey</p>
+                <select class="ExportSurveySelect" ng-options="term as term.term for term in SurveyTerms.value" ng-model="SelectSurveyTerm" ng-change="selecteSurveyType()"></select>
+                <select class="ExportSurveySelect" ng-options="type as type.type for type in SurveyTypes.value" ng-model="selectSurveyType"></select>
+            </div>
+            <div>
+                <input type="button" value="Submit" ng-click="testTime()" class="subpageSubmitButton mymbutton"  />
+            </div>
+        </div>
     </widget-row>
 </script>
 
 <!-- PAGE TEMPLATE EXAMPLE --> 
 <script type="text/ng-template" id="profileEdit.html"> 
     <widget-row ng-controller = "editCtrl">
+        <div class="StudentProfileUpdate_Page">
+            <div class="StuProfileUdPageTitle">
+                <p class="PageTitle">Update Student Profile</p>
+            </div>
+            <div class = "StuProfileUdPageContent">
+                <div class="StuProfileUpdateField">
+                    <p class = "Basictext"><b>First Name: </b><input class="StuProfileUdGenInput" type="text" ng-model ="editStudent.value[0].pname_f" /></p>
+                </div>
+                <div class="StuProfileUpdateField">
+                    <p class = "Basictext"><b>Last Name: </b><input class="StuProfileUdGenInput" type="text"  ng-model = "editStudent.value[0].pname_l"/></p>
+                </div>
+                <div class="StuProfileUpdateField">
+                    <p class = "Basictext"><b>Student ID: </b><input class="StuProfileUdGenInput" type="number" ng-model = "editStudent.value[0].student_id"/></p>
+                </div>
+                <div class="StuProfileUpdateField">
+                    <p class = "Basictext"><b>Email: </b><input class="StuProfileUdGenInput" type="email" ng-model = "editStudent.value[0].p_email"/></p>
+                </div>
+                <div class="StuProfileUpdateField">
+                    <p class = "Basictext"><b>Gender: </b><select class="StuProfileUdSelect" name="gender" ng-model="editStudent.value[0].gender" >
+                        <option value=""> </option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="N/A">Prefer not to specify</option>
+                        </select>
+                    </p>
+                </div>
+                <div class="StuProfileUpdateField">
+                    <p class = "Basictext"><b>Program: </b><input class="StuProfileUdGenInput" type="text"  ng-model = "editStudent.value[0].program" /></p>
+                </div>
+                <div class="StuProfileUpdateField">
+                    <p class = "Basictext"><b>Academic Term: </b><input class="StuProfileUdGenInput" type="text"  ng-model ="editStudent.value[0].academic_term"  /></p>
+                </div>
+                <div class="StuProfileUpdateField">
+                    <p class = "Basictext"><b>Workout Buddy: </b>  <input class="StuProfileUdGenInput" type="checkbox" ng-checked="editStudent.value[0].workout_buddy" ng-model = "editStudent.value[0].workout_buddy"/></p>
+                </div>
+                <div class="StuProfileUpdateField" ng-show="editStudent.value[0].workout_buddy==1">
+                    <p class = "Basictext"><b>Workout Buddy Name: </b><input class="StuProfileUdGenInput" type="text" value="{{editStudent.value[0].buddy_name}}" ng-model = "editStudent.value[0].buddy_name"/></p>
+                </div>
+                <div class="StuProfileUpdateField">
+                    <p class = "Basictext"><b>Contact Frequency: </b><input class="StuProfileUdGenInput" type="text" value="{{editStudent.value[0].rfrequent}}" ng-model = "editStudent.value[0].rfrequent" /></p>
+                </div>
 
-        <div >
-            <!--             <p>{{editStudent.value[0].contact_id}}</p> -->
-            <p>First Name: <input type="text" ng-model ="editStudent.value[0].pname_f" /></p>
-            <p>Last Name: <input type="text"  ng-model = "editStudent.value[0].pname_l"/></p>
-            <p>Student ID: <input type="number" ng-model = "editStudent.value[0].student_id"/></p>
-            <p>Email: <input type="email" ng-model = "editStudent.value[0].p_email"/></p>
-            <p>Gender: <select name="gender" ng-model="editStudent.value[0].gender" >
-                <option value=""> </option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="N/A">Prefer not to specify</option>
-                </select> </p>
-            <p>Program: <input type="text"  ng-model = "editStudent.value[0].program" /></p>
-            <p>Academic Term: <input type="text"  ng-model ="editStudent.value[0].academic_term"  /></p>
-            <p>Workout Buddy: <input type="checkbox" ng-checked="editStudent.value[0].workout_buddy" ng-model = "editStudent.value[0].workout_buddy"/></p>
-            <p>Workout Buddy Name: <input type="text" value="{{editStudent.value[0].buddy_name}}" ng-model = "editStudent.value[0].buddy_name"/></p>
-            <p>Contact Frequency: <input type="text" value="{{editStudent.value[0].rfrequent}}" ng-model = "editStudent.value[0].rfrequent" /></p>
-
+            </div>
+            <div>
+                <input  class="subpageSubmitButton mymbutton" type="button" value="Update" ng-click="updateStudent()" />
+            </div>
         </div>
-
-        <input type="button" value="Update" ng-click="updateStudent()" />
-
-
 
     </widget-row>
 </script> 
