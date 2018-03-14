@@ -322,8 +322,6 @@
     margin-top: 20px;
 }
 
-
-
 .TotalActivityGroups {
     display: flex;
     display: -webkit-flex; /* Safari */
@@ -424,6 +422,18 @@
     font-family: "Open Sans";
     font-size: 0.9em;
     font-weight: lighter;
+}
+
+.IntroFont {
+    font-family: "Open Sans";
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.ActSuggIntro {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .QuestionField {
