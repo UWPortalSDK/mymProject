@@ -5,7 +5,7 @@ var imports = ["test.js"];
 angular.module('portalApp', ['nvd3'])
 //angular.module('portalApp')
 
-.controller('generalReportCtrl', ['$scope', function($scope) {       
+.controller('generalReportCtrl', ['$scope', function($scope, mymForm) {       
        
         
         $scope.terms = {
@@ -56,8 +56,14 @@ angular.module('portalApp', ['nvd3'])
                      term: term
                      }
             }).then(function(result) {
-                $scope.avgBefore.value = result;
-                console.log(result);
+                 if (result.length == 0){
+                       console.log("Empty Result");
+                     $scope.before.value = [mymForm.mhAvgData];
+                     console.log($scope.avgBefore.value = result);
+                }
+                     else {                    
+                    $scope.avgBefore.value = result;                    
+                } 
                      displayValue();
             });  
              
@@ -68,10 +74,16 @@ angular.module('portalApp', ['nvd3'])
                      term: term
                      }
             }).then(function(result) {
-                $scope.avgAfter.value = result;
-                console.log(result);
-                    displayValue();
-            });  
+                if (result.length == 0){
+                    console.log("Empty Result");                    
+                    $scope.before.value = [mymForm.mhAvgData];
+                    console.log($scope.avgAfter.value = result);
+                }
+                else {                    
+                    $scope.avgAfter.value = result;                    
+                }                    
+                     displayValue();
+            });   
              
              $scope.portalHelpers.invokeServerFunction({
                 functionName: 'getAvgGBBefore',
@@ -80,9 +92,15 @@ angular.module('portalApp', ['nvd3'])
                      term: term
                      }
             }).then(function(result) {
-                $scope.avgGB.value = result;
-                console.log(result);
-                    displayValue();
+                if (result.length == 0){
+                    console.log("Empty Result");                    
+                    $scope.before.value = [mymForm.AvgIntakeData];
+                    console.log($scope.avgGB.value.value = result);
+                }
+                else {                    
+                    $scope.avgGB.value = result;                    
+                }                    
+                     displayValue();
             }); 
         
          };
@@ -2438,6 +2456,41 @@ angular.module('portalApp', ['nvd3'])
         gbb_finance:0       
 
     };
+    
+    
+	var mhAvgData = {
+        life: 0,
+        nervous: 0,
+        sleep: 0,
+        stress: 0,
+        concentrate: 0,
+        tired: 0,
+        benefit: 0,
+        regular:0,
+        fun: 0,
+        satisfaction: 0,
+        pressure: 0,
+        guilt:0                       
+
+    };
+    
+     var AvgIntakeData = {
+        feel: 0,
+        look: 0,
+        sleep: 0,
+        energy: 0,
+        memory: 0,
+        health: 0,
+        people: 0,
+        motivate:0,
+        support: 0,
+        account: 0,
+        school: 0,
+        job:0,
+        physical:0,
+        finance:0       
+
+    };
 
     var savedData = {
         value: null
@@ -2475,7 +2528,9 @@ angular.module('portalApp', ['nvd3'])
         set: set,
         get: get,
         mhData: mhData,
-        intakeData: intakeData
+        intakeData: intakeData,
+        mhAvgData:mhAvgData,
+        AvgIntakeData:AvgIntakeData
 
     };
 }])
