@@ -257,43 +257,43 @@ angular.module('portalApp', ['nvd3'])
                     value: [{
                         key: "Entrance Survey",
                         values: [{
-                            x: "Life",
+                            x: "Benefit",
                             y: $scope.avgBefore.value[0].benefit
                         }, {
-                            x: "Nervous",
+                            x: "Regular",
                             y: $scope.avgBefore.value[0].regular
                         }, {
-                            x: "Sleep",
+                            x: "Fun",
                             y: $scope.avgBefore.value[0].fun
                         }, {
-                            x: "Stress",
+                            x: "Satisfaction",
                             y: $scope.avgBefore.value[0].satisfaction
                         }, {
-                            x: "Concentrate",
+                            x: "Pressure",
                             y: $scope.avgBefore.value[0].pressure
                         }, {
-                            x: "Tired",
+                            x: "Guilt",
                             y: $scope.avgBefore.value[0].guilt
                         }]
                     }, {
                         key: "Exit Survey",
                         values: [{
-                            x: "Life",
+                            x: "Benefit",
                             y: $scope.avgAfter.value[0].benefit
                         }, {
-                            x: "Nervous",
+                            x: "Regular",
                             y: $scope.avgAfter.value[0].regular
                         }, {
-                            x: "Sleep",
+                            x: "Fun",
                             y: $scope.avgAfter.value[0].fun
                         }, {
-                            x: "Stress",
+                            x: "Satisfaction",
                             y: $scope.avgAfter.value[0].satisfaction
                         }, {
-                            x: "Concentrate",
+                            x: "Pressure",
                             y: $scope.avgAfter.value[0].pressure
                         }, {
-                            x: "Tired",
+                            x: "Guilt",
                             y: $scope.avgAfter.value[0].guilt
                         }]
                     }, ]
@@ -1731,7 +1731,7 @@ angular.module('portalApp', ['nvd3'])
 
              },
              "title": {
-                 "enable": true,
+                 "enable": false,
                  "text": "Comparison Charts",
                  "className": "h4",
                  "css": {
