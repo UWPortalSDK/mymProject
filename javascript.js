@@ -1438,9 +1438,9 @@ angular.module('portalApp', ['nvd3'])
 
         if ($scope.input.length > 0) {
             //now weighted average calculation
-            $scope.y_val = 0.6 * cogScore + 0.4 * $scope.y_val;
-            $scope.z_val = 0.6 * socScore + 0.4 * $scope.z_val;
-            $scope.x_val = 0.6 * intScore + 0.4 * $scope.x_val;
+            $scope.y_val = 0.7 * cogScore + 0.3 * $scope.y_val;
+            $scope.z_val = 0.7 * socScore + 0.3 * $scope.z_val;
+            $scope.x_val = 0.7 * intScore + 0.3 * $scope.x_val;
         } else {
             // alert("0 length");
             $scope.y_val = cogScore;
