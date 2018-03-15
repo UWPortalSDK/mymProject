@@ -79,6 +79,14 @@
                         <div ng-show="selectedTerm != null">
                             <uib-accordion class="StudentInfoSection" close-others="false">
                                 <div uib-accordion-group class="StudentProfileSection" heading="Progress" is-open="true" is-disabled="false">
+                                     <div class = "PersonalAvgGoal PersonalRepChart"  ng-show="selectedTerm != null">
+                                        <p class="chartTitle">Goals</p>
+                                        <nvd3 options="pieChartOptions" data="pieChartDataGoal.value"></nvd3>
+                                    </div>
+                                    <div class = "PersonalAvgBarriers PersonalRepChart"  ng-show="selectedTerm != null">
+                                        <p class="chartTitle">Barriers</p>
+                                        <nvd3 options="pieChartOptions" data="pieChartDataBarrier.value"></nvd3>
+                                    </div>
                                     <div class = "PersonalAvgMH PersonalRepChart"  ng-show="selectedTerm != null">
                                         <p class="chartTitle">Mental Health Comparison</p>
                                         <nvd3 options="ChartOptions" data="MHBarData.value"></nvd3>
@@ -87,14 +95,7 @@
                                         <p class="chartTitle">Motivation Comparison</p>
                                         <nvd3 options="ChartOptions" data="MotivateBarData.value"></nvd3>
                                     </div>
-                                    <div class = "PersonalAvgGoal PersonalRepChart"  ng-show="selectedTerm != null">
-                                        <p class="chartTitle">Goals</p>
-                                        <nvd3 options="pieChartOptions" data="pieChartDataGoal.value"></nvd3>
-                                    </div>
-                                    <div class = "PersonalAvgBarriers PersonalRepChart"  ng-show="selectedTerm != null">
-                                        <p class="chartTitle">Barriers</p>
-                                        <nvd3 options="pieChartOptions" data="pieChartDataBarrier.value"></nvd3>
-                                    </div>
+                                   
                                 </div>
                             </uib-accordion>
                         </div>
@@ -409,22 +410,22 @@
                         </div>
 
                         <div class = "GeneralAvgGoal GeneralRepChart">
-                            <p class="chartTitle">Avg Goals data</p>
+                            <p class="chartTitle">Average Goals data</p>
                             <nvd3 options="pieChartOptions" data="pieChartAvgDataGoal.value"></nvd3>
                         </div>
 
                         <div class = "GeneralAvgBarrier GeneralRepChart">
-                            <p class="chartTitle">Avg Barrier data </p>
+                            <p class="chartTitle">Average Barrier data </p>
                             <nvd3 options="pieChartOptions" data="pieChartAvgDataBarrier.value"></nvd3>
                         </div>
 
                         <div class = "GeneralAvgMH GeneralRepChart">
-                            <p class="chartTitle">Avg MH data</p>
+                            <p class="chartTitle">Average MH data</p>
                             <nvd3 options="multiBarChartOptions" data="MHAvgBarData.value"></nvd3> 
                         </div>
 
                         <div class = "GeneralAvgMotivate GeneralRepChart">
-                            <p class="chartTitle">Avg motivate data</p>
+                            <p class="chartTitle">Average motivate data</p>
                             <nvd3 options="multiBarChartOptions" data="MotivateAvgBarData.value"></nvd3>
                         </div>
 
