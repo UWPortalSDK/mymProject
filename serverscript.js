@@ -203,6 +203,15 @@ function getBefore() {
     return queryResult;
 }
 
+function getBefore2() {
+    var queryResult = db.Execute("SELECT * FROM InitialMHMotivate where student_id=@sid and current_term=@term" );
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
 function getAfter() {
     var queryResult = db.Execute("SELECT * FROM FinalMHMotivate where email=@email and current_term=@term");
     var rows = JSON.parse(queryResult);
@@ -212,8 +221,26 @@ function getAfter() {
     return queryResult;
 }
 
+function getAfter2() {
+    var queryResult = db.Execute("SELECT * FROM FinalMHMotivate where student_id=@sid and current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
 function getBeforeGB(){
     var queryResult = db.Execute("SELECT * FROM IntakeSurvey where email=@email and current_term=@term");
+    var rows = JSON.parse(queryResult);
+    if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
+        return '{"status":"noTable"}';
+    }
+    return queryResult;
+}
+
+function getBeforeGB2(){
+    var queryResult = db.Execute("SELECT * FROM IntakeSurvey where student_id=@sid and current_term=@term");
     var rows = JSON.parse(queryResult);
     if (rows.length > 0 && typeof rows[0].Error != 'undefined') {
         return '{"status":"noTable"}';
