@@ -7,7 +7,7 @@ angular.module('portalApp', ['nvd3'])
 
 .controller('generalReportCtrl', ['$scope', function($scope, mymForm) {       
        
-        
+        // intitialize the variables
         $scope.terms = {
         	value: null
         };
@@ -28,6 +28,7 @@ angular.module('portalApp', ['nvd3'])
         	value: null
         };    
         
+    	// grab term information
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'getTerms',
             uniqueNameId: 'mymProject',
@@ -378,17 +379,20 @@ angular.module('portalApp', ['nvd3'])
 
          }])
 
+// controller to display the activities that the algorithm suggests
 .controller('activityResults', ['$scope', 'mymForm', function($scope, mymForm) {
     $scope.actResults = {
         value: null
     };
-
+	
+    // pull the suggested activities from the factory
     $scope.actResults.value = mymForm.getAct();
     //$scope.contact = $scope.editStudent.value[0].contact_id; 
     //
 
 }])
 
+//controller that handles the export of survey results
 .controller('exportCtrl', ['$scope', 'mymForm', function($scope, mymForm) {
     
     $scope.mym = mymForm.mym;
@@ -403,7 +407,8 @@ angular.module('portalApp', ['nvd3'])
     $scope.exportResults = {
         value: null
     };
-
+	
+    //This grabs all the terms for active survey and runs on the initialization of the survey export page
     $scope.portalHelpers.invokeServerFunction({
         functionName: 'searchSurveyTerm',
         uniqueNameId: 'mymProject',
@@ -412,9 +417,9 @@ angular.module('portalApp', ['nvd3'])
         $scope.SurveyTerms.value = result;
     });
     
+    // Based on the term selected the avaliable survey types will be displayed
     $scope.selecteSurveyType = function() {
-        // Make the item that user clicked available to the template
-        //document.getElementById("Studentnamesearchbox").value = id;
+
         $scope.portalHelpers.invokeServerFunction({
             functionName: 'getSurveyTerms',
             uniqueNameId: 'mymProject',
@@ -429,7 +434,7 @@ angular.module('portalApp', ['nvd3'])
     
 
     
-    $scope.testTime = function() {
+    $scope.exportResults = function() {
         //creating functions to insert the data
         
      
@@ -454,9 +459,7 @@ angular.module('portalApp', ['nvd3'])
                             }
                         }                        
 
-                        // "Stuff worked!"
-                        //console.log(temp.mh_sleep_4);             
-                        //console.log(itest);
+
                         console.log("Initial Mental Health/Motivation " + $scope.SelectSurveyTerm.term);
                         $scope.portalHelpers.invokeServerFunction({
                             functionName: 'insertInitialMHMotivate',
@@ -673,16 +676,6 @@ angular.module('portalApp', ['nvd3'])
             
             
         }
-        //loop to find the right terms and then insert
-        // function insertData(){
-        //     console.log("Entered Loop");
-        //     var responses = $scope.exportResults.value.responses;
-        //      for (var i = 0; i < responses.length; i++) {
-        //         var temp = responses[i];
-        //         console.log(temp.sid);
-        //      }            
-            
-        // };
 
         function downloadResult() {
             $scope.portalHelpers.getApiData('Qualtrics/ResponseExportFile?exportid=' + $scope.mym.exportid).then(function(result) {
@@ -828,7 +821,10 @@ angular.module('portalApp', ['nvd3'])
 
 }])
 
+// controller that handles the distribution of the surveys
 .controller('distributeCtrl', ['$scope', 'mymForm', function($scope,mymForm) {
+    
+    
     $scope.terms = {
         value: null
     };
@@ -1149,11 +1145,6 @@ angular.module('portalApp', ['nvd3'])
     };
     
     $scope.MailinglistCreate = function() {
-        // {
-        // "category": "Star Wars - Rebels", // hard set to 'invite' at server
-        // "libraryId": "UR_1234567890AbCdE",
-        // "name": "Rebel Contacts"
-        // }
         console.log($scope.mym.mainuser);
         console.log($scope.mym.shortname);
         var jsn = [$scope.mym.mainuser, $scope.mym.shortname];
@@ -1275,6 +1266,7 @@ angular.module('portalApp', ['nvd3'])
 
 }])
 
+//controller that deals with activity suggestion
 .controller('preferenceCtrl', ['$scope','mymForm', function($scope,mymForm) {
 
     $scope.count = 1;
@@ -1564,6 +1556,7 @@ angular.module('portalApp', ['nvd3'])
 
 }])
 
+//controller that handles the editing of a participant
 .controller('editCtrl', ['$scope', 'mymForm', function($scope, mymForm) {
     $scope.editStudent = {
         value: null
@@ -1609,6 +1602,7 @@ angular.module('portalApp', ['nvd3'])
 
 }])
 
+//controller that controls the functionality of the profile page
 .controller('profileCtrl', ['$scope', 'mymForm', function($scope, mymForm) {
     $scope.value1 = true;
     $scope.value2 = false;
@@ -2077,6 +2071,92 @@ angular.module('portalApp', ['nvd3'])
 		
 
     };
+    
+    //function to check if student id exists because student did not access survey by link
+    function checkBefore(){
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getBefore2',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {                           
+                sid: $scope.selectedTerm.student_id,
+                term: $scope.selectedTerm.current_term
+
+            }
+        }).then(function(result) {
+            // if the result length is zero then the students information is not in the db so we set to default value of 0's
+            if (result.length == 0){
+                $scope.before.value = [mymForm.mhData];
+                console.log("still no before data");
+                //console.log( $scope.before.value);
+            }
+            else{                            
+                $scope.before.value = result                            
+                //console.log( $scope.before.value);
+            }
+
+        });
+    }
+    
+    //function to check if student id exists because student did not access survey by link
+    function checkAfter(){
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getAfter2',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {                           
+                sid: $scope.selectedTerm.student_id,
+                term: $scope.selectedTerm.current_term
+
+            }
+        }).then(function(result) {
+            // if the result length is zero then the students information is not in the db so we set to default value of 0's
+            if (result.length == 0){
+                $scope.after.value = [mymForm.mhData];
+                console.log("still no after data");
+                //console.log( $scope.after.value);
+            }
+            else{                            
+                $scope.before.value = result                            
+                //console.log( $scope.after.value);
+            }
+
+        });
+    }
+    
+    //function to check if student id exists because student did not access survey by link
+    function checkGB(){
+        $scope.portalHelpers.invokeServerFunction({
+            functionName: 'getBeforeGB2',
+            uniqueNameId: 'mymProject',
+            sqlArgs: {                           
+                sid: $scope.selectedTerm.student_id,
+                term: $scope.selectedTerm.current_term
+
+            }
+        }).then(function(result) {
+            //console.log(result);
+            // if the result length is zero then the students information is not in the db so we set to default value of 0's
+            if (result.length == 0){
+                
+                $scope.gb.value = [mymForm.intakeData];
+                console.log("still no gb data");
+                //console.log( $scope.gb.value);
+                console.log( $scope.before.value);
+                console.log( $scope.after.value);
+                console.log( $scope.gb.value);
+                displayValue();
+            }
+            else{
+
+                $scope.gb.value = result                            
+                //console.log( $scope.gb.value);
+                console.log( $scope.before.value);
+                console.log( $scope.after.value);
+                console.log( $scope.gb.value);
+                displayValue();
+            }
+
+        });
+    }
 
     $scope.getEmails = function() {
         if($scope.selectedTerm != null)
@@ -2084,6 +2164,8 @@ angular.module('portalApp', ['nvd3'])
             $scope.show = false;
 
             console.log($scope.selectedTerm.p_email);
+            
+            //get the before information to use in the graphs
             $scope.portalHelpers.invokeServerFunction({
                 functionName: 'getBefore',
                 uniqueNameId: 'mymProject',
@@ -2092,18 +2174,18 @@ angular.module('portalApp', ['nvd3'])
                     term: $scope.selectedTerm.current_term
                 }
             }).then(function(result) {
-                console.log('got student data: ', result);
-                if (result.length == 0){
+                
+                if (result.length == 0){                    
+                    // if the result is empty then check if there is a student id to compare to
                     console.log("Empty Result");
-                    
-                    $scope.before.value = [mymForm.mhData];
-                    console.log( $scope.before.value);
+                    checkBefore();                   
+
                 }
-                else {
-                    
-                    $scope.before.value = result;
-                    
+                else {                    
+                    $scope.before.value = result;                    
                 }
+                
+                
                 $scope.portalHelpers.invokeServerFunction({
                     functionName: 'getAfter',
                     uniqueNameId: 'mymProject',
@@ -2114,14 +2196,16 @@ angular.module('portalApp', ['nvd3'])
                 }).then(function(result) {
                     console.log('got after data: ', result);
                     if (result.length == 0){
+
                         console.log("Empty Result");
-                        $scope.after.value = [mymForm.mhData];
-                        console.log( $scope.after.value);
+                        checkAfter();
+                        
+
                     }
                     else {
 
                         $scope.after.value = result;
-                        console.log($scope.after.value = result);
+                        //console.log($scope.after.value = result);
 
                     }
                     //$scope.after.value = result;
@@ -2133,21 +2217,26 @@ angular.module('portalApp', ['nvd3'])
                             term: $scope.selectedTerm.current_term
                         }
                     }).then(function(result) {
+                        //console.log(result);
                         console.log('got gb data: ', result);
                         if (result.length == 0){
                             console.log("Empty Result");
-                            $scope.gb.value = [mymForm.intakeData];
-                            console.log( $scope.gb.value);
+                            checkGB();                          
+
                         }
                         else {
 
                             $scope.gb.value = result;
-                            console.log($scope.gb.value = result);
+                            //console.log($scope.gb.value = result);
+                            console.log( $scope.before.value);
+                            console.log( $scope.after.value);
+                            console.log( $scope.gb.value);
+                            displayValue();
 
                         }
-                        //$scope.gb.value = result;
-                        displayValue(); 
+
                     });
+                     
                 });
                 
             });
@@ -2325,8 +2414,6 @@ angular.module('portalApp', ['nvd3'])
 
 
     }
-
-
 
     function deleteData(data) {
 
