@@ -587,7 +587,7 @@ angular.module('portalApp', ['nvd3'])
                         });
 
                 }
-                else if ($scope.selectSurveyType.type === "Final Feeback Survey"){
+                else if ($scope.selectSurveyType.type === "Final Feedback Survey"){
                      
                     $scope.portalHelpers.invokeServerFunction({
                             functionName: 'insertFinalFeedback',
@@ -622,7 +622,7 @@ angular.module('portalApp', ['nvd3'])
                 }
                 else if ($scope.selectSurveyType.type === "Final Mental Health/Motivation"){
                     console.log("Final Mental Health/Motivation");
-                    //console.log("Final Feeback Survey");
+                    //console.log("Final Feedback Survey");
                     for (var key in temp) {
                             if (temp.hasOwnProperty(key)) {
                                 //console.log(key + " -> " + temp[key]);
@@ -731,8 +731,8 @@ angular.module('portalApp', ['nvd3'])
                             //$scope.InitialMHMotivate.value = result;
                         });
                     }
-                    else if ($scope.selectSurveyType.type === "Final Feeback Survey"){
-                        console.log("Final Feeback Survey");
+                    else if ($scope.selectSurveyType.type === "Final Feedback Survey"){
+                        console.log("Final Feedback Survey");
                         $scope.portalHelpers.invokeServerFunction({
                             functionName: 'deleteFinalFeedback',
                             uniqueNameId: 'mymProject',
@@ -981,7 +981,7 @@ angular.module('portalApp', ['nvd3'])
     console.log($scope.yeararray);
     $scope.termarray = ["Fall ", "Winter ", "Spring "];
     console.log($scope.termarray);
-    $scope.surveytypearray = ["Initial Mental Health/Motivation", "Intake Survey", "Exit Survey", "Final Feeback Survey", "Final Mental Health/Motivation"];
+    $scope.surveytypearray = ["Initial Mental Health/Motivation", "Intake Survey", "Exit Survey", "Final Feedback Survey", "Final Mental Health/Motivation"];
     console.log($scope.surveytypearray);
     // now you can get the string
 
