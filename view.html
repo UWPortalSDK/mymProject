@@ -527,6 +527,7 @@
 
             <div class="InsertSurveyPageContent">
                 <form name = "surveyinput" ng-submit = "SurveyDistribution()">
+                    
                     <div class = "InsertSurveyField">
                         <p class="FormHeader">Survey id</p>
                         <input type="text" ng-model="mym.surveyid" />
@@ -556,14 +557,18 @@
             <div class="SurveyExportPageTitle">
                 <p class="PageTitle">Survey Result Export</p>
             </div>
-            <div class="SurveyExportContent">
-                <p class="FormHeader">Survey</p>
-                <select class="ExportSurveySelect" ng-options="term as term.term for term in SurveyTerms.value" ng-model="SelectSurveyTerm" ng-change="selecteSurveyType()"></select>
-                <select class="ExportSurveySelect" ng-options="type as type.type for type in SurveyTypes.value" ng-model="selectSurveyType"></select>
-            </div>
-            <div>
-                <input type="button" value="Submit" ng-click="exportResults()" class="subpageSubmitButton mymbutton"  />
-            </div>
+            <form name = "exportSurvey" ng-submit = "exportResults()">
+            	<div class="SurveyExportContent">
+                	<p class="FormHeader">Survey</p>
+                    <select class="ExportSurveySelect" ng-options="term as term.term for term in SurveyTerms.value" ng-model="SelectSurveyTerm" required ng-change="selecteSurveyType()"><option></option></select>
+                    <select class="ExportSurveySelect" ng-options="type as type.type for type in SurveyTypes.value" required ng-model="selectSurveyType"><option></option></select>
+            	</div>
+            	<div>
+                	<input type="submit"/>
+              
+<!--                 value="Submit" ng-click="exportResults()" class="subpageSubmitButton mymbutton"   -->
+            	</div>
+            </form>
         </div>
     </widget-row>
 </script>
