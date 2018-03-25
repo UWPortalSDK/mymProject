@@ -469,43 +469,43 @@
             </div>
 
             <div class="SurveyDistributionForm">
-                <form action="">
+                <form name = "surveyDistribution" ng-submit = "CreateLibraryMessage()">
                     <div class="form-group">
                         <div class="SurveyDistFormQues">
                             <p class="FormHeader">Select Term:
-                                <select class="SelectDropDown" ng-options="term.current_term for term in terms.value" ng-model="selectedTermDis" ng-change="getStudent()">  
-                                </select>
+                                <select class="SelectDropDown" ng-options="term.current_term for term in terms.value" ng-model="selectedTermDis" ng-change="getStudent()" required >  
+                                <option></option></select>
                             </p>
                         </div>
                         <div class="SurveyDistFormQues">
                             <p class="FormHeader">Select Student:
-                                <select class="SelectDropDown" ng-options = "student.student_id + '  ' + student.pname_f + ' ' + student.pname_l for student in student.value" ng-model = "selectedStudent" ng-change="getType()">
+                                <select class="SelectDropDown" ng-options = "student.student_id + '  ' + student.pname_f + ' ' + student.pname_l for student in student.value" ng-model = "selectedStudent" ng-change="getType()" required ><option></option>
                                 </select>
                                 <!--                     {{selectedStudent.mailing_id}} -->
                             </p>
                         </div>
                         <div class="SurveyDistFormQues">
                             <p class="FormHeader">Select Survey Type:
-                                <select class="SelectDropDown" ng-options="types.type for types in surveytype.value" ng-model="selectedsurvey">  
+                                <select class="SelectDropDown" ng-options="types.type for types in surveytype.value" ng-model="selectedsurvey" required ><option></option>
                                 </select>
                                 <!--                     {{selectedsurvey.survey_id}} -->
                             </p>  
                         </div>
                         <div class="SurveyDistFormQues">
                             <p class="FormHeader">Enter Message Subject: 
-                                <input type="text" ng-model = "mym.subject" class="SurveyDistFormSubject"/>
+                                <input type="text" ng-model = "mym.subject" class="SurveyDistFormSubject" required />
                                 <!--                                 {{mym.subject}} -->
                             </p> 
                         </div>
                         <div class="SurveyDistFormQues">
                             <p class="FormHeader">Customize Message</p>  
-                            <p><textarea rows="10" cols="40" name="comment" ng-model = "mym.message">Enter text here...</textarea>
+                            <p><textarea rows="10" cols="40" name="comment" ng-model = "mym.message" required>Enter text here...</textarea>
                                 <!--                 <p ng-bind-html="test | linebreaks"></p> -->
                             </p>
                         </div>
 
-                        <input type="button" value="Submit" class="subpageSubmitButton mymbutton" ng-click = "CreateLibraryMessage()"/>
-
+                        <input type="submit" />
+<!-- value="Submit" class="subpageSubmitButton mymbutton" ng-click = "CreateLibraryMessage()" -->
 
                         <!--                 <input type="button" value="Submit" ng-class="{'btn-warning': value3, 'btn-success': value2, 'btn': value1}" ng-click = "CreateLibraryMessage()"/> -->
 
