@@ -920,7 +920,7 @@ angular.module('portalApp')
                 alert("Email Successfully Sent");
             }
             else {
-                alert("Invalid Entry");
+                alert(result.data.meta.error.errorMessage);
             }
             console.log(result.data);
         }, function(fail) {
@@ -1029,6 +1029,8 @@ angular.module('portalApp')
                             }
                         }).then(function(result) {
                             console.log("entered existing mailing id");
+                            alert("Successfully Added Survey");
+                            
                         });
                         break;
                     }
@@ -1058,9 +1060,9 @@ angular.module('portalApp')
 
     }
 
-    function AddSurvey() {
-        CheckTerms();
-    };
+    // function AddSurvey() {
+    //     CheckTerms();
+    // };
 
     $scope.checkExist = function() {
         $scope.portalHelpers.invokeServerFunction({
@@ -1075,7 +1077,7 @@ angular.module('portalApp')
             if (Object.keys(result).length > 0) {
                 alert("Survey Already Exists");
             } else {
-                AddSurvey();
+                 CheckTerms();
             }
             //CheckTerms(QueryResult);
         });
@@ -1213,43 +1215,46 @@ angular.module('portalApp')
     };
 
     // Create a survey distribution
-    $scope.CreateSurveyDistribution = function() {
-        // String array sources = [surveyId, expirationDate, type, fromEmail,fromName,
-        // replyToEmail, subject, libraryId, messageId, mailingListId,contactId, sendDate]
-        var date = new Date();
-        var isodate = date.toISOString();
-        $scope.mym.sendDate = isodate;
-        var jsn = [$scope.mym.surveyid, $scope.mym.expirationDate, $scope.mym.distributionType, $scope.mym.fromEmail, $scope.mym.fromName, $scope.mym.replyToEmail, $scope.mym.subject, $scope.mym.mainuser, $scope.mym.message_id, $scope.mym.mailingid, $scope.mym.contact_id, $scope.mym.sendDate];
-        console.log(jsn);
-        $scope.portalHelpers.postApiData('Qualtrics/CreateSurveyDistribution', {
-            sources: JSON.stringify(jsn)
-        }).then(function(result) {
-            if (result.data)
-                result.data = JSON.parse(result.data);
-            console.log(result.data);
-        }, function(fail) {
-            console.log('CreateSurveyDistribution FAIL', fail);
-        }, function(notify) {
-            console.log('CreateSurveyDistribution notify');
-        });
-    };
-    // Create new library message
-    $scope.CreateLibraryMessage = function() {
-        var msg = "Follow this link to the Survey: ${l://SurveyLink?d=Take the Survey} Or copy and paste the URL below into your internet browser: ${l://SurveyURL} Follow the link to opt out of future emails: ${l://OptOutLink?d=Click here to unsubscribe}";
-        // args = [string library id, string category, string description,string message(en)]
-        var jsn = [$scope.mym.mainuser, "invite", "1185 Intake", msg];
-        $scope.portalHelpers.postApiData('Qualtrics/CreateLibraryMessage', {
-            args: JSON.stringify(jsn)
-        }).then(function(result) {
-            if (result.data)
-                result.data = JSON.parse(result.data);
-            console.log(result.data);
-        }, function(fail) {
-            console.log('CreateLibraryMessage FAIL', fail);
-        }, function(notify) {
-            console.log('CreateLibraryMessage notify');
-        });
-    };
+    // $scope.CreateSurveyDistribution = function() {
+    //     // String array sources = [surveyId, expirationDate, type, fromEmail,fromName,
+    //     // replyToEmail, subject, libraryId, messageId, mailingListId,contactId, sendDate]
+    //     var date = new Date();
+    //     console.log("entered distribution");
+    //     var isodate = date.toISOString();
+    //     $scope.mym.sendDate = isodate;
+    //     var jsn = [$scope.mym.surveyid, $scope.mym.expirationDate, $scope.mym.distributionType, $scope.mym.fromEmail, $scope.mym.fromName, $scope.mym.replyToEmail, $scope.mym.subject, $scope.mym.mainuser, $scope.mym.message_id, $scope.mym.mailingid, $scope.mym.contact_id, $scope.mym.sendDate];
+    //     console.log(jsn);
+    //     $scope.portalHelpers.postApiData('Qualtrics/CreateSurveyDistribution', {
+    //         sources: JSON.stringify(jsn)
+    //     }).then(function(result) {
+    //         if (result.data)
+    //             result.data = JSON.parse(result.data);
+    //         console.log(result.data);
+    //     }, function(fail) {
+    //         console.log('CreateSurveyDistribution FAIL', fail);
+    //     }, function(notify) {
+    //         console.log('CreateSurveyDistribution notify');
+    //     });
+    // };
+    // // Create new library message
+    // $scope.CreateLibraryMessage = function() {
+    //     console.log("WHYYYYY");
+    //     var msg = "Follow this link to the Survey: ${l://SurveyLink?d=Take the Survey} Or copy and paste the URL below into your internet browser: ${l://SurveyURL} Follow the link to opt out of future emails: ${l://OptOutLink?d=Click here to unsubscribe}";
+    //     // args = [string library id, string category, string description,string message(en)]
+    //     var jsn = [$scope.mym.mainuser, "invite", "1185 Test", msg];
+    //     $scope.portalHelpers.postApiData('Qualtrics/CreateLibraryMessage', {
+    //         args: JSON.stringify(jsn)
+    //     }).then(function(result) {
+    //         if (result.data)
+    //             console.log("Here");
+    //             result.data = JSON.parse(result.data);
+    //         console.log(result.data);
+    //     }, function(fail) {
+    //         console.log('CreateLibraryMessage FAIL', fail);
+    //     }, function(notify) {
+    //         console.log('CreateLibraryMessage notify');
+    //     });
+    // };
 
     // Return all distributions for this survey
     $scope.SurveyDistribution = function() {
@@ -1259,7 +1264,7 @@ angular.module('portalApp')
                 console.log(result.data);
                 if (result.data.meta.httpStatus === "400 - Bad Request") {
                     console.log("Successfully logged the error");
-                    alert("Invalid Request Please Verify the Suvey ID");
+                    alert("Invalid Request Please Verify the Survey ID");
 
                 } else {
                     console.log("Proper Survey ID");
