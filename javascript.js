@@ -678,14 +678,16 @@ angular.module('portalApp', ['nvd3'])
             
             
         }
-
+		//function to download the results entered only if there are responses
         function downloadResult() {
             console.log("Entered download function");
             console.log($scope.mym.exportid);
             $scope.portalHelpers.getApiData('Qualtrics/ResponseExportFile?exportid=' + $scope.mym.exportid).then(function(result) {
                 console.log(result);
-                if (result.data != "") {
-                    $scope.exportResults.value = JSON.parse(result.data);
+                $scope.exportResults.value = JSON.parse(result.data);
+                console.log($scope.exportResults.value.responses.length);                
+                if ($scope.exportResults.value.responses.length != 0) {
+                    //$scope.exportResults.value = JSON.parse(result.data);
                     if($scope.selectSurveyType.type === "Initial Mental Health/Motivation"){
                         
                         console.log("Initial Mental Health/Motivation " + $scope.SelectSurveyTerm.term);
