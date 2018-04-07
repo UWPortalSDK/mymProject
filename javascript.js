@@ -1510,38 +1510,7 @@ angular.module('portalApp', ['nvd3'])
         });
         
         
-        //alert("at the distance loop");
-        // for (var key in centerValues.value) {
-
-        //     temp = centerValues.value[key];
-
-        //     distance = Math.sqrt(Math.pow(parseFloat(temp.x_coord) - parseFloat($scope.x_val), 2) + Math.pow(parseFloat(temp.y_coord) - parseFloat($scope.y_val), 2) + Math.pow(parseFloat(temp.z_coord) - parseFloat($scope.z_val), 2));
-        //     //alert("The cluster currently belongs to " + clusterBelong[0]);
-        //     //alert(clusterBelong[1]);
-        //     //alert(parseFloat(distance));
-        //     if (parseFloat(distance) <= parseFloat(clusterBelong[1])) {
-        //         clusterBelong = [temp.cluster_number, distance];
-        //         //alert("Changed Distance New Cluster is " + clusterBelong[0]);
-        //         //alert(clusterBelong[0]);
-        //     }
-
-
-        // };
-
-        // $scope.portalHelpers.invokeServerFunction({
-        //     functionName: 'getClusters',
-        //     uniqueNameId: 'mymProject',
-        //     sqlArgs: {
-        //         cNumber: clusterBelong[0]
-        //     }
-        // }).then(function(result) {
-        //     console.log('got cluster content: ', result);
-        //     $scope.clusters.value = result;
-        //     mymForm.setAct(result);
-        //     $scope.portalHelpers.showView('activityShow.html', 2);
-        //     //sourceLoaded();
-        // });
-
+       
 
         temp = {};
         centerValues = {
