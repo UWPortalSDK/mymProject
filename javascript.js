@@ -2474,7 +2474,7 @@ angular.module('portalApp', ['nvd3'])
     
     var mym = {
 
-        mainuser: 'UR_72plybg0V8sF3AF',
+        mainuser: 'UR_2bn6F7kb5V372Jv',
         shortname: '',
         surveyid: '',
         mailingid: '',
